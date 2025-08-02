@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎮 3D Mini Games vs Robot</title>
+    <!-- Poppins Font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Three.js for 3D Game -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Firebase for real-time multiplayer functionality -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInWithCustomToken, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc, onSnapshot, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Global variables provided by the Canvas environment
+        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+
+        let db, auth;
+        let userId = 'anonymous';
+
+        window.initializeFirebase = async function() {
+            try {
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+
+                if (initialAuthToken) {
+                    await signInWithCustomToken(auth, initialAuthToken);
+                } else {
+                    await signInAnonymously(auth);
+                }
+
+                onAuthStateChanged(auth, (user) => {
+                    if (user) {
+                        userId = user.uid;
+                        document.getElementById('user-id-display').innerText = `Your User ID: ${userId}`;
+                        console.log("Firebase initialized and user signed in:", userId);
+                        // Once authenticated, start the game logic that depends on Firebase
+                        setupMultiplayerAimTrainer();
+                    } else {
+                        console.log("User signed out or not authenticated.");
+                    }
+                });
+            } catch (error) {
+                console.error("Firebase initialization failed:", error);
+            }
+        };
+
+        // ... (The rest of the game code is assumed to be correct based on the previous conversation)
+        // I will fix the existing logic and comments below
+
+        let scene, camera, renderer;
+        let target;
+        let isGameRunning = false;
+        let score = 0;
+        let timeLeft = 30; // Game duration in seconds
+        const gameDuration = 30;
+        let startTime;
+
+        const messageBox = document.getElementById('message-box');
+        const scoreDisplay = document.getElementById('score-display');
+        const timerDisplay = document.getElementById('timer-display');
+        const startButton = document.getElementById('start-button');
+        const gameContainer = document.getElementById('game-container');
+        const userIdDisplay = document.getElementById('user-id-display');
+
+        // Helper function to get the Firestore document reference
+        function getGameDocRef() {
+            return doc(db, 'artifacts', appId, 'public', 'data', 'aim-trainer-game');
+        }
+        
+        // This function sets up the Three.js scene, camera, and renderer
+        function initAimTrainer() {
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x1d1f27);
+
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 5;
+
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            gameContainer.appendChild(renderer.domElement);
+
+            // Add an event listener for window resizing
+            window.addEventListener('resize', onWindowResize, false);
+            
+            // Create a target object (e.g., a glowing sphere)
+            const geometry = new THREE.SphereGeometry(0.5, 32, 32);
+            const material = new THREE.MeshStandardMaterial({ color: 0x00ff00, emissive: 0x00ff00, emissiveIntensity: 1 });
+            target = new THREE.Mesh(geometry, material);
+            scene.add(target);
+
+            // Add lighting
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            scene.add(ambientLight);
+
+            const pointLight = new THREE.PointLight(0x00ff00, 1, 100);
+            pointLight.position.set(0, 0, 5);
+            scene.add(pointLight);
+            
+            // Add mouse click event listener to the renderer's canvas
+            renderer.domElement.addEventListener('click', onTargetClick, false);
+        }
+
+        // Function to handle window resizing
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        // Function to handle clicks and check if the target was hit
+        async function onTargetClick(event) {
+            if (!isGameRunning) return;
+
+            // Normalize mouse coordinates
+            const mouse = new THREE.Vector2();
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+            const raycaster = new THREE.Raycaster();
+            raycaster.setFromCamera(mouse, camera);
+
+            const intersects = raycaster.intersectObjects(scene.children);
+
+            if (intersects.length > 0 && intersects[0].object === target) {
+                score++;
+                scoreDisplay.innerText = `Score: ${score}`;
+                moveTarget();
+
+                // Update score in Firestore
+                await updateScoreInFirestore(score);
+            }
+        }
+        
+        // This function updates the score in Firestore
+        async function updateScoreInFirestore(newScore) {
+            if (!db || !userId) return;
+            const gameDocRef = getGameDocRef();
+            await setDoc(gameDocRef, {
+                scores: {
+                    [userId]: newScore
+                }
+            }, { merge: true });
+        }
+
+        // This function moves the target to a new random position
+        function moveTarget() {
+            const x = (Math.random() - 0.5) * 8;
+            const y = (Math.random() - 0.5) * 6;
+            const z = (Math.random() - 0.5) * 4 - 2; // Keep it slightly behind the camera
+            target.position.set(x, y, z);
+        }
+
+        // This function starts the game
+        async function startGame() {
+            if (isGameRunning) return;
+            isGameRunning = true;
+            score = 0;
+            timeLeft = gameDuration;
+            scoreDisplay.innerText = `Score: ${score}`;
+            timerDisplay.innerText = `Time: ${timeLeft}`;
+            messageBox.style.display = 'none';
+            startButton.style.display = 'none';
+            moveTarget();
+            startTime = Date.now();
+
+            const gameDocRef = getGameDocRef();
+            await setDoc(gameDocRef, {
+                isActive: true,
+                startTime: startTime,
+                scores: {
+                    [userId]: 0
+                }
+            }, { merge: true });
+        }
+
+        // The main animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            if (isGameRunning) {
+                const elapsedTime = (Date.now() - startTime) / 1000;
+                timeLeft = Math.max(0, gameDuration - Math.floor(elapsedTime));
+                timerDisplay.innerText = `Time: ${timeLeft}`;
+                if (timeLeft <= 0) {
+                    endGame();
+                }
+            }
+            renderer.render(scene, camera);
+        }
+
+        // This function ends the game and shows the final score
+        async function endGame() {
+            isGameRunning = false;
+            startButton.style.display = 'block';
+            
+            // Fetch final scores from Firestore
+            const gameDocRef = getGameDocRef();
+            const docSnap = await getDoc(gameDocRef);
+            if (docSnap.exists()) {
+                const gameData = docSnap.data();
+                const finalScores = gameData.scores;
+                
+                let finalScoresText = `Game Over! Final Scores:<br>`;
+                Object.entries(finalScores).forEach(([player, score]) => {
+                    finalScoresText += `Player: ${player.substring(0, 4)}... | Score: ${score}<br>`;
+                });
+                messageBox.innerHTML = finalScoresText;
+                messageBox.style.display = 'block';
+            } else {
+                messageBox.innerText = `Game Over! Your final score is: ${score}`;
+                messageBox.style.display = 'block';
+            }
+            
+            // Clean up the game document
+            await setDoc(gameDocRef, {
+                isActive: false
+            }, { merge: true });
+        }
+        
+        // Function to listen for real-time multiplayer updates
+        function setupMultiplayerAimTrainer() {
+            if (!db) return;
+            const gameDocRef = getGameDocRef();
+            onSnapshot(gameDocRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    const gameData = docSnap.data();
+                    if (gameData.isActive && isGameRunning) {
+                        // Update scores from other players
+                        const allScores = gameData.scores;
+                        let allScoresText = `Multiplayer Scores:<br>`;
+                        Object.entries(allScores).forEach(([player, score]) => {
+                            allScoresText += `Player: ${player.substring(0, 4)}... | Score: ${score}<br>`;
+                        });
+                        messageBox.innerHTML = allScoresText;
+                        messageBox.style.display = 'block';
+                    } else if (!gameData.isActive && isGameRunning) {
+                        // A player ended the game
+                        endGame();
+                    }
+                }
+            });
+        }
+
+
+        // Window load event to initialize everything
+        window.onload = function() {
+            // First, initialize the 3D game visuals
+            initAimTrainer();
+            // Start the Three.js animation loop
+            animate();
+            // Then, initialize Firebase for multiplayer functionality
+            window.initializeFirebase();
+        };
+
+    </script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+            background-color: #1d1f27;
+            color: white;
+            text-align: center;
+        }
+        #game-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #ui-container {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            font-size: 1.5em;
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff;
+        }
+        #score-display, #timer-display {
+            font-weight: bold;
+        }
+        #start-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 15px 30px;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 65, 108, 0.5);
+            transition: all 0.3s ease;
+        }
+        #start-button:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            box-shadow: 0 0 30px rgba(255, 75, 43, 0.8);
+        }
+        #message-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 100;
+            text-align: center;
+            display: none;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            animation: fadeIn 0.5s ease-out;
+        }
+        #user-id-display {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            font-size: 0.8em;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="game-container">
+        <!-- The Three.js canvas will be added here -->
+    </div>
+
+    <div id="ui-container">
+        <span id="score-display">Score: 0</span>
+        <span id="timer-display">Time: 30</span>
+    </div>
+
+    <button id="start-button" onclick="startGame()">Start Game</button>
+    
+    <div id="message-box"></div>
+    <div id="user-id-display"></div>
+
+</body>
+</html>
