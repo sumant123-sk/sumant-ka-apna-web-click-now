@@ -3,250 +3,195 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sign Up & Code Explained</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>🌐 My Multi-Section Web</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    /* --- COMMON STYLES FOR BOTH PAGES --- */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    /* --- Main Page Styles --- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      min-height: 100vh;
       font-family: 'Poppins', sans-serif;
-      /* Dynamic background from the sign-up page */
-      background: linear-gradient(115deg, #0f0c29, #302b63, #24243e);
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background: linear-gradient(135deg, #000428, #004e92);
+      color: white;
+      min-height: 100vh;
+      padding: 40px 20px;
+      text-align: center;
       overflow-x: hidden;
-      color: #fff;
-      position: relative;
+      animation: bgAnim 20s ease infinite;
     }
-    /* Glowing Background Circles */
-    body::before, body::after {
+    @keyframes bgAnim {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 30px;
+      animation: fadeInDown 1s ease;
+      text-shadow: 0 0 20px cyan;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto 30px auto;
+    }
+    .card {
+      background: rgba(255,255,255,0.1);
+      padding: 30px;
+      border-radius: 20px;
+      text-decoration: none;
+      color: white;
+      box-shadow: 0 0 20px rgba(0,255,255,0.4);
+      transition: 0.3s ease;
+      display: block;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .card::before {
       content: '';
       position: absolute;
-      width: 400px;
-      height: 400px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 0, 128, 0.5), transparent 70%);
-      animation: pulse 6s infinite ease-in-out;
-      z-index: -1;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0,255,255,0.3), transparent 70%);
+      animation: rotate 6s linear infinite;
+      z-index: 0;
     }
-    body::before {
-      top: -100px;
-      left: -100px;
+    .card:hover {
+      background: rgba(255,255,255,0.2);
+      transform: scale(1.05);
     }
-    body::after {
-      bottom: -100px;
-      right: -100px;
-      animation-delay: 3s;
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 0.5; }
-      50% { transform: scale(1.2); opacity: 0.8; }
-      100% { transform: scale(1); opacity: 0.5; }
-    }
-
-    /* --- SIGN-UP PAGE STYLES --- */
-    #signup-section {
-      width: 90%;
-      max-width: 400px;
-      padding: 40px;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
-      text-align: center;
+    .card span {
+      font-size: 3rem;
+      display: block;
+      margin-bottom: 10px;
+      z-index: 1;
       position: relative;
-      transition: all 0.5s ease;
-      opacity: 1;
-      transform: translateY(0);
+      text-shadow: 0 0 15px #00ffff;
     }
-    #signup-section h2 {
-      font-size: 2em;
-      margin-bottom: 30px;
-      color: #00ffff;
-      text-shadow: 0 0 10px #00ffff;
+    .card div {
+      font-size: 1.3rem;
+      z-index: 1;
+      position: relative;
     }
-    #signup-section input {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 10px;
-      background: rgba(255,255,255,0.1);
-      color: rgba(255,255,255,0.9);
-      font-size: 1em;
-      transition: transform 0.3s ease;
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    #signup-section input:focus {
-      outline: none;
-      transform: scale(1.02);
-      box-shadow: 0 0 10px #00c9ff88;
-    }
-    #signup-section button {
-      width: 100%;
-      padding: 14px;
-      margin-top: 20px;
-      border: none;
-      border-radius: 10px;
-      background: linear-gradient(to right, #ff416c, #ff4b2b);
-      color: #fff;
-      font-weight: bold;
-      font-size: 1em;
-      cursor: pointer;
-      transition: 0.4s ease;
-      box-shadow: 0 0 15px #ff416c;
-    }
-    #signup-section button:hover {
-      background: linear-gradient(to right, #ff4b2b, #ff416c);
-      box-shadow: 0 0 20px #ff4b2b;
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
 
-    /* --- "CODE EXPLAINED" PAGE STYLES --- */
-    #hi-section {
-      display: none;
-      width: 100%;
-      max-width: 800px;
-      text-align: left;
-      padding: 40px;
+    /* --- Coding Guide Section Styles --- */
+    .coding-guide-section {
+      display: none; /* Initially hidden */
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
       background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(10px);
       border-radius: 20px;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
-      transition: all 0.5s ease;
-      opacity: 0;
-      transform: scale(0.9);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.15);
+      animation: fadeIn 1s ease forwards;
+      text-align: left;
+      position: relative;
+      z-index: 2;
     }
-    #hi-section h1 {
-      font-size: clamp(2rem, 8vw, 3rem);
-      margin-bottom: 30px;
-      color: #00ffff;
-      text-shadow: 0 0 15px #00ffff;
+    .coding-guide-section h1 {
+      font-size: 2.5rem;
+      color: #00f7ff;
+      text-shadow: 0 0 15px #00f7ff;
       text-align: center;
+      margin-bottom: 20px;
     }
-    #hi-section h2 {
-      font-size: clamp(1.5rem, 5vw, 2em);
-      margin-top: 30px;
+    .coding-guide-section h2 {
+      font-size: 2rem;
       color: #ffcc00;
-      text-shadow: 0 0 8px #ffcc00;
+      border-bottom: 2px solid rgba(255,204,0,0.5);
+      padding-bottom: 10px;
+      margin-top: 40px;
+      margin-bottom: 20px;
     }
-    #hi-section p {
-      font-size: clamp(1rem, 3vw, 1.1em);
+    .coding-guide-section p {
+      font-size: 1.1rem;
       line-height: 1.6;
-      margin-top: 10px;
-      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 20px;
+      color: #e0e0e0;
     }
-    #hi-section pre {
-      background: rgba(0, 0, 0, 0.3);
-      padding: 15px;
-      border-left: 5px solid #ff416c;
-      border-radius: 5px;
+    pre {
+      background-color: #1a1a2e;
+      color: #e0e0e0;
+      padding: 20px;
+      border-radius: 10px;
       overflow-x: auto;
-      margin-top: 10px;
       font-family: 'Courier New', Courier, monospace;
       white-space: pre-wrap;
       word-wrap: break-word;
+      border: 1px solid rgba(0,247,255,0.3);
     }
-    
-    /* Message Box styling */
-    .message-box {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 20px;
-        border-radius: 10px;
-        z-index: 100;
-        text-align: center;
-        display: none; /* Hide by default */
-        box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
-        animation: fadeIn 0.5s ease-out;
+    .back-btn {
+      display: block;
+      margin: 30px auto 0;
+      padding: 10px 20px;
+      width: fit-content;
+      background: linear-gradient(to right, #ff416c, #ff4b2b);
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 0 15px #ff416c;
+      transition: 0.3s ease;
     }
-    .message-box button {
-        margin-top: 10px;
-        padding: 8px 16px;
-        background-color: #ff416c;
-        border: none;
-        border-radius: 5px;
-        color: white;
-        cursor: pointer;
+    .back-btn:hover {
+      background: linear-gradient(to right, #ff4b2b, #ff416c);
+      box-shadow: 0 0 20px #ff4b2b;
+      transform: scale(1.05);
     }
     @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
-    /* Navigation bar styles */
-    .nav-link {
-        display: block;
-        padding: 12px 20px;
-        border-radius: 10px;
-        text-decoration: none;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        position: relative;
-        overflow: hidden;
-    }
-    .nav-link:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    }
-    .nav-link::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(255, 255, 255, 0.1);
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 0.4s ease;
-    }
-    .nav-link:hover::before {
-        transform: scaleX(1);
-    }
-    .nav-link-news { background: linear-gradient(45deg, #ff416c, #ff4b2b); }
-    .nav-link-game { background: linear-gradient(45deg, #00c9ff, #92fe9d); }
-    .nav-link-story { background: linear-gradient(45deg, #a770ef, #cf8bf3); }
-    .nav-link-myth { background: linear-gradient(45deg, #fceabb, #f8b500); }
-
   </style>
 </head>
 <body>
 
-  <!-- Sign-up Page Section -->
-  <div class="signup-box" id="signup-section">
-    <h2>🚀 Create Your Account</h2>
-    <form id="signup-form">
-      <input type="text" name="username" placeholder="Username" required>
-      <input type="email" name="email" placeholder="Email" required>
-      <input type="password" id="password" name="password" placeholder="Password" required>
-      <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
-      <button type="submit">Sign Up</button>
-    </form>
+  <!-- Main Grid Section -->
+  <div id="main-grid-section">
+    <h1>🌟 Welcome to My Multi-Section Web</h1>
+    <div class="grid">
+      <a class="card" href="news.html">
+        <span>📰</span>
+        <div>Global News</div>
+      </a>
+      <a class="card" href="book.html">
+        <span>📖</span>
+        <div>Story Book</div>
+      </a>
+      <a class="card" href="game.html">
+        <span>🎮</span>
+        <div>Mini Game</div>
+      </a>
+      <a class="card" href="mythology.html">
+        <span>🕉️</span>
+        <div>Mythology</div>
+      </a>
+      <!-- New card for the Coding Guide -->
+      <div class="card" onclick="showSection('coding-guide-section')">
+        <span>💻</span>
+        <div>Coding Guide</div>
+      </div>
+    </div>
   </div>
 
-  <!-- "Code Explained" Page Section (Initially hidden) -->
-  <div class="hi-section" id="hi-section">
+  <!-- Coding Guide Section -->
+  <div id="coding-guide-section" class="coding-guide-section">
+    <button class="back-btn" onclick="showSection('main-grid-section')">Back to Home</button>
     <h1>💡 Programming Code Explained</h1>
-
-    <!-- New Navigation Bar -->
-    <nav class="flex flex-col sm:flex-row justify-center gap-4 my-8">
-      <a href="news.html" class="nav-link nav-link-news text-white">Global News</a>
-      <a href="game.html" class="nav-link nav-link-game text-white">Mini Games</a>
-      <a href="book.html" class="nav-link nav-link-story text-white">Story Book</a>
-      <a href="mythology.html" class="nav-link nav-link-myth text-white">Ancient Myths</a>
-    </nav>
-
     <h2>1. HTML</h2>
     <p>HTML (HyperText Markup Language) is used to structure web content. Think of it as the skeleton of a website.</p>
     <pre>
@@ -281,69 +226,21 @@ p {
     <pre>
 &lt;script&gt;
   document.addEventListener("DOMContentLoaded", function() {
-    console.log("The page is fully loaded and ready!");
+    console.log("The page is fully loaded!");
+    // You can add more interactive logic here.
   });
 &lt;/script&gt;
     </pre>
   </div>
-  
-  <!-- Custom message box for alerts -->
-  <div id="message-box" class="message-box">
-      <p id="message-text">Message goes here</p>
-      <button onclick="closeMessage()">OK</button>
-  </div>
-  
+
   <script>
-    let signupSuccessful = false;
+    function showSection(sectionId) {
+      // Hide all sections first
+      document.getElementById('main-grid-section').style.display = 'none';
+      document.getElementById('coding-guide-section').style.display = 'none';
 
-    // Event listener to handle form submission
-    document.getElementById('signup-form').addEventListener('submit', function(event) {
-      event.preventDefault(); // Prevents the default form submission
-      
-      const password = document.getElementById('password').value;
-      const confirmPassword = document.getElementById('confirm-password').value;
-      
-      const messageBox = document.getElementById('message-box');
-      const messageText = document.getElementById('message-text');
-
-      if (password !== confirmPassword) {
-        // If passwords do not match, show an error message
-        messageText.innerText = "Error: Passwords do not match!";
-        messageBox.style.boxShadow = '0 0 20px rgba(255, 65, 108, 0.5)';
-        signupSuccessful = false;
-      } else {
-        // If passwords match, show a success message
-        messageText.innerText = "✅ Account created successfully! Click 'OK' to continue.";
-        messageBox.style.boxShadow = '0 0 20px rgba(0, 255, 255, 0.5)';
-        event.target.reset(); // Clear the form fields
-        signupSuccessful = true;
-      }
-      
-      messageBox.style.display = 'block'; // Show the custom message box
-    });
-
-    // Function to close the message box
-    function closeMessage() {
-      document.getElementById('message-box').style.display = 'none';
-      if (signupSuccessful) {
-        // If sign-up was successful, call the function to show the 'hi' page
-        showHiPage();
-      }
-    }
-    
-    // Function to hide the signup form and show the new content
-    function showHiPage() {
-      const signupSection = document.getElementById('signup-section');
-      const hiSection = document.getElementById('hi-section');
-      
-      signupSection.style.display = 'none'; // Hide the signup form
-      hiSection.style.display = 'block'; // Show the hi-section
-      
-      // To add a fade-in animation
-      setTimeout(() => {
-        hiSection.style.opacity = '1';
-        hiSection.style.transform = 'scale(1)';
-      }, 10);
+      // Then, show the requested section
+      document.getElementById(sectionId).style.display = 'block';
     }
   </script>
 </body>
