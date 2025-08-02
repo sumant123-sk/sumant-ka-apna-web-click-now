@@ -1,167 +1,350 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up & Code Explained</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* --- COMMON STYLES FOR BOTH PAGES --- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      /* Dynamic background from the sign-up page */
+      background: linear-gradient(115deg, #0f0c29, #302b63, #24243e);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+      color: #fff;
+      position: relative;
+    }
+    /* Glowing Background Circles */
+    body::before, body::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 0, 128, 0.5), transparent 70%);
+      animation: pulse 6s infinite ease-in-out;
+      z-index: -1;
+    }
+    body::before {
+      top: -100px;
+      left: -100px;
+    }
+    body::after {
+      bottom: -100px;
+      right: -100px;
+      animation-delay: 3s;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.2); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 0.5; }
+    }
 
-    <meta charset="UTF-8">
+    /* --- SIGN-UP PAGE STYLES --- */
+    #signup-section {
+      width: 90%;
+      max-width: 400px;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      position: relative;
+      transition: all 0.5s ease;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    #signup-section h2 {
+      font-size: 2em;
+      margin-bottom: 30px;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
+    }
+    #signup-section input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.9);
+      font-size: 1em;
+      transition: transform 0.3s ease;
+    }
+    #signup-section input:focus {
+      outline: none;
+      transform: scale(1.02);
+      box-shadow: 0 0 10px #00c9ff88;
+    }
+    #signup-section button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(to right, #ff416c, #ff4b2b);
+      color: #fff;
+      font-weight: bold;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.4s ease;
+      box-shadow: 0 0 15px #ff416c;
+    }
+    #signup-section button:hover {
+      background: linear-gradient(to right, #ff4b2b, #ff416c);
+      box-shadow: 0 0 20px #ff4b2b;
+    }
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    /* --- "CODE EXPLAINED" PAGE STYLES --- */
+    #hi-section {
+      display: none;
+      width: 100%;
+      max-width: 800px;
+      text-align: left;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+      transition: all 0.5s ease;
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    #hi-section h1 {
+      font-size: clamp(2rem, 8vw, 3rem);
+      margin-bottom: 30px;
+      color: #00ffff;
+      text-shadow: 0 0 15px #00ffff;
+      text-align: center;
+    }
+    #hi-section h2 {
+      font-size: clamp(1.5rem, 5vw, 2em);
+      margin-top: 30px;
+      color: #ffcc00;
+      text-shadow: 0 0 8px #ffcc00;
+    }
+    #hi-section p {
+      font-size: clamp(1rem, 3vw, 1.1em);
+      line-height: 1.6;
+      margin-top: 10px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    #hi-section pre {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 15px;
+      border-left: 5px solid #ff416c;
+      border-radius: 5px;
+      overflow-x: auto;
+      margin-top: 10px;
+      font-family: 'Courier New', Courier, monospace;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    
+    /* Message Box styling */
+    .message-box {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        z-index: 100;
+        text-align: center;
+        display: none; /* Hide by default */
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        animation: fadeIn 0.5s ease-out;
+    }
+    .message-box button {
+        margin-top: 10px;
+        padding: 8px 16px;
+        background-color: #ff416c;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    /* Navigation bar styles */
+    .nav-link {
+        display: block;
+        padding: 12px 20px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+    }
+    .nav-link:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+    .nav-link::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.1);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s ease;
+    }
+    .nav-link:hover::before {
+        transform: scaleX(1);
+    }
+    .nav-link-news { background: linear-gradient(45deg, #ff416c, #ff4b2b); }
+    .nav-link-game { background: linear-gradient(45deg, #00c9ff, #92fe9d); }
+    .nav-link-story { background: linear-gradient(45deg, #a770ef, #cf8bf3); }
+    .nav-link-myth { background: linear-gradient(45deg, #fceabb, #f8b500); }
 
-    <title>🌐 My Website Hub</title>
-
-    <!-- Tailwind CSS for styling -->
-
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Google Fonts for Poppins -->
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <style>
-
-        body {
-
-            font-family: 'Poppins', sans-serif;
-
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-
-            color: white;
-
-            min-height: 100vh;
-
-            display: flex;
-
-            justify-content: center;
-
-            align-items: center;
-
-            flex-direction: column;
-
-            padding: 2rem;
-
-            overflow-x: hidden;
-
-        }
-
-        .header-bg {
-
-            background-image: url('https://placehold.co/1920x400/1e293b/d1d5db?text=Welcome+to+my+Website');
-
-            background-size: cover;
-
-            background-position: center;
-
-        }
-
-    </style>
-
+  </style>
 </head>
+<body>
 
-<body class="antialiased">
+  <!-- Sign-up Page Section -->
+  <div class="signup-box" id="signup-section">
+    <h2>🚀 Create Your Account</h2>
+    <form id="signup-form">
+      <input type="text" name="username" placeholder="Username" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" id="password" name="password" placeholder="Password" required>
+      <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
 
+  <!-- "Code Explained" Page Section (Initially hidden) -->
+  <div class="hi-section" id="hi-section">
+    <h1>💡 Programming Code Explained</h1>
 
+    <!-- New Navigation Bar -->
+    <nav class="flex flex-col sm:flex-row justify-center gap-4 my-8">
+      <a href="news.html" class="nav-link nav-link-news text-white">Global News</a>
+      <a href="game.html" class="nav-link nav-link-game text-white">Mini Games</a>
+      <a href="book.html" class="nav-link nav-link-story text-white">Story Book</a>
+      <a href="mythology.html" class="nav-link nav-link-myth text-white">Ancient Myths</a>
+    </nav>
 
-    <!-- Main Container -->
+    <h2>1. HTML</h2>
+    <p>HTML (HyperText Markup Language) is used to structure web content. Think of it as the skeleton of a website.</p>
+    <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;title&gt;My Web Page&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello World!&lt;/h1&gt;
+    &lt;p&gt;This is a paragraph.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+    </pre>
 
-    <div class="container mx-auto p-6 md:p-12 text-center">
+    <h2>2. CSS</h2>
+    <p>CSS (Cascading Style Sheets) is used for styling HTML elements. It's like the skin, clothes, and makeup for the skeleton, making it look beautiful.</p>
+    <pre>
+body {
+  background-color: #121212;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+p {
+  color: yellow;
+  font-size: 18px;
+}
+    </pre>
 
-        <!-- Header Section with a subtle background gradient -->
+    <h2>3. JavaScript</h2>
+    <p>JavaScript is used to make web pages interactive. It's the brain that adds functionality, like animations, buttons, and user interaction.</p>
+    <pre>
+&lt;script&gt;
+  document.addEventListener("DOMContentLoaded", function() {
+    console.log("The page is fully loaded and ready!");
+  });
+&lt;/script&gt;
+    </pre>
+  </div>
+  
+  <!-- Custom message box for alerts -->
+  <div id="message-box" class="message-box">
+      <p id="message-text">Message goes here</p>
+      <button onclick="closeMessage()">OK</button>
+  </div>
+  
+  <script>
+    let signupSuccessful = false;
 
-        <header class="mb-10 p-8 rounded-xl shadow-2xl bg-gradient-to-r from-cyan-500 to-blue-500 transform transition-transform duration-500 hover:scale-105">
+    // Event listener to handle form submission
+    document.getElementById('signup-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevents the default form submission
+      
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+      
+      const messageBox = document.getElementById('message-box');
+      const messageText = document.getElementById('message-text');
 
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-lg">
+      if (password !== confirmPassword) {
+        // If passwords do not match, show an error message
+        messageText.innerText = "Error: Passwords do not match!";
+        messageBox.style.boxShadow = '0 0 20px rgba(255, 65, 108, 0.5)';
+        signupSuccessful = false;
+      } else {
+        // If passwords match, show a success message
+        messageText.innerText = "✅ Account created successfully! Click 'OK' to continue.";
+        messageBox.style.boxShadow = '0 0 20px rgba(0, 255, 255, 0.5)';
+        event.target.reset(); // Clear the form fields
+        signupSuccessful = true;
+      }
+      
+      messageBox.style.display = 'block'; // Show the custom message box
+    });
 
-                <span class="block animate-pulse">Welcome to My Hub</span>
-
-            </h1>
-
-            <p class="text-lg md:text-xl text-white opacity-90">Your one-stop destination for my projects</p>
-
-        </header>
-
-
-
-        <!-- Navigation Grid for all files -->
-
-        <nav class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-            <!-- Link to index.html -->
-
-            <a href="index.html" class="block bg-slate-800 hover:bg-slate-700 transition duration-300 rounded-lg shadow-xl overflow-hidden p-6 text-center transform hover:scale-105 group">
-
-                <h2 class="text-2xl font-semibold mb-2 text-blue-300 group-hover:text-blue-200">Sign Up Page</h2>
-
-                <p class="text-slate-400">A stylish user sign-up form.</p>
-
-            </a>
-
-
-
-            <!-- Link to hi.html -->
-
-            <a href="hi.html" class="block bg-slate-800 hover:bg-slate-700 transition duration-300 rounded-lg shadow-xl overflow-hidden p-6 text-center transform hover:scale-105 group">
-
-                <h2 class="text-2xl font-semibold mb-2 text-green-300 group-hover:text-green-200">Code Explained</h2>
-
-                <p class="text-slate-400">Learn about HTML, CSS, and JavaScript.</p>
-
-            </a>
-
-           
-
-            <!-- Link to game.html -->
-
-            <a href="game.html" class="block bg-slate-800 hover:bg-slate-700 transition duration-300 rounded-lg shadow-xl overflow-hidden p-6 text-center transform hover:scale-105 group">
-
-                <h2 class="text-2xl font-semibold mb-2 text-yellow-300 group-hover:text-yellow-200">Mini Games</h2>
-
-                <p class="text-slate-400">Play a variety of mini-games.</p>
-
-            </a>
-
-
-
-            <!-- Link to news.html -->
-
-            <a href="news.html" class="block bg-slate-800 hover:bg-slate-700 transition duration-300 rounded-lg shadow-xl overflow-hidden p-6 text-center transform hover:scale-105 group">
-
-                <h2 class="text-2xl font-semibold mb-2 text-pink-300 group-hover:text-pink-200">Global News</h2>
-
-                <p class="text-slate-400">Stay updated with the latest news.</p>
-
-            </a>
-
-
-
-            <!-- Link to book.html -->
-
-            <a href="book.html" class="block bg-slate-800 hover:bg-slate-700 transition duration-300 rounded-lg shadow-xl overflow-hidden p-6 text-center transform hover:scale-105 group">
-
-                <h2 class="text-2xl font-semibold mb-2 text-purple-300 group-hover:text-purple-200">Story Book</h2>
-
-                <p class="text-slate-400">Read engaging short stories.</p>
-
-            </a>
-
-           
-
-            <!-- Link to mythology.html -->
-
-            <a href="mythology.html" class="block bg-slate-800 hover:bg-slate-700 transition duration-300 rounded-lg shadow-xl overflow-hidden p-6 text-center transform hover:scale-105 group">
-
-                <h2 class="text-2xl font-semibold mb-2 text-orange-300 group-hover:text-orange-200">Ancient Myths</h2>
-
-                <p class="text-slate-400">Explore classic mythological tales.</p>
-
-            </a>
-
-        </nav>
-
-    </div>
-
-
-
+    // Function to close the message box
+    function closeMessage() {
+      document.getElementById('message-box').style.display = 'none';
+      if (signupSuccessful) {
+        // If sign-up was successful, call the function to show the 'hi' page
+        showHiPage();
+      }
+    }
+    
+    // Function to hide the signup form and show the new content
+    function showHiPage() {
+      const signupSection = document.getElementById('signup-section');
+      const hiSection = document.getElementById('hi-section');
+      
+      signupSection.style.display = 'none'; // Hide the signup form
+      hiSection.style.display = 'block'; // Show the hi-section
+      
+      // To add a fade-in animation
+      setTimeout(() => {
+        hiSection.style.opacity = '1';
+        hiSection.style.transform = 'scale(1)';
+      }, 10);
+    }
+  </script>
 </body>
-
 </html>
