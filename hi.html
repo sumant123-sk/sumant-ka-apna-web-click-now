@@ -23,6 +23,19 @@
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
+    .highlighted-names {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      animation: fadeInDown 1s ease;
+    }
+    .highlighted-names span {
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 5px 10px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px cyan;
+      display: inline-block;
+      margin: 0 10px;
+    }
     h1 {
       font-size: 3rem;
       margin-bottom: 30px;
@@ -160,8 +173,11 @@
 </head>
 <body>
 
-  <!-- Main Grid Section -->
   <div id="main-grid-section">
+    <div class="highlighted-names">
+      <span>Sudhansu</span>
+      <span>Sumant</span>
+    </div>
     <h1>🌟 Welcome to My Multi-Section Web</h1>
     <div class="grid">
       <a class="card" href="news.html">
@@ -180,7 +196,6 @@
         <span>🕉️</span>
         <div>Mythology</div>
       </a>
-      <!-- New card for the Coding Guide -->
       <div class="card" onclick="showSection('coding-guide-section')">
         <span>💻</span>
         <div>Coding Guide</div>
@@ -188,7 +203,6 @@
     </div>
   </div>
 
-  <!-- Coding Guide Section -->
   <div id="coding-guide-section" class="coding-guide-section">
     <button class="back-btn" onclick="showSection('main-grid-section')">Back to Home</button>
     <h1>💡 Programming Code Explained</h1>
