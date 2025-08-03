@@ -1,305 +1,270 @@
+बहुत बढ़िया, आपका पिछला कोड पहले से ही अच्छा था और आपने इसमें बहुत सुधार किए हैं। आपके अनुरोध पर, मैंने आपके कोड को सिर्फ एक **अत्यधिक आकर्षक और इंटरैक्टिव साइन-अप पेज** बनाने के लिए बदल दिया है। इस नए कोड में मैंने निम्नलिखित सुधार किए हैं:
+
+### किए गए बदलाव:
+
+  * **डिज़ाइन:** मैंने आपके मौजूदा डिज़ाइन में कुछ सूक्ष्म (subtle) बदलाव किए हैं ताकि यह और ज़्यादा आधुनिक और प्रीमियम लगे। मैंने इनपुट फ़ील्ड्स और बटन के लिए नए इफ़ेक्ट्स जोड़े हैं, जो यूज़र को एक बेहतर अनुभव देते हैं।
+  * **एनिमेशन:** आपके पेज पर मैंने एक सुंदर **Stars** बैकग्राउंड एनिमेशन और **3D कार्ड इफ़ेक्ट** जोड़ा है। यह इफ़ेक्ट आपके साइन-अप फॉर्म को और आकर्षक बनाता है और लोगों को इसे इस्तेमाल करने के लिए प्रेरित करेगा।
+  * **इफेक्टिव JavaScript:** JavaScript को और साफ़-सुथरा और असरदार बनाया गया है, ताकि पेज पर सब कुछ बहुत स्मूथ चले।
+  * **मोबाइल-फ्रेंडली:** डिज़ाइन को पूरी तरह से मोबाइल-रिस्पॉन्सिव बनाया गया है, ताकि यह हर साइज़ की स्क्रीन पर बेहतरीन दिखे।
+
+यह कोड एक स्टैंडअलोन साइन-अप पेज है। आप इसे `index.html` फ़ाइल में सेव करके देख सकते हैं।
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Your Trending Web</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* --- COMMON STYLES --- */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      min-height: 100vh;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(115deg, #0f0c29, #302b63, #24243e);
-      color: #fff;
-      position: relative;
-      overflow-x: hidden;
-    }
-    body::before, body::after {
-      content: '';
-      position: absolute;
-      width: 400px;
-      height: 400px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 0, 128, 0.5), transparent 70%);
-      animation: pulse 6s infinite ease-in-out;
-      z-index: -1;
-    }
-    body::before {
-      top: -100px;
-      left: -100px;
-    }
-    body::after {
-      bottom: -100px;
-      right: -100px;
-      animation-delay: 3s;
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 0.5; }
-      50% { transform: scale(1.2); opacity: 0.8; }
-      100% { transform: scale(1); opacity: 0.5; }
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌟 Welcome to the Future</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- GLOBAL & BACKGROUND STYLES --- */
+        :root {
+            --bg-color: #0d0a1b;
+            --card-color: rgba(255, 255, 255, 0.08);
+            --border-color: rgba(255, 255, 255, 0.2);
+            --primary-glow: #00ffff;
+            --secondary-glow: #ff416c;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-color);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+        /* --- STARFIELD ANIMATION --- */
+        @keyframes move-twink-back {
+            from { background-position: 0 0; }
+            to { background-position: -10000px 5000px; }
+        }
+        .stars, .twinkling {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            z-index: -1;
+        }
+        .stars {
+            background: #000 url(https://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
+        }
+        .twinkling {
+            background: transparent url(https://www.script-tutorials.com/demos/360/images/twinkling.png) repeat top center;
+            animation: move-twink-back 200s linear infinite;
+        }
+        
+        /* --- SIGN-UP CARD STYLES --- */
+        .signup-card {
+            width: 90%;
+            max-width: 450px;
+            padding: 40px;
+            background: var(--card-color);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            transform-style: preserve-3d;
+            transform: rotateY(0deg) rotateX(0deg);
+            transition: transform 0.5s ease-out, box-shadow 0.5s ease;
+        }
+        /* 3D TILT EFFECT on hover */
+        .signup-card:hover {
+            box-shadow: 0 15px 70px rgba(0, 255, 255, 0.2), 0 0 100px rgba(255, 0, 128, 0.1);
+        }
 
-    /* --- NAVIGATION BAR --- */
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(5px);
-      padding: 15px 50px;
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      z-index: 10;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      padding: 10px 15px;
-      border-radius: 5px;
-      transition: background 0.3s ease, color 0.3s ease;
-    }
-    nav a:hover, nav a.active {
-      background: #00ffff;
-      color: #0f0c29;
-    }
-    
-    /* --- SECTION STYLES --- */
-    section {
-      display: none;
-      min-height: 100vh;
-      width: 100%;
-      padding: 80px 20px 40px;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      animation: fadeIn 1s ease-in-out;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    h1 {
-      font-size: clamp(2rem, 8vw, 4rem);
-      margin-bottom: 20px;
-      color: #00ffff;
-      text-shadow: 0 0 15px #00ffff;
-    }
-    h2 {
-      font-size: clamp(1.5rem, 6vw, 2.5rem);
-      margin-bottom: 20px;
-      color: #ff4b2b;
-      text-shadow: 0 0 10px #ff4b2b;
-    }
-    p {
-      max-width: 800px;
-      line-height: 1.6;
-      font-size: 1.1em;
-    }
+        .signup-card h2 {
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            color: var(--primary-glow);
+            text-shadow: 0 0 15px var(--primary-glow);
+            letter-spacing: 1px;
+            animation: textGlow 2s ease-in-out infinite alternate;
+        }
+        @keyframes textGlow {
+            from { text-shadow: 0 0 10px var(--primary-glow); }
+            to { text-shadow: 0 0 20px var(--primary-glow), 0 0 30px rgba(0, 255, 255, 0.5); }
+        }
 
-    /* --- HOME SECTION --- */
-    #home.active {
-      display: flex;
-    }
-    .main-heading {
-      font-size: clamp(3rem, 10vw, 5rem);
-      margin-top: 50px;
-      text-shadow: 0 0 20px cyan, 0 0 40px cyan;
-    }
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            color: white;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary-glow);
+            box-shadow: 0 0 10px var(--primary-glow);
+            background: rgba(0, 255, 255, 0.1);
+        }
+        .input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .signup-button {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(45deg, var(--secondary-glow), #ff4b2b);
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 25px rgba(255, 65, 108, 0.4);
+            letter-spacing: 1px;
+        }
+        .signup-button:hover {
+            background: linear-gradient(45deg, #ff4b2b, var(--secondary-glow));
+            transform: scale(1.02);
+            box-shadow: 0 8px 30px rgba(255, 65, 108, 0.6);
+        }
 
-    /* --- SIGN-UP SECTION --- */
-    #signup.active {
-      display: flex;
-    }
-    .signup-box {
-      width: 90%;
-      max-width: 400px;
-      padding: 40px;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
-      text-align: center;
-      margin-top: 20px;
-    }
-    .signup-box input {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 10px;
-      background: rgba(255,255,255,0.1);
-      color: rgba(255,255,255,0.9);
-      font-size: 1em;
-      transition: transform 0.3s ease;
-    }
-    .signup-box input:focus {
-      outline: none;
-      transform: scale(1.02);
-      box-shadow: 0 0 10px #00c9ff88;
-    }
-    .signup-box button {
-      width: 100%;
-      padding: 14px;
-      margin-top: 20px;
-      border: none;
-      border-radius: 10px;
-      background: linear-gradient(to right, #ff416c, #ff4b2b);
-      color: #fff;
-      font-weight: bold;
-      font-size: 1em;
-      cursor: pointer;
-      transition: 0.4s ease;
-      box-shadow: 0 0 15px #ff416c;
-    }
-    .signup-box button:hover {
-      background: linear-gradient(to right, #ff4b2b, #ff416c);
-      box-shadow: 0 0 20px #ff4b2b;
-    }
+        /* --- MESSAGE BOX STYLES --- */
+        .message-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            z-index: 1000;
+            text-align: center;
+            display: none;
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.5);
+            animation: fadeInScale 0.5s ease forwards;
+        }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+        .message-box button {
+            margin-top: 20px;
+            padding: 10px 25px;
+            background-color: var(--secondary-glow);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .message-box button:hover {
+            background-color: #ff4b2b;
+        }
 
-    /* --- MESSAGE BOX --- */
-    .message-box {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(0, 0, 0, 0.8);
-      color: white;
-      padding: 20px;
-      border-radius: 10px;
-      z-index: 100;
-      text-align: center;
-      display: none;
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
-      animation: fadeIn 0.5s ease-out;
-    }
-    .message-box button {
-      margin-top: 10px;
-      padding: 8px 16px;
-      background-color: #ff416c;
-      border: none;
-      border-radius: 5px;
-      color: white;
-      cursor: pointer;
-    }
-  </style>
+    </style>
 </head>
 <body>
 
-  <nav>
-    <a href="#home" class="nav-link active">Home</a>
-    <a href="#news" class="nav-link">News</a>
-    <a href="#story" class="nav-link">Story Book</a>
-    <a href="#game" class="nav-link">Game</a>
-    <a href="#signup" class="nav-link">Sign Up</a>
-  </nav>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
 
-  <section id="home" class="active">
-    <h1 class="main-heading">Welcome to Your Web</h1>
-    <p>Discover the latest news, dive into a great story, play a fun game, and sign up to join our community.</p>
-  </section>
-
-  <section id="news">
-    <h2>Global News</h2>
-    <p>Stay updated with the latest headlines from around the world. We bring you real-time news that matters.</p>
-    </section>
-
-  <section id="story">
-    <h2>Story Book</h2>
-    <p>Enter a world of imagination and adventure. Read captivating stories and explore new worlds with our collection of books.</p>
-    </section>
-
-  <section id="game">
-    <h2>Mini Game</h2>
-    <p>Need a break? Play a fun mini-game to relax and challenge yourself. Get ready to have some fun!</p>
-    </section>
-
-  <section id="signup">
-    <div class="signup-box">
-      <h2>🚀 Create Your Account</h2>
-      <form id="signup-form">
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" id="password" name="password" placeholder="Password" required>
-        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
-        <button type="submit">Sign Up</button>
-      </form>
+    <div class="signup-card">
+        <h2>🚀 Create Your Account</h2>
+        <form id="signup-form">
+            <div class="input-group">
+                <input type="text" name="username" placeholder="Username" required>
+            </div>
+            <div class="input-group">
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" name="password" placeholder="Password" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
+            </div>
+            <button type="submit" class="signup-button">Sign Up</button>
+        </form>
     </div>
-  </section>
     
-  <div id="message-box" class="message-box">
-    <p id="message-text">Message goes here</p>
-    <button onclick="closeMessage()">OK</button>
-  </div>
+    <div id="message-box" class="message-box">
+        <p id="message-text"></p>
+        <button onclick="closeMessage()">OK</button>
+    </div>
 
-  <script>
-    let signupSuccessful = false;
-    const navLinks = document.querySelectorAll('.nav-link');
-    const sections = document.querySelectorAll('section');
-
-    // Handle navigation
-    navLinks.forEach(link => {
-      link.addEventListener('click', function(event) {
-        event.preventDefault();
-        const targetId = this.getAttribute('href').substring(1);
+    <script>
+        let signupSuccessful = false;
         
-        sections.forEach(section => {
-          section.classList.remove('active');
+        // Form submission handler
+        document.getElementById('signup-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            
+            const messageBox = document.getElementById('message-box');
+            const messageText = document.getElementById('message-text');
+
+            if (password !== confirmPassword) {
+                messageText.innerText = "Error: Passwords do not match!";
+                messageBox.style.boxShadow = '0 0 40px rgba(255, 65, 108, 0.7)';
+                signupSuccessful = false;
+            } else {
+                messageText.innerText = "✅ Account created successfully! You are now part of our community.";
+                messageBox.style.boxShadow = '0 0 40px rgba(0, 255, 255, 0.7)';
+                event.target.reset(); 
+                signupSuccessful = true;
+            }
+            
+            messageBox.style.display = 'block';
         });
-        document.getElementById(targetId).classList.add('active');
 
-        navLinks.forEach(navLink => navLink.classList.remove('active'));
-        this.classList.add('active');
-      });
-    });
+        // Close message box function
+        function closeMessage() {
+            document.getElementById('message-box').style.display = 'none';
+            if (signupSuccessful) {
+                // You can add a redirect to a new page here.
+                // Example: window.location.href = 'success.html';
+            }
+        }
+        
+        // 3D Card tilt effect on mouse movement
+        const card = document.querySelector('.signup-card');
+        document.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const tiltY = (x - rect.width / 2) / 20;
+            const tiltX = -(y - rect.height / 2) / 20;
+            
+            card.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+        });
 
-    // Handle form submission
-    document.getElementById('signup-form').addEventListener('submit', function(event) {
-      event.preventDefault();
-      
-      const password = document.getElementById('password').value;
-      const confirmPassword = document.getElementById('confirm-password').value;
-      
-      const messageBox = document.getElementById('message-box');
-      const messageText = document.getElementById('message-text');
+        // Reset tilt on mouse leave
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+        });
+    </script>
 
-      if (password !== confirmPassword) {
-        messageText.innerText = "Error: Passwords do not match!";
-        messageBox.style.boxShadow = '0 0 20px rgba(255, 65, 108, 0.5)';
-        signupSuccessful = false;
-      } else {
-        messageText.innerText = "✅ Account created successfully! You can now explore the web.";
-        messageBox.style.boxShadow = '0 0 20px rgba(0, 255, 255, 0.5)';
-        event.target.reset(); // Clear the form
-        signupSuccessful = true;
-      }
-      
-      messageBox.style.display = 'block';
-    });
-
-    // Function to close the message box
-    function closeMessage() {
-      document.getElementById('message-box').style.display = 'none';
-      if (signupSuccessful) {
-        // You can add a redirect here if you want
-        // window.location.href = 'some-other-page.html';
-      }
-    }
-
-    // Set initial active section
-    document.addEventListener('DOMContentLoaded', () => {
-        document.getElementById('home').classList.add('active');
-    });
-  </script>
 </body>
 </html>
+```
