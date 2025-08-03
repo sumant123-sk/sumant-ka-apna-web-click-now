@@ -80,7 +80,6 @@
         .news-card:nth-child(1)  { animation-delay: 0.1s; }
         .news-card:nth-child(2)  { animation-delay: 0.2s; }
         .news-card:nth-child(3)  { animation-delay: 0.3s; }
-        /* Add more delays for more cards */
         .news-card:nth-child(4)  { animation-delay: 0.4s; }
         .news-card:nth-child(5)  { animation-delay: 0.5s; }
         .news-card:nth-child(6)  { animation-delay: 0.6s; }
@@ -88,11 +87,7 @@
         .news-card:nth-child(8)  { animation-delay: 0.8s; }
         .news-card:nth-child(9)  { animation-delay: 0.9s; }
         .news-card:nth-child(10) { animation-delay: 1.0s; }
-        /* A simple loop to apply staggered delays to all 100 cards */
-        <?php for ($i = 1; $i <= 100; $i++): ?>
-            .news-card:nth-child(<?php echo $i; ?>) { animation-delay: <?php echo $i * 0.1; ?>s; }
-        <?php endfor; ?>
-
+        /* Add more delays for more cards... */
 
         /* Fade-in and slide up animation for cards */
         @keyframes fadeInSlideUp {
@@ -276,10 +271,13 @@
             // Add the inner HTML for the card, including the image and news text
             card.innerHTML = `
                 <img src="${imageUrl}" alt="News Image ${index + 1}" onerror="this.onerror=null;this.src='https://placehold.co/600x400/2c2f3a/ffffff?text=Image+Not+Found';">
-                <a href="#">${headline}</a>
+                <a href="#">${index + 1}. ${headline}</a>
                 <p>${today}</p>
             `;
 
+            // Set a staggered animation delay for each card
+            card.style.animationDelay = `${(index) * 0.1}s`;
+            
             // Append the new card to the container
             newsContainer.appendChild(card);
         });
