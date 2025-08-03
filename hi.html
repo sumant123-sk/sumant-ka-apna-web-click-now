@@ -67,6 +67,23 @@
             text-shadow: 0 0 5px #00ffff;
         }
 
+        /* --- Mobile Navigation Menu --- */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 2rem;
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            color: #00ffff;
+        }
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            align-items: center;
+        }
+
         /* --- Sections & Content --- */
         section {
             min-height: 100vh;
@@ -79,6 +96,7 @@
             transition: all 0.5s ease;
             opacity: 0;
             transform: translateY(20px);
+            padding: 100px 20px 20px; /* Add horizontal padding for smaller screens */
         }
         section.active {
             opacity: 1;
@@ -173,6 +191,7 @@
             justify-content: center;
             gap: 15px;
             margin-bottom: 30px;
+            flex-wrap: wrap; /* Allow tabs to wrap on smaller screens */
         }
         .tab-button {
             padding: 10px 20px;
@@ -266,10 +285,79 @@
             text-decoration: none;
             box-shadow: 0 0 15px #ff416c;
             transition: all 0.3s ease;
+            z-index: 999;
         }
         .back-to-top:hover {
             transform: scale(1.1);
             box-shadow: 0 0 20px #ff416c;
+        }
+
+        /* --- Mobile-Specific Styles --- */
+        @media (max-width: 768px) {
+            nav {
+                justify-content: flex-start;
+                padding: 15px;
+            }
+            .nav-links {
+                display: none; /* Hide navigation links by default */
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                padding: 20px 0;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            }
+            .nav-links.show {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block; /* Show the menu icon */
+            }
+            .grid {
+                grid-template-columns: 1fr; /* Single column on mobile */
+            }
+            .highlighted-names {
+                font-size: 1.2rem;
+            }
+            .highlighted-names span {
+                margin: 5px;
+            }
+            #home-section h1 {
+                font-size: 2.2rem;
+            }
+            #home-section p {
+                font-size: 1rem;
+            }
+            #coding-guide-section h1 {
+                font-size: 2rem;
+            }
+            .tab-button {
+                font-size: 1rem;
+                padding: 8px 15px;
+            }
+            .tab-container {
+                gap: 10px;
+            }
+            .tab-content {
+                padding: 20px;
+            }
+            .tab-content h2 {
+                font-size: 1.5rem;
+            }
+            .tab-content h3 {
+                font-size: 1.2rem;
+            }
+            .tab-content p, .tab-content ul, .tab-content pre {
+                font-size: 0.95rem;
+            }
+            .grid-container {
+                grid-template-columns: 1fr; /* Single column on mobile */
+            }
+            .grid-header, .grid-main, .grid-sidebar, .grid-footer {
+                grid-column: 1 / span 1; /* Reset to single column */
+            }
         }
     </style>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2083692947196571"
@@ -278,8 +366,11 @@
 <body>
 
     <nav>
-        <a href="#home-section" class="nav-link active">Home</a>
-        <a href="#coding-guide-section" class="nav-link">Coding Guide</a>
+        <div class="menu-toggle" id="menu-toggle">☰</div>
+        <div class="nav-links">
+            <a href="#home-section" class="nav-link active">Home</a>
+            <a href="#coding-guide-section" class="nav-link">Coding Guide</a>
+        </div>
     </nav>
 
     <main>
@@ -571,7 +662,9 @@
 
         // Scroll-based active link and section display
         const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('nav a');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const navLinksContainer = document.querySelector('.nav-links');
+        const menuToggle = document.getElementById('menu-toggle');
 
         window.addEventListener('scroll', () => {
             let current = '';
@@ -586,6 +679,20 @@
                 link.classList.remove('active');
                 if (link.getAttribute('href').includes(current)) {
                     link.classList.add('active');
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        menuToggle.addEventListener('click', () => {
+            navLinksContainer.classList.toggle('show');
+        });
+
+        // Hide mobile menu when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navLinksContainer.classList.remove('show');
                 }
             });
         });
