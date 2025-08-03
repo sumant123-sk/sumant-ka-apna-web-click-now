@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>apna,sumant,news,story,history,game,</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <title>Your Trending Web</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     /* --- COMMON STYLES --- */
     * {
@@ -16,14 +16,10 @@
       min-height: 100vh;
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(115deg, #0f0c29, #302b63, #24243e);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow-x: hidden;
       color: #fff;
       position: relative;
+      overflow-x: hidden;
     }
-    /* Glowing Background Circles */
     body::before, body::after {
       content: '';
       position: absolute;
@@ -49,8 +45,83 @@
       100% { transform: scale(1); opacity: 0.5; }
     }
 
-    /* --- SIGN-UP PAGE STYLES --- */
-    #signup-section {
+    /* --- NAVIGATION BAR --- */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+      padding: 15px 50px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      z-index: 10;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    nav a:hover, nav a.active {
+      background: #00ffff;
+      color: #0f0c29;
+    }
+    
+    /* --- SECTION STYLES --- */
+    section {
+      display: none;
+      min-height: 100vh;
+      width: 100%;
+      padding: 80px 20px 40px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    h1 {
+      font-size: clamp(2rem, 8vw, 4rem);
+      margin-bottom: 20px;
+      color: #00ffff;
+      text-shadow: 0 0 15px #00ffff;
+    }
+    h2 {
+      font-size: clamp(1.5rem, 6vw, 2.5rem);
+      margin-bottom: 20px;
+      color: #ff4b2b;
+      text-shadow: 0 0 10px #ff4b2b;
+    }
+    p {
+      max-width: 800px;
+      line-height: 1.6;
+      font-size: 1.1em;
+    }
+
+    /* --- HOME SECTION --- */
+    #home.active {
+      display: flex;
+    }
+    .main-heading {
+      font-size: clamp(3rem, 10vw, 5rem);
+      margin-top: 50px;
+      text-shadow: 0 0 20px cyan, 0 0 40px cyan;
+    }
+
+    /* --- SIGN-UP SECTION --- */
+    #signup.active {
+      display: flex;
+    }
+    .signup-box {
       width: 90%;
       max-width: 400px;
       padding: 40px;
@@ -59,20 +130,9 @@
       border-radius: 20px;
       box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
       text-align: center;
-      position: relative;
-      transition: all 0.5s ease;
-      opacity: 1;
-      transform: translateY(0);
+      margin-top: 20px;
     }
-    
-    #signup-section h2 {
-      font-size: 2em;
-      margin-bottom: 30px;
-      color: #00ffff;
-      text-shadow: 0 0 10px #00ffff;
-    }
-
-    #signup-section input {
+    .signup-box input {
       width: 100%;
       padding: 12px;
       margin-bottom: 20px;
@@ -83,14 +143,12 @@
       font-size: 1em;
       transition: transform 0.3s ease;
     }
-
-    #signup-section input:focus {
+    .signup-box input:focus {
       outline: none;
       transform: scale(1.02);
       box-shadow: 0 0 10px #00c9ff88;
     }
-
-    #signup-section button {
+    .signup-box button {
       width: 100%;
       padding: 14px;
       margin-top: 20px;
@@ -104,69 +162,108 @@
       transition: 0.4s ease;
       box-shadow: 0 0 15px #ff416c;
     }
-
-    #signup-section button:hover {
+    .signup-box button:hover {
       background: linear-gradient(to right, #ff4b2b, #ff416c);
       box-shadow: 0 0 20px #ff4b2b;
     }
-    
-    /* Message Box styling */
+
+    /* --- MESSAGE BOX --- */
     .message-box {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 20px;
-        border-radius: 10px;
-        z-index: 100;
-        text-align: center;
-        display: none; /* Hide by default */
-        box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
-        animation: fadeIn 0.5s ease-out;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      z-index: 100;
+      text-align: center;
+      display: none;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+      animation: fadeIn 0.5s ease-out;
     }
-
     .message-box button {
-        margin-top: 10px;
-        padding: 8px 16px;
-        background-color: #ff416c;
-        border: none;
-        border-radius: 5px;
-        color: white;
-        cursor: pointer;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
+      margin-top: 10px;
+      padding: 8px 16px;
+      background-color: #ff416c;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
 
-  <!-- Sign-up Page Section -->
-  <div class="signup-box" id="signup-section">
-    <h2>🚀 Create Your Account</h2>
-    <form id="signup-form">
-      <input type="text" name="username" placeholder="Username" required>
-      <input type="email" name="email" placeholder="Email" required>
-      <input type="password" id="password" name="password" placeholder="Password" required>
-      <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
-      <button type="submit">Sign Up</button>
-    </form>
-  </div>
-  
-  <!-- Custom message box for alerts -->
+  <nav>
+    <a href="#home" class="nav-link active">Home</a>
+    <a href="#news" class="nav-link">News</a>
+    <a href="#story" class="nav-link">Story Book</a>
+    <a href="#game" class="nav-link">Game</a>
+    <a href="#signup" class="nav-link">Sign Up</a>
+  </nav>
+
+  <section id="home" class="active">
+    <h1 class="main-heading">Welcome to Your Web</h1>
+    <p>Discover the latest news, dive into a great story, play a fun game, and sign up to join our community.</p>
+  </section>
+
+  <section id="news">
+    <h2>Global News</h2>
+    <p>Stay updated with the latest headlines from around the world. We bring you real-time news that matters.</p>
+    </section>
+
+  <section id="story">
+    <h2>Story Book</h2>
+    <p>Enter a world of imagination and adventure. Read captivating stories and explore new worlds with our collection of books.</p>
+    </section>
+
+  <section id="game">
+    <h2>Mini Game</h2>
+    <p>Need a break? Play a fun mini-game to relax and challenge yourself. Get ready to have some fun!</p>
+    </section>
+
+  <section id="signup">
+    <div class="signup-box">
+      <h2>🚀 Create Your Account</h2>
+      <form id="signup-form">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" id="password" name="password" placeholder="Password" required>
+        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+  </section>
+    
   <div id="message-box" class="message-box">
-      <p id="message-text">Message goes here</p>
-      <button onclick="closeMessage()">OK</button>
+    <p id="message-text">Message goes here</p>
+    <button onclick="closeMessage()">OK</button>
   </div>
-  
+
   <script>
     let signupSuccessful = false;
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section');
 
-    // Event listener to handle form submission
+    // Handle navigation
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(event) {
+        event.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        
+        sections.forEach(section => {
+          section.classList.remove('active');
+        });
+        document.getElementById(targetId).classList.add('active');
+
+        navLinks.forEach(navLink => navLink.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    // Handle form submission
     document.getElementById('signup-form').addEventListener('submit', function(event) {
       event.preventDefault();
       
@@ -181,7 +278,7 @@
         messageBox.style.boxShadow = '0 0 20px rgba(255, 65, 108, 0.5)';
         signupSuccessful = false;
       } else {
-        messageText.innerText = "✅ Account created successfully! Click 'OK' to continue.";
+        messageText.innerText = "✅ Account created successfully! You can now explore the web.";
         messageBox.style.boxShadow = '0 0 20px rgba(0, 255, 255, 0.5)';
         event.target.reset(); // Clear the form
         signupSuccessful = true;
@@ -190,15 +287,19 @@
       messageBox.style.display = 'block';
     });
 
-    // Function to close the message box and redirect
+    // Function to close the message box
     function closeMessage() {
       document.getElementById('message-box').style.display = 'none';
       if (signupSuccessful) {
-        // Redirect to hi.html on successful sign-up
-        window.location.href = 'hi.html';
+        // You can add a redirect here if you want
+        // window.location.href = 'some-other-page.html';
       }
     }
+
+    // Set initial active section
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('home').classList.add('active');
+    });
   </script>
 </body>
 </html>
-
