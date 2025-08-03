@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sign Up & Code Explained</title>
+  <title>Sign Up</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    /* --- COMMON STYLES FOR BOTH PAGES --- */
+    /* --- COMMON STYLES --- */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -15,7 +15,6 @@
     body {
       min-height: 100vh;
       font-family: 'Poppins', sans-serif;
-      /* Dynamic background from the sign-up page */
       background: linear-gradient(115deg, #0f0c29, #302b63, #24243e);
       display: flex;
       justify-content: center;
@@ -65,6 +64,7 @@
       opacity: 1;
       transform: translateY(0);
     }
+    
     #signup-section h2 {
       font-size: 2em;
       margin-bottom: 30px;
@@ -83,11 +83,13 @@
       font-size: 1em;
       transition: transform 0.3s ease;
     }
+
     #signup-section input:focus {
       outline: none;
       transform: scale(1.02);
       box-shadow: 0 0 10px #00c9ff88;
     }
+
     #signup-section button {
       width: 100%;
       padding: 14px;
@@ -102,55 +104,10 @@
       transition: 0.4s ease;
       box-shadow: 0 0 15px #ff416c;
     }
+
     #signup-section button:hover {
       background: linear-gradient(to right, #ff4b2b, #ff416c);
       box-shadow: 0 0 20px #ff4b2b;
-    }
-
-    /* --- "CODE EXPLAINED" PAGE STYLES --- */
-    #hi-section {
-      display: none;
-      width: 100%;
-      max-width: 800px;
-      text-align: left;
-      padding: 40px;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
-      transition: all 0.5s ease;
-      opacity: 0;
-      transform: scale(0.9);
-    }
-    #hi-section h1 {
-      font-size: clamp(2rem, 8vw, 3rem);
-      margin-bottom: 30px;
-      color: #00ffff;
-      text-shadow: 0 0 15px #00ffff;
-      text-align: center;
-    }
-    #hi-section h2 {
-      font-size: clamp(1.5rem, 5vw, 2em);
-      margin-top: 30px;
-      color: #ffcc00;
-      text-shadow: 0 0 8px #ffcc00;
-    }
-    #hi-section p {
-      font-size: clamp(1rem, 3vw, 1.1em);
-      line-height: 1.6;
-      margin-top: 10px;
-      color: rgba(255, 255, 255, 0.8);
-    }
-    #hi-section pre {
-      background: rgba(0, 0, 0, 0.3);
-      padding: 15px;
-      border-left: 5px solid #ff416c;
-      border-radius: 5px;
-      overflow-x: auto;
-      margin-top: 10px;
-      font-family: 'Courier New', Courier, monospace;
-      white-space: pre-wrap;
-      word-wrap: break-word;
     }
     
     /* Message Box styling */
@@ -169,6 +126,7 @@
         box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
         animation: fadeIn 0.5s ease-out;
     }
+
     .message-box button {
         margin-top: 10px;
         padding: 8px 16px;
@@ -178,6 +136,7 @@
         color: white;
         cursor: pointer;
     }
+
     @keyframes fadeIn {
         from { opacity: 0; }
         to { opacity: 1; }
@@ -197,50 +156,6 @@
       <button type="submit">Sign Up</button>
     </form>
   </div>
-
-  <!-- "Code Explained" Page Section (Initially hidden) -->
-  <div class="hi-section" id="hi-section">
-    <h1>💡 Programming Code Explained</h1>
-
-    <h2>1. HTML</h2>
-    <p>HTML (HyperText Markup Language) is used to structure web content. Think of it as the skeleton of a website.</p>
-    <pre>
-&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-  &lt;head&gt;
-    &lt;title&gt;My Web Page&lt;/title&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;h1&gt;Hello World!&lt;/h1&gt;
-    &lt;p&gt;This is a paragraph.&lt;/p&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
-    </pre>
-
-    <h2>2. CSS</h2>
-    <p>CSS (Cascading Style Sheets) is used for styling HTML elements. It's like the skin, clothes, and makeup for the skeleton, making it look beautiful.</p>
-    <pre>
-body {
-  background-color: #121212;
-  color: white;
-  font-family: Arial, sans-serif;
-}
-p {
-  color: yellow;
-  font-size: 18px;
-}
-    </pre>
-
-    <h2>3. JavaScript</h2>
-    <p>JavaScript is used to make web pages interactive. It's the brain that adds functionality, like animations, buttons, and user interaction.</p>
-    <pre>
-&lt;script&gt;
-  document.addEventListener("DOMContentLoaded", function() {
-    console.log("The page is fully loaded and ready!");
-  });
-&lt;/script&gt;
-    </pre>
-  </div>
   
   <!-- Custom message box for alerts -->
   <div id="message-box" class="message-box">
@@ -253,7 +168,7 @@ p {
 
     // Event listener to handle form submission
     document.getElementById('signup-form').addEventListener('submit', function(event) {
-      event.preventDefault(); // Prevents the default form submission
+      event.preventDefault();
       
       const password = document.getElementById('password').value;
       const confirmPassword = document.getElementById('confirm-password').value;
@@ -262,43 +177,26 @@ p {
       const messageText = document.getElementById('message-text');
 
       if (password !== confirmPassword) {
-        // If passwords do not match, show an error message
         messageText.innerText = "Error: Passwords do not match!";
         messageBox.style.boxShadow = '0 0 20px rgba(255, 65, 108, 0.5)';
         signupSuccessful = false;
       } else {
-        // If passwords match, show a success message
         messageText.innerText = "✅ Account created successfully! Click 'OK' to continue.";
         messageBox.style.boxShadow = '0 0 20px rgba(0, 255, 255, 0.5)';
-        event.target.reset(); // Clear the form fields
+        event.target.reset(); // Clear the form
         signupSuccessful = true;
       }
       
-      messageBox.style.display = 'block'; // Show the custom message box
+      messageBox.style.display = 'block';
     });
 
-    // Function to close the message box
+    // Function to close the message box and redirect
     function closeMessage() {
       document.getElementById('message-box').style.display = 'none';
       if (signupSuccessful) {
-        // If sign-up was successful, call the function to show the 'hi' page
-        showHiPage();
+        // Redirect to hi.html on successful sign-up
+        window.location.href = 'hi.html';
       }
-    }
-    
-    // Function to hide the signup form and show the new content
-    function showHiPage() {
-      const signupSection = document.getElementById('signup-section');
-      const hiSection = document.getElementById('hi-section');
-      
-      signupSection.style.display = 'none'; // Hide the signup form
-      hiSection.style.display = 'block'; // Show the hi-section
-      
-      // To add a fade-in animation
-      setTimeout(() => {
-        hiSection.style.opacity = '1';
-        hiSection.style.transform = 'scale(1)';
-      }, 10);
     }
   </script>
 </body>
