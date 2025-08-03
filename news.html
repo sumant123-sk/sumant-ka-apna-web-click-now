@@ -108,9 +108,9 @@
             margin-bottom: 15px;
         }
 
-        /* Link and Text Styling */
+        /* Link and Text Styling (Made heading smaller) */
         .news-card a {
-            font-size: 1.25em;
+            font-size: 1.1em; /* Reduced font size as requested */
             color: #00e0ff;
             text-decoration: none;
             font-weight: 600;
@@ -118,6 +118,17 @@
             transition: color 0.3s ease;
             flex-grow: 1;
             margin-bottom: 10px;
+            /* Auto-glow effect for text */
+            animation: text-glow 4s infinite alternate;
+        }
+        
+        /* Keyframes for the glowing text effect */
+        @keyframes text-glow {
+            0% { text-shadow: 0 0 5px rgba(0, 224, 255, 0.5); }
+            25% { text-shadow: 0 0 5px rgba(255, 255, 0, 0.5); }
+            50% { text-shadow: 0 0 5px rgba(255, 0, 255, 0.5); }
+            75% { text-shadow: 0 0 5px rgba(0, 255, 0, 0.5); }
+            100% { text-shadow: 0 0 5px rgba(0, 224, 255, 0.5); }
         }
 
         .news-card a:hover {
