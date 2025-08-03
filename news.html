@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>🌍 Global News - Live Updates</title>
-    <!-- Poppins Font from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
     <style>
         /* Global & Body Styling */
@@ -17,11 +16,9 @@
         body {
             font-family: 'Poppins', sans-serif;
             color: white;
-            /* Dark, static background */
             background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
             min-height: 100vh;
             padding: 40px 20px;
-            overflow-x: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -33,6 +30,9 @@
             font-size: clamp(2rem, 8vw, 4rem);
             color: #ffcc00;
             margin-bottom: 40px;
+            position: relative;
+            animation: title-anim 3s ease-in-out forwards;
+            opacity: 0;
             text-shadow:
                 0 1px 0 #ccc,
                 0 2px 0 #c9c9c9,
@@ -48,13 +48,50 @@
                 0 20px 20px rgba(0, 0, 0, 0.15);
         }
 
-        /* News Container for a vertical layout */
+        /* Title Animation */
+        @keyframes title-anim {
+            0% { transform: scale(0.8) translateY(-20px); opacity: 0; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+
+        /* Loading Spinner */
+        #loading-spinner {
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-top: 5px solid #00e0ff;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            display: none; /* Initially hidden */
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* News Container for a responsive grid layout */
         .news-container {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: 1fr;
             gap: 20px;
             width: 100%;
-            max-width: 800px;
+            max-width: 1200px;
+            transition: all 0.5s ease;
+        }
+
+        /* Responsive Grid for larger screens */
+        @media (min-width: 768px) {
+            .news-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .news-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
         /* Individual News Card Styling */
@@ -67,21 +104,26 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-align: left;
             opacity: 0;
-            animation: fadeInSlideUp 0.8s forwards, color-glow 4s infinite alternate;
+            animation: fadeInSlideUp 0.8s forwards;
             display: flex;
             flex-direction: column;
+            position: relative;
+            overflow: hidden; /* Ensures glowing border stays within bounds */
         }
 
-        /* Fade-in and slide up animation for cards */
-        @keyframes fadeInSlideUp {
-            from {
-                transform: translateY(20px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+        /* Glowing Border effect on cards */
+        .news-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+            animation: color-glow 4s infinite alternate;
+            z-index: -1;
+            transition: all 0.3s ease;
         }
 
         /* Keyframes for the glowing border effect on cards */
@@ -95,8 +137,11 @@
 
         /* Hover effect on news cards */
         .news-card:hover {
-            transform: scale(1.03); /* Zoom-in effect */
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.4); /* Brighter glow on hover */
+            transform: scale(1.05); /* Zoom-in effect */
+        }
+
+        .news-card:hover::before {
+             box-shadow: 0 0 25px rgba(0, 255, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.4); /* Brighter glow on hover */
         }
 
         /* Image styling */
@@ -106,6 +151,11 @@
             object-fit: cover;
             border-radius: 10px;
             margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .news-card:hover img {
+            transform: scale(1.03);
         }
 
         /* Link and Text Styling (Headline) */
@@ -118,16 +168,6 @@
             transition: color 0.3s ease;
             flex-grow: 1;
             margin-bottom: 10px;
-            animation: text-glow 4s infinite alternate; /* New glow animation for text */
-        }
-
-        /* Keyframes for the glowing text effect */
-        @keyframes text-glow {
-            0% { text-shadow: 0 0 5px rgba(0, 224, 255, 0.5); }
-            25% { text-shadow: 0 0 5px rgba(255, 255, 0, 0.5); }
-            50% { text-shadow: 0 0 5px rgba(255, 0, 255, 0.5); }
-            75% { text-shadow: 0 0 5px rgba(0, 255, 0, 0.5); }
-            100% { text-shadow: 0 0 5px rgba(0, 224, 255, 0.5); }
         }
 
         .news-card a:hover {
@@ -139,8 +179,8 @@
             color: rgba(255, 255, 255, 0.7);
             font-size: 0.9em;
         }
-
-        /* Footer styling */
+        
+        /* Footer styling with animation */
         .footer {
             margin-top: 50px;
             padding-top: 20px;
@@ -148,6 +188,12 @@
             font-weight: 600;
             color: rgba(255, 255, 255, 0.5);
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            animation: pulse 4s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
         }
     </style>
 </head>
@@ -155,155 +201,23 @@
 
     <h1 class="title-3d">🌍 Global News - Live Updates</h1>
 
-    <!-- Main container for all news cards -->
+    <div id="loading-spinner"></div>
+
     <div id="news-container" class="news-container">
-        <!-- News cards will be dynamically inserted here by JavaScript -->
-    </div>
+        </div>
 
     <p class="footer">by sumant</p>
 
     <script>
         // Array of 100 placeholder news headlines
         const newsHeadlines = [
-            "Artificial Intelligence Achieves New Breakthrough in Medical Diagnostics",
-            "SpaceX Successfully Launches Reusable Rocket, Lands on Ocean Platform",
-            "Global Climate Summit Concludes with Historic New Agreements",
-            "Archaeologists Discover Ancient City in Amazon Rainforest",
-            "Major Tech Companies Announce Merger to Create New Super-Platform",
-            "New Study Shows Promising Results for Alzheimer's Treatment",
-            "International Team of Scientists Finds Evidence of Liquid Water on Mars",
-            "Quantum Computing Milestone Reached: A Step Closer to Practical Use",
-            "Economic Report Predicts Strong Growth for the Coming Fiscal Year",
-            "World's Largest Solar Farm Powers up in the Sahara Desert",
-            "New Zealand Declares a National Emergency Due to Volcanic Eruption",
-            "Tech Giant's New Smartphone Features Revolutionary Holographic Display",
-            "Global Sports Championship Kicks Off with a Spectacular Opening Ceremony",
-            "Researchers Develop a New Method for Efficient Carbon Capture",
-            "New Documentary on Endangered Species Garners Critical Acclaim",
-            "Virtual Reality Gaming Market Sees Unprecedented Growth",
-            "Historic Peace Treaty Signed Between Two Rival Nations",
-            "Scientists Clone Extinct Species for the First Time",
-            "The Rise of E-commerce in Developing Countries Continues to Accelerate",
-            "Global Music Festival to Feature a Lineup of International Superstars",
-            "Renewable Energy Investment Hits an All-Time High",
-            "NASA Prepares for Manned Mission to Jupiter's Moon, Europa",
-            "Major Film Studio Announces a Reboot of a Beloved Sci-Fi Franchise",
-            "World Health Organization Declares End to a Global Pandemic",
-            "Robotic Automation Transforms Manufacturing Industries Worldwide",
-            "Global Stock Market Reaches Record Highs",
-            "New Food Technology Creates Sustainable Protein Source",
-            "International Art Exhibition Showcases Digital and AI-Generated Works",
-            "Humanitarian Aid Reaches Remote Communities After Natural Disaster",
-            "The Future of Transportation: Hyperloop System Successfully Tested",
-            "New Gene Therapy Offers Hope for Curing Genetic Diseases",
-            "Global Cyberattack Averted by International Security Forces",
-            "The Dawn of a New Era in Space Tourism",
-            "Innovative Urban Farming Solutions Combat Food Scarcity",
-            "A New Form of Matter Discovered by Particle Physicists",
-            "World Leaders Meet to Discuss Global Economic Cooperation",
-            "Major Sports League Adopts New Technology to Enhance Player Safety",
-            "Breakthrough in Battery Technology Promises Longer-Lasting Electric Vehicles",
-            "Deep-Sea Exploration Reveals New Marine Species",
-            "The Impact of Social Media on Global Political Movements",
-            "A New Era of Personalized Medicine with AI-Powered Diagnostics",
-            "Global Education Summit Addresses the Future of Learning",
-            "New Satellite Constellation Provides High-Speed Internet to Remote Areas",
-            "Researchers Find a Way to Reverse the Effects of Aging in Cells",
-            "The Return of the Classics: Vinyl Record Sales Soar Globally",
-            "Major Cities Implement Smart City Technology for Better Living",
-            "Astronauts Complete Historic Spacewalk to Repair International Space Station",
-            "The Psychology of Decision-Making: A New Book Explores the Human Mind",
-            "Global Supply Chains Reconfigured for Better Resilience",
-            "A New Culinary Movement Focuses on Sustainable and Local Ingredients",
-            "Major Financial Institutions Embrace Blockchain Technology",
-            "The Role of Robotics in Disaster Relief and Rescue Operations",
-            "New Documentary Explores the History of the Internet",
-            "Sustainable Fashion Becomes a Mainstream Trend",
-            "Global Efforts to Protect Endangered Coral Reefs Show Positive Results",
-            "The Power of Data: How Analytics is Reshaping Industries",
-            "New Archaeological Find Rewrites the History of an Ancient Civilization",
-            "The Rise of Renewable Energy in the Developing World",
-            "Breakthrough in Fusion Energy Research Offers Unlimited Power",
-            "A New Novel Becomes a Global Bestseller Overnight",
-            "Space Telescope Captures Stunning Images of Distant Galaxies",
-            "Global Film Industry Embraces Virtual Production Technology",
-            "The Future of Work: The Rise of Remote and Hybrid Models",
-            "New Antibiotic Discovered to Combat Drug-Resistant Bacteria",
-            "Sustainable Tourism Gains Popularity Around the World",
-            "The Impact of AI on the Creative Arts",
-            "Major Sports Team Wins Championship with an Underdog Story",
-            "Innovative Water Purification System Solves Clean Water Crisis",
-            "The Resurgence of Traditional Crafts in a Modern World",
-            "Global Food Prices Stabilize After Major Harvests",
-            "New Research on the Human Brain Provides Insights into Consciousness",
-            "The Next Generation of Video Games Features Hyper-Realistic Graphics",
-            "Global Efforts to End Hunger Show Significant Progress",
-            "A New Approach to Mental Health Care Through Digital Platforms",
-            "Major City Announces a Plan to Become Carbon Neutral by 2040",
-            "The Evolution of Digital Currencies and Their Impact on the Economy",
-            "International Collaboration Leads to a Cure for a Rare Disease",
-            "The Rise of Space Exploration by Private Companies",
-            "A New Study Reveals the Secret to a Longer, Healthier Life",
-            "Global Music Charts Dominated by a New Independent Artist",
-            "The Role of AI in Predicting and Mitigating Natural Disasters",
-            "New Technology Allows for Instant Translation of Any Language",
-            "The Future of Education: Personalized Learning with AI Tutors",
-            "Major Automotive Company Unveils a Fully Autonomous Electric Car",
-            "Global Efforts to Preserve Biodiversity Gain Momentum",
-            "The Impact of Climate Change on Global Migration Patterns",
-            "A New Book Explores the Philosophy of Time and Existence",
-            "The Role of Social Entrepreneurs in Solving Global Problems",
-            "Breakthrough in Organ Transplantation Using 3D Printing",
-            "The Global Art Market Sees a Surge in Digital Art Sales",
-            "New Research Sheds Light on the Mysteries of the Universe",
-            "The Future of Finance: Decentralized and Digital",
-            "World's Largest Dam Project Completed, Providing Clean Energy",
-            "A New Wave of Innovation in Wearable Technology",
-            "The Rise of Independent Filmmakers on Streaming Platforms",
-            "Global Initiatives to Combat Plastic Pollution Show Results",
-            "New Medical Device Offers Hope for Paralysis Patients",
-            "The Future of Food: Lab-Grown Meat Becomes Commercially Available",
-            "The Impact of AI on Job Markets and the Future of Work",
-            "A New Era of Diplomacy: Global Leaders Meet to Forge Alliances"
+            "Artificial Intelligence Achieves New Breakthrough in Medical Diagnostics", "SpaceX Successfully Launches Reusable Rocket, Lands on Ocean Platform", "Global Climate Summit Concludes with Historic New Agreements", "Archaeologists Discover Ancient City in Amazon Rainforest", "Major Tech Companies Announce Merger to Create New Super-Platform", "New Study Shows Promising Results for Alzheimer's Treatment", "International Team of Scientists Finds Evidence of Liquid Water on Mars", "Quantum Computing Milestone Reached: A Step Closer to Practical Use", "Economic Report Predicts Strong Growth for the Coming Fiscal Year", "World's Largest Solar Farm Powers up in the Sahara Desert", "New Zealand Declares a National Emergency Due to Volcanic Eruption", "Tech Giant's New Smartphone Features Revolutionary Holographic Display", "Global Sports Championship Kicks Off with a Spectacular Opening Ceremony", "Researchers Develop a New Method for Efficient Carbon Capture", "New Documentary on Endangered Species Garners Critical Acclaim", "Virtual Reality Gaming Market Sees Unprecedented Growth", "Historic Peace Treaty Signed Between Two Rival Nations", "Scientists Clone Extinct Species for the First Time", "The Rise of E-commerce in Developing Countries Continues to Accelerate", "Global Music Festival to Feature a Lineup of International Superstars", "Renewable Energy Investment Hits an All-Time High", "NASA Prepares for Manned Mission to Jupiter's Moon, Europa", "Major Film Studio Announces a Reboot of a Beloved Sci-Fi Franchise", "World Health Organization Declares End to a Global Pandemic", "Robotic Automation Transforms Manufacturing Industries Worldwide", "Global Stock Market Reaches Record Highs", "New Food Technology Creates Sustainable Protein Source", "International Art Exhibition Showcases Digital and AI-Generated Works", "Humanitarian Aid Reaches Remote Communities After Natural Disaster", "The Future of Transportation: Hyperloop System Successfully Tested", "New Gene Therapy Offers Hope for Curing Genetic Diseases", "Global Cyberattack Averted by International Security Forces", "The Dawn of a New Era in Space Tourism", "Innovative Urban Farming Solutions Combat Food Scarcity", "A New Form of Matter Discovered by Particle Physicists", "World Leaders Meet to Discuss Global Economic Cooperation", "Major Sports League Adopts New Technology to Enhance Player Safety", "Breakthrough in Battery Technology Promises Longer-Lasting Electric Vehicles", "Deep-Sea Exploration Reveals New Marine Species", "The Impact of Social Media on Global Political Movements", "A New Era of Personalized Medicine with AI-Powered Diagnostics", "Global Education Summit Addresses the Future of Learning", "New Satellite Constellation Provides High-Speed Internet to Remote Areas", "Researchers Find a Way to Reverse the Effects of Aging in Cells", "The Return of the Classics: Vinyl Record Sales Soar Globally", "Major Cities Implement Smart City Technology for Better Living", "Astronauts Complete Historic Spacewalk to Repair International Space Station", "The Psychology of Decision-Making: A New Book Explores the Human Mind", "Global Supply Chains Reconfigured for Better Resilience", "A New Culinary Movement Focuses on Sustainable and Local Ingredients", "Major Financial Institutions Embrace Blockchain Technology", "The Role of Robotics in Disaster Relief and Rescue Operations", "New Documentary Explores the History of the Internet", "Sustainable Fashion Becomes a Mainstream Trend", "Global Efforts to Protect Endangered Coral Reefs Show Positive Results", "The Power of Data: How Analytics is Reshaping Industries", "New Archaeological Find Rewrites the History of an Ancient Civilization", "The Rise of Renewable Energy in the Developing World", "Breakthrough in Fusion Energy Research Offers Unlimited Power", "A New Novel Becomes a Global Bestseller Overnight", "Space Telescope Captures Stunning Images of Distant Galaxies", "Global Film Industry Embraces Virtual Production Technology", "The Future of Work: The Rise of Remote and Hybrid Models", "New Antibiotic Discovered to Combat Drug-Resistant Bacteria", "Sustainable Tourism Gains Popularity Around the World", "The Impact of AI on the Creative Arts", "Major Sports Team Wins Championship with an Underdog Story", "Innovative Water Purification System Solves Clean Water Crisis", "The Resurgence of Traditional Crafts in a Modern World", "Global Food Prices Stabilize After Major Harvests", "New Research on the Human Brain Provides Insights into Consciousness", "The Next Generation of Video Games Features Hyper-Realistic Graphics", "Global Efforts to End Hunger Show Significant Progress", "A New Approach to Mental Health Care Through Digital Platforms", "Major City Announces a Plan to Become Carbon Neutral by 2040", "The Evolution of Digital Currencies and Their Impact on the Economy", "International Collaboration Leads to a Cure for a Rare Disease", "The Rise of Space Exploration by Private Companies", "A New Study Reveals the Secret to a Longer, Healthier Life", "Global Music Charts Dominated by a New Independent Artist", "The Role of AI in Predicting and Mitigating Natural Disasters", "New Technology Allows for Instant Translation of Any Language", "The Future of Education: Personalized Learning with AI Tutors", "Major Automotive Company Unveils a Fully Autonomous Electric Car", "Global Efforts to Preserve Biodiversity Gain Momentum", "The Impact of Climate Change on Global Migration Patterns", "A New Book Explores the Philosophy of Time and Existence", "The Role of Social Entrepreneurs in Solving Global Problems", "Breakthrough in Organ Transplantation Using 3D Printing", "The Global Art Market Sees a Surge in Digital Art Sales", "New Research Sheds Light on the Mysteries of the Universe", "The Future of Finance: Decentralized and Digital", "World's Largest Dam Project Completed, Providing Clean Energy", "A New Wave of Innovation in Wearable Technology", "The Rise of Independent Filmmakers on Streaming Platforms", "Global Initiatives to Combat Plastic Pollution Show Results", "New Medical Device Offers Hope for Paralysis Patients", "The Future of Food: Lab-Grown Meat Becomes Commercially Available", "The Impact of AI on Job Markets and the Future of Work", "A New Era of Diplomacy: Global Leaders Meet to Forge Alliances"
         ];
 
         // Function to create a descriptive placeholder image URL
         function getPlaceholderUrl(headline) {
-            // Simple mapping of keywords to generate a more relevant placeholder text
             const keywordMap = {
-                "Artificial Intelligence": "AI", "SpaceX": "Rocket", "Climate": "Earth",
-                "Archaeologists": "History", "Tech Companies": "Tech", "Alzheimer's": "Health",
-                "Mars": "Planet", "Quantum Computing": "Science", "Economic": "Finance",
-                "Solar Farm": "Solar", "Volcanic": "Volcano", "Smartphone": "Phone",
-                "Sports": "Sport", "Carbon Capture": "Environment", "Endangered Species": "Animals",
-                "Virtual Reality": "VR", "Peace Treaty": "Peace", "Clone": "Science",
-                "E-commerce": "E-commerce", "Music Festival": "Music", "Renewable Energy": "Energy",
-                "NASA": "NASA", "Film Studio": "Film", "Pandemic": "Health",
-                "Robotic Automation": "Robotics", "Stock Market": "Market", "Food Technology": "Food",
-                "Art Exhibition": "Art", "Humanitarian Aid": "Aid", "Hyperloop": "Transport",
-                "Gene Therapy": "Genetics", "Cyberattack": "Security", "Space Tourism": "Space",
-                "Farming": "Farming", "Matter Discovered": "Physics", "World Leaders": "Politics",
-                "Player Safety": "Safety", "Battery Technology": "Battery", "Deep-Sea": "Ocean",
-                "Social Media": "Social", "Personalized Medicine": "Medicine", "Education Summit": "Education",
-                "Satellite": "Satellite", "Aging": "Science", "Vinyl Record": "Music",
-                "Smart City": "City", "Astronauts": "Astronauts", "Psychology": "Mind",
-                "Supply Chains": "Logistics", "Culinary": "Cooking", "Blockchain": "Blockchain",
-                "Robotics in Disaster": "Rescue", "Internet": "Internet", "Sustainable Fashion": "Fashion",
-                "Coral Reefs": "Ocean", "Data": "Data", "Archaeological Find": "History",
-                "Fusion Energy": "Energy", "Novel": "Book", "Space Telescope": "Space",
-                "Film Industry": "Cinema", "Remote and Hybrid": "Work", "Antibiotic": "Health",
-                "Tourism": "Travel", "AI on the Creative Arts": "Creativity", "Underdog Story": "Sports",
-                "Water Purification": "Water", "Traditional Crafts": "Crafts", "Food Prices": "Food",
-                "Human Brain": "Brain", "Video Games": "Gaming", "End Hunger": "Hunger",
-                "Mental Health": "Health", "Carbon Neutral": "Environment", "Digital Currencies": "Crypto",
-                "Rare Disease": "Health", "Space Exploration": "Space", "Longer, Healthier Life": "Health",
-                "Independent Artist": "Music", "Predicting": "Prediction", "Translation": "Language",
-                "AI Tutors": "Education", "Autonomous Electric Car": "EV", "Biodiversity": "Nature",
-                "Climate Change": "Climate", "Philosophy of Time": "Philosophy", "Social Entrepreneurs": "Entrepreneurs",
-                "Organ Transplantation": "Surgery", "Digital Art": "Art", "Mysteries of the Universe": "Universe",
-                "Future of Finance": "Finance", "Largest Dam Project": "Dam", "Wearable Technology": "Wearables",
-                "Independent Filmmakers": "Filmmakers", "Plastic Pollution": "Pollution", "Paralysis": "Medical",
-                "Lab-Grown Meat": "Food", "AI on Job Markets": "Jobs", "Diplomacy": "Diplomacy"
+                "Artificial Intelligence": "AI", "SpaceX": "Rocket", "Climate": "Earth", "Archaeologists": "History", "Tech Companies": "Tech", "Alzheimer's": "Health", "Mars": "Planet", "Quantum Computing": "Science", "Economic": "Finance", "Solar Farm": "Solar", "Volcanic": "Volcano", "Smartphone": "Phone", "Sports": "Sport", "Carbon Capture": "Environment", "Endangered Species": "Animals", "Virtual Reality": "VR", "Peace Treaty": "Peace", "Clone": "Science", "E-commerce": "E-commerce", "Music Festival": "Music", "Renewable Energy": "Energy", "NASA": "NASA", "Film Studio": "Film", "Pandemic": "Health", "Robotic Automation": "Robotics", "Stock Market": "Market", "Food Technology": "Food", "Art Exhibition": "Art", "Humanitarian Aid": "Aid", "Hyperloop": "Transport", "Gene Therapy": "Genetics", "Cyberattack": "Security", "Space Tourism": "Space", "Farming": "Farming", "Matter Discovered": "Physics", "World Leaders": "Politics", "Player Safety": "Safety", "Battery Technology": "Battery", "Deep-Sea": "Ocean", "Social Media": "Social", "Personalized Medicine": "Medicine", "Education Summit": "Education", "Satellite": "Satellite", "Aging": "Science", "Vinyl Record": "Music", "Smart City": "City", "Astronauts": "Astronauts", "Psychology": "Mind", "Supply Chains": "Logistics", "Culinary": "Cooking", "Blockchain": "Blockchain", "Robotics in Disaster": "Rescue", "Internet": "Internet", "Sustainable Fashion": "Fashion", "Coral Reefs": "Ocean", "Data": "Data", "Archaeological Find": "History", "Fusion Energy": "Energy", "Novel": "Book", "Space Telescope": "Space", "Film Industry": "Cinema", "Remote and Hybrid": "Work", "Antibiotic": "Health", "Tourism": "Travel", "AI on the Creative Arts": "Creativity", "Underdog Story": "Sports", "Water Purification": "Water", "Traditional Crafts": "Crafts", "Food Prices": "Food", "Human Brain": "Brain", "Video Games": "Gaming", "End Hunger": "Hunger", "Mental Health": "Health", "Carbon Neutral": "Environment", "Digital Currencies": "Crypto", "Rare Disease": "Health", "Space Exploration": "Space", "Longer, Healthier Life": "Health", "Independent Artist": "Music", "Predicting": "Prediction", "Translation": "Language", "AI Tutors": "Education", "Autonomous Electric Car": "EV", "Biodiversity": "Nature", "Climate Change": "Climate", "Philosophy of Time": "Philosophy", "Social Entrepreneurs": "Entrepreneurs", "Organ Transplantation": "Surgery", "Digital Art": "Art", "Mysteries of the Universe": "Universe", "Future of Finance": "Finance", "Largest Dam Project": "Dam", "Wearable Technology": "Wearables", "Independent Filmmakers": "Filmmakers", "Plastic Pollution": "Pollution", "Paralysis": "Medical", "Lab-Grown Meat": "Food", "AI on Job Markets": "Jobs", "Diplomacy": "Diplomacy"
             };
 
             for (const keyword in keywordMap) {
@@ -314,34 +228,39 @@
             return `https://placehold.co/600x400/2c2f3a/ffffff?text=News`; // Fallback
         }
 
-        // Get the news container element
+        // Get elements from the DOM
         const newsContainer = document.getElementById("news-container");
+        const loadingSpinner = document.getElementById("loading-spinner");
 
-        // Get today's date for the news cards
-        const today = new Date().toDateString();
+        // Use a function to load news cards with a delay
+        function loadNews() {
+            loadingSpinner.style.display = 'block';
 
-        // Loop through the array and create news cards
-        newsHeadlines.forEach((headline, index) => {
-            // Create the main card element
-            const card = document.createElement("div");
-            card.className = "news-card";
+            setTimeout(() => {
+                loadingSpinner.style.display = 'none';
+                const today = new Date().toDateString();
 
-            // Get a descriptive image URL based on the headline
-            const imageUrl = getPlaceholderUrl(headline);
+                newsHeadlines.forEach((headline, index) => {
+                    const card = document.createElement("div");
+                    card.className = "news-card";
 
-            // Add the inner HTML for the card, including the image and news text
-            card.innerHTML = `
-                <img src="${imageUrl}" alt="News Image ${index + 1}" onerror="this.onerror=null;this.src='https://placehold.co/600x400/2c2f3a/ffffff?text=Image+Not+Found';">
-                <a href="#">${index + 1}. ${headline}</a>
-                <p>${today}</p>
-            `;
+                    const imageUrl = getPlaceholderUrl(headline);
 
-            // Set a staggered animation delay for each card
-            card.style.animationDelay = `${(index) * 0.05}s`;
-            
-            // Append the new card to the container
-            newsContainer.appendChild(card);
-        });
+                    card.innerHTML = `
+                        <img src="${imageUrl}" alt="News Image ${index + 1}" onerror="this.onerror=null;this.src='https://placehold.co/600x400/2c2f3a/ffffff?text=Image+Not+Found';">
+                        <a href="#">${index + 1}. ${headline}</a>
+                        <p>${today}</p>
+                    `;
+
+                    // Stagger the animation delay for a smoother effect
+                    card.style.animationDelay = `${(index) * 0.05}s`;
+                    newsContainer.appendChild(card);
+                });
+            }, 1500); // Simulate a 1.5-second loading time
+        }
+        
+        // Call the function to load the news on page start
+        window.onload = loadNews;
     </script>
 </body>
 </html>
