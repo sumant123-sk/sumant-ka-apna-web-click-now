@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>🌐 My Trending Web</title>
+    <meta name="description" content="Discover the latest in technology, global news, captivating stories, and comprehensive coding guides for HTML, CSS, and JavaScript.">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
     <style>
         /* --- Main Page Styles --- */
@@ -227,6 +228,28 @@
             line-height: 1.5;
             margin-top: 15px;
         }
+        
+        /* --- Footer Styles --- */
+        .site-footer {
+            width: 100%;
+            text-align: center;
+            padding: 40px 20px 20px;
+            color: rgba(255, 255, 255, 0.6);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
+            z-index: 10;
+        }
+        .site-footer a {
+            color: #00ffff;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        .site-footer a:hover {
+            color: #ff416c;
+        }
+
+        /* --- Back to Top button --- */
         .back-to-top {
             position: fixed;
             bottom: 30px;
@@ -250,7 +273,7 @@
         }
     </style>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2083692947196571"
-     crossorigin="anonymous"></script>
+      crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -259,50 +282,51 @@
         <a href="#coding-guide-section" class="nav-link">Coding Guide</a>
     </nav>
 
-    <section id="home-section" class="active">
-        <div class="highlighted-names">
-            <span>Sudhansu</span>
-            <span>Sumant</span>
-        </div>
-        <h1>🌟 Welcome to My Trending Web</h1>
-        <p>Discover the latest in tech, dive into captivating stories, and learn to code with our interactive guides.</p>
-        <div class="grid">
-            <a class="card" href="news.html">
-                <span>📰</span>
-                <div>Global News</div>
-            </a>
-            <a class="card" href="book.html">
-                <span>📖</span>
-                <div>Story Book</div>
-            </a>
-            <a class="card" href="game.html">
-                <span>🎮</span>
-                <div>Mini Game</div>
-            </a>
-            <a class="card" href="mythology.html">
-                <span>🕉️</span>
-                <div>Mythology</div>
-            </a>
-            <a class="card" href="#coding-guide-section">
-                <span>💻</span>
-                <div>Coding Guide</div>
-            </a>
-        </div>
-    </section>
+    <main>
+        <section id="home-section" class="active">
+            <div class="highlighted-names">
+                <span>Sudhansu</span>
+                <span>Sumant</span>
+            </div>
+            <h1>🌟 Welcome to My Trending Web</h1>
+            <p>Discover the latest in tech, dive into captivating stories, and learn to code with our interactive guides.</p>
+            <div class="grid">
+                <a class="card" href="news.html">
+                    <span>📰</span>
+                    <div>Global News</div>
+                </a>
+                <a class="card" href="book.html">
+                    <span>📖</span>
+                    <div>Story Book</div>
+                </a>
+                <a class="card" href="game.html">
+                    <span>🎮</span>
+                    <div>Mini Game</div>
+                </a>
+                <a class="card" href="mythology.html">
+                    <span>🕉️</span>
+                    <div>Mythology</div>
+                </a>
+                <a class="card" href="#coding-guide-section">
+                    <span>💻</span>
+                    <div>Coding Guide</div>
+                </a>
+            </div>
+        </section>
 
-    <section id="coding-guide-section">
-        <h1>💡 Programming Code Explained</h1>
-        <div class="tab-container">
-            <button class="tab-button active" onclick="openTab(event, 'html')">HTML</button>
-            <button class="tab-button" onclick="openTab(event, 'css')">CSS</button>
-            <button class="tab-button" onclick="openTab(event, 'js')">JavaScript</button>
-        </div>
-        
-        <div id="html" class="tab-content active">
-            <h2>HTML (HyperText Markup Language)</h2>
-            <p>HTML वेब पेजों की संरचना (structure) बनाने के लिए एक मूलभूत भाषा है। यह तत्वों (elements) और टैग्स (tags) का उपयोग करके कंटेंट को व्यवस्थित करती है।</p>
-            <h3>Basic HTML Document Structure</h3>
-            <pre>
+        <section id="coding-guide-section">
+            <h1>💡 Programming Code Explained</h1>
+            <div class="tab-container">
+                <button class="tab-button active" onclick="openTab(event, 'html')">HTML</button>
+                <button class="tab-button" onclick="openTab(event, 'css')">CSS</button>
+                <button class="tab-button" onclick="openTab(event, 'js')">JavaScript</button>
+            </div>
+            
+            <div id="html" class="tab-content active">
+                <h2>HTML (HyperText Markup Language)</h2>
+                <p>HTML वेब पेजों की संरचना (structure) बनाने के लिए एक मूलभूत भाषा है। यह तत्वों (elements) और टैग्स (tags) का उपयोग करके कंटेंट को व्यवस्थित करती है। एक वेब पेज पर आप जो कुछ भी देखते हैं, जैसे कि हेडिंग, पैराग्राफ, इमेज, और लिंक्स, वे सभी HTML से ही बने होते हैं।</p>
+                <h3>Basic HTML Document Structure</h3>
+                <pre>
 &lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
@@ -332,11 +356,11 @@
     &lt;/footer&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-            </pre>
+                </pre>
 
-            <h3>Creating Advanced Forms</h3>
-            <p>HTML फ़ॉर्म्स यूज़र से डेटा इकट्ठा करने का एक महत्वपूर्ण तरीका है। यहाँ एक विस्तृत फ़ॉर्म का उदाहरण है, जिसमें कई तरह के इनपुट फ़ील्ड्स (input fields) शामिल हैं:</p>
-            <pre>
+                <h3>Creating Advanced Forms</h3>
+                <p>HTML फ़ॉर्म्स यूज़र से डेटा इकट्ठा करने का एक महत्वपूर्ण तरीका है। यहाँ एक विस्तृत फ़ॉर्म का उदाहरण है, जिसमें कई तरह के इनपुट फ़ील्ड्स (input fields) शामिल हैं:</p>
+                <pre>
 &lt;form action="/submit-form" method="POST"&gt;
     &lt;fieldset&gt;
         &lt;legend&gt;User Information&lt;/legend&gt;
@@ -379,15 +403,15 @@
         &lt;button type="submit"&gt;Submit&lt;/button&gt;
     &lt;/fieldset&gt;
 &lt;/form&gt;
-            </pre>
-        </div>
+                </pre>
+            </div>
 
-        <div id="css" class="tab-content">
-            <h2>CSS (Cascading Style Sheets)</h2>
-            <p>CSS वेब पेजों को सुंदर और आकर्षक बनाने के लिए स्टाइलिंग प्रदान करती है। यह रंग, फ़ॉन्ट, लेआउट और एनिमेशन को नियंत्रित करती है।</p>
-            <h3>A Flexible Layout with Flexbox</h3>
-            <p>Flexbox एक शक्तिशाली एक-आयामी लेआउट सिस्टम है जो आइटमों को एक पंक्ति (row) या स्तंभ (column) में संरेखित (align) करता है।</p>
-            <pre>
+            <div id="css" class="tab-content">
+                <h2>CSS (Cascading Style Sheets)</h2>
+                <p>CSS वेब पेजों को सुंदर और आकर्षक बनाने के लिए स्टाइलिंग प्रदान करती है। यह रंग, फ़ॉन्ट, लेआउट और एनिमेशन को नियंत्रित करती है। CSS के बिना, वेब पेज साधारण टेक्स्ट की तरह दिखेंगे।</p>
+                <h3>A Flexible Layout with Flexbox</h3>
+                <p>Flexbox एक शक्तिशाली एक-आयामी लेआउट सिस्टम है जो आइटमों को एक पंक्ति (row) या स्तंभ (column) में संरेखित (align) करता है। यह आइटमों को उनकी उपलब्ध जगह के अनुसार स्वचालित रूप से व्यवस्थित करता है, जिससे responsive design बनाना आसान हो जाता है।</p>
+                <pre>
 .flex-container {
     display: flex;
     flex-direction: row; /* row | column */
@@ -408,11 +432,11 @@
     font-size: 1.2rem;
     flex-grow: 1;
 }
-            </pre>
+                </pre>
 
-            <h3>A Powerful 2D Layout with CSS Grid</h3>
-            <p>CSS Grid एक दो-आयामी लेआउट सिस्टम है जो जटिल वेब पेज लेआउट बनाने के लिए पंक्तियों (rows) और स्तंभों (columns) दोनों का उपयोग करता है।</p>
-            <pre>
+                <h3>A Powerful 2D Layout with CSS Grid</h3>
+                <p>CSS Grid एक दो-आयामी लेआउट सिस्टम है जो जटिल वेब पेज लेआउट बनाने के लिए पंक्तियों (rows) और स्तंभों (columns) दोनों का उपयोग करता है। यह आपको अपनी वेबसाइट के लेआउट पर पूर्ण नियंत्रण देता है, जिससे आप हेडर, साइडबार और फ़ुटर जैसे तत्वों को आसानी से व्यवस्थित कर सकते हैं।</p>
+                <pre>
 .grid-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
@@ -450,11 +474,11 @@
     padding: 15px;
     text-align: center;
 }
-            </pre>
+                </pre>
 
-            <h3>Creative 3D Button Animation</h3>
-            <p>CSS एनिमेशन का उपयोग करके आप एक साधारण बटन को एक आकर्षक 3D इफ़ेक्ट दे सकते हैं।</p>
-            <pre>
+                <h3>Creative 3D Button Animation</h3>
+                <p>CSS एनिमेशन का उपयोग करके आप एक साधारण बटन को एक आकर्षक 3D इफ़ेक्ट दे सकते हैं। यह इफ़ेक्ट यूज़र के इंटरैक्शन को और अधिक मज़ेदार बनाता है।</p>
+                <pre>
 /* CSS for 3D Button */
 .button-3d {
     display: inline-block;
@@ -477,13 +501,15 @@
     top: 5px;
     box-shadow: 0 0 0 #008080;
 }
-            </pre>
-        </div>
+                </pre>
+            </div>
 
-        <div id="js" class="tab-content">
-            <h2>JavaScript</h2>
-            <p>JavaScript is a powerful scripting language that makes webpages dynamic and interactive. It enables you to manipulate the content of an HTML page, handle user events (like clicks), validate forms, and communicate with web servers. It's the brain of your website.</p>
-            <pre>
+            <div id="js" class="tab-content">
+                <h2>JavaScript</h2>
+                <p>JavaScript is a powerful scripting language that makes webpages dynamic and interactive. It enables you to manipulate the content of an HTML page, handle user events (like clicks), validate forms, and communicate with web servers. It's the brain of your website.</p>
+                <h3>Basic Event Handling and DOM Manipulation</h3>
+                <p>Here's how you can use JavaScript to listen for user actions and change the page's content dynamically.</p>
+                <pre>
 &lt;script&gt;
     // A function to handle a click event
     document.getElementById("myButton").addEventListener("click", function() {
@@ -500,8 +526,13 @@
     element.classList.add("highlight");
     // Or to toggle a class
     element.classList.toggle("hidden");
+&lt;/script&gt;
+                </pre>
 
-    // Form validation example
+                <h3>Form Validation Example</h3>
+                <p>JavaScript is commonly used to validate form data on the client side before it's sent to the server. This provides immediate feedback to the user and improves the overall experience.</p>
+                <pre>
+&lt;script&gt;
     const myForm = document.getElementById("myForm");
     myForm.addEventListener("submit", function(event) {
         const emailInput = document.getElementById("email");
@@ -511,10 +542,17 @@
         }
     });
 &lt;/script&gt;
-            </pre>
-            <p>JavaScript's core strength lies in its ability to interact with the **Document Object Model (DOM)**. The DOM is a tree-like representation of your HTML page, and JavaScript allows you to access and modify any element within it. This is what makes features like animated sliders, form validation, and real-time content updates possible.</p>
-        </div>
-    </section>
+                </pre>
+                <p>JavaScript's core strength lies in its ability to interact with the **Document Object Model (DOM)**. The DOM is a tree-like representation of your HTML page, and JavaScript allows you to access and modify any element within it. This is what makes features like animated sliders, form validation, and real-time content updates possible.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        &copy; 2025 My Trending Web. All Rights Reserved.
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+    </footer>
 
     <a href="#home-section" class="back-to-top">▲</a>
 
