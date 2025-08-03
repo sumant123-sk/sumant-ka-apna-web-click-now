@@ -3,353 +3,1174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎮 3D Mini Games vs Robot</title>
-    <!-- Poppins Font from Google Fonts -->
+    <title>🎮 10-in-1 Game Center</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Three.js for 3D Game -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <!-- Firebase for real-time multiplayer functionality -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInWithCustomToken, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc, onSnapshot, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // Global variables provided by the Canvas environment
-        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-
-        let db, auth;
-        let userId = 'anonymous';
-
-        window.initializeFirebase = async function() {
-            try {
-                const app = initializeApp(firebaseConfig);
-                db = getFirestore(app);
-                auth = getAuth(app);
-
-                if (initialAuthToken) {
-                    await signInWithCustomToken(auth, initialAuthToken);
-                } else {
-                    await signInAnonymously(auth);
-                }
-
-                onAuthStateChanged(auth, (user) => {
-                    if (user) {
-                        userId = user.uid;
-                        document.getElementById('user-id-display').innerText = `Your User ID: ${userId}`;
-                        console.log("Firebase initialized and user signed in:", userId);
-                        // Once authenticated, start the game logic that depends on Firebase
-                        setupMultiplayerAimTrainer();
-                    } else {
-                        console.log("User signed out or not authenticated.");
-                    }
-                });
-            } catch (error) {
-                console.error("Firebase initialization failed:", error);
-            }
-        };
-
-        // ... (The rest of the game code is assumed to be correct based on the previous conversation)
-        // I will fix the existing logic and comments below
-
-        let scene, camera, renderer;
-        let target;
-        let isGameRunning = false;
-        let score = 0;
-        let timeLeft = 30; // Game duration in seconds
-        const gameDuration = 30;
-        let startTime;
-
-        const messageBox = document.getElementById('message-box');
-        const scoreDisplay = document.getElementById('score-display');
-        const timerDisplay = document.getElementById('timer-display');
-        const startButton = document.getElementById('start-button');
-        const gameContainer = document.getElementById('game-container');
-        const userIdDisplay = document.getElementById('user-id-display');
-
-        // Helper function to get the Firestore document reference
-        function getGameDocRef() {
-            return doc(db, 'artifacts', appId, 'public', 'data', 'aim-trainer-game');
-        }
-        
-        // This function sets up the Three.js scene, camera, and renderer
-        function initAimTrainer() {
-            scene = new THREE.Scene();
-            scene.background = new THREE.Color(0x1d1f27);
-
-            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            camera.position.z = 5;
-
-            renderer = new THREE.WebGLRenderer({ antialias: true });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            gameContainer.appendChild(renderer.domElement);
-
-            // Add an event listener for window resizing
-            window.addEventListener('resize', onWindowResize, false);
-            
-            // Create a target object (e.g., a glowing sphere)
-            const geometry = new THREE.SphereGeometry(0.5, 32, 32);
-            const material = new THREE.MeshStandardMaterial({ color: 0x00ff00, emissive: 0x00ff00, emissiveIntensity: 1 });
-            target = new THREE.Mesh(geometry, material);
-            scene.add(target);
-
-            // Add lighting
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-            scene.add(ambientLight);
-
-            const pointLight = new THREE.PointLight(0x00ff00, 1, 100);
-            pointLight.position.set(0, 0, 5);
-            scene.add(pointLight);
-            
-            // Add mouse click event listener to the renderer's canvas
-            renderer.domElement.addEventListener('click', onTargetClick, false);
-        }
-
-        // Function to handle window resizing
-        function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        }
-
-        // Function to handle clicks and check if the target was hit
-        async function onTargetClick(event) {
-            if (!isGameRunning) return;
-
-            // Normalize mouse coordinates
-            const mouse = new THREE.Vector2();
-            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-            const raycaster = new THREE.Raycaster();
-            raycaster.setFromCamera(mouse, camera);
-
-            const intersects = raycaster.intersectObjects(scene.children);
-
-            if (intersects.length > 0 && intersects[0].object === target) {
-                score++;
-                scoreDisplay.innerText = `Score: ${score}`;
-                moveTarget();
-
-                // Update score in Firestore
-                await updateScoreInFirestore(score);
-            }
-        }
-        
-        // This function updates the score in Firestore
-        async function updateScoreInFirestore(newScore) {
-            if (!db || !userId) return;
-            const gameDocRef = getGameDocRef();
-            await setDoc(gameDocRef, {
-                scores: {
-                    [userId]: newScore
-                }
-            }, { merge: true });
-        }
-
-        // This function moves the target to a new random position
-        function moveTarget() {
-            const x = (Math.random() - 0.5) * 8;
-            const y = (Math.random() - 0.5) * 6;
-            const z = (Math.random() - 0.5) * 4 - 2; // Keep it slightly behind the camera
-            target.position.set(x, y, z);
-        }
-
-        // This function starts the game
-        async function startGame() {
-            if (isGameRunning) return;
-            isGameRunning = true;
-            score = 0;
-            timeLeft = gameDuration;
-            scoreDisplay.innerText = `Score: ${score}`;
-            timerDisplay.innerText = `Time: ${timeLeft}`;
-            messageBox.style.display = 'none';
-            startButton.style.display = 'none';
-            moveTarget();
-            startTime = Date.now();
-
-            const gameDocRef = getGameDocRef();
-            await setDoc(gameDocRef, {
-                isActive: true,
-                startTime: startTime,
-                scores: {
-                    [userId]: 0
-                }
-            }, { merge: true });
-        }
-
-        // The main animation loop
-        function animate() {
-            requestAnimationFrame(animate);
-            if (isGameRunning) {
-                const elapsedTime = (Date.now() - startTime) / 1000;
-                timeLeft = Math.max(0, gameDuration - Math.floor(elapsedTime));
-                timerDisplay.innerText = `Time: ${timeLeft}`;
-                if (timeLeft <= 0) {
-                    endGame();
-                }
-            }
-            renderer.render(scene, camera);
-        }
-
-        // This function ends the game and shows the final score
-        async function endGame() {
-            isGameRunning = false;
-            startButton.style.display = 'block';
-            
-            // Fetch final scores from Firestore
-            const gameDocRef = getGameDocRef();
-            const docSnap = await getDoc(gameDocRef);
-            if (docSnap.exists()) {
-                const gameData = docSnap.data();
-                const finalScores = gameData.scores;
-                
-                let finalScoresText = `Game Over! Final Scores:<br>`;
-                Object.entries(finalScores).forEach(([player, score]) => {
-                    finalScoresText += `Player: ${player.substring(0, 4)}... | Score: ${score}<br>`;
-                });
-                messageBox.innerHTML = finalScoresText;
-                messageBox.style.display = 'block';
-            } else {
-                messageBox.innerText = `Game Over! Your final score is: ${score}`;
-                messageBox.style.display = 'block';
-            }
-            
-            // Clean up the game document
-            await setDoc(gameDocRef, {
-                isActive: false
-            }, { merge: true });
-        }
-        
-        // Function to listen for real-time multiplayer updates
-        function setupMultiplayerAimTrainer() {
-            if (!db) return;
-            const gameDocRef = getGameDocRef();
-            onSnapshot(gameDocRef, (docSnap) => {
-                if (docSnap.exists()) {
-                    const gameData = docSnap.data();
-                    if (gameData.isActive && isGameRunning) {
-                        // Update scores from other players
-                        const allScores = gameData.scores;
-                        let allScoresText = `Multiplayer Scores:<br>`;
-                        Object.entries(allScores).forEach(([player, score]) => {
-                            allScoresText += `Player: ${player.substring(0, 4)}... | Score: ${score}<br>`;
-                        });
-                        messageBox.innerHTML = allScoresText;
-                        messageBox.style.display = 'block';
-                    } else if (!gameData.isActive && isGameRunning) {
-                        // A player ended the game
-                        endGame();
-                    }
-                }
-            });
-        }
-
-
-        // Window load event to initialize everything
-        window.onload = function() {
-            // First, initialize the 3D game visuals
-            initAimTrainer();
-            // Start the Three.js animation loop
-            animate();
-            // Then, initialize Firebase for multiplayer functionality
-            window.initializeFirebase();
-        };
-
-    </script>
     <style>
+        :root {
+            --bg-color: #1a1a2e;
+            --main-color: #0f3460;
+            --accent-color: #e94560;
+            --glow-color: #00ffff;
+            --text-color: #ffffff;
+            --border-radius: 10px;
+            --box-shadow-light: 0 0 15px rgba(0, 255, 255, 0.2);
+            --box-shadow-dark: 0 0 20px rgba(255, 65, 108, 0.5);
+        }
+
         body {
-            margin: 0;
-            overflow: hidden;
             font-family: 'Poppins', sans-serif;
-            background-color: #1d1f27;
-            color: white;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 8vw, 3rem);
+            color: var(--glow-color);
+            text-shadow: 0 0 15px var(--glow-color);
+            margin-bottom: 20px;
             text-align: center;
         }
-        #game-container {
-            position: absolute;
-            top: 0;
-            left: 0;
+
+        .main-menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
             width: 100%;
-            height: 100%;
+            max-width: 900px;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        .main-menu button {
+            background: var(--main-color);
+            color: var(--text-color);
+            border: none;
+            padding: 15px 10px;
+            border-radius: var(--border-radius);
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+        }
+
+        .main-menu button:hover {
+            transform: translateY(-5px);
+            background: var(--accent-color);
+            box-shadow: 0 0 20px rgba(255, 65, 108, 0.5);
+        }
+
+        .game-container {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow-light);
+            margin-top: 30px;
+            width: 100%;
+            max-width: 900px;
+            min-height: 500px;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            position: relative;
         }
-        #ui-container {
-            position: absolute;
-            top: 20px;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 20px;
-            font-size: 1.5em;
-            color: #00ffff;
-            text-shadow: 0 0 10px #00ffff;
-        }
-        #score-display, #timer-display {
-            font-weight: bold;
-        }
-        #start-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 15px 30px;
-            font-size: 1.5em;
-            font-weight: bold;
-            color: white;
-            background: linear-gradient(135deg, #ff416c, #ff4b2b);
-            border: none;
-            border-radius: 15px;
-            cursor: pointer;
-            box-shadow: 0 0 20px rgba(255, 65, 108, 0.5);
-            transition: all 0.3s ease;
-        }
-        #start-button:hover {
-            transform: translate(-50%, -50%) scale(1.1);
-            box-shadow: 0 0 30px rgba(255, 75, 43, 0.8);
-        }
-        #message-box {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            z-index: 100;
-            text-align: center;
+        
+        .game-section {
             display: none;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
-            animation: fadeIn 0.5s ease-out;
+            width: 100%;
+            height: 100%;
+            text-align: center;
         }
-        #user-id-display {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            font-size: 0.8em;
-            color: #999;
+
+        .game-section.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .game-section h2 {
+            font-size: 2em;
+            color: var(--glow-color);
+            text-shadow: 0 0 8px var(--glow-color);
+            margin-bottom: 20px;
+        }
+
+        .game-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .game-buttons button, .game-buttons a {
+            background: #4a4e69;
+            color: var(--text-color);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            text-decoration: none;
+        }
+
+        .game-buttons button:hover, .game-buttons a:hover {
+            background: #626786;
+        }
+
+        canvas {
+            border: 2px solid var(--glow-color);
+            box-shadow: 0 0 15px var(--glow-color);
+            background-color: var(--main-color);
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+        }
+
+        /* Specific Game Styles */
+        #ludo-board {
+            display: grid;
+            grid-template-columns: repeat(15, 40px);
+            grid-template-rows: repeat(15, 40px);
+            border: 2px solid #ccc;
+            margin: 20px auto;
+        }
+        .ludo-cell {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ccc;
+        }
+        .ludo-home { background-color: #fff; }
+        .ludo-start { background-color: #5cb85c; }
+        .ludo-path { background-color: #ddd; }
+        .ludo-piece {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin: 5px;
+        }
+        .ludo-piece-red { background-color: red; }
+        .ludo-piece-blue { background-color: blue; }
+
+        .form-group {
+            margin-bottom: 15px;
+            width: 100%;
+            max-width: 400px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #333;
+            color: white;
+        }
+
+        #message-box {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            width: 100%;
+            max-width: 400px;
+            display: none;
+        }
+
+        #word-scramble-word {
+            letter-spacing: 5px;
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #ffcc00;
+        }
+
+        #guess-input {
+            margin: 10px 0;
+            padding: 8px;
+            width: 150px;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
 
-    <div id="game-container">
-        <!-- The Three.js canvas will be added here -->
+    <h1>🎮 10-in-1 Game Center</h1>
+
+    <div class="main-menu">
+        <button onclick="showGame('flappy')">🐦 Flappy Bird</button>
+        <button onclick="showGame('ludo')">🎲 Ludo vs Sumant</button>
+        <button onclick="showGame('carrom')">🎱 Carrom</button>
+        <button onclick="showGame('cricket')">🏏 Cricket</button>
+        <button onclick="showGame('tictactoe')">⭕ Tic-Tac-Toe ❌</button>
+        <button onclick="showGame('rps')">✊ Rock Paper Scissors</button>
+        <button onclick="showGame('memory')">🧠 Memory Match</button>
+        <button onclick="showGame('math')">➕ Math Quiz</button>
+        <button onclick="showGame('guess')">🔢 Guess The Number</button>
+        <button onclick="showGame('scramble')">🔀 Word Scramble</button>
     </div>
 
-    <div id="ui-container">
-        <span id="score-display">Score: 0</span>
-        <span id="timer-display">Time: 30</span>
-    </div>
+    <div class="game-container">
+        <!-- Flappy Bird Game Section -->
+        <div id="flappy" class="game-section">
+            <h2>🐦 Flappy Bird</h2>
+            <canvas id="flappyCanvas" width="400" height="600"></canvas>
+            <div class="game-buttons">
+                <button onclick="startGame('flappy')">Start</button>
+                <button onclick="showGame('menu')">Main Menu</button>
+            </div>
+            <div id="flappy-message" class="message-box"></div>
+        </div>
 
-    <button id="start-button" onclick="startGame()">Start Game</button>
+        <!-- Ludo Game Section -->
+        <div id="ludo" class="game-section">
+            <h2>🎲 Ludo vs Sumant</h2>
+            <p>A simple Ludo game against the robot "Sumant".</p>
+            <div id="ludo-board"></div>
+            <div class="game-buttons">
+                <button id="ludo-roll-btn" onclick="rollLudoDice()">Roll Dice</button>
+                <button onclick="showGame('menu')">Main Menu</button>
+            </div>
+            <p id="ludo-message"></p>
+        </div>
+        
+        <!-- Carrom Game Section -->
+        <div id="carrom" class="game-section">
+            <h2>🎱 Carrom</h2>
+            <p>Click and drag the striker to set power and direction!</p>
+            <canvas id="carromCanvas" width="400" height="400"></canvas>
+            <div class="game-buttons">
+                <button onclick="startGame('carrom')">Restart</button>
+                <button onclick="showGame('menu')">Main Menu</button>
+            </div>
+            <div id="carrom-message" class="message-box"></div>
+        </div>
+
+        <!-- Cricket Game Section -->
+        <div id="cricket" class="game-section">
+            <h2>🏏 Cricket</h2>
+            <p>Score as many runs as you can by clicking at the right time!</p>
+            <canvas id="cricketCanvas" width="400" height="200"></canvas>
+            <div class="game-buttons">
+                <button id="cricket-start-btn" onclick="startGame('cricket')">Start</button>
+                <button onclick="showGame('menu')">Main Menu</button>
+            </div>
+            <div id="cricket-score">Score: 0</div>
+            <div id="cricket-message" class="message-box"></div>
+        </div>
+        
+        <!-- Tic-Tac-Toe Game Section -->
+        <div id="tictactoe" class="game-section">
+            <h2>⭕ Tic-Tac-Toe ❌</h2>
+            <div id="tictactoe-board"></div>
+            <div class="game-buttons">
+                <button onclick="startGame('tictactoe')">Restart</button>
+                <button onclick="showGame('menu')">Main Menu</button>
+            </div>
+            <p id="tictactoe-message"></p>
+        </div>
+
+        <!-- Rock Paper Scissors Game Section -->
+        <div id="rps" class="game-section">
+            <h2>✊ Rock Paper Scissors</h2>
+            <p>Make your choice to play against the computer!</p>
+            <div class="game-buttons">
+                <button onclick="playRPS('rock')">✊</button>
+                <button onclick="playRPS('paper')">✋</button>
+                <button onclick="playRPS('scissors')">✌️</button>
+            </div>
+            <div id="rps-message" class="message-box"></div>
+            <div class="game-buttons">
+                <button onclick="showGame('menu')">Main Menu</button>
+            </div>
+        </div>
+
+        <!-- Memory Match Game Section -->
+        <div id="memory" class="game-section">
+            <h2>🧠 Memory Match</h2>
+            <div id="memory-board"></div>
+            <div id="memory-message" class="message-box"></div>
+            <div class="game-buttons">
+                <button onclick="startGame('memory')">Restart</button>
+                <button onclick="showGame('menu')">Main Menu</button>
+            </div>
+        </div>
+
+        <!-- Math Quiz Game Section -->
+        <div id="math" class="game-section">
+            <h2>➕ Math Quiz</h2>
+            <p id="math-question"></p>
+            <input type="number" id="math-answer" placeholder="Your Answer">
+            <div class="game-buttons">
+                <button onclick="submitMathAnswer()">Submit</button>
+                <button onclick="showGame('menu')">Main Menu</button>
+            </div>
+            <p id="math-result"></p>
+        </div>
+        
+        <!-- Guess The Number Game Section -->
+        <div id="guess" class="game-section">
+            <h2>🔢 Guess The Number</h2>
+            <p>I have thought of a number between 1 and 100. Can you guess it?</p>
+            <input type="number" id="guess-input" placeholder="Enter your guess">
+            <div class="game-buttons">
+                <button onclick="checkGuess()">Guess</button>
+                <button onclick="startGame('guess')">Restart</button>
+                <button onclick="showGame('menu')">Main Menu</button>
+            </div>
+            <p id="guess-message"></p>
+        </div>
+
+        <!-- Word Scramble Game Section -->
+        <div id="scramble" class="game-section">
+            <h2>🔀 Word Scramble</h2>
+            <p id="word-scramble-word"></p>
+            <div class="form-group">
+                <input type="text" id="scramble-input" placeholder="Your guess">
+            </div>
+            <div class="game-buttons">
+                <button onclick="checkScramble()">Submit</button>
+                <button onclick="startGame('scramble')">Next Word</button>
+                <button onclick="showGame('menu')">Main Menu</button>
+            </div>
+            <p id="scramble-message"></p>
+        </div>
+
+        <!-- Main Menu Placeholder -->
+        <div id="menu" class="game-section active">
+            <h2>Select a Game to Play!</h2>
+            <p>Welcome to the 10-in-1 Game Center. Choose a game from the menu above to start playing.</p>
+        </div>
+    </div>
     
-    <div id="message-box"></div>
-    <div id="user-id-display"></div>
+    <script>
+        // Game-specific variables
+        let flappyGame;
+        let ludoGame;
+        let carromGame;
+        let cricketGame;
+        let tictactoeGame;
+        let memoryGame;
+        let mathGame;
+        let guessGame;
+        let scrambleGame;
 
+        // --- Game Manager ---
+        function showGame(gameId) {
+            // Hide all game sections
+            document.querySelectorAll('.game-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            // Show the requested game section
+            document.getElementById(gameId).classList.add('active');
+
+            // Reset and start the game if applicable
+            if (gameId !== 'menu') {
+                startGame(gameId);
+            }
+        }
+
+        function startGame(gameId) {
+            switch (gameId) {
+                case 'flappy':
+                    flappyGame = new FlappyGame('flappyCanvas');
+                    break;
+                case 'ludo':
+                    ludoGame = new LudoGame('ludo-board');
+                    break;
+                case 'carrom':
+                    carromGame = new CarromGame('carromCanvas');
+                    break;
+                case 'cricket':
+                    cricketGame = new CricketGame('cricketCanvas');
+                    break;
+                case 'tictactoe':
+                    tictactoeGame = new TicTacToeGame('tictactoe-board');
+                    break;
+                case 'memory':
+                    memoryGame = new MemoryGame('memory-board');
+                    break;
+                case 'math':
+                    mathGame = new MathQuizGame();
+                    break;
+                case 'guess':
+                    guessGame = new GuessTheNumberGame();
+                    break;
+                case 'scramble':
+                    scrambleGame = new WordScrambleGame();
+                    break;
+            }
+        }
+
+        // --- Flappy Bird Game ---
+        class FlappyGame {
+            constructor(canvasId) {
+                this.canvas = document.getElementById(canvasId);
+                this.ctx = this.canvas.getContext('2d');
+                this.messageBox = document.getElementById('flappy-message');
+                this.bird = { x: 50, y: this.canvas.height / 2, size: 20, velocity: 0, gravity: 0.2 };
+                this.pipes = [];
+                this.score = 0;
+                this.isPlaying = false;
+                this.interval = null;
+                this.canvas.addEventListener('click', () => this.flap());
+                this.reset();
+            }
+
+            reset() {
+                this.bird = { x: 50, y: this.canvas.height / 2, size: 20, velocity: 0, gravity: 0.2 };
+                this.pipes = [];
+                this.score = 0;
+                this.messageBox.style.display = 'none';
+                this.isPlaying = true;
+                this.pipes.push(this.createPipe());
+                this.gameLoop();
+            }
+
+            createPipe() {
+                const gap = 150;
+                const minHeight = 50;
+                const maxHeight = this.canvas.height - gap - minHeight;
+                const topHeight = Math.random() * (maxHeight - minHeight) + minHeight;
+                return {
+                    x: this.canvas.width,
+                    width: 50,
+                    topHeight: topHeight,
+                    bottomHeight: this.canvas.height - topHeight - gap,
+                    gapY: topHeight + gap,
+                    passed: false
+                };
+            }
+
+            flap() {
+                if (this.isPlaying) {
+                    this.bird.velocity = -5;
+                }
+            }
+
+            update() {
+                if (!this.isPlaying) return;
+
+                // Bird physics
+                this.bird.velocity += this.bird.gravity;
+                this.bird.y += this.bird.velocity;
+
+                // Move pipes
+                this.pipes.forEach(pipe => {
+                    pipe.x -= 2;
+                });
+
+                // Add new pipes
+                if (this.pipes.length > 0 && this.pipes[this.pipes.length - 1].x < this.canvas.width - 200) {
+                    this.pipes.push(this.createPipe());
+                }
+                
+                // Check for collisions
+                if (this.bird.y <= 0 || this.bird.y >= this.canvas.height) {
+                    this.gameOver();
+                }
+
+                this.pipes.forEach(pipe => {
+                    // Check for pipe collision
+                    if (this.bird.x + this.bird.size > pipe.x && this.bird.x < pipe.x + pipe.width) {
+                        if (this.bird.y < pipe.topHeight || this.bird.y + this.bird.size > pipe.gapY) {
+                            this.gameOver();
+                        }
+                    }
+
+                    // Check if a point is scored
+                    if (this.bird.x > pipe.x + pipe.width && !pipe.passed) {
+                        pipe.passed = true;
+                        this.score++;
+                    }
+                });
+            }
+
+            draw() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+                // Draw bird
+                this.ctx.fillStyle = '#ffcc00';
+                this.ctx.fillRect(this.bird.x, this.bird.y, this.bird.size, this.bird.size);
+
+                // Draw pipes
+                this.ctx.fillStyle = '#228B22';
+                this.pipes.forEach(pipe => {
+                    this.ctx.fillRect(pipe.x, 0, pipe.width, pipe.topHeight);
+                    this.ctx.fillRect(pipe.x, pipe.gapY, pipe.width, this.canvas.height - pipe.gapY);
+                });
+
+                // Draw score
+                this.ctx.fillStyle = 'white';
+                this.ctx.font = '24px Poppins';
+                this.ctx.fillText(`Score: ${this.score}`, 10, 30);
+            }
+            
+            gameLoop = () => {
+                this.update();
+                this.draw();
+                if (this.isPlaying) {
+                    requestAnimationFrame(this.gameLoop);
+                }
+            }
+
+            gameOver() {
+                this.isPlaying = false;
+                this.messageBox.innerText = `Game Over! Final Score: ${this.score}`;
+                this.messageBox.style.display = 'block';
+            }
+        }
+        
+        // --- Ludo vs Sumant ---
+        class LudoGame {
+            constructor(boardId) {
+                this.boardElement = document.getElementById(boardId);
+                this.messageElement = document.getElementById('ludo-message');
+                this.board = this.createBoard();
+                this.currentPlayer = 'player';
+                this.pieces = {
+                    player: [{id: 'p1', pos: -1}, {id: 'p2', pos: -1}],
+                    sumant: [{id: 's1', pos: -1}, {id: 's2', pos: -1}]
+                };
+                this.path = this.createPath();
+                this.renderBoard();
+                this.setMessage("Player's turn. Roll the dice!");
+            }
+
+            createBoard() {
+                // A very simplified board representation
+                return new Array(15).fill(0).map(() => new Array(15).fill(0));
+            }
+
+            createPath() {
+                // Simplified path for a single player
+                return [
+                    {x: 7, y: 1}, {x: 7, y: 2}, {x: 7, y: 3}, {x: 7, y: 4}, {x: 7, y: 5},
+                    {x: 6, y: 6}, {x: 5, y: 6}, {x: 4, y: 6}, {x: 3, y: 6}, {x: 2, y: 6},
+                    {x: 1, y: 6}, {x: 0, y: 7}, {x: 1, y: 8}, {x: 2, y: 8}, {x: 3, y: 8},
+                    {x: 4, y: 8}, {x: 5, y: 8}, {x: 6, y: 9}, {x: 7, y: 10}, {x: 7, y: 11},
+                    {x: 7, y: 12}, {x: 7, y: 13}, {x: 7, y: 14}
+                ];
+            }
+
+            renderBoard() {
+                this.boardElement.innerHTML = '';
+                for (let i = 0; i < 15; i++) {
+                    for (let j = 0; j < 15; j++) {
+                        const cell = document.createElement('div');
+                        cell.classList.add('ludo-cell');
+                        this.boardElement.appendChild(cell);
+                    }
+                }
+                // Placeholder for pieces
+                this.renderPieces();
+            }
+
+            renderPieces() {
+                this.pieces.player.forEach(p => {
+                    if (p.pos !== -1) {
+                        const cell = this.boardElement.children[this.path[p.pos].y * 15 + this.path[p.pos].x];
+                        const piece = document.createElement('div');
+                        piece.classList.add('ludo-piece', 'ludo-piece-blue');
+                        piece.onclick = () => this.movePiece(p, 6); // Hardcoded dice roll for testing
+                        cell.appendChild(piece);
+                    }
+                });
+                this.pieces.sumant.forEach(p => {
+                    if (p.pos !== -1) {
+                        const cell = this.boardElement.children[this.path[p.pos].y * 15 + this.path[p.pos].x];
+                        const piece = document.createElement('div');
+                        piece.classList.add('ludo-piece', 'ludo-piece-red');
+                        cell.appendChild(piece);
+                    }
+                });
+            }
+
+            setMessage(msg) {
+                this.messageElement.innerText = msg;
+            }
+
+            rollLudoDice() {
+                if (this.currentPlayer !== 'player') {
+                    this.setMessage("It's not your turn!");
+                    return;
+                }
+                const diceRoll = Math.floor(Math.random() * 6) + 1;
+                this.setMessage(`You rolled a ${diceRoll}.`);
+                
+                // Move a piece if possible
+                this.movePiece(this.pieces.player[0], diceRoll); // Simplified: always move the first piece
+                
+                this.currentPlayer = 'sumant';
+                setTimeout(() => this.sumantTurn(), 1000);
+            }
+
+            movePiece(piece, steps) {
+                if (piece.pos === -1 && steps === 6) {
+                    piece.pos = 0;
+                } else if (piece.pos !== -1) {
+                    piece.pos += steps;
+                    if (piece.pos >= this.path.length) {
+                        this.setMessage(`${this.currentPlayer} finished the game!`);
+                        // Game over logic
+                    }
+                }
+                this.renderBoard();
+            }
+
+            sumantTurn() {
+                this.setMessage("Sumant's turn...");
+                const diceRoll = Math.floor(Math.random() * 6) + 1;
+                setTimeout(() => {
+                    this.setMessage(`Sumant rolled a ${diceRoll}.`);
+                    this.movePiece(this.pieces.sumant[0], diceRoll); // Simplified: move a random piece
+                    this.currentPlayer = 'player';
+                    this.setMessage("Player's turn. Roll the dice!");
+                }, 1000);
+            }
+        }
+        
+        // --- Carrom Game ---
+        class CarromGame {
+            constructor(canvasId) {
+                this.canvas = document.getElementById(canvasId);
+                this.ctx = this.canvas.getContext('2d');
+                this.striker = { x: this.canvas.width / 2, y: this.canvas.height - 50, radius: 10, color: 'white', isDragging: false, startPos: null };
+                this.coins = [];
+                this.score = 0;
+                this.messageBox = document.getElementById('carrom-message');
+                this.reset();
+
+                this.canvas.addEventListener('mousedown', this.onMouseDown.bind(this));
+                this.canvas.addEventListener('mousemove', this.onMouseMove.bind(this));
+                this.canvas.addEventListener('mouseup', this.onMouseUp.bind(this));
+
+                this.animate();
+            }
+
+            reset() {
+                this.striker.x = this.canvas.width / 2;
+                this.striker.y = this.canvas.height - 50;
+                this.coins = [];
+                this.score = 0;
+                this.messageBox.style.display = 'none';
+
+                // Create coins
+                for (let i = 0; i < 5; i++) {
+                    this.coins.push({
+                        x: Math.random() * (this.canvas.width - 40) + 20,
+                        y: Math.random() * (this.canvas.height - 100) + 20,
+                        radius: 7,
+                        color: ['#000', '#fff'][i % 2],
+                        velocity: { x: 0, y: 0 }
+                    });
+                }
+            }
+
+            onMouseDown(e) {
+                const rect = this.canvas.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+
+                if (Math.hypot(mouseX - this.striker.x, mouseY - this.striker.y) < this.striker.radius) {
+                    this.striker.isDragging = true;
+                    this.striker.startPos = { x: mouseX, y: mouseY };
+                }
+            }
+
+            onMouseMove(e) {
+                if (this.striker.isDragging) {
+                    // Update drag line if needed
+                }
+            }
+            
+            onMouseUp(e) {
+                if (this.striker.isDragging) {
+                    const rect = this.canvas.getBoundingClientRect();
+                    const mouseX = e.clientX - rect.left;
+                    const mouseY = e.clientY - rect.top;
+
+                    // Calculate velocity based on drag
+                    const force = {
+                        x: this.striker.startPos.x - mouseX,
+                        y: this.striker.startPos.y - mouseY
+                    };
+                    const speed = Math.min(10, Math.hypot(force.x, force.y) / 10);
+                    const angle = Math.atan2(force.y, force.x);
+
+                    this.striker.velocity = {
+                        x: Math.cos(angle) * speed,
+                        y: Math.sin(angle) * speed
+                    };
+
+                    this.striker.isDragging = false;
+                    this.striker.startPos = null;
+                }
+            }
+
+            update() {
+                // Simple physics for striker
+                this.striker.x += this.striker.velocity.x;
+                this.striker.y += this.striker.velocity.y;
+                this.striker.velocity.x *= 0.98; // Friction
+                this.striker.velocity.y *= 0.98;
+
+                // Simple physics for coins
+                this.coins.forEach(coin => {
+                    coin.x += coin.velocity.x;
+                    coin.y += coin.velocity.y;
+                    coin.velocity.x *= 0.98;
+                    coin.velocity.y *= 0.98;
+                });
+                
+                // Check for pocketing coins
+                this.coins = this.coins.filter(coin => {
+                    // Check if coin is in a corner pocket (simplified)
+                    if ((coin.x < 20 || coin.x > this.canvas.width - 20) && (coin.y < 20 || coin.y > this.canvas.height - 20)) {
+                        this.score++;
+                        return false;
+                    }
+                    return true;
+                });
+            }
+
+            draw() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+                // Draw board outline (simplified)
+                this.ctx.strokeStyle = '#ccc';
+                this.ctx.lineWidth = 5;
+                this.ctx.strokeRect(10, 10, this.canvas.width - 20, this.canvas.height - 20);
+
+                // Draw striker
+                this.ctx.beginPath();
+                this.ctx.arc(this.striker.x, this.striker.y, this.striker.radius, 0, Math.PI * 2);
+                this.ctx.fillStyle = this.striker.color;
+                this.ctx.fill();
+
+                // Draw coins
+                this.coins.forEach(coin => {
+                    this.ctx.beginPath();
+                    this.ctx.arc(coin.x, coin.y, coin.radius, 0, Math.PI * 2);
+                    this.ctx.fillStyle = coin.color;
+                    this.ctx.fill();
+                });
+
+                // Draw score
+                this.ctx.fillStyle = 'white';
+                this.ctx.font = '24px Poppins';
+                this.ctx.fillText(`Score: ${this.score}`, 10, 30);
+
+                // Game over if all coins are pocketed
+                if (this.coins.length === 0) {
+                    this.messageBox.innerText = `You won! Final Score: ${this.score}`;
+                    this.messageBox.style.display = 'block';
+                }
+            }
+
+            animate = () => {
+                this.update();
+                this.draw();
+                requestAnimationFrame(this.animate);
+            }
+        }
+        
+        // --- Cricket Game ---
+        class CricketGame {
+            constructor(canvasId) {
+                this.canvas = document.getElementById(canvasId);
+                this.ctx = this.canvas.getContext('2d');
+                this.scoreDisplay = document.getElementById('cricket-score');
+                this.messageBox = document.getElementById('cricket-message');
+                this.ball = { x: 0, y: this.canvas.height / 2, radius: 5, color: '#ff416c', velocity: { x: 0, y: 0 }};
+                this.bat = { x: this.canvas.width - 50, y: this.canvas.height / 2, width: 10, height: 50, color: 'white' };
+                this.score = 0;
+                this.isPlaying = false;
+                this.canvas.addEventListener('click', this.battingSwing.bind(this));
+                this.reset();
+                this.animate();
+            }
+
+            reset() {
+                this.score = 0;
+                this.scoreDisplay.innerText = `Score: 0`;
+                this.messageBox.style.display = 'none';
+                this.isPlaying = false;
+                this.startNewOver();
+            }
+            
+            startNewOver() {
+                this.ball.x = 0;
+                this.ball.y = this.canvas.height / 2;
+                this.ball.velocity.x = 0;
+                this.ball.velocity.y = 0;
+                this.isPlaying = true;
+                setTimeout(() => this.bowlBall(), 1000);
+            }
+
+            bowlBall() {
+                this.ball.velocity.x = Math.random() * 5 + 3;
+                this.messageBox.style.display = 'none';
+            }
+
+            battingSwing() {
+                if (!this.isPlaying) return;
+                
+                // Simple logic for hitting the ball
+                if (this.ball.x > this.canvas.width - 100 && this.ball.x < this.canvas.width - 40) {
+                    this.score += 4; // Assume a four
+                    this.scoreDisplay.innerText = `Score: ${this.score}`;
+                    this.messageBox.innerText = "It's a Four!";
+                    this.messageBox.style.display = 'block';
+                    this.startNewOver();
+                } else {
+                    this.messageBox.innerText = "You missed!";
+                    this.messageBox.style.display = 'block';
+                    this.startNewOver();
+                }
+            }
+
+            update() {
+                if (!this.isPlaying) return;
+                this.ball.x += this.ball.velocity.x;
+                if (this.ball.x > this.canvas.width) {
+                    this.ball.x = 0;
+                    this.startNewOver(); // Reset for a new bowl
+                }
+            }
+
+            draw() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+                // Draw pitch
+                this.ctx.fillStyle = '#654321';
+                this.ctx.fillRect(0, this.canvas.height / 2 - 25, this.canvas.width, 50);
+
+                // Draw bat
+                this.ctx.fillStyle = this.bat.color;
+                this.ctx.fillRect(this.bat.x, this.bat.y - this.bat.height/2, this.bat.width, this.bat.height);
+                
+                // Draw ball
+                this.ctx.beginPath();
+                this.ctx.arc(this.ball.x, this.ball.y, this.ball.radius, 0, Math.PI * 2);
+                this.ctx.fillStyle = this.ball.color;
+                this.ctx.fill();
+            }
+            
+            animate = () => {
+                this.update();
+                this.draw();
+                requestAnimationFrame(this.animate);
+            }
+        }
+        
+        // --- Tic-Tac-Toe Game ---
+        class TicTacToeGame {
+            constructor(boardId) {
+                this.boardElement = document.getElementById(boardId);
+                this.messageElement = document.getElementById('tictactoe-message');
+                this.board = ['', '', '', '', '', '', '', '', ''];
+                this.currentPlayer = 'X';
+                this.isGameActive = true;
+                this.winPatterns = [
+                    [0, 1, 2], [3, 4, 5], [6, 7, 8],
+                    [0, 3, 6], [1, 4, 7], [2, 5, 8],
+                    [0, 4, 8], [2, 4, 6]
+                ];
+                this.boardElement.style.display = 'grid';
+                this.boardElement.style.gridTemplateColumns = 'repeat(3, 1fr)';
+                this.boardElement.style.gap = '5px';
+                this.boardElement.style.width = '300px';
+                this.boardElement.style.height = '300px';
+                this.reset();
+            }
+
+            reset() {
+                this.board = ['', '', '', '', '', '', '', '', ''];
+                this.isGameActive = true;
+                this.currentPlayer = 'X';
+                this.messageElement.innerText = "Player X's turn";
+                this.renderBoard();
+            }
+
+            renderBoard() {
+                this.boardElement.innerHTML = '';
+                this.board.forEach((cell, index) => {
+                    const cellElement = document.createElement('div');
+                    cellElement.classList.add('tictactoe-cell');
+                    cellElement.style.width = '100px';
+                    cellElement.style.height = '100px';
+                    cellElement.style.display = 'flex';
+                    cellElement.style.justifyContent = 'center';
+                    cellElement.style.alignItems = 'center';
+                    cellElement.style.fontSize = '3em';
+                    cellElement.style.backgroundColor = 'white';
+                    cellElement.style.color = 'black';
+                    cellElement.style.cursor = 'pointer';
+                    cellElement.style.borderRadius = '5px';
+                    cellElement.innerText = cell;
+                    cellElement.addEventListener('click', () => this.handleCellClick(index));
+                    this.boardElement.appendChild(cellElement);
+                });
+            }
+
+            handleCellClick(index) {
+                if (!this.isGameActive || this.board[index] !== '') return;
+
+                this.board[index] = this.currentPlayer;
+                this.renderBoard();
+
+                if (this.checkWin()) {
+                    this.messageElement.innerText = `${this.currentPlayer} wins!`;
+                    this.isGameActive = false;
+                    return;
+                }
+                if (this.checkDraw()) {
+                    this.messageElement.innerText = 'It\'s a draw!';
+                    this.isGameActive = false;
+                    return;
+                }
+
+                this.currentPlayer = this.currentPlayer === 'X' ? 'O' : 'X';
+                this.messageElement.innerText = `${this.currentPlayer}'s turn`;
+
+                if (this.currentPlayer === 'O') {
+                    setTimeout(() => this.computerMove(), 500);
+                }
+            }
+
+            checkWin() {
+                return this.winPatterns.some(pattern => {
+                    return pattern.every(index => this.board[index] === this.currentPlayer);
+                });
+            }
+            
+            checkDraw() {
+                return this.board.every(cell => cell !== '');
+            }
+
+            computerMove() {
+                if (!this.isGameActive) return;
+                let availableMoves = this.board.map((cell, index) => cell === '' ? index : null).filter(val => val !== null);
+                if (availableMoves.length > 0) {
+                    const randomMove = availableMoves[Math.floor(Math.random() * availableMoves.length)];
+                    this.handleCellClick(randomMove);
+                }
+            }
+        }
+        
+        // --- Rock Paper Scissors Game ---
+        const rpsChoices = ['rock', 'paper', 'scissors'];
+        const rpsMessages = document.getElementById('rps-message');
+        
+        function playRPS(playerChoice) {
+            const computerChoice = rpsChoices[Math.floor(Math.random() * rpsChoices.length)];
+            let result;
+
+            if (playerChoice === computerChoice) {
+                result = "It's a tie!";
+            } else if (
+                (playerChoice === 'rock' && computerChoice === 'scissors') ||
+                (playerChoice === 'paper' && computerChoice === 'rock') ||
+                (playerChoice === 'scissors' && computerChoice === 'paper')
+            ) {
+                result = `You win! Computer chose ${computerChoice}.`;
+            } else {
+                result = `You lose! Computer chose ${computerChoice}.`;
+            }
+            
+            rpsMessages.innerText = result;
+            rpsMessages.style.display = 'block';
+        }
+
+        // --- Memory Match Game ---
+        class MemoryGame {
+            constructor(boardId) {
+                this.boardElement = document.getElementById(boardId);
+                this.messageBox = document.getElementById('memory-message');
+                this.cards = [];
+                this.firstCard = null;
+                this.secondCard = null;
+                this.lockBoard = false;
+                this.matchedPairs = 0;
+                this.emojis = ['💖', '🌟', '🌈', '🍀', '🍓', '👑', '🚀', '🎶'];
+                this.reset();
+            }
+
+            reset() {
+                this.cards = [...this.emojis, ...this.emojis];
+                this.cards.sort(() => 0.5 - Math.random());
+                this.firstCard = null;
+                this.secondCard = null;
+                this.lockBoard = false;
+                this.matchedPairs = 0;
+                this.messageBox.style.display = 'none';
+                this.renderBoard();
+            }
+
+            renderBoard() {
+                this.boardElement.innerHTML = '';
+                this.boardElement.style.display = 'grid';
+                this.boardElement.style.gridTemplateColumns = 'repeat(4, 1fr)';
+                this.boardElement.style.gap = '10px';
+                this.boardElement.style.width = '400px';
+
+                this.cards.forEach((emoji, index) => {
+                    const card = document.createElement('div');
+                    card.classList.add('memory-card');
+                    card.dataset.emoji = emoji;
+                    card.style.backgroundColor = '#302b63';
+                    card.style.height = '90px';
+                    card.style.display = 'flex';
+                    card.style.justifyContent = 'center';
+                    card.style.alignItems = 'center';
+                    card.style.fontSize = '2em';
+                    card.style.borderRadius = '5px';
+                    card.style.cursor = 'pointer';
+                    card.addEventListener('click', () => this.flipCard(card));
+                    this.boardElement.appendChild(card);
+                });
+            }
+
+            flipCard(card) {
+                if (this.lockBoard) return;
+                if (card === this.firstCard) return;
+
+                card.innerText = card.dataset.emoji;
+                
+                if (!this.firstCard) {
+                    this.firstCard = card;
+                    return;
+                }
+
+                this.secondCard = card;
+                this.checkForMatch();
+            }
+
+            checkForMatch() {
+                const isMatch = this.firstCard.dataset.emoji === this.secondCard.dataset.emoji;
+                isMatch ? this.disableCards() : this.unflipCards();
+            }
+
+            disableCards() {
+                this.firstCard.removeEventListener('click', () => this.flipCard(this.firstCard));
+                this.secondCard.removeEventListener('click', () => this.flipCard(this.secondCard));
+                this.firstCard.style.backgroundColor = '#24243e';
+                this.secondCard.style.backgroundColor = '#24243e';
+                this.matchedPairs++;
+                this.resetBoard();
+                if (this.matchedPairs === this.emojis.length) {
+                    this.messageBox.innerText = 'You won!';
+                    this.messageBox.style.display = 'block';
+                }
+            }
+
+            unflipCards() {
+                this.lockBoard = true;
+                setTimeout(() => {
+                    this.firstCard.innerText = '';
+                    this.secondCard.innerText = '';
+                    this.resetBoard();
+                }, 1000);
+            }
+
+            resetBoard() {
+                this.firstCard = null;
+                this.secondCard = null;
+                this.lockBoard = false;
+            }
+        }
+        
+        // --- Math Quiz Game ---
+        class MathQuizGame {
+            constructor() {
+                this.questionElement = document.getElementById('math-question');
+                this.answerInput = document.getElementById('math-answer');
+                this.resultElement = document.getElementById('math-result');
+                this.currentQuestion = {};
+                this.generateQuestion();
+            }
+
+            generateQuestion() {
+                const num1 = Math.floor(Math.random() * 10) + 1;
+                const num2 = Math.floor(Math.random() * 10) + 1;
+                this.currentQuestion.answer = num1 * num2;
+                this.questionElement.innerText = `What is ${num1} x ${num2}?`;
+                this.answerInput.value = '';
+                this.resultElement.innerText = '';
+            }
+        }
+        function submitMathAnswer() {
+            const answer = parseInt(document.getElementById('math-answer').value, 10);
+            const resultElement = document.getElementById('math-result');
+            if (answer === mathGame.currentQuestion.answer) {
+                resultElement.innerText = 'Correct! ✅';
+                mathGame.generateQuestion();
+            } else {
+                resultElement.innerText = 'Incorrect. Try again. ❌';
+            }
+        }
+
+        // --- Guess The Number Game ---
+        class GuessTheNumberGame {
+            constructor() {
+                this.secretNumber = Math.floor(Math.random() * 100) + 1;
+                this.guessInput = document.getElementById('guess-input');
+                this.messageElement = document.getElementById('guess-message');
+                this.messageElement.innerText = '';
+                this.guessInput.value = '';
+            }
+        }
+        function checkGuess() {
+            const guess = parseInt(document.getElementById('guess-input').value, 10);
+            const messageElement = document.getElementById('guess-message');
+            if (isNaN(guess)) {
+                messageElement.innerText = 'Please enter a valid number.';
+            } else if (guess === guessGame.secretNumber) {
+                messageElement.innerText = `Correct! You guessed the number ${guessGame.secretNumber}! 🎉`;
+            } else if (guess < guessGame.secretNumber) {
+                messageElement.innerText = 'Too low. Try a higher number.';
+            } else {
+                messageElement.innerText = 'Too high. Try a lower number.';
+            }
+        }
+        
+        // --- Word Scramble Game ---
+        class WordScrambleGame {
+            constructor() {
+                this.words = [
+                    'PROGRAMMING', 'HTML', 'JAVASCRIPT', 'CODE', 'PYTHON', 'DEVELOPER',
+                    'CANVAS', 'GAMING', 'COMPUTER', 'LANGUAGE'
+                ];
+                this.currentWord = '';
+                this.shuffledWord = '';
+                this.wordElement = document.getElementById('word-scramble-word');
+                this.inputElement = document.getElementById('scramble-input');
+                this.messageElement = document.getElementById('scramble-message');
+                this.generateNewWord();
+            }
+
+            generateNewWord() {
+                this.currentWord = this.words[Math.floor(Math.random() * this.words.length)];
+                this.shuffledWord = this.currentWord.split('').sort(() => 0.5 - Math.random()).join('');
+                this.wordElement.innerText = this.shuffledWord;
+                this.inputElement.value = '';
+                this.messageElement.innerText = '';
+            }
+        }
+        function checkScramble() {
+            const guess = document.getElementById('scramble-input').value.toUpperCase();
+            const messageElement = document.getElementById('scramble-message');
+            if (guess === scrambleGame.currentWord) {
+                messageElement.innerText = 'Correct! ✅';
+            } else {
+                messageElement.innerText = `Incorrect. The correct word was "${scrambleGame.currentWord}". ❌`;
+            }
+        }
+    </script>
 </body>
 </html>
