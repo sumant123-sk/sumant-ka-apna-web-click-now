@@ -23,6 +23,9 @@
             min-height: 100vh;
             padding: 40px 20px;
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         /* Keyframes for the slow background color change */
@@ -60,6 +63,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
+            width: 100%;
+            max-width: 1200px; /* Limit max width for better readability on large screens */
         }
 
         /* Individual News Card Styling */
@@ -74,20 +79,10 @@
             text-align: left;
             opacity: 0;
             animation: fadeInSlideUp 0.8s forwards;
+            height: 100%; /* Ensure cards are same height in the grid row */
+            display: flex;
+            flex-direction: column;
         }
-
-        /* Staggered animation delay for each card */
-        .news-card:nth-child(1)  { animation-delay: 0.1s; }
-        .news-card:nth-child(2)  { animation-delay: 0.2s; }
-        .news-card:nth-child(3)  { animation-delay: 0.3s; }
-        .news-card:nth-child(4)  { animation-delay: 0.4s; }
-        .news-card:nth-child(5)  { animation-delay: 0.5s; }
-        .news-card:nth-child(6)  { animation-delay: 0.6s; }
-        .news-card:nth-child(7)  { animation-delay: 0.7s; }
-        .news-card:nth-child(8)  { animation-delay: 0.8s; }
-        .news-card:nth-child(9)  { animation-delay: 0.9s; }
-        .news-card:nth-child(10) { animation-delay: 1.0s; }
-        /* Add more delays for more cards... */
 
         /* Fade-in and slide up animation for cards */
         @keyframes fadeInSlideUp {
@@ -124,6 +119,7 @@
             font-weight: 600;
             text-shadow: 0 0 5px rgba(0, 224, 255, 0.5);
             transition: color 0.3s ease;
+            flex-grow: 1; /* Allow link to take up available space */
         }
 
         .news-card a:hover {
@@ -134,19 +130,31 @@
         .news-card p {
             color: rgba(255, 255, 255, 0.7);
             font-size: 0.9em;
-            margin-top: 5px;
+            margin-top: 10px;
+        }
+
+        /* Footer styling for the signature */
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.5);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
 
     </style>
 </head>
 <body>
 
-    <h1 class="title-3d">🌍 ग्लोबल न्यूज़ - लाइव अपडेट्स</h1>
+    <h1 class="title-3d">🌍 Global News - Live Updates</h1>
 
     <!-- Main container for all news cards -->
     <div id="news-container" class="news-container">
         <!-- News cards will be dynamically inserted here by JavaScript -->
     </div>
+
+    <p class="footer">by sumant</p>
 
     <script>
         // Array of 100 placeholder news headlines
@@ -276,7 +284,7 @@
             `;
 
             // Set a staggered animation delay for each card
-            card.style.animationDelay = `${(index) * 0.1}s`;
+            card.style.animationDelay = `${(index) * 0.05}s`; // Adjusted delay for a faster staggered effect
             
             // Append the new card to the container
             newsContainer.appendChild(card);
