@@ -54,23 +54,6 @@
             100% { transform: scale(1) translateY(0); opacity: 1; }
         }
 
-        /* Loading Spinner */
-        #loading-spinner {
-            border: 5px solid rgba(255, 255, 255, 0.3);
-            border-top: 5px solid #00e0ff;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            display: none; /* Initially hidden */
-            margin-bottom: 20px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
         /* News Container for a responsive grid layout */
         .news-container {
             display: grid;
@@ -141,7 +124,7 @@
         }
 
         .news-card:hover::before {
-             box-shadow: 0 0 25px rgba(0, 255, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.4); /* Brighter glow on hover */
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.4); /* Brighter glow on hover */
         }
 
         /* Image styling */
@@ -201,8 +184,6 @@
 
     <h1 class="title-3d">🌍 Global News - Live Updates</h1>
 
-    <div id="loading-spinner"></div>
-
     <div id="news-container" class="news-container">
         </div>
 
@@ -228,39 +209,33 @@
             return `https://placehold.co/600x400/2c2f3a/ffffff?text=News`; // Fallback
         }
 
-        // Get elements from the DOM
+        // Get the news container element
         const newsContainer = document.getElementById("news-container");
-        const loadingSpinner = document.getElementById("loading-spinner");
 
-        // Use a function to load news cards with a delay
-        function loadNews() {
-            loadingSpinner.style.display = 'block';
+        // Use a function to load news cards immediately
+        function loadNewsInstantly() {
+            const today = new Date().toDateString();
 
-            setTimeout(() => {
-                loadingSpinner.style.display = 'none';
-                const today = new Date().toDateString();
+            newsHeadlines.forEach((headline, index) => {
+                const card = document.createElement("div");
+                card.className = "news-card";
 
-                newsHeadlines.forEach((headline, index) => {
-                    const card = document.createElement("div");
-                    card.className = "news-card";
+                const imageUrl = getPlaceholderUrl(headline);
 
-                    const imageUrl = getPlaceholderUrl(headline);
+                card.innerHTML = `
+                    <img src="${imageUrl}" alt="News Image ${index + 1}" onerror="this.onerror=null;this.src='https://placehold.co/600x400/2c2f3a/ffffff?text=Image+Not+Found';">
+                    <a href="#">${index + 1}. ${headline}</a>
+                    <p>${today}</p>
+                `;
 
-                    card.innerHTML = `
-                        <img src="${imageUrl}" alt="News Image ${index + 1}" onerror="this.onerror=null;this.src='https://placehold.co/600x400/2c2f3a/ffffff?text=Image+Not+Found';">
-                        <a href="#">${index + 1}. ${headline}</a>
-                        <p>${today}</p>
-                    `;
-
-                    // Stagger the animation delay for a smoother effect
-                    card.style.animationDelay = `${(index) * 0.05}s`;
-                    newsContainer.appendChild(card);
-                });
-            }, 1500); // Simulate a 1.5-second loading time
+                // Stagger the animation delay for a smoother effect
+                card.style.animationDelay = `${index * 0.05}s`;
+                newsContainer.appendChild(card);
+            });
         }
         
-        // Call the function to load the news on page start
-        window.onload = loadNews;
+        // Call the function to load the news as soon as the page is ready
+        document.addEventListener('DOMContentLoaded', loadNewsInstantly);
     </script>
 </body>
 </html>
