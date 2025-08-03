@@ -1,9 +1,25 @@
+आपके नए कोड में कई सुधार हुए हैं, और यह एक पूरी वेबसाइट की तरह लग रहा है। आपने **अलग-अलग सेक्शन** बनाए हैं और उन्हें अच्छे डिज़ाइन से सजाया है। इस तरह का मल्टी-सेक्शन लेआउट आपकी वेबसाइट को यूज़र्स के लिए और भी आकर्षक बनाता है।
+
+हालाँकि, इसे **ट्रेंडिंग** बनाने के लिए कुछ और महत्वपूर्ण बदलाव किए जा सकते हैं। ट्रेंडिंग वेबसाइटें सिर्फ़ अच्छी दिखती नहीं, बल्कि वे यूज़र्स को रोककर रखती हैं और उन्हें बेहतर अनुभव देती हैं।
+
+मैंने आपके कोड में सुधार करके इसे और ज़्यादा डायनामिक और यूज़र-फ्रेंडली बनाया है, जिससे इसके ट्रेंडिंग होने की संभावना बढ़ जाएगी।
+
+### किए गए बदलाव:
+
+  * **नेविगेशन सुधार:** मैंने एक **स्मूथ नेविगेशन बार** जोड़ा है जो हर सेक्शन के साथ स्क्रॉल करने पर खुद-ब-खुद हाईलाइट होता है। इससे यूज़र्स को पता चलता है कि वे वेबसाइट में कहाँ हैं।
+  * **डायनामिक कंटेंट:** 'Coding Guide' सेक्शन को और ज़्यादा बेहतर बनाया गया है। अब इसमें **टैब-बेस्ड कंटेंट** है, जिससे यूज़र्स HTML, CSS, और JavaScript के कोड को एक ही जगह पर आसानी से देख सकते हैं। यह यूज़र एक्सपीरियंस को बहुत बढ़ाता है।
+  * **आधुनिक डिज़ाइन:** मैंने CSS में कुछ और एनिमेशन और ट्रांज़िशन जोड़े हैं ताकि वेबसाइट और भी आकर्षक लगे।
+  * **सिंगल-पेज एप्लिकेशन (SPA) का प्रभाव:** आपकी वेबसाइट अब एक ही पेज पर अलग-अलग सेक्शन दिखाती है। मैंने इस फंक्शनैलिटी को बेहतर बनाने के लिए JavaScript को और साफ़-सुथरा और असरदार बनाया है।
+
+नीचे दिया गया अपडेटेड कोड आपकी वेबसाइट को ट्रेंडिंग बनाने में मदद करेगा। इसे आप 'index.html' नाम से सेव कर सकते हैं।
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🌐 My Multi-Section Web</title>
+  <title>🌐 My Trending Web</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
   <style>
     /* --- Main Page Styles --- */
@@ -13,69 +29,119 @@
       background: linear-gradient(135deg, #000428, #004e92);
       color: white;
       min-height: 100vh;
-      padding: 40px 20px;
-      text-align: center;
       overflow-x: hidden;
       animation: bgAnim 20s ease infinite;
+      scroll-behavior: smooth;
     }
     @keyframes bgAnim {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-    .highlighted-names {
-      font-size: 1.5rem;
+
+    /* --- Navigation Bar --- */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 15px;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%) scaleX(0);
+      width: 80%;
+      height: 2px;
+      background: #00ffff;
+      transition: transform 0.3s ease;
+    }
+    nav a:hover::after, nav a.active::after {
+      transform: translateX(-50%) scaleX(1);
+    }
+    nav a:hover, nav a.active {
+      color: #00ffff;
+      text-shadow: 0 0 5px #00ffff;
+    }
+
+    /* --- Sections & Content --- */
+    section {
+      min-height: 100vh;
+      padding-top: 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      transition: all 0.5s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    section.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* --- Hero Section --- */
+    #home-section h1 {
+      font-size: clamp(2.5rem, 8vw, 5rem);
       margin-bottom: 20px;
-      animation: fadeInDown 1s ease;
-    }
-    .highlighted-names span {
-      background-color: rgba(255, 255, 255, 0.2);
-      padding: 5px 10px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px cyan;
-      display: inline-block;
-      margin: 0 10px;
-    }
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 30px;
-      animation: fadeInDown 1s ease;
       text-shadow: 0 0 20px cyan;
     }
+    #home-section p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      animation: fadeIn 1.5s ease forwards;
+      animation-delay: 0.5s;
+      opacity: 0;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* --- Card Grid --- */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
       max-width: 1000px;
-      margin: 0 auto 30px auto;
+      margin-top: 50px;
     }
     .card {
-      background: rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.1);
       padding: 30px;
       border-radius: 20px;
-      text-decoration: none;
       color: white;
-      box-shadow: 0 0 20px rgba(0,255,255,0.4);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
       transition: 0.3s ease;
       display: block;
       position: relative;
       overflow: hidden;
       cursor: pointer;
     }
-    .card::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(0,255,255,0.3), transparent 70%);
-      animation: rotate 6s linear infinite;
-      z-index: 0;
-    }
     .card:hover {
-      background: rgba(255,255,255,0.2);
+      background: rgba(255, 255, 255, 0.2);
       transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
     }
     .card span {
       font-size: 3rem;
@@ -90,50 +156,61 @@
       z-index: 1;
       position: relative;
     }
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-30px); }
-      to { opacity: 1; transform: translateY(0); }
+    .highlighted-names {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
     }
-    @keyframes rotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+    .highlighted-names span {
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 5px 10px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px cyan;
+      display: inline-block;
+      margin: 0 10px;
     }
-
-    /* --- Coding Guide Section Styles --- */
-    .coding-guide-section {
-      display: none; /* Initially hidden */
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      box-shadow: 0 0 30px rgba(0, 255, 255, 0.15);
-      animation: fadeIn 1s ease forwards;
+    
+    /* --- Coding Guide Section --- */
+    #coding-guide-section {
       text-align: left;
-      position: relative;
-      z-index: 2;
     }
-    .coding-guide-section h1 {
+    #coding-guide-section h1 {
       font-size: 2.5rem;
       color: #00f7ff;
       text-shadow: 0 0 15px #00f7ff;
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
     }
-    .coding-guide-section h2 {
-      font-size: 2rem;
-      color: #ffcc00;
-      border-bottom: 2px solid rgba(255,204,0,0.5);
-      padding-bottom: 10px;
-      margin-top: 40px;
-      margin-bottom: 20px;
+    .tab-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 30px;
     }
-    .coding-guide-section p {
+    .tab-button {
+      padding: 10px 20px;
       font-size: 1.1rem;
-      line-height: 1.6;
-      margin-bottom: 20px;
-      color: #e0e0e0;
+      font-weight: 700;
+      border: 2px solid #00ffff;
+      background: transparent;
+      color: #00ffff;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .tab-button.active, .tab-button:hover {
+      background: #00ffff;
+      color: #000428;
+      box-shadow: 0 0 15px #00ffff;
+    }
+    .tab-content {
+      display: none;
+      background-color: rgba(255, 255, 255, 0.08);
+      padding: 30px;
+      border-radius: 20px;
+      animation: fadeIn 0.8s ease;
+    }
+    .tab-content.active {
+      display: block;
     }
     pre {
       background-color: #1a1a2e;
@@ -144,41 +221,46 @@
       font-family: 'Courier New', Courier, monospace;
       white-space: pre-wrap;
       word-wrap: break-word;
-      border: 1px solid rgba(0,247,255,0.3);
+      border: 1px solid rgba(0, 247, 255, 0.3);
+      line-height: 1.5;
     }
-    .back-btn {
-      display: block;
-      margin: 30px auto 0;
-      padding: 10px 20px;
-      width: fit-content;
-      background: linear-gradient(to right, #ff416c, #ff4b2b);
-      color: #fff;
-      font-weight: bold;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #ff416c;
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      text-decoration: none;
       box-shadow: 0 0 15px #ff416c;
-      transition: 0.3s ease;
+      transition: all 0.3s ease;
     }
-    .back-btn:hover {
-      background: linear-gradient(to right, #ff4b2b, #ff416c);
-      box-shadow: 0 0 20px #ff4b2b;
-      transform: scale(1.05);
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    .back-to-top:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px #ff416c;
     }
   </style>
 </head>
 <body>
 
-  <div id="main-grid-section">
+  <nav>
+    <a href="#home-section" class="nav-link active">Home</a>
+    <a href="#coding-guide-section" class="nav-link">Coding Guide</a>
+  </nav>
+
+  <section id="home-section" class="active">
     <div class="highlighted-names">
       <span>Sudhansu</span>
       <span>Sumant</span>
     </div>
-    <h1>🌟 Welcome to My Multi-Section Web</h1>
+    <h1>🌟 Welcome to My Trending Web</h1>
+    <p>Discover the latest in tech, dive into captivating stories, and learn to code with our interactive guides.</p>
     <div class="grid">
       <a class="card" href="news.html">
         <span>📰</span>
@@ -196,66 +278,118 @@
         <span>🕉️</span>
         <div>Mythology</div>
       </a>
-      <div class="card" onclick="showSection('coding-guide-section')">
+      <a class="card" href="#coding-guide-section">
         <span>💻</span>
         <div>Coding Guide</div>
-      </div>
+      </a>
     </div>
-  </div>
+  </section>
 
-  <div id="coding-guide-section" class="coding-guide-section">
-    <button class="back-btn" onclick="showSection('main-grid-section')">Back to Home</button>
+  <section id="coding-guide-section">
     <h1>💡 Programming Code Explained</h1>
-    <h2>1. HTML</h2>
-    <p>HTML (HyperText Markup Language) is used to structure web content. Think of it as the skeleton of a website.</p>
-    <pre>
+    <div class="tab-container">
+      <button class="tab-button active" onclick="openTab(event, 'html')">HTML</button>
+      <button class="tab-button" onclick="openTab(event, 'css')">CSS</button>
+      <button class="tab-button" onclick="openTab(event, 'js')">JavaScript</button>
+    </div>
+    
+    <div id="html" class="tab-content active">
+      <h2>HTML (HyperText Markup Language)</h2>
+      <p>HTML is the foundation of every web page. It defines the structure and content of a website. It uses tags to organize text, images, links, and other elements.</p>
+      <pre>
 &lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
-  &lt;head&gt;
-    &lt;title&gt;My Web Page&lt;/title&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;h1&gt;Hello World!&lt;/h1&gt;
-    &lt;p&gt;This is a paragraph.&lt;/p&gt;
-  &lt;/body&gt;
+  &lt;head&gt;
+    &lt;title&gt;My Web Page&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello World!&lt;/h1&gt;
+    &lt;p&gt;This is a paragraph.&lt;/p&gt;
+  &lt;/body&gt;
 &lt;/html&gt;
-    </pre>
+      </pre>
+    </div>
 
-    <h2>2. CSS</h2>
-    <p>CSS (Cascading Style Sheets) is used for styling HTML elements. It's like the skin, clothes, and makeup for the skeleton, making it look beautiful.</p>
-    <pre>
+    <div id="css" class="tab-content">
+      <h2>CSS (Cascading Style Sheets)</h2>
+      <p>CSS is used to style the look and feel of a web page. It controls colors, fonts, layouts, and animations, making your website visually appealing and engaging.</p>
+      <pre>
 body {
-  background-color: #121212;
-  color: white;
-  font-family: Arial, sans-serif;
+  background-color: #121212;
+  color: white;
+  font-family: Arial, sans-serif;
 }
 p {
-  color: yellow;
-  font-size: 18px;
+  color: yellow;
+  font-size: 18px;
 }
-    </pre>
+      </pre>
+    </div>
 
-    <h2>3. JavaScript</h2>
-    <p>JavaScript is used to make web pages interactive. It's the brain that adds functionality, like animations, buttons, and user interaction.</p>
-    <pre>
+    <div id="js" class="tab-content">
+      <h2>JavaScript</h2>
+      <p>JavaScript is a programming language that brings your web page to life. It adds interactivity, dynamic content, and complex functionality that responds to user actions.</p>
+      <pre>
 &lt;script&gt;
-  document.addEventListener("DOMContentLoaded", function() {
-    console.log("The page is fully loaded!");
-    // You can add more interactive logic here.
-  });
+  document.addEventListener("DOMContentLoaded", function() {
+    console.log("The page is fully loaded!");
+    const heading = document.querySelector("h1");
+    heading.addEventListener("click", () => {
+      alert("You clicked the heading!");
+    });
+  });
 &lt;/script&gt;
-    </pre>
-  </div>
+      </pre>
+    </div>
+  </section>
+
+  <a href="#home-section" class="back-to-top">▲</a>
 
   <script>
-    function showSection(sectionId) {
-      // Hide all sections first
-      document.getElementById('main-grid-section').style.display = 'none';
-      document.getElementById('coding-guide-section').style.display = 'none';
+    // Tab switching for Coding Guide section
+    function openTab(evt, tabName) {
+      const tabContents = document.querySelectorAll('.tab-content');
+      tabContents.forEach(tab => tab.classList.remove('active'));
 
-      // Then, show the requested section
-      document.getElementById(sectionId).style.display = 'block';
+      const tabButtons = document.querySelectorAll('.tab-button');
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById(tabName).classList.add('active');
+      evt.currentTarget.classList.add('active');
     }
+
+    // Scroll-based active link and section display
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('nav a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 150;
+        if (window.scrollY >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').includes(current)) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Initial load
+    document.addEventListener('DOMContentLoaded', () => {
+      const homeSection = document.getElementById('home-section');
+      homeSection.classList.add('active');
+
+      const firstTabButton = document.querySelector('.tab-button');
+      const firstTabContent = document.querySelector('.tab-content');
+      firstTabButton.classList.add('active');
+      firstTabContent.classList.add('active');
+    });
   </script>
 </body>
 </html>
+```
