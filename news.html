@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>🌍 Global News - Live Updates</title>
     <!-- Poppins Font from Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
     <style>
         /* Global & Body Styling */
         * {
@@ -17,24 +17,14 @@
         body {
             font-family: 'Poppins', sans-serif;
             color: white;
-            background: linear-gradient(135deg, #00c6ff, #0072ff);
-            background-size: 400% 400%;
-            animation: bgAnim 20s ease infinite; /* Slow, smooth background animation */
+            /* Dark, static background as requested */
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
             min-height: 100vh;
             padding: 40px 20px;
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
-        }
-
-        /* Keyframes for the slow background color change */
-        @keyframes bgAnim {
-            0% { background: linear-gradient(135deg, #00c6ff, #0072ff); } /* Blue */
-            25% { background: linear-gradient(135deg, #ff6b6b, #f0e130); } /* Red/Yellow */
-            50% { background: linear-gradient(135deg, #6a11cb, #2575fc); } /* Purple/Blue */
-            75% { background: linear-gradient(135deg, #ff7e5f, #feb47b); } /* Orange/Peach */
-            100% { background: linear-gradient(135deg, #00c6ff, #0072ff); } /* Back to Blue */
         }
 
         /* 3D and Glowing Title Styling */
@@ -49,22 +39,22 @@
                 0 3px 0 #bbb,
                 0 4px 0 #b9b9b9,
                 0 5px 0 #aaa,
-                0 6px 1px rgba(0,0,0,.1),
-                0 0 5px rgba(0,0,0,.1),
-                0 1px 3px rgba(0,0,0,.3),
-                0 3px 5px rgba(0,0,0,.2),
-                0 5px 10px rgba(0,0,0,.25),
-                0 10px 10px rgba(0,0,0,.2),
-                0 20px 20px rgba(0,0,0,.15);
+                0 6px 1px rgba(0, 0, 0, 0.1),
+                0 0 5px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.3),
+                0 3px 5px rgba(0, 0, 0, 0.2),
+                0 5px 10px rgba(0, 0, 0, 0.25),
+                0 10px 10px rgba(0, 0, 0, 0.2),
+                0 20px 20px rgba(0, 0, 0, 0.15);
         }
 
-        /* News Container Grid Layout */
+        /* News Container for a vertical layout as requested */
         .news-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            display: flex;
+            flex-direction: column;
             gap: 20px;
             width: 100%;
-            max-width: 1200px; /* Limit max width for better readability on large screens */
+            max-width: 800px; /* Limiting width for better readability in a single column */
         }
 
         /* Individual News Card Styling */
@@ -74,12 +64,10 @@
             border-radius: 15px;
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 10px rgba(0,255,255,0.2); /* Initial glow */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-align: left;
             opacity: 0;
-            animation: fadeInSlideUp 0.8s forwards;
-            height: 100%; /* Ensure cards are same height in the grid row */
+            animation: fadeInSlideUp 0.8s forwards, color-glow 4s infinite alternate; /* New glow animation */
             display: flex;
             flex-direction: column;
         }
@@ -96,16 +84,25 @@
             }
         }
 
+        /* Keyframes for the glowing border effect on cards */
+        @keyframes color-glow {
+            0% { box-shadow: 0 0 10px rgba(0, 255, 255, 0.4); } /* Cyan glow */
+            25% { box-shadow: 0 0 10px rgba(255, 255, 0, 0.4); } /* Yellow glow */
+            50% { box-shadow: 0 0 10px rgba(255, 0, 255, 0.4); } /* Magenta glow */
+            75% { box-shadow: 0 0 10px rgba(0, 255, 0, 0.4); } /* Green glow */
+            100% { box-shadow: 0 0 10px rgba(0, 255, 255, 0.4); }
+        }
+
         /* Hover effect on news cards */
         .news-card:hover {
             transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 0 25px rgba(0,255,255,0.8), 0 0 40px rgba(0,255,255,0.4); /* Brighter glow on hover */
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.4); /* Brighter glow on hover */
         }
 
         /* Image styling */
         .news-card img {
             width: 100%;
-            height: 200px;
+            height: 250px; /* Increased height for better visibility */
             object-fit: cover;
             border-radius: 10px;
             margin-bottom: 15px;
@@ -119,7 +116,8 @@
             font-weight: 600;
             text-shadow: 0 0 5px rgba(0, 224, 255, 0.5);
             transition: color 0.3s ease;
-            flex-grow: 1; /* Allow link to take up available space */
+            flex-grow: 1;
+            margin-bottom: 10px;
         }
 
         .news-card a:hover {
@@ -130,7 +128,6 @@
         .news-card p {
             color: rgba(255, 255, 255, 0.7);
             font-size: 0.9em;
-            margin-top: 10px;
         }
 
         /* Footer styling for the signature */
@@ -142,7 +139,6 @@
             color: rgba(255, 255, 255, 0.5);
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
-
     </style>
 </head>
 <body>
@@ -261,20 +257,133 @@
             "A New Era of Diplomacy: Global Leaders Meet to Forge Alliances"
         ];
 
+        // Function to create a descriptive placeholder image URL
+        function getPlaceholderUrl(headline) {
+            // Simple mapping of keywords to generate a more relevant placeholder text
+            const keywordMap = {
+                "Artificial Intelligence": "AI",
+                "SpaceX": "Rocket",
+                "Climate": "Earth",
+                "Archaeologists": "History",
+                "Tech Companies": "Tech",
+                "Alzheimer's": "Health",
+                "Mars": "Planet",
+                "Quantum Computing": "Science",
+                "Economic": "Finance",
+                "Solar Farm": "Solar",
+                "Volcanic": "Volcano",
+                "Smartphone": "Phone",
+                "Sports": "Sport",
+                "Carbon Capture": "Environment",
+                "Endangered Species": "Animals",
+                "Virtual Reality": "VR",
+                "Peace Treaty": "Peace",
+                "Clone": "Science",
+                "E-commerce": "E-commerce",
+                "Music Festival": "Music",
+                "Renewable Energy": "Energy",
+                "NASA": "NASA",
+                "Film Studio": "Film",
+                "Pandemic": "Health",
+                "Robotic Automation": "Robotics",
+                "Stock Market": "Market",
+                "Food Technology": "Food",
+                "Art Exhibition": "Art",
+                "Humanitarian Aid": "Aid",
+                "Hyperloop": "Transport",
+                "Gene Therapy": "Genetics",
+                "Cyberattack": "Security",
+                "Space Tourism": "Space",
+                "Farming": "Farming",
+                "Matter Discovered": "Physics",
+                "World Leaders": "Politics",
+                "Player Safety": "Safety",
+                "Battery Technology": "Battery",
+                "Deep-Sea": "Ocean",
+                "Social Media": "Social",
+                "Personalized Medicine": "Medicine",
+                "Education Summit": "Education",
+                "Satellite": "Satellite",
+                "Aging": "Science",
+                "Vinyl Record": "Music",
+                "Smart City": "City",
+                "Astronauts": "Astronauts",
+                "Psychology": "Mind",
+                "Supply Chains": "Logistics",
+                "Culinary": "Cooking",
+                "Blockchain": "Blockchain",
+                "Robotics in Disaster": "Rescue",
+                "Internet": "Internet",
+                "Sustainable Fashion": "Fashion",
+                "Coral Reefs": "Ocean",
+                "Data": "Data",
+                "Archaeological Find": "History",
+                "Fusion Energy": "Energy",
+                "Novel": "Book",
+                "Space Telescope": "Space",
+                "Film Industry": "Cinema",
+                "Remote and Hybrid": "Work",
+                "Antibiotic": "Health",
+                "Tourism": "Travel",
+                "AI on the Creative Arts": "Creativity",
+                "Underdog Story": "Sports",
+                "Water Purification": "Water",
+                "Traditional Crafts": "Crafts",
+                "Food Prices": "Food",
+                "Human Brain": "Brain",
+                "Video Games": "Gaming",
+                "End Hunger": "Hunger",
+                "Mental Health": "Health",
+                "Carbon Neutral": "Environment",
+                "Digital Currencies": "Crypto",
+                "Rare Disease": "Health",
+                "Space Exploration": "Space",
+                "Longer, Healthier Life": "Health",
+                "Independent Artist": "Music",
+                "Predicting": "Prediction",
+                "Translation": "Language",
+                "AI Tutors": "Education",
+                "Autonomous Electric Car": "EV",
+                "Biodiversity": "Nature",
+                "Climate Change": "Climate",
+                "Philosophy of Time": "Philosophy",
+                "Social Entrepreneurs": "Entrepreneurs",
+                "Organ Transplantation": "Surgery",
+                "Digital Art": "Art",
+                "Mysteries of the Universe": "Universe",
+                "Future of Finance": "Finance",
+                "Largest Dam Project": "Dam",
+                "Wearable Technology": "Wearables",
+                "Independent Filmmakers": "Filmmakers",
+                "Plastic Pollution": "Pollution",
+                "Paralysis": "Medical",
+                "Lab-Grown Meat": "Food",
+                "AI on Job Markets": "Jobs",
+                "Diplomacy": "Diplomacy"
+            };
+
+            for (const keyword in keywordMap) {
+                if (headline.includes(keyword)) {
+                    return `https://placehold.co/600x400/2c2f3a/00e0ff?text=${keywordMap[keyword]}`;
+                }
+            }
+            return `https://placehold.co/600x400/2c2f3a/ffffff?text=News`; // Fallback
+        }
+
         // Get the news container element
         const newsContainer = document.getElementById("news-container");
 
         // Get today's date for the news cards
         const today = new Date().toDateString();
 
-        // Loop through the array and create 100 news cards
+        // Loop through the array and create news cards
         newsHeadlines.forEach((headline, index) => {
             // Create the main card element
             const card = document.createElement("div");
             card.className = "news-card";
-            
-            // Set a placeholder image URL. The index is used to create a unique placeholder image.
-            const imageUrl = `https://placehold.co/600x400/2c2f3a/00e0ff?text=${index + 1}`;
+
+            // Get a descriptive image URL based on the headline
+            const imageUrl = getPlaceholderUrl(headline);
 
             // Add the inner HTML for the card, including the image and news text
             card.innerHTML = `
@@ -284,7 +393,7 @@
             `;
 
             // Set a staggered animation delay for each card
-            card.style.animationDelay = `${(index) * 0.05}s`; // Adjusted delay for a faster staggered effect
+            card.style.animationDelay = `${(index) * 0.05}s`;
             
             // Append the new card to the container
             newsContainer.appendChild(card);
