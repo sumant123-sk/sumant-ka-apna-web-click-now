@@ -204,6 +204,10 @@
             text-align: center;
             margin-bottom: 20px;
         }
+        .tab-content h3 {
+            margin-top: 30px;
+            color: #00ffff;
+        }
         .tab-content p, .tab-content ul, .tab-content pre {
             max-width: 100%;
             line-height: 1.6;
@@ -221,6 +225,7 @@
             word-wrap: break-word;
             border: 1px solid rgba(0, 247, 255, 0.3);
             line-height: 1.5;
+            margin-top: 15px;
         }
         .back-to-top {
             position: fixed;
@@ -293,96 +298,184 @@
         
         <div id="html" class="tab-content active">
             <h2>HTML (HyperText Markup Language)</h2>
-            <p>HTML is the core language for creating web pages. It defines the structure and content of a webpage using a system of elements and tags. Think of it as the skeleton of a website, providing the basic layout and content organization. Without HTML, a webpage would be just a raw text file.</p>
-            <h3>Basic Structure and Elements</h3>
-            <p>Every HTML document starts with a `<!DOCTYPE html>` declaration, which defines the document type. The entire page content is enclosed within the `<html>` tag. The `<head>` section contains meta-information about the document, like the title, character set, and links to external stylesheets. The `<body>` section contains the visible content of the webpage.</p>
+            <p>HTML वेब पेजों की संरचना (structure) बनाने के लिए एक मूलभूत भाषा है। यह तत्वों (elements) और टैग्स (tags) का उपयोग करके कंटेंट को व्यवस्थित करती है।</p>
+            <h3>Basic HTML Document Structure</h3>
             <pre>
 &lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
     &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;My First HTML Page&lt;/title&gt;
+    &lt;title&gt;My Web Page Title&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;h1&gt;Hello World!&lt;/h1&gt;
-    &lt;p&gt;This is a paragraph.&lt;/p&gt;
+    &lt;header&gt;
+        &lt;nav&gt;
+            &lt;a href="#home"&gt;Home&lt;/a&gt;
+            &lt;a href="#about"&gt;About&lt;/a&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+    &lt;main&gt;
+        &lt;h1&gt;Main Heading&lt;/h1&gt;
+        &lt;p&gt;This is a paragraph of text.&lt;/p&gt;
+        &lt;img src="image.jpg" alt="A descriptive image"&gt;
+        &lt;ul&gt;
+            &lt;li&gt;List item 1&lt;/li&gt;
+            &lt;li&gt;List item 2&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/main&gt;
+    &lt;footer&gt;
+        &lt;p&gt;&amp;copy; 2024 My Website&lt;/p&gt;
+    &lt;/footer&gt;
 &lt;/body&gt;
 &lt;/html&gt;
             </pre>
-            <h3>Key HTML Elements and Their Uses</h3>
-            <ul>
-                <li><strong>Headings:</strong> `<h1>` to `<h6>` are used for headings of different levels. `<h1>` is the most important.</li>
-                <li><strong>Paragraphs:</strong> `<p>` is used to define a paragraph of text.</li>
-                <li><strong>Links:</strong> `<a>` (anchor) tag creates a hyperlink to another page or a different part of the same page. The `href` attribute specifies the destination URL.</li>
-                <li><strong>Images:</strong> `<img>` embeds an image. The `src` attribute is essential to specify the image source, and `alt` provides alternative text for accessibility.</li>
-                <li><strong>Lists:</strong> `<ul>` for unordered lists (bullets) and `<ol>` for ordered lists (numbered). Each list item is defined by `<li>`.</li>
-                <li><strong>Tables:</strong> `<table>` organizes data in rows and columns. It uses `<tr>` for rows, `<th>` for headers, and `<td>` for data cells.</li>
-                <li><strong>Forms:</strong> `<form>` is used to collect user input. It can contain various input fields like `<input>`, `<textarea>`, and `<button>`.</li>
-                <li><strong>Semantic Elements:</strong> Modern HTML (HTML5) introduced semantic tags like `<header>`, `<footer>`, `<nav>`, `<main>`, `<article>`, and `<section>`. These tags make the code more meaningful and are crucial for search engine optimization (SEO) and accessibility.</li>
-            </ul>
-            <p>By learning these basic and semantic elements, you can create a well-structured and organized webpage that is both easy to read for humans and machines.</p>
+
+            <h3>Creating Advanced Forms</h3>
+            <p>HTML फ़ॉर्म्स यूज़र से डेटा इकट्ठा करने का एक महत्वपूर्ण तरीका है। यहाँ एक विस्तृत फ़ॉर्म का उदाहरण है, जिसमें कई तरह के इनपुट फ़ील्ड्स (input fields) शामिल हैं:</p>
+            <pre>
+&lt;form action="/submit-form" method="POST"&gt;
+    &lt;fieldset&gt;
+        &lt;legend&gt;User Information&lt;/legend&gt;
+        
+        &lt;label for="name"&gt;Full Name:&lt;/label&gt;
+        &lt;input type="text" id="name" name="user_name" required&gt;
+        
+        &lt;label for="email"&gt;Email Address:&lt;/label&gt;
+        &lt;input type="email" id="email" name="user_email" required&gt;
+
+        &lt;label for="password"&gt;Password:&lt;/label&gt;
+        &lt;input type="password" id="password" name="user_password" minlength="8" required&gt;
+
+        &lt;label for="dob"&gt;Date of Birth:&lt;/label&gt;
+        &lt;input type="date" id="dob" name="user_dob"&gt;
+
+        &lt;p&gt;Choose your favorite coding language:&lt;/p&gt;
+        &lt;input type="radio" id="html_lang" name="fav_lang" value="HTML"&gt;
+        &lt;label for="html_lang"&gt;HTML&lt;/label&gt;
+        &lt;input type="radio" id="css_lang" name="fav_lang" value="CSS"&gt;
+        &lt;label for="css_lang"&gt;CSS&lt;/label&gt;
+        &lt;input type="radio" id="js_lang" name="fav_lang" value="JavaScript"&gt;
+        &lt;label for="js_lang"&gt;JavaScript&lt;/label&gt;
+
+        &lt;label for="message"&gt;Your Message:&lt;/label&gt;
+        &lt;textarea id="message" name="user_message" rows="4" cols="50"&gt;&lt;/textarea&gt;
+
+        &lt;label for="country"&gt;Country:&lt;/label&gt;
+        &lt;select id="country" name="user_country"&gt;
+            &lt;option value="india"&gt;India&lt;/option&gt;
+            &lt;option value="usa"&gt;USA&lt;/option&gt;
+            &lt;option value="uk"&gt;UK&lt;/option&gt;
+        &lt;/select&gt;
+
+        &lt;label&gt;
+            &lt;input type="checkbox" id="newsletter" name="newsletter_consent"&gt;
+            Subscribe to newsletter
+        &lt;/label&gt;
+
+        &lt;button type="submit"&gt;Submit&lt;/button&gt;
+    &lt;/fieldset&gt;
+&lt;/form&gt;
+            </pre>
         </div>
 
         <div id="css" class="tab-content">
             <h2>CSS (Cascading Style Sheets)</h2>
-            <p>CSS is the language used to style and format a webpage. While HTML provides the structure, CSS makes it visually appealing. It controls everything from colors and fonts to complex layouts and animations. It's the makeup and clothing of your website's skeleton.</p>
-            <h3>Syntax and Selectors</h3>
-            <p>A CSS rule consists of a selector and a declaration block. The selector points to the HTML element you want to style, and the declaration block contains one or more declarations separated by semicolons. Each declaration includes a property and a value.</p>
+            <p>CSS वेब पेजों को सुंदर और आकर्षक बनाने के लिए स्टाइलिंग प्रदान करती है। यह रंग, फ़ॉन्ट, लेआउट और एनिमेशन को नियंत्रित करती है।</p>
+            <h3>A Flexible Layout with Flexbox</h3>
+            <p>Flexbox एक शक्तिशाली एक-आयामी लेआउट सिस्टम है जो आइटमों को एक पंक्ति (row) या स्तंभ (column) में संरेखित (align) करता है।</p>
             <pre>
-/* This is a comment in CSS */
-body {
-    background-color: #121212;
+.flex-container {
+    display: flex;
+    flex-direction: row; /* row | column */
+    flex-wrap: wrap; /* nowrap | wrap */
+    justify-content: space-between; /* start | end | center | space-around */
+    align-items: center; /* stretch | start | end | center | baseline */
+    height: 200px;
+    border: 2px solid #00ffff;
+    padding: 10px;
+}
+
+.flex-item {
+    background-color: rgba(255, 255, 255, 0.1);
     color: white;
-    font-family: 'Arial', sans-serif;
-}
-
-h1 {
-    font-size: 2.5em;
-    color: #00ffff;
-}
-
-.card {
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin: 5px;
+    text-align: center;
+    font-size: 1.2rem;
+    flex-grow: 1;
 }
             </pre>
-            <h3>The Box Model</h3>
-            <p>The CSS Box Model is a fundamental concept. It describes how elements are rendered on a page as rectangular boxes. Each box is composed of four layers:</p>
-            <ul>
-                <li><strong>Content:</strong> The actual content of the element (text, images, etc.).</li>
-                <li><strong>Padding:</strong> The space between the content and the border.</li>
-                <li><strong>Border:</strong> The line that surrounds the padding and content.</li>
-                <li><strong>Margin:</strong> The space outside the border, creating a gap between elements.</li>
-            </ul>
-            <p>Understanding the box model is essential for controlling spacing and alignment on your page.</p>
-            <h3>Modern Layouts: Flexbox and Grid</h3>
-            <ul>
-                <li><strong>Flexbox (Flexible Box Layout):</strong> This is a one-dimensional layout system for arranging items in rows or columns. It's perfect for aligning items in a straight line, distributing space, and creating responsive navbars.</li>
-                <li><strong>CSS Grid Layout:</strong> This is a two-dimensional layout system that allows you to arrange elements in both rows and columns. It's ideal for creating complex, grid-based layouts for entire webpages.</li>
-            </ul>
-            <h3>Animations and Transitions</h3>
-            <p>CSS allows you to add dynamic effects without JavaScript. **Transitions** are used for smooth changes from one state to another (e.g., a button changing color on hover). **Animations** provide more complex, multi-step changes using `@keyframes`, allowing you to create captivating visual effects.</p>
+
+            <h3>A Powerful 2D Layout with CSS Grid</h3>
+            <p>CSS Grid एक दो-आयामी लेआउट सिस्टम है जो जटिल वेब पेज लेआउट बनाने के लिए पंक्तियों (rows) और स्तंभों (columns) दोनों का उपयोग करता है।</p>
             <pre>
-/* CSS Transition Example */
-.button {
-    background-color: blue;
-    transition: background-color 0.3s ease;
-}
-.button:hover {
-    background-color: lightblue;
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+    grid-template-rows: auto 1fr auto; /* Header, Main, Footer */
+    gap: 20px;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    border: 2px solid #ff416c;
+    padding: 20px;
 }
 
-/* CSS Animation Example */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+.grid-header {
+    grid-column: 1 / span 3;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    text-align: center;
 }
-.element {
-    animation: fadeIn 2s ease forwards;
+
+.grid-main {
+    grid-column: 1 / span 2;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+}
+
+.grid-sidebar {
+    grid-column: 3;
+    background-color: rgba(255, 255, 255, 0.08);
+    padding: 20px;
+}
+
+.grid-footer {
+    grid-column: 1 / span 3;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    text-align: center;
 }
             </pre>
-            <p>By mastering these CSS concepts, you can transform a simple HTML page into a beautiful and interactive website.</p>
+
+            <h3>Creative 3D Button Animation</h3>
+            <p>CSS एनिमेशन का उपयोग करके आप एक साधारण बटन को एक आकर्षक 3D इफ़ेक्ट दे सकते हैं।</p>
+            <pre>
+/* CSS for 3D Button */
+.button-3d {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #00ffff, #00b3b3);
+    border: none;
+    border-radius: 10px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+    box-shadow: 0 5px 0 #008080;
+    cursor: pointer;
+    position: relative;
+    top: 0;
+    transition: all 0.1s ease;
+}
+
+.button-3d:active {
+    top: 5px;
+    box-shadow: 0 0 0 #008080;
+}
+            </pre>
         </div>
 
         <div id="js" class="tab-content">
@@ -390,28 +483,30 @@ h1 {
             <p>JavaScript is a powerful scripting language that makes webpages dynamic and interactive. It enables you to manipulate the content of an HTML page, handle user events (like clicks), validate forms, and communicate with web servers. It's the brain of your website.</p>
             <pre>
 &lt;script&gt;
-    // This is a comment in JavaScript
-    // A variable to store a greeting message
-    const greeting = "Hello, user!";
+    // A function to handle a click event
+    document.getElementById("myButton").addEventListener("click", function() {
+        alert("Button was clicked!");
+    });
 
-    // A function that displays an alert
-    function showMessage() {
-        alert(greeting);
-    }
+    // A function to change an element's text after a delay
+    setTimeout(function() {
+        document.getElementById("greeting").innerText = "Welcome to our website!";
+    }, 2000); // 2000 milliseconds = 2 seconds
 
-    // An event listener that runs a function when the page loads
-    document.addEventListener("DOMContentLoaded", function() {
-        console.log("The page is fully loaded!");
+    // A function to add or remove a CSS class
+    const element = document.getElementById("myElement");
+    element.classList.add("highlight");
+    // Or to toggle a class
+    element.classList.toggle("hidden");
 
-        // Find an element by its ID
-        const myButton = document.getElementById("myButton");
-
-        // Add a click event to the button
-        myButton.addEventListener("click", () => {
-            // Change the text content of an element
-            const heading = document.querySelector("h1");
-            heading.innerText = "You clicked the button!";
-        });
+    // Form validation example
+    const myForm = document.getElementById("myForm");
+    myForm.addEventListener("submit", function(event) {
+        const emailInput = document.getElementById("email");
+        if (!emailInput.value.includes("@")) {
+            event.preventDefault(); // Stop the form from submitting
+            alert("Please enter a valid email address.");
+        }
     });
 &lt;/script&gt;
             </pre>
