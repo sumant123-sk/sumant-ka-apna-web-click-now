@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌟 Welcome to the Future</title>
+    <title>🌟 Welcome to the Future - Sign Up</title>
+    <meta name="description" content="Join our community and get access to exclusive features. Create your account today.">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         /* --- GLOBAL & BACKGROUND STYLES --- */
@@ -25,6 +26,7 @@
             background: var(--bg-color);
             color: #fff;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             overflow: hidden;
@@ -53,7 +55,6 @@
             background: transparent url(https://www.script-tutorials.com/demos/360/images/twinkling.png) repeat top center;
             animation: move-twink-back 200s linear infinite;
         }
-        
         /* --- SIGN-UP CARD STYLES --- */
         .signup-card {
             width: 90%;
@@ -78,11 +79,15 @@
 
         .signup-card h2 {
             font-size: 2.5em;
-            margin-bottom: 25px;
+            margin-bottom: 10px;
             color: var(--primary-glow);
             text-shadow: 0 0 15px var(--primary-glow);
             letter-spacing: 1px;
             animation: textGlow 2s ease-in-out infinite alternate;
+        }
+        .signup-card p {
+            margin-bottom: 25px;
+            color: rgba(255, 255, 255, 0.7);
         }
         @keyframes textGlow {
             from { text-shadow: 0 0 10px var(--primary-glow); }
@@ -132,6 +137,25 @@
             transform: scale(1.02);
             box-shadow: 0 8px 30px rgba(255, 65, 108, 0.6);
         }
+        
+        /* --- FOOTER STYLES --- */
+        .site-footer {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            z-index: 10;
+        }
+        .site-footer a {
+            color: #00ffff;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        .site-footer a:hover {
+            color: #ff416c;
+        }
 
         /* --- MESSAGE BOX STYLES --- */
         .message-box {
@@ -170,15 +194,15 @@
 
     </style>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2083692947196571"
-     crossorigin="anonymous"></script>
+      crossorigin="anonymous"></script>
 </head>
 <body>
-
     <div class="stars"></div>
     <div class="twinkling"></div>
 
-    <div class="signup-card">
+    <main class="signup-card">
         <h2>🚀 Create Your Account</h2>
+        <p>Join the future of connectivity. Sign up now to get started!</p>
         <form id="signup-form">
             <div class="input-group">
                 <input type="text" name="username" placeholder="Username" required>
@@ -194,12 +218,18 @@
             </div>
             <button type="submit" class="signup-button">Sign Up</button>
         </form>
-    </div>
+    </main>
     
     <div id="message-box" class="message-box">
         <p id="message-text"></p>
         <button onclick="closeMessage()">OK</button>
     </div>
+
+    <footer class="site-footer">
+        &copy; 2025 Your Website Name. All Rights Reserved.
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+    </footer>
 
     <script>
         let signupSuccessful = false;
