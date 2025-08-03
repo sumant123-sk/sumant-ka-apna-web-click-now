@@ -17,7 +17,7 @@
         body {
             font-family: 'Poppins', sans-serif;
             color: white;
-            /* Dark, static background as requested */
+            /* Dark, static background */
             background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
             min-height: 100vh;
             padding: 40px 20px;
@@ -48,13 +48,13 @@
                 0 20px 20px rgba(0, 0, 0, 0.15);
         }
 
-        /* News Container for a vertical layout as requested */
+        /* News Container for a vertical layout */
         .news-container {
             display: flex;
             flex-direction: column;
             gap: 20px;
             width: 100%;
-            max-width: 800px; /* Limiting width for better readability in a single column */
+            max-width: 800px;
         }
 
         /* Individual News Card Styling */
@@ -67,7 +67,7 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-align: left;
             opacity: 0;
-            animation: fadeInSlideUp 0.8s forwards, color-glow 4s infinite alternate; /* New glow animation */
+            animation: fadeInSlideUp 0.8s forwards, color-glow 4s infinite alternate;
             display: flex;
             flex-direction: column;
         }
@@ -95,22 +95,22 @@
 
         /* Hover effect on news cards */
         .news-card:hover {
-            transform: translateY(-5px) scale(1.02);
+            transform: scale(1.03); /* Zoom-in effect */
             box-shadow: 0 0 25px rgba(0, 255, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.4); /* Brighter glow on hover */
         }
 
         /* Image styling */
         .news-card img {
             width: 100%;
-            height: 250px; /* Increased height for better visibility */
+            height: 250px;
             object-fit: cover;
             border-radius: 10px;
             margin-bottom: 15px;
         }
 
-        /* Link and Text Styling (Made heading smaller) */
+        /* Link and Text Styling (Headline) */
         .news-card a {
-            font-size: 1.1em; /* Reduced font size as requested */
+            font-size: 1.1em;
             color: #00e0ff;
             text-decoration: none;
             font-weight: 600;
@@ -118,10 +118,9 @@
             transition: color 0.3s ease;
             flex-grow: 1;
             margin-bottom: 10px;
-            /* Auto-glow effect for text */
-            animation: text-glow 4s infinite alternate;
+            animation: text-glow 4s infinite alternate; /* New glow animation for text */
         }
-        
+
         /* Keyframes for the glowing text effect */
         @keyframes text-glow {
             0% { text-shadow: 0 0 5px rgba(0, 224, 255, 0.5); }
@@ -141,7 +140,7 @@
             font-size: 0.9em;
         }
 
-        /* Footer styling for the signature */
+        /* Footer styling */
         .footer {
             margin-top: 50px;
             padding-top: 20px;
@@ -272,105 +271,39 @@
         function getPlaceholderUrl(headline) {
             // Simple mapping of keywords to generate a more relevant placeholder text
             const keywordMap = {
-                "Artificial Intelligence": "AI",
-                "SpaceX": "Rocket",
-                "Climate": "Earth",
-                "Archaeologists": "History",
-                "Tech Companies": "Tech",
-                "Alzheimer's": "Health",
-                "Mars": "Planet",
-                "Quantum Computing": "Science",
-                "Economic": "Finance",
-                "Solar Farm": "Solar",
-                "Volcanic": "Volcano",
-                "Smartphone": "Phone",
-                "Sports": "Sport",
-                "Carbon Capture": "Environment",
-                "Endangered Species": "Animals",
-                "Virtual Reality": "VR",
-                "Peace Treaty": "Peace",
-                "Clone": "Science",
-                "E-commerce": "E-commerce",
-                "Music Festival": "Music",
-                "Renewable Energy": "Energy",
-                "NASA": "NASA",
-                "Film Studio": "Film",
-                "Pandemic": "Health",
-                "Robotic Automation": "Robotics",
-                "Stock Market": "Market",
-                "Food Technology": "Food",
-                "Art Exhibition": "Art",
-                "Humanitarian Aid": "Aid",
-                "Hyperloop": "Transport",
-                "Gene Therapy": "Genetics",
-                "Cyberattack": "Security",
-                "Space Tourism": "Space",
-                "Farming": "Farming",
-                "Matter Discovered": "Physics",
-                "World Leaders": "Politics",
-                "Player Safety": "Safety",
-                "Battery Technology": "Battery",
-                "Deep-Sea": "Ocean",
-                "Social Media": "Social",
-                "Personalized Medicine": "Medicine",
-                "Education Summit": "Education",
-                "Satellite": "Satellite",
-                "Aging": "Science",
-                "Vinyl Record": "Music",
-                "Smart City": "City",
-                "Astronauts": "Astronauts",
-                "Psychology": "Mind",
-                "Supply Chains": "Logistics",
-                "Culinary": "Cooking",
-                "Blockchain": "Blockchain",
-                "Robotics in Disaster": "Rescue",
-                "Internet": "Internet",
-                "Sustainable Fashion": "Fashion",
-                "Coral Reefs": "Ocean",
-                "Data": "Data",
-                "Archaeological Find": "History",
-                "Fusion Energy": "Energy",
-                "Novel": "Book",
-                "Space Telescope": "Space",
-                "Film Industry": "Cinema",
-                "Remote and Hybrid": "Work",
-                "Antibiotic": "Health",
-                "Tourism": "Travel",
-                "AI on the Creative Arts": "Creativity",
-                "Underdog Story": "Sports",
-                "Water Purification": "Water",
-                "Traditional Crafts": "Crafts",
-                "Food Prices": "Food",
-                "Human Brain": "Brain",
-                "Video Games": "Gaming",
-                "End Hunger": "Hunger",
-                "Mental Health": "Health",
-                "Carbon Neutral": "Environment",
-                "Digital Currencies": "Crypto",
-                "Rare Disease": "Health",
-                "Space Exploration": "Space",
-                "Longer, Healthier Life": "Health",
-                "Independent Artist": "Music",
-                "Predicting": "Prediction",
-                "Translation": "Language",
-                "AI Tutors": "Education",
-                "Autonomous Electric Car": "EV",
-                "Biodiversity": "Nature",
-                "Climate Change": "Climate",
-                "Philosophy of Time": "Philosophy",
-                "Social Entrepreneurs": "Entrepreneurs",
-                "Organ Transplantation": "Surgery",
-                "Digital Art": "Art",
-                "Mysteries of the Universe": "Universe",
-                "Future of Finance": "Finance",
-                "Largest Dam Project": "Dam",
-                "Wearable Technology": "Wearables",
-                "Independent Filmmakers": "Filmmakers",
-                "Plastic Pollution": "Pollution",
-                "Paralysis": "Medical",
-                "Lab-Grown Meat": "Food",
-                "AI on Job Markets": "Jobs",
-                "Diplomacy": "Diplomacy"
+                "Artificial Intelligence": "AI", "SpaceX": "Rocket", "Climate": "Earth",
+                "Archaeologists": "History", "Tech Companies": "Tech", "Alzheimer's": "Health",
+                "Mars": "Planet", "Quantum Computing": "Science", "Economic": "Finance",
+                "Solar Farm": "Solar", "Volcanic": "Volcano", "Smartphone": "Phone",
+                "Sports": "Sport", "Carbon Capture": "Environment", "Endangered Species": "Animals",
+                "Virtual Reality": "VR", "Peace Treaty": "Peace", "Clone": "Science",
+                "E-commerce": "E-commerce", "Music Festival": "Music", "Renewable Energy": "Energy",
+                "NASA": "NASA", "Film Studio": "Film", "Pandemic": "Health",
+                "Robotic Automation": "Robotics", "Stock Market": "Market", "Food Technology": "Food",
+                "Art Exhibition": "Art", "Humanitarian Aid": "Aid", "Hyperloop": "Transport",
+                "Gene Therapy": "Genetics", "Cyberattack": "Security", "Space Tourism": "Space",
+                "Farming": "Farming", "Matter Discovered": "Physics", "World Leaders": "Politics",
+                "Player Safety": "Safety", "Battery Technology": "Battery", "Deep-Sea": "Ocean",
+                "Social Media": "Social", "Personalized Medicine": "Medicine", "Education Summit": "Education",
+                "Satellite": "Satellite", "Aging": "Science", "Vinyl Record": "Music",
+                "Smart City": "City", "Astronauts": "Astronauts", "Psychology": "Mind",
+                "Supply Chains": "Logistics", "Culinary": "Cooking", "Blockchain": "Blockchain",
+                "Robotics in Disaster": "Rescue", "Internet": "Internet", "Sustainable Fashion": "Fashion",
+                "Coral Reefs": "Ocean", "Data": "Data", "Archaeological Find": "History",
+                "Fusion Energy": "Energy", "Novel": "Book", "Space Telescope": "Space",
+                "Film Industry": "Cinema", "Remote and Hybrid": "Work", "Antibiotic": "Health",
+                "Tourism": "Travel", "AI on the Creative Arts": "Creativity", "Underdog Story": "Sports",
+                "Water Purification": "Water", "Traditional Crafts": "Crafts", "Food Prices": "Food",
+                "Human Brain": "Brain", "Video Games": "Gaming", "End Hunger": "Hunger",
+                "Mental Health": "Health", "Carbon Neutral": "Environment", "Digital Currencies": "Crypto",
+                "Rare Disease": "Health", "Space Exploration": "Space", "Longer, Healthier Life": "Health",
+                "Independent Artist": "Music", "Predicting": "Prediction", "Translation": "Language",
+                "AI Tutors": "Education", "Autonomous Electric Car": "EV", "Biodiversity": "Nature",
+                "Climate Change": "Climate", "Philosophy of Time": "Philosophy", "Social Entrepreneurs": "Entrepreneurs",
+                "Organ Transplantation": "Surgery", "Digital Art": "Art", "Mysteries of the Universe": "Universe",
+                "Future of Finance": "Finance", "Largest Dam Project": "Dam", "Wearable Technology": "Wearables",
+                "Independent Filmmakers": "Filmmakers", "Plastic Pollution": "Pollution", "Paralysis": "Medical",
+                "Lab-Grown Meat": "Food", "AI on Job Markets": "Jobs", "Diplomacy": "Diplomacy"
             };
 
             for (const keyword in keywordMap) {
