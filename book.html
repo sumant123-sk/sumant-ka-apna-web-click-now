@@ -1,96 +1,585 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>📖 Story Book</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0; padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Poppins', sans-serif;
-      color: #fff;
-      background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1f1c2c);
-      background-size: 400% 400%;
-      animation: bgAnimated 12s ease infinite;
-      min-height: 100vh;
-      padding: 60px 20px;
-      position: relative;
-      overflow-x: hidden;
-    }
-    @keyframes bgAnimated {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    body::before, body::after {
-      content: '';
-      position: absolute;
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, rgba(0, 255, 255, 0.4), transparent 70%);
-      border-radius: 50%;
-      z-index: -1;
-      animation: pulse 8s ease infinite alternate;
-    }
-    body::before {
-      top: -50px;
-      left: -50px;
-    }
-    body::after {
-      bottom: -50px;
-      right: -50px;
-      animation-delay: 4s;
-    }
-    @keyframes pulse {
-      from { transform: scale(0.9); }
-      to { transform: scale(1.1); }
-    }
-    .story-container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 40px;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(8px);
-      border-radius: 20px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      color: #00ffff;
-      text-shadow: 0 0 15px #00ffff;
-    }
-    h2 {
-      font-size: 1.8rem;
-      margin-bottom: 10px;
-      color: #ffcc00;
-      text-shadow: 0 0 10px #ffcc00;
-    }
-    p {
-      text-align: justify;
-      line-height: 1.8;
-      margin-bottom: 15px;
-      font-size: 1.1rem;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>📖 Story Book - Tales with a Glow</title>
+    <!-- Poppins Font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global & Body Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            /* Dynamic background animation with a smooth transition */
+            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1f1c2c);
+            background-size: 400% 400%;
+            animation: bgAnimated 12s ease infinite;
+            min-height: 100vh;
+            padding: 60px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Keyframes for the background animation */
+        @keyframes bgAnimated {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Animated glowing circles in the background */
+        body::before, body::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.4), transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: pulse 8s ease infinite alternate;
+        }
+
+        body::before {
+            top: -50px;
+            left: -50px;
+        }
+
+        body::after {
+            bottom: -50px;
+            right: -50px;
+            animation-delay: 4s;
+        }
+
+        @keyframes pulse {
+            from { transform: scale(0.9); }
+            to { transform: scale(1.1); }
+        }
+
+        /* Container for all stories */
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Styling for the main headings */
+        h1.main-title {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            text-align: center;
+            margin-bottom: 20px;
+            color: #00ffff;
+            text-shadow: 0 0 15px #00ffff, 0 0 25px #00ffff;
+            animation: titleGlow 4s infinite alternate;
+        }
+
+        /* Animation for the main title glow */
+        @keyframes titleGlow {
+            from { text-shadow: 0 0 15px #00ffff; }
+            to { text-shadow: 0 0 25px #00ffff, 0 0 40px #00ffff; }
+        }
+        
+        h2 {
+            font-size: clamp(1.8rem, 6vw, 2.5rem);
+            margin-bottom: 30px;
+            color: #ffcc00;
+            text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00;
+            text-align: center;
+        }
+
+        /* Styling for each story card */
+        .story-container {
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            animation: cardGlow 6s infinite alternate;
+        }
+        
+        /* Hover effect on story cards */
+        .story-container:hover {
+            transform: scale(1.02); /* Zoom-in effect */
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.4);
+        }
+
+        /* Animation for the card glow */
+        @keyframes cardGlow {
+            from { box-shadow: 0 0 10px rgba(0, 255, 255, 0.4); }
+            to { box-shadow: 0 0 20px rgba(0, 255, 255, 0.6); }
+        }
+
+        /* Story text styling */
+        .story-text {
+            text-align: justify;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        /* Styling for the like/dislike buttons section */
+        .feedback-section {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Styling for feedback buttons */
+        .feedback-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        .feedback-button:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .feedback-button:active {
+            transform: translateY(0);
+        }
+
+        /* Specific styles for active/clicked buttons */
+        .feedback-button.liked {
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            border-color: #00e0ff;
+            box-shadow: 0 0 15px #00e0ff;
+        }
+
+        .feedback-button.disliked {
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            border-color: #ff416c;
+            box-shadow: 0 0 15px #ff416c;
+        }
+
+        /* Feedback message styling */
+        .feedback-message {
+            margin-top: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #ffcc00;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .feedback-message.show {
+            opacity: 1;
+        }
+
+        /* Responsive design adjustments */
+        @media (max-width: 768px) {
+            body { padding: 40px 10px; }
+            h1.main-title { font-size: 2rem; }
+            h2 { font-size: 1.5rem; margin-bottom: 20px; }
+            .story-container { padding: 25px; }
+            .story-text { font-size: 1rem; line-height: 1.6; }
+            .feedback-button { font-size: 0.9rem; padding: 8px 16px; }
+        }
+    </style>
 </head>
 <body>
 
-  <div class="story-container">
-    <h1>📚 The Beacon of Light</h1>
-    <p>In the mystical realm of Aranya, where ancient trees whispered secrets and rivers glowed under moonlight, lived a young warrior named Veer. He wasn’t born in royalty, but fate had chosen him for something greater.</p>
-    <p>When darkness began to spread from the cursed forest of Darrvana, creatures of nightmares invaded the peaceful villages. The skies turned crimson, and a chilling wind carried the cries of the helpless.</p>
-    <p>Guided by a glowing orb given by the seer Vyantra, Veer embarked on a quest to awaken the sleeping Guardians of Light. These elemental protectors—Agni, Varun, Vayu, and Dharti—once sealed the evil within Darrvana but had since faded into slumber.</p>
-    <p>His journey took him through blazing deserts, icy peaks, and a sea of illusions. Each Guardian demanded a test—not of strength, but of heart. Veer’s courage, kindness, and determination slowly rekindled the ancient powers.</p>
-    <p>In the final battle, Veer stood alone at the mouth of the abyss where darkness dwelled. The sky tore open with lightning as shadows rose like tides. But Veer, wielding the light of all four Guardians, became a blazing force that cleansed the land in a storm of fire and purity.</p>
-    <p>The realm of Aranya blossomed again. Trees sang, stars danced, and children heard the tale of Veer—the boy who became the Beacon of Light.</p>
-  </div>
+<div class="main-container">
+    <h1 class="main-title">📖 कहानी की किताब और कहानियाँ (Story Book)</h1>
 
+    <!-- Hindi Stories Section -->
+    <h2>हिंदी कहानियाँ</h2>
+    
+    <!-- Hindi Story 1 -->
+    <div class="story-container">
+        <h3>एक जादुई कलम की कहानी</h3>
+        <p class="story-text">एक छोटे से गाँव में, राहुल नाम का एक बच्चा रहता था। वह पढ़ने में बहुत अच्छा नहीं था, लेकिन उसके पास एक जादुई कलम थी। जब भी वह उस कलम से कुछ लिखता, तो वह सच हो जाता। एक दिन उसने लिखा, "गाँव में बारिश हो।" और तुरंत, आसमान में बादल छा गए और बारिश होने लगी। गाँव के लोग बहुत खुश हुए। राहुल ने अपनी जादुई कलम से गाँव को हरा-भरा और खुशहाल बना दिया।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 1, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 1, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-1" class="feedback-message"></p>
+    </div>
+
+    <!-- Hindi Story 2 -->
+    <div class="story-container">
+        <h3>लाल गुलाब का रहस्य</h3>
+        <p class="story-text">एक पुराने महल के बगीचे में, एक लाल गुलाब था जो रात में चमकता था। सभी लोग सोचते थे कि यह एक जादू है। लेकिन एक बूढ़ा माली जानता था कि वह गुलाब सिर्फ उन लोगों के लिए चमकता है जिनके दिल में सच्ची मोहब्बत होती है। एक दिन एक राजकुमार ने उस गुलाब को अपनी राजकुमारी के लिए तोड़ने की कोशिश की, लेकिन वह नहीं टूटा। उसने अपनी सच्ची मोहब्बत का इज़हार किया, और गुलाब चमकने लगा।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 2, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 2, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-2" class="feedback-message"></p>
+    </div>
+    
+    <!-- Hindi Story 3 -->
+    <div class="story-container">
+        <h3>पानी में रहने वाला छोटा राक्षस</h3>
+        <p class="story-text">एक गहरी झील में, एक छोटा और डरपोक राक्षस रहता था। वह सभी से छुपकर रहता था क्योंकि उसे डर था कि लोग उसे देखकर डर जाएँगे। एक दिन एक छोटी बच्ची वहाँ आई और उसने राक्षस को देखा। वह डरी नहीं, बल्कि उसने राक्षस को एक बिस्किट दिया। राक्षस ने बिस्किट खाया और खुश होकर पानी में एक सुंदर फूल उगा दिया। तब से, राक्षस और बच्ची दोस्त बन गए।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 3, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 3, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-3" class="feedback-message"></p>
+    </div>
+
+    <!-- Hindi Story 4 -->
+    <div class="story-container">
+        <h3>बोलने वाली चिड़िया</h3>
+        <p class="story-text">एक जंगल में एक ऐसी चिड़िया रहती थी जो इंसानों की तरह बात कर सकती थी। वह सभी जानवरों को सलाह देती थी और उनके झगड़ों को सुलझाती थी। एक बार जंगल में आग लग गई, और सभी जानवर डर गए। चिड़िया ने सभी को समझाया कि मिलकर काम करने से वे आग बुझा सकते हैं। सभी ने मिलकर कोशिश की और आग को बुझा दिया। चिड़िया की बुद्धिमानी ने जंगल को बचा लिया।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 4, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 4, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-4" class="feedback-message"></p>
+    </div>
+
+    <!-- Hindi Story 5 -->
+    <div class="story-container">
+        <h3>चाँद और सूरज की दोस्ती</h3>
+        <p class="story-text">चाँद और सूरज बहुत अच्छे दोस्त थे, लेकिन वे कभी मिल नहीं पाते थे। सूरज दिन में निकलता था और चाँद रात में। एक दिन सूरज ने चाँद से कहा, "काश हम मिल पाते।" चाँद ने एक योजना बनाई। उसने अपनी सारी रोशनी पृथ्वी पर भेज दी, जिससे रात में भी दिन जैसा उजाला हो गया। सूरज ने उसे देखा और दोनों मिलकर आसमान में एक सुंदर इंद्रधनुष बना दिया।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 5, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 5, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-5" class="feedback-message"></p>
+    </div>
+
+    <!-- Hindi Story 6 -->
+    <div class="story-container">
+        <h3>पहाड़ों के ऊपर का राज्य</h3>
+        <p class="story-text">एक बहुत ऊँचे पहाड़ पर एक छोटा सा राज्य था, जहाँ सब कुछ बादलों से बना था। वहाँ के लोग बादलों पर चलते थे और बादलों से ही खेलते थे। एक दिन एक छोटा बच्चा ज़मीन पर आ गया। वह बहुत उदास था। उसने ज़मीन पर रहने वाले लोगों को अपने राज्य के बारे में बताया। उन्होंने एक गुब्बारा बनाया और उस बच्चे को वापस उसके घर भेज दिया।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 6, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 6, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-6" class="feedback-message"></p>
+    </div>
+    
+    <!-- Hindi Story 7 -->
+    <div class="story-container">
+        <h3>एक खोया हुआ खिलौना</h3>
+        <p class="story-text">एक छोटे से शहर में, एक लड़की का पसंदीदा खिलौना खो गया था। वह बहुत उदास थी। शहर के सभी जानवर उस खिलौने को ढूंढने में मदद करने लगे। एक बिल्ली ने उसे एक पेड़ पर देखा, एक कुत्ते ने उसे उठाया, और एक चिड़िया ने उसे लड़की के घर तक पहुँचाया। लड़की बहुत खुश हुई और उसने सभी जानवरों को धन्यवाद दिया।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 7, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 7, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-7" class="feedback-message"></p>
+    </div>
+
+    <!-- Hindi Story 8 -->
+    <div class="story-container">
+        <h3>जंगल का राजा और एक नन्ही गिलहरी</h3>
+        <p class="story-text">एक बार जंगल का राजा शेर बीमार पड़ गया। कोई भी जानवर उसकी मदद नहीं कर पाया। एक नन्ही गिलहरी ने एक विशेष जड़ी-बूटी के बारे में सुना था। उसने अपनी जान जोखिम में डालकर उस जड़ी-बूटी को ढूंढ निकाला और राजा को दे दिया। राजा ठीक हो गया और उसने गिलहरी को जंगल का सबसे बहादुर जानवर घोषित किया।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 8, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 8, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-8" class="feedback-message"></p>
+    </div>
+
+    <!-- Hindi Story 9 -->
+    <div class="story-container">
+        <h3>समय यात्रा करने वाला बच्चा</h3>
+        <p class="story-text">एक लड़का था जिसके पास एक खास घड़ी थी। वह घड़ी उसे समय में यात्रा करने में मदद करती थी। एक दिन उसने अपने दादा-दादी को उनकी जवानी में देखा। उसने उनके साथ खेला और उन्हें हँसाया। जब वह वापस अपने समय में आया, तो उसने महसूस किया कि समय सबसे कीमती चीज है।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 9, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 9, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-9" class="feedback-message"></p>
+    </div>
+
+    <!-- Hindi Story 10 -->
+    <div class="story-container">
+        <h3>सपनों की दुनिया का दरवाजा</h3>
+        <p class="story-text">एक लड़की को एक जादुई दरवाजा मिला। जब वह उस दरवाजे से गुजरती थी, तो वह सपनों की दुनिया में पहुँच जाती थी। वहाँ हर सपने को वह अपनी मर्जी से पूरा कर सकती थी। लेकिन उसने सीखा कि असली दुनिया में जीना और सपने सच करना ज्यादा महत्वपूर्ण है।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 10, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 10, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-10" class="feedback-message"></p>
+    </div>
+
+    <br>
+
+    <!-- English Stories Section -->
+    <h2>English Stories</h2>
+
+    <!-- English Story 1 -->
+    <div class="story-container">
+        <h3>The Whispering Woods of Eldoria</h3>
+        <p class="story-text">In the heart of Eldoria lay a forest where trees told secrets to the wind. A young elf, Elara, could hear their whispers. They spoke of a lost star-seed, a relic of immense power. Driven by the whispers, Elara ventured deep into the woods, her courage her only guide. She found the star-seed, not glittering, but humble, planted in the soil. It taught her that true power isn’t in might, but in nurturing the world around you.</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 11, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 11, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-11" class="feedback-message"></p>
+    </div>
+
+    <!-- English Story 2 -->
+    <div class="story-container">
+        <h3>The Secret of the Star-Stone</h3>
+        <p class="story-text">A small coastal village lived in fear of the eternal fog. Their only hope was a Star-Stone, said to hold the power to clear the skies. A brave fisherman's daughter, Lyra, found the stone. It was dull and lifeless. The stone's ancient guardian told her its power wasn't a magic spell, but a reflection of the hope in people's hearts. Lyra returned to her village and rallied the people to sing songs of hope, and as they did, the stone glowed and the fog vanished.</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 12, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 12, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-12" class="feedback-message"></p>
+    </div>
+
+    <!-- English Story 3 -->
+    <div class="story-container">
+        <h3>The Clockmaker's Last Creation</h3>
+        <p class="story-text">Elias, an old clockmaker, spent his life building a clock that didn’t measure time, but captured memories. His last creation, a small pocket watch, was gifted to a lonely girl named Lily. Every time she looked at it, she would see a happy memory of her past. The watch taught her that while time moves forward, cherished memories are always with us, a treasure to hold.</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 13, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 13, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-13" class="feedback-message"></p>
+    </div>
+
+    <!-- English Story 4 -->
+    <div class="story-container">
+        <h3>The City Built on Clouds</h3>
+        <p class="story-text">A long time ago, a city was built on a floating cloud, a sanctuary from a broken world below. The people of Aerium lived peaceful lives until their cloud began to dissipate. A young inventor named Zephyr discovered that the cloud was powered by laughter and joy, which they had forgotten to express. He created a festival of jokes and games, and as the city filled with laughter, the cloud grew stronger, brighter, and more stable than ever before.</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 14, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 14, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-14" class="feedback-message"></p>
+    </div>
+
+    <!-- English Story 5 -->
+    <div class="story-container">
+        <h3>The Ghost of the Sunken Ship</h3>
+        <p class="story-text">In a tranquil bay, a ghostly ship would appear every night. It was the spirit of a captain, searching for a lost treasure he never found. A young boy, Finn, who loved the sea, promised the captain he would help. He dove deep and found not a chest of gold, but a small, wooden music box. The captain's ghost played the box, and its beautiful melody brought peace to his restless soul. The ghost and his ship finally sailed into the stars, leaving behind a bay filled with calm and music.</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 15, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 15, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-15" class="feedback-message"></p>
+    </div>
+
+    <!-- English Story 6 -->
+    <div class="story-container">
+        <h3>The Boy Who Befriended a Dragon</h3>
+        <p class="story-text">In a village where dragons were feared, a boy named Kael found a dragon hatchling with a broken wing. He secretly nursed it back to health. The dragon, named Ignis, was gentle and kind, not the monster the villagers imagined. When a terrible storm threatened to destroy the village, Ignis used his fire to create a protective barrier, saving everyone. The villagers learned that kindness can bridge even the widest of divides.</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 16, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 16, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-16" class="feedback-message"></p>
+    </div>
+
+    <!-- English Story 7 -->
+    <div class="story-container">
+        <h3>The Echoes of the Forgotten Library</h3>
+        <p class="story-text">A magical library existed that contained every book ever written, but it was forgotten by the world. The books began to fade. A girl named Clara stumbled upon the library and, seeing the books disappear, began to read them aloud. As she did, the words and stories came back to life, echoing throughout the halls. Clara saved the library by sharing the knowledge and joy of stories, proving that a story only truly dies when it is no longer told.</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 17, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 17, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-17" class="feedback-message"></p>
+    </div>
+
+    <!-- English Story 8 -->
+    <div class="story-container">
+        <h3>The Locket of Three Wishes</h3>
+        <p class="story-text">An old hermit gave a simple silver locket to a young traveler named Leo, telling him it held three wishes. Leo journeyed far, but his wishes remained. He wished for a starving family to have food, a lost puppy to find its way home, and a broken boat to be mended for a fisherman. To his surprise, all his wishes came true. He realized the locket's magic wasn't to grant wishes, but to empower him to do good deeds for others, a far greater magic than he had ever imagined.</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 18, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 18, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-18" class="feedback-message"></p>
+    </div>
+
+    <!-- English Story 9 -->
+    <div class="story-container">
+        <h3>The Last Garden on Mars</h3>
+        <p class="story-text">On a future Mars colony, a young botanist, Anya, tended the last surviving garden from Earth. The other colonists saw it as a pointless effort. But Anya, with her love for the planet she had never seen, cultivated a single, vibrant flower. It grew and bloomed, its scent bringing tears to the eyes of the other colonists, reminding them of home. The garden taught them that even in the most desolate of places, hope and life can bloom with enough care.</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 19, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 19, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-19" class="feedback-message"></p>
+    </div>
+
+    <!-- English Story 10 -->
+    <div class="story-container">
+        <h3>The Legend of the Aurora Bear</h3>
+        <p class="story-text">In the frozen north, people believed the Aurora Borealis was the dance of the sky spirits. The elder, however, told a different story: the lights were the footprints of a giant polar bear made of stars, who protected the land. A young hunter, lost in a blizzard, saw the Aurora Bear. It didn’t harm him; it gently guided him home, its starlight footsteps lighting his way. The hunter returned and shared his story, teaching his people that the wild is not always a thing to be feared, but to be respected.</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 20, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 20, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-20" class="feedback-message"></p>
+    </div>
+
+</div>
+
+<script>
+    // This object stores the feedback state for each story to prevent multiple clicks
+    const feedbackState = {};
+
+    /**
+     * Handles the click event for the like and dislike buttons.
+     * It updates the button styles and displays a feedback message.
+     * @param {HTMLElement} buttonElement - The button that was clicked.
+     * @param {number} storyId - The unique ID of the story.
+     * @param {string} type - The type of feedback: 'like' or 'dislike'.
+     */
+    function handleFeedback(buttonElement, storyId, type) {
+        // Check if the user has already given feedback for this story
+        if (feedbackState[storyId]) {
+            // Already gave feedback, do nothing or show a message
+            showMessage(storyId, "You've already given feedback for this story!");
+            return;
+        }
+
+        // Get the parent container for the buttons
+        const feedbackContainer = buttonElement.parentElement;
+        
+        // Find the other button of the same story
+        const otherButton = feedbackContainer.querySelector(
+            type === 'like' ? '.dislike-button' : '.like-button'
+        );
+
+        // Add the 'liked' or 'disliked' class to the clicked button for styling
+        buttonElement.classList.add(type === 'like' ? 'liked' : 'disliked');
+        
+        // Disable both buttons to prevent further clicks
+        buttonElement.disabled = true;
+        otherButton.disabled = true;
+
+        // Get the count element and update the count
+        const countElement = buttonElement.querySelector('.count');
+        let currentCount = parseInt(countElement.innerText);
+        countElement.innerText = currentCount + 1;
+
+        // Set the feedback state for this story
+        feedbackState[storyId] = type;
+
+        // Show a message to the user
+        if (type === 'like') {
+            showMessage(storyId, "Thanks for liking this story!");
+        } else {
+            showMessage(storyId, "We'll use your feedback to improve!");
+        }
+    }
+
+    /**
+     * Displays a temporary message to the user.
+     * @param {number} storyId - The ID of the story to show the message for.
+     * @param {string} messageText - The text of the message to display.
+     */
+    function showMessage(storyId, messageText) {
+        const messageElement = document.getElementById(`message-${storyId}`);
+        messageElement.innerText = messageText;
+        messageElement.classList.add('show');
+        setTimeout(() => {
+            messageElement.classList.remove('show');
+        }, 3000); // Hide the message after 3 seconds
+    }
+</script>
 </body>
 </html>
