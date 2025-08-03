@@ -1,565 +1,565 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>🌐 My Trending Web</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
-    <style>
-        /* --- Main Page Styles --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #000428, #004e92);
-            color: white;
-            min-height: 100vh;
-            overflow-x: hidden;
-            animation: bgAnim 20s ease infinite;
-            scroll-behavior: smooth;
-        }
-        @keyframes bgAnim {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>🌐 My Trending Web</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- Main Page Styles --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #000428, #004e92);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+            animation: bgAnim 20s ease infinite;
+            scroll-behavior: smooth;
+        }
+        @keyframes bgAnim {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-        /* --- Navigation Bar --- */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(8px);
-            z-index: 1000;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 8px 15px;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        nav a::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: 0;
-            transform: translateX(-50%) scaleX(0);
-            width: 80%;
-            height: 2px;
-            background: #00ffff;
-            transition: transform 0.3s ease;
-        }
-        nav a:hover::after, nav a.active::after {
-            transform: translateX(-50%) scaleX(1);
-        }
-        nav a:hover, nav a.active {
-            color: #00ffff;
-            text-shadow: 0 0 5px #00ffff;
-        }
+        /* --- Navigation Bar --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%) scaleX(0);
+            width: 80%;
+            height: 2px;
+            background: #00ffff;
+            transition: transform 0.3s ease;
+        }
+        nav a:hover::after, nav a.active::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+        nav a:hover, nav a.active {
+            color: #00ffff;
+            text-shadow: 0 0 5px #00ffff;
+        }
 
-        /* --- Sections & Content --- */
-        section {
-            min-height: 100vh;
-            padding-top: 100px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            transition: all 0.5s ease;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        section.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* --- Sections & Content --- */
+        section {
+            min-height: 100vh;
+            padding-top: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: all 0.5s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-        /* --- Hero Section --- */
-        #home-section h1 {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            margin-bottom: 20px;
-            text-shadow: 0 0 20px cyan;
-        }
-        #home-section p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            animation: fadeIn 1.5s ease forwards;
-            animation-delay: 0.5s;
-            opacity: 0;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+        /* --- Hero Section --- */
+        #home-section h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px cyan;
+        }
+        #home-section p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            animation: fadeIn 1.5s ease forwards;
+            animation-delay: 0.5s;
+            opacity: 0;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
-        /* --- Card Grid --- */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            max-width: 1000px;
-            margin-top: 50px;
-        }
-        .card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 20px;
-            color: white;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
-            transition: 0.3s ease;
-            display: block;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .card:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
-        }
-        .card span {
-            font-size: 3rem;
-            display: block;
-            margin-bottom: 10px;
-            z-index: 1;
-            position: relative;
-            text-shadow: 0 0 15px #00ffff;
-        }
-        .card div {
-            font-size: 1.3rem;
-            z-index: 1;
-            position: relative;
-        }
-        .highlighted-names {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-        }
-        .highlighted-names span {
-            background-color: rgba(255, 255, 255, 0.2);
-            padding: 5px 10px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px cyan;
-            display: inline-block;
-            margin: 0 10px;
-        }
-        
-        /* --- Coding Guide Section --- */
-        #coding-guide-section {
-            text-align: left;
-            width: 100%;
-            max-width: 1200px;
-        }
-        #coding-guide-section h1 {
-            font-size: 2.5rem;
-            color: #00f7ff;
-            text-shadow: 0 0 15px #00f7ff;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .tab-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        .tab-button {
-            padding: 10px 20px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            border: 2px solid #00ffff;
-            background: transparent;
-            color: #00ffff;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .tab-button.active, .tab-button:hover {
-            background: #00ffff;
-            color: #000428;
-            box-shadow: 0 0 15px #00ffff;
-        }
-        .tab-content {
-            display: none;
-            background-color: rgba(255, 255, 255, 0.08);
-            padding: 30px;
-            border-radius: 20px;
-            animation: fadeIn 0.8s ease;
-            max-width: 100%;
-        }
-        .tab-content.active {
-            display: block;
-        }
-        .tab-content h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .tab-content h3 {
-            margin-top: 30px;
-            color: #00ffff;
-        }
-        .tab-content p, .tab-content ul, .tab-content pre {
-            max-width: 100%;
-            line-height: 1.6;
-            font-size: 1.05rem;
-            margin-bottom: 20px;
-        }
-        pre {
-            background-color: #1a1a2e;
-            color: #e0e0e0;
-            padding: 20px;
-            border-radius: 10px;
-            overflow-x: auto;
-            font-family: 'Courier New', Courier, monospace;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            border: 1px solid rgba(0, 247, 255, 0.3);
-            line-height: 1.5;
-            margin-top: 15px;
-        }
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #ff416c;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.5rem;
-            text-decoration: none;
-            box-shadow: 0 0 15px #ff416c;
-            transition: all 0.3s ease;
-        }
-        .back-to-top:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 20px #ff416c;
-        }
-    </style>
+        /* --- Card Grid --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin-top: 50px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            color: white;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+            transition: 0.3s ease;
+            display: block;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+        }
+        .card span {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 10px;
+            z-index: 1;
+            position: relative;
+            text-shadow: 0 0 15px #00ffff;
+        }
+        .card div {
+            font-size: 1.3rem;
+            z-index: 1;
+            position: relative;
+        }
+        .highlighted-names {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        .highlighted-names span {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 5px 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px cyan;
+            display: inline-block;
+            margin: 0 10px;
+        }
+        
+        /* --- Coding Guide Section --- */
+        #coding-guide-section {
+            text-align: left;
+            width: 100%;
+            max-width: 1200px;
+        }
+        #coding-guide-section h1 {
+            font-size: 2.5rem;
+            color: #00f7ff;
+            text-shadow: 0 0 15px #00f7ff;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .tab-button {
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: 2px solid #00ffff;
+            background: transparent;
+            color: #00ffff;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .tab-button.active, .tab-button:hover {
+            background: #00ffff;
+            color: #000428;
+            box-shadow: 0 0 15px #00ffff;
+        }
+        .tab-content {
+            display: none;
+            background-color: rgba(255, 255, 255, 0.08);
+            padding: 30px;
+            border-radius: 20px;
+            animation: fadeIn 0.8s ease;
+            max-width: 100%;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .tab-content h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .tab-content h3 {
+            margin-top: 30px;
+            color: #00ffff;
+        }
+        .tab-content p, .tab-content ul, .tab-content pre {
+            max-width: 100%;
+            line-height: 1.6;
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+        }
+        pre {
+            background-color: #1a1a2e;
+            color: #e0e0e0;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            border: 1px solid rgba(0, 247, 255, 0.3);
+            line-height: 1.5;
+            margin-top: 15px;
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #ff416c;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+            box-shadow: 0 0 15px #ff416c;
+            transition: all 0.3s ease;
+        }
+        .back-to-top:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px #ff416c;
+        }
+    </style>
 </head>
 <body>
 
-    <nav>
-        <a href="#home-section" class="nav-link active">Home</a>
-        <a href="#coding-guide-section" class="nav-link">Coding Guide</a>
-    </nav>
+    <nav>
+        <a href="#home-section" class="nav-link active">Home</a>
+        <a href="#coding-guide-section" class="nav-link">Coding Guide</a>
+    </nav>
 
-    <section id="home-section" class="active">
-        <div class="highlighted-names">
-            <span>Sudhansu</span>
-            <span>Sumant</span>
-        </div>
-        <h1>🌟 Welcome to My Trending Web</h1>
-        <p>Discover the latest in tech, dive into captivating stories, and learn to code with our interactive guides.</p>
-        <div class="grid">
-            <a class="card" href="news.html">
-                <span>📰</span>
-                <div>Global News</div>
-            </a>
-            <a class="card" href="book.html">
-                <span>📖</span>
-                <div>Story Book</div>
-            </a>
-            <a class="card" href="game.html">
-                <span>🎮</span>
-                <div>Mini Game</div>
-            </a>
-            <a class="card" href="mythology.html">
-                <span>🕉️</span>
-                <div>Mythology</div>
-            </a>
-            <a class="card" href="#coding-guide-section">
-                <span>💻</span>
-                <div>Coding Guide</div>
-            </a>
-        </div>
-    </section>
+    <section id="home-section" class="active">
+        <div class="highlighted-names">
+            <span>Sudhansu</span>
+            <span>Sumant</span>
+        </div>
+        <h1>🌟 Welcome to My Trending Web</h1>
+        <p>Discover the latest in tech, dive into captivating stories, and learn to code with our interactive guides.</p>
+        <div class="grid">
+            <a class="card" href="news.html">
+                <span>📰</span>
+                <div>Global News</div>
+            </a>
+            <a class="card" href="book.html">
+                <span>📖</span>
+                <div>Story Book</div>
+            </a>
+            <a class="card" href="game.html">
+                <span>🎮</span>
+                <div>Mini Game</div>
+            </a>
+            <a class="card" href="mythology.html">
+                <span>🕉️</span>
+                <div>Mythology</div>
+            </a>
+            <a class="card" href="#coding-guide-section">
+                <span>💻</span>
+                <div>Coding Guide</div>
+            </a>
+        </div>
+    </section>
 
-    <section id="coding-guide-section">
-        <h1>💡 Programming Code Explained</h1>
-        <div class="tab-container">
-            <button class="tab-button active" onclick="openTab(event, 'html')">HTML</button>
-            <button class="tab-button" onclick="openTab(event, 'css')">CSS</button>
-            <button class="tab-button" onclick="openTab(event, 'js')">JavaScript</button>
-        </div>
-        
-        <div id="html" class="tab-content active">
-            <h2>HTML (HyperText Markup Language)</h2>
-            <p>HTML वेब पेजों की संरचना (structure) बनाने के लिए एक मूलभूत भाषा है। यह तत्वों (elements) और टैग्स (tags) का उपयोग करके कंटेंट को व्यवस्थित करती है।</p>
-            <h3>Basic HTML Document Structure</h3>
-            <pre>
+    <section id="coding-guide-section">
+        <h1>💡 Programming Code Explained</h1>
+        <div class="tab-container">
+            <button class="tab-button active" onclick="openTab(event, 'html')">HTML</button>
+            <button class="tab-button" onclick="openTab(event, 'css')">CSS</button>
+            <button class="tab-button" onclick="openTab(event, 'js')">JavaScript</button>
+        </div>
+        
+        <div id="html" class="tab-content active">
+            <h2>HTML (HyperText Markup Language)</h2>
+            <p>HTML वेब पेजों की संरचना (structure) बनाने के लिए एक मूलभूत भाषा है। यह तत्वों (elements) और टैग्स (tags) का उपयोग करके कंटेंट को व्यवस्थित करती है।</p>
+            <h3>Basic HTML Document Structure</h3>
+            <pre>
 &lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;My Web Page Title&lt;/title&gt;
-    &lt;link rel="stylesheet" href="style.css"&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;My Web Page Title&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;header&gt;
-        &lt;nav&gt;
-            &lt;a href="#home"&gt;Home&lt;/a&gt;
-            &lt;a href="#about"&gt;About&lt;/a&gt;
-        &lt;/nav&gt;
-    &lt;/header&gt;
-    &lt;main&gt;
-        &lt;h1&gt;Main Heading&lt;/h1&gt;
-        &lt;p&gt;This is a paragraph of text.&lt;/p&gt;
-        &lt;img src="image.jpg" alt="A descriptive image"&gt;
-        &lt;ul&gt;
-            &lt;li&gt;List item 1&lt;/li&gt;
-            &lt;li&gt;List item 2&lt;/li&gt;
-        &lt;/ul&gt;
-    &lt;/main&gt;
-    &lt;footer&gt;
-        &lt;p&gt;&amp;copy; 2024 My Website&lt;/p&gt;
-    &lt;/footer&gt;
+    &lt;header&gt;
+        &lt;nav&gt;
+            &lt;a href="#home"&gt;Home&lt;/a&gt;
+            &lt;a href="#about"&gt;About&lt;/a&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+    &lt;main&gt;
+        &lt;h1&gt;Main Heading&lt;/h1&gt;
+        &lt;p&gt;This is a paragraph of text.&lt;/p&gt;
+        &lt;img src="image.jpg" alt="A descriptive image"&gt;
+        &lt;ul&gt;
+            &lt;li&gt;List item 1&lt;/li&gt;
+            &lt;li&gt;List item 2&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/main&gt;
+    &lt;footer&gt;
+        &lt;p&gt;&amp;copy; 2024 My Website&lt;/p&gt;
+    &lt;/footer&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-            </pre>
+            </pre>
 
-            <h3>Creating Advanced Forms</h3>
-            <p>HTML फ़ॉर्म्स यूज़र से डेटा इकट्ठा करने का एक महत्वपूर्ण तरीका है। यहाँ एक विस्तृत फ़ॉर्म का उदाहरण है, जिसमें कई तरह के इनपुट फ़ील्ड्स (input fields) शामिल हैं:</p>
-            <pre>
+            <h3>Creating Advanced Forms</h3>
+            <p>HTML फ़ॉर्म्स यूज़र से डेटा इकट्ठा करने का एक महत्वपूर्ण तरीका है। यहाँ एक विस्तृत फ़ॉर्म का उदाहरण है, जिसमें कई तरह के इनपुट फ़ील्ड्स (input fields) शामिल हैं:</p>
+            <pre>
 &lt;form action="/submit-form" method="POST"&gt;
-    &lt;fieldset&gt;
-        &lt;legend&gt;User Information&lt;/legend&gt;
-        
-        &lt;label for="name"&gt;Full Name:&lt;/label&gt;
-        &lt;input type="text" id="name" name="user_name" required&gt;
-        
-        &lt;label for="email"&gt;Email Address:&lt;/label&gt;
-        &lt;input type="email" id="email" name="user_email" required&gt;
+    &lt;fieldset&gt;
+        &lt;legend&gt;User Information&lt;/legend&gt;
+        
+        &lt;label for="name"&gt;Full Name:&lt;/label&gt;
+        &lt;input type="text" id="name" name="user_name" required&gt;
+        
+        &lt;label for="email"&gt;Email Address:&lt;/label&gt;
+        &lt;input type="email" id="email" name="user_email" required&gt;
 
-        &lt;label for="password"&gt;Password:&lt;/label&gt;
-        &lt;input type="password" id="password" name="user_password" minlength="8" required&gt;
+        &lt;label for="password"&gt;Password:&lt;/label&gt;
+        &lt;input type="password" id="password" name="user_password" minlength="8" required&gt;
 
-        &lt;label for="dob"&gt;Date of Birth:&lt;/label&gt;
-        &lt;input type="date" id="dob" name="user_dob"&gt;
+        &lt;label for="dob"&gt;Date of Birth:&lt;/label&gt;
+        &lt;input type="date" id="dob" name="user_dob"&gt;
 
-        &lt;p&gt;Choose your favorite coding language:&lt;/p&gt;
-        &lt;input type="radio" id="html_lang" name="fav_lang" value="HTML"&gt;
-        &lt;label for="html_lang"&gt;HTML&lt;/label&gt;
-        &lt;input type="radio" id="css_lang" name="fav_lang" value="CSS"&gt;
-        &lt;label for="css_lang"&gt;CSS&lt;/label&gt;
-        &lt;input type="radio" id="js_lang" name="fav_lang" value="JavaScript"&gt;
-        &lt;label for="js_lang"&gt;JavaScript&lt;/label&gt;
+        &lt;p&gt;Choose your favorite coding language:&lt;/p&gt;
+        &lt;input type="radio" id="html_lang" name="fav_lang" value="HTML"&gt;
+        &lt;label for="html_lang"&gt;HTML&lt;/label&gt;
+        &lt;input type="radio" id="css_lang" name="fav_lang" value="CSS"&gt;
+        &lt;label for="css_lang"&gt;CSS&lt;/label&gt;
+        &lt;input type="radio" id="js_lang" name="fav_lang" value="JavaScript"&gt;
+        &lt;label for="js_lang"&gt;JavaScript&lt;/label&gt;
 
-        &lt;label for="message"&gt;Your Message:&lt;/label&gt;
-        &lt;textarea id="message" name="user_message" rows="4" cols="50"&gt;&lt;/textarea&gt;
+        &lt;label for="message"&gt;Your Message:&lt;/label&gt;
+        &lt;textarea id="message" name="user_message" rows="4" cols="50"&gt;&lt;/textarea&gt;
 
-        &lt;label for="country"&gt;Country:&lt;/label&gt;
-        &lt;select id="country" name="user_country"&gt;
-            &lt;option value="india"&gt;India&lt;/option&gt;
-            &lt;option value="usa"&gt;USA&lt;/option&gt;
-            &lt;option value="uk"&gt;UK&lt;/option&gt;
-        &lt;/select&gt;
+        &lt;label for="country"&gt;Country:&lt;/label&gt;
+        &lt;select id="country" name="user_country"&gt;
+            &lt;option value="india"&gt;India&lt;/option&gt;
+            &lt;option value="usa"&gt;USA&lt;/option&gt;
+            &lt;option value="uk"&gt;UK&lt;/option&gt;
+        &lt;/select&gt;
 
-        &lt;label&gt;
-            &lt;input type="checkbox" id="newsletter" name="newsletter_consent"&gt;
-            Subscribe to newsletter
-        &lt;/label&gt;
+        &lt;label&gt;
+            &lt;input type="checkbox" id="newsletter" name="newsletter_consent"&gt;
+            Subscribe to newsletter
+        &lt;/label&gt;
 
-        &lt;button type="submit"&gt;Submit&lt;/button&gt;
-    &lt;/fieldset&gt;
+        &lt;button type="submit"&gt;Submit&lt;/button&gt;
+    &lt;/fieldset&gt;
 &lt;/form&gt;
-            </pre>
-        </div>
+            </pre>
+        </div>
 
-        <div id="css" class="tab-content">
-            <h2>CSS (Cascading Style Sheets)</h2>
-            <p>CSS वेब पेजों को सुंदर और आकर्षक बनाने के लिए स्टाइलिंग प्रदान करती है। यह रंग, फ़ॉन्ट, लेआउट और एनिमेशन को नियंत्रित करती है।</p>
-            <h3>A Flexible Layout with Flexbox</h3>
-            <p>Flexbox एक शक्तिशाली एक-आयामी लेआउट सिस्टम है जो आइटमों को एक पंक्ति (row) या स्तंभ (column) में संरेखित (align) करता है।</p>
-            <pre>
+        <div id="css" class="tab-content">
+            <h2>CSS (Cascading Style Sheets)</h2>
+            <p>CSS वेब पेजों को सुंदर और आकर्षक बनाने के लिए स्टाइलिंग प्रदान करती है। यह रंग, फ़ॉन्ट, लेआउट और एनिमेशन को नियंत्रित करती है।</p>
+            <h3>A Flexible Layout with Flexbox</h3>
+            <p>Flexbox एक शक्तिशाली एक-आयामी लेआउट सिस्टम है जो आइटमों को एक पंक्ति (row) या स्तंभ (column) में संरेखित (align) करता है।</p>
+            <pre>
 .flex-container {
-    display: flex;
-    flex-direction: row; /* row | column */
-    flex-wrap: wrap; /* nowrap | wrap */
-    justify-content: space-between; /* start | end | center | space-around */
-    align-items: center; /* stretch | start | end | center | baseline */
-    height: 200px;
-    border: 2px solid #00ffff;
-    padding: 10px;
+    display: flex;
+    flex-direction: row; /* row | column */
+    flex-wrap: wrap; /* nowrap | wrap */
+    justify-content: space-between; /* start | end | center | space-around */
+    align-items: center; /* stretch | start | end | center | baseline */
+    height: 200px;
+    border: 2px solid #00ffff;
+    padding: 10px;
 }
 
 .flex-item {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
-    padding: 20px;
-    margin: 5px;
-    text-align: center;
-    font-size: 1.2rem;
-    flex-grow: 1;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 20px;
+    margin: 5px;
+    text-align: center;
+    font-size: 1.2rem;
+    flex-grow: 1;
 }
-            </pre>
+            </pre>
 
-            <h3>A Powerful 2D Layout with CSS Grid</h3>
-            <p>CSS Grid एक दो-आयामी लेआउट सिस्टम है जो जटिल वेब पेज लेआउट बनाने के लिए पंक्तियों (rows) और स्तंभों (columns) दोनों का उपयोग करता है।</p>
-            <pre>
+            <h3>A Powerful 2D Layout with CSS Grid</h3>
+            <p>CSS Grid एक दो-आयामी लेआउट सिस्टम है जो जटिल वेब पेज लेआउट बनाने के लिए पंक्तियों (rows) और स्तंभों (columns) दोनों का उपयोग करता है।</p>
+            <pre>
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
-    grid-template-rows: auto 1fr auto; /* Header, Main, Footer */
-    gap: 20px;
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-    border: 2px solid #ff416c;
-    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+    grid-template-rows: auto 1fr auto; /* Header, Main, Footer */
+    gap: 20px;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    border: 2px solid #ff416c;
+    padding: 20px;
 }
 
 .grid-header {
-    grid-column: 1 / span 3;
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 15px;
-    text-align: center;
+    grid-column: 1 / span 3;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    text-align: center;
 }
 
 .grid-main {
-    grid-column: 1 / span 2;
-    background-color: rgba(255, 255, 255, 0.05);
-    padding: 20px;
+    grid-column: 1 / span 2;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 20px;
 }
 
 .grid-sidebar {
-    grid-column: 3;
-    background-color: rgba(255, 255, 255, 0.08);
-    padding: 20px;
+    grid-column: 3;
+    background-color: rgba(255, 255, 255, 0.08);
+    padding: 20px;
 }
 
 .grid-footer {
-    grid-column: 1 / span 3;
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 15px;
-    text-align: center;
+    grid-column: 1 / span 3;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    text-align: center;
 }
-            </pre>
+            </pre>
 
-            <h3>Creative 3D Button Animation</h3>
-            <p>CSS एनिमेशन का उपयोग करके आप एक साधारण बटन को एक आकर्षक 3D इफ़ेक्ट दे सकते हैं।</p>
-            <pre>
+            <h3>Creative 3D Button Animation</h3>
+            <p>CSS एनिमेशन का उपयोग करके आप एक साधारण बटन को एक आकर्षक 3D इफ़ेक्ट दे सकते हैं।</p>
+            <pre>
 /* CSS for 3D Button */
 .button-3d {
-    display: inline-block;
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: white;
-    background: linear-gradient(135deg, #00ffff, #00b3b3);
-    border: none;
-    border-radius: 10px;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
-    box-shadow: 0 5px 0 #008080;
-    cursor: pointer;
-    position: relative;
-    top: 0;
-    transition: all 0.1s ease;
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #00ffff, #00b3b3);
+    border: none;
+    border-radius: 10px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+    box-shadow: 0 5px 0 #008080;
+    cursor: pointer;
+    position: relative;
+    top: 0;
+    transition: all 0.1s ease;
 }
 
 .button-3d:active {
-    top: 5px;
-    box-shadow: 0 0 0 #008080;
+    top: 5px;
+    box-shadow: 0 0 0 #008080;
 }
-            </pre>
-        </div>
+            </pre>
+        </div>
 
-        <div id="js" class="tab-content">
-            <h2>JavaScript</h2>
-            <p>JavaScript is a powerful scripting language that makes webpages dynamic and interactive. It enables you to manipulate the content of an HTML page, handle user events (like clicks), validate forms, and communicate with web servers. It's the brain of your website.</p>
-            <pre>
+        <div id="js" class="tab-content">
+            <h2>JavaScript</h2>
+            <p>JavaScript is a powerful scripting language that makes webpages dynamic and interactive. It enables you to manipulate the content of an HTML page, handle user events (like clicks), validate forms, and communicate with web servers. It's the brain of your website.</p>
+            <pre>
 &lt;script&gt;
-    // A function to handle a click event
-    document.getElementById("myButton").addEventListener("click", function() {
-        alert("Button was clicked!");
-    });
+    // A function to handle a click event
+    document.getElementById("myButton").addEventListener("click", function() {
+        alert("Button was clicked!");
+    });
 
-    // A function to change an element's text after a delay
-    setTimeout(function() {
-        document.getElementById("greeting").innerText = "Welcome to our website!";
-    }, 2000); // 2000 milliseconds = 2 seconds
+    // A function to change an element's text after a delay
+    setTimeout(function() {
+        document.getElementById("greeting").innerText = "Welcome to our website!";
+    }, 2000); // 2000 milliseconds = 2 seconds
 
-    // A function to add or remove a CSS class
-    const element = document.getElementById("myElement");
-    element.classList.add("highlight");
-    // Or to toggle a class
-    element.classList.toggle("hidden");
+    // A function to add or remove a CSS class
+    const element = document.getElementById("myElement");
+    element.classList.add("highlight");
+    // Or to toggle a class
+    element.classList.toggle("hidden");
 
-    // Form validation example
-    const myForm = document.getElementById("myForm");
-    myForm.addEventListener("submit", function(event) {
-        const emailInput = document.getElementById("email");
-        if (!emailInput.value.includes("@")) {
-            event.preventDefault(); // Stop the form from submitting
-            alert("Please enter a valid email address.");
-        }
-    });
+    // Form validation example
+    const myForm = document.getElementById("myForm");
+    myForm.addEventListener("submit", function(event) {
+        const emailInput = document.getElementById("email");
+        if (!emailInput.value.includes("@")) {
+            event.preventDefault(); // Stop the form from submitting
+            alert("Please enter a valid email address.");
+        }
+    });
 &lt;/script&gt;
-            </pre>
-            <p>JavaScript's core strength lies in its ability to interact with the **Document Object Model (DOM)**. The DOM is a tree-like representation of your HTML page, and JavaScript allows you to access and modify any element within it. This is what makes features like animated sliders, form validation, and real-time content updates possible.</p>
-        </div>
-    </section>
+            </pre>
+            <p>JavaScript's core strength lies in its ability to interact with the **Document Object Model (DOM)**. The DOM is a tree-like representation of your HTML page, and JavaScript allows you to access and modify any element within it. This is what makes features like animated sliders, form validation, and real-time content updates possible.</p>
+        </div>
+    </section>
 
-    <a href="#home-section" class="back-to-top">▲</a>
+    <a href="#home-section" class="back-to-top">▲</a>
 
-    <script>
-        // Tab switching for Coding Guide section
-        function openTab(evt, tabName) {
-            const tabContents = document.querySelectorAll('.tab-content');
-            tabContents.forEach(tab => tab.classList.remove('active'));
+    <script>
+        // Tab switching for Coding Guide section
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
 
-            const tabButtons = document.querySelectorAll('.tab-button');
-            tabButtons.forEach(btn => btn.classList.remove('active'));
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(btn => btn.classList.remove('active'));
 
-            document.getElementById(tabName).classList.add('active');
-            evt.currentTarget.classList.add('active');
-        }
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
 
-        // Scroll-based active link and section display
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('nav a');
+        // Scroll-based active link and section display
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a');
 
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 150;
-                if (window.scrollY >= sectionTop) {
-                    current = section.getAttribute('id');
-                }
-            });
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
 
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('active');
-                }
-            });
-        });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
 
-        // Initial load
-        document.addEventListener('DOMContentLoaded', () => {
-            const homeSection = document.getElementById('home-section');
-            homeSection.classList.add('active');
+        // Initial load
+        document.addEventListener('DOMContentLoaded', () => {
+            const homeSection = document.getElementById('home-section');
+            homeSection.classList.add('active');
 
-            const firstTabButton = document.querySelector('.tab-button');
-            const firstTabContent = document.querySelector('.tab-content');
-            firstTabButton.classList.add('active');
-            firstTabContent.classList.add('active');
-        });
-    </script>
+            const firstTabButton = document.querySelector('.tab-button');
+            const firstTabContent = document.querySelector('.tab-content');
+            firstTabButton.classList.add('active');
+            firstTabContent.classList.add('active');
+        });
+    </script>
 </body>
-</html>(code wale seaction me 15 html ka 15 css ka 15 java ka 15 python ka code add karo, but python is not a web dev thing to us, add python for backend)
+</html>
