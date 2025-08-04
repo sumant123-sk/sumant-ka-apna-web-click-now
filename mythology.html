@@ -154,12 +154,13 @@
      crossorigin="anonymous"></script>
 </head>
 <body>
-
-  <h1>🌌 Ancient Myths - The Glow of Legends</h1>
-  
-  <div class="stories-grid" id="stories-grid">
-  </div>
-
+  <header>
+    <h1>🌌 Ancient Myths - The Glow of Legends</h1>
+  </header>
+  <main>
+    <div class="stories-grid" id="stories-grid">
+    </div>
+  </main>
   <script>
     const myths = [
       {
@@ -190,6 +191,7 @@
       myths.forEach((myth, index) => {
         const storyCard = document.createElement('div');
         storyCard.className = 'story-card';
+        storyCard.setAttribute('aria-label', `Myth: ${myth.title}`);
         storyCard.innerHTML = `
           <h2>${myth.title}</h2>
           <p style="font-style: italic; color: #aaa; margin-bottom: 20px;">(${myth.origin})</p>
