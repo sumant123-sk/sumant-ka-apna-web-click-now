@@ -1,113 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><!-- Google tag (gtag.js) -->
+<head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-K1GQC84RQP"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  gtag('config', 'G-K1GQC84RQP');
+  gtag('config', 'G-K1GQC84RQP');
 </script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🌌 Ancient Myths - The Glow of Legends</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* Global Styles & Body Background */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      color: #fff;
-      background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1f1c2c);
-      background-size: 400% 400%;
-      animation: bgAnimated 12s ease infinite;
-      min-height: 100vh;
-      padding: 60px 20px;
-      position: relative;
-      overflow-x: hidden;
-    }
-    @keyframes bgAnimated {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    body::before, body::after {
-      content: '';
-      position: absolute;
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, rgba(0, 255, 255, 0.4), transparent 70%);
-      border-radius: 50%;
-      z-index: -1;
-      animation: pulse 8s ease infinite alternate;
-    }
-    body::before {
-      top: -50px;
-      left: -50px;
-    }
-    body::after {
-      bottom: -50px;
-      right: -50px;
-      animation-delay: 4s;
-    }
-    @keyframes pulse {
-      from { transform: scale(0.9); }
-      to { transform: scale(1.1); }
-    }
-    /* Main Content Container */
-    .story-container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 40px;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(8px);
-      border-radius: 20px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    /* Title and Heading Styles */
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      color: #00ffff;
-      text-shadow: 0 0 15px #00ffff;
-    }
-    h2 {
-      font-size: 1.8rem;
-      margin-bottom: 10px;
-      color: #ffcc00;
-      text-shadow: 0 0 10px #ffcc00;
-    }
-    .story-text {
-      text-align: justify;
-      line-height: 1.8;
-      margin-bottom: 15px;
-      font-size: 1.1rem;
-    }
-  </style>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2083692947196571"
-     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌌 Ancient Myths - The Glow of Legends</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Global Styles & Body Background */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1f1c2c);
+      background-size: 400% 400%;
+      animation: bgAnimated 12s ease infinite;
+      min-height: 100vh;
+      padding: 60px 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+    @keyframes bgAnimated {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    body::before, body::after {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(0, 255, 255, 0.4), transparent 70%);
+      border-radius: 50%;
+      z-index: -1;
+      animation: pulse 8s ease infinite alternate;
+    }
+    body::before {
+      top: -50px;
+      left: -50px;
+      background: radial-gradient(circle, rgba(0, 255, 255, 0.4), transparent 70%);
+    }
+    body::after {
+      bottom: -50px;
+      right: -50px;
+      background: radial-gradient(circle, rgba(255, 0, 255, 0.4), transparent 70%);
+      animation-delay: 4s;
+    }
+    @keyframes pulse {
+      from { transform: scale(0.9); }
+      to { transform: scale(1.1); }
+    }
+    
+    /* New Container for multiple stories */
+    .stories-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    @media (min-width: 768px) {
+      .stories-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    /* Story Card Styles */
+    .story-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+      padding: 30px;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: storyFadeIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    @keyframes storyFadeIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .story-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    }
+    /* Card Title and Heading Styles */
+    h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      text-align: center;
+      margin-bottom: 40px;
+      color: #ffcc00;
+      text-shadow: 0 0 20px #ffcc00;
+      animation: titleGlow 4s infinite alternate;
+    }
+    @keyframes titleGlow {
+      from { text-shadow: 0 0 10px #ffcc00; }
+      to { text-shadow: 0 0 25px #ffcc00, 0 0 30px #ffcc00; }
+    }
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
+    }
+    .story-card p {
+      text-align: justify;
+      line-height: 1.8;
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+  </style>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2083692947196571"
+     crossorigin="anonymous"></script>
 </head>
 <body>
 
-  <div class="story-container">
-    <h1>🌌 The Myth of Amaterasu and the Sun</h1>
-    <h2>(Japanese Mythology)</h2>
-    <p class="story-text">
-      In the high heavens of Japanese mythology, the sun goddess Amaterasu ruled with grace and benevolence, bringing light and warmth to the world. Her younger brother, Susanoo, the storm god, was known for his wild and destructive nature, a stark contrast to his sister&#39;s peaceful domain.
-    </p>
-    <p class="story-text">
-      One day, in a fit of rage, Susanoo threw a flayed horse into Amaterasu’s weaving hall, causing one of her attendants to die from shock. Devastated and furious, Amaterasu could no longer bear her brother’s chaotic nature. In a moment of profound grief and anger, she sealed herself within the Celestial Rock Cave (Amano-Iwato), plunging the entire world into darkness.
-    </p>
-    <p class="story-text">
-      The eight million gods and goddesses gathered outside the cave, desperate to bring the sun goddess back and restore light to the world. They tried everything: loud prayers, offerings, and solemn pleas, but Amaterasu would not emerge. Finally, the goddess of mirth, Ame-no-Uzume, had a brilliant idea. She overturned a tub and began to dance wildly and comically upon it, stripping off her clothes. The gods found this so amusing that they began to laugh uproariously.
-    </p>
-    <p class="story-text">
-      Intrigued by the sound of laughter, Amaterasu peeked out of the cave. The gods quickly showed her a beautiful, polished mirror and told her that a goddess even more splendid than herself had arrived. As Amaterasu leaned forward to get a better look, the god Ame-no-Tajikarao, a god of immense strength, pulled the rock away and dragged her out. The sun returned, and light filled the world once more, never to be hidden in a cave again.
-    </p>
-  </div>
+  <h1>🌌 Ancient Myths - The Glow of Legends</h1>
+  
+  <div class="stories-grid" id="stories-grid">
+  </div>
+
+  <script>
+    const myths = [
+      {
+        title: "The Myth of Amaterasu and the Sun",
+        origin: "Japanese Mythology",
+        story: `In the high heavens of Japanese mythology, the sun goddess Amaterasu ruled with grace and benevolence, bringing light and warmth to the world. Her younger brother, Susanoo, the storm god, was known for his wild and destructive nature, a stark contrast to his sister's peaceful domain. One day, in a fit of rage, Susanoo threw a flayed horse into Amaterasu’s weaving hall, causing one of her attendants to die from shock. Devastated and furious, Amaterasu sealed herself within the Celestial Rock Cave (Amano-Iwato), plunging the entire world into darkness. The gods and goddesses gathered outside, desperate to bring the sun goddess back. They tried everything, but Amaterasu would not emerge. Finally, the goddess of mirth, Ame-no-Uzume, had a brilliant idea. She overturned a tub and began to dance wildly and comically upon it. The gods found this so amusing that they began to laugh uproariously. Intrigued by the sound of laughter, Amaterasu peeked out of the cave. The gods quickly showed her a beautiful, polished mirror and told her that a goddess even more splendid than herself had arrived. As Amaterasu leaned forward to get a better look, the god Ame-no-Tajikarao, a god of immense strength, pulled the rock away and dragged her out. The sun returned, and light filled the world once more.`
+      },
+      {
+        title: "The Birth of Athena",
+        origin: "Greek Mythology",
+        story: `Zeus, the king of the gods, learned of a prophecy that his son by the goddess Metis would one day overthrow him. To prevent this, he tricked Metis and swallowed her whole. However, Metis was already pregnant. After some time, Zeus began to suffer from a terrible headache. The pain became so unbearable that he commanded Hephaestus, the god of the forge, to split his head open with an axe. From his head, a fully grown and armored Athena, the goddess of wisdom, warfare, and crafts, sprang forth with a fierce cry. This birth, a symbol of her strength and intellect, established her as one of the most powerful and revered deities of Olympus.`
+      },
+      {
+        title: "Thor's Hammer is Stolen",
+        origin: "Norse Mythology",
+        story: `In the halls of Asgard, Thor, the god of thunder, awoke one morning to find his mighty hammer, Mjölnir, missing. Without his hammer, Asgard was defenseless against its enemies. The clever god Loki discovered that the giant Thrym had stolen Mjölnir and demanded the hand of the goddess Freyja in marriage as ransom. Unwilling to sacrifice Freyja, the gods devised a plan. They disguised Thor as Freyja, dressing him in a bridal gown and a veil. Thor, furious but determined, traveled to Thrym's hall with Loki, who was disguised as his handmaiden. Thrym, fooled by the disguise, brought Mjölnir out to consecrate his "bride." The moment the hammer was in his grasp, Thor tore off his disguise and slew Thrym and all the other giants in the hall, retrieving his hammer and restoring peace to Asgard.`
+      },
+      {
+        title: "The Epic of Gilgamesh",
+        origin: "Mesopotamian Mythology",
+        story: `Gilgamesh was a powerful king of Uruk, known for his immense strength but also his tyrannical rule. The gods created a wild man, Enkidu, to challenge and humble him. After a fierce battle, the two became best friends, embarking on a series of adventures together, including a journey to the Cedar Forest to slay the monster Humbaba. However, their defiance of the gods led to Enkidu's death. Devastated by the loss of his friend and fearing his own mortality, Gilgamesh set out on a quest for immortality. His journey led him to the wise man Utnapishtim, who had survived a great flood. Utnapishtim shared the secret of a plant that could restore youth. Gilgamesh found the plant, but a snake stole and ate it while he was bathing. Though his quest for immortality failed, Gilgamesh returned to Uruk with a new wisdom, accepting his mortality and becoming a great and just king.`
+      }
+    ];
+    
+    const storiesGrid = document.getElementById('stories-grid');
+    
+    function loadMyths() {
+      myths.forEach((myth, index) => {
+        const storyCard = document.createElement('div');
+        storyCard.className = 'story-card';
+        storyCard.innerHTML = `
+          <h2>${myth.title}</h2>
+          <p style="font-style: italic; color: #aaa; margin-bottom: 20px;">(${myth.origin})</p>
+          <p class="story-text">${myth.story}</p>
+        `;
+        storyCard.style.animationDelay = `${index * 0.2}s`;
+        storiesGrid.appendChild(storyCard);
+      });
+    }
+    
+    document.addEventListener('DOMContentLoaded', loadMyths);
+  </script>
 
 </body>
 </html>
+(updeted code ko sahi se update karo)
