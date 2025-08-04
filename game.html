@@ -1,48 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Existing meta tags and Google Analytics/AdSense scripts unchanged -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>25-in-1 Game Center</title>
     <style>
-        /* Existing styles unchanged, adding new animations */
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .game-section {
+            display: none;
+            text-align: center;
+        }
+        .game-section.active {
+            display: block;
+        }
+        .main-menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        .main-menu button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background: #444;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transform: perspective(500px) translateZ(0);
+            transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+        }
+        .main-menu button:hover {
+            transform: perspective(500px) translateZ(10px) translateY(-5px);
+            background: #ff5555;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        canvas {
+            background: #000;
+            border: 2px solid #fff;
+            transition: transform 0.2s ease;
+        }
+        canvas:hover {
+            transform: scale(1.02);
+        }
         .particle {
             position: absolute;
             width: 5px;
             height: 5px;
-            background: var(--glow-color);
+            background: #00ffff;
             border-radius: 50%;
             pointer-events: none;
             animation: particleFade 1s ease-out forwards;
         }
-
         @keyframes particleFade {
             0% { opacity: 1; transform: scale(1); }
             100% { opacity: 0; transform: scale(0); }
         }
-
-        .main-menu button {
-            /* Existing styles */
-            transform: perspective(500px) translateZ(0);
-            transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+        .ludo-cell {
+            width: 30px;
+            height: 30px;
+            background: #333;
+            border: 1px solid #555;
+            display: inline-block;
         }
-
-        .main-menu button:hover {
-            transform: perspective(500px) translateZ(10px) translateY(-5px);
-            background: var(--accent-color);
-            box-shadow: var(--box-shadow-dark);
+        .ludo-piece {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
         }
-
-        /* Smooth canvas transitions */
-        canvas {
-            transition: transform 0.2s ease;
+        .ludo-piece-blue { background: #00f; }
+        .ludo-piece-red { background: #f00; }
+        .tictactoe-cell {
+            background: #fff;
+            color: #000;
+            cursor: pointer;
+            border-radius: 5px;
         }
-
-        canvas:hover {
-            transform: scale(1.02);
+        :root {
+            --glow-color: #00ffff;
+            --accent-color: #ff5555;
+            --box-shadow-dark: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
 <body>
-    <!-- HTML structure unchanged -->
+    <div id="menu" class="game-section active">
+        <h1>25-in-1 Game Center</h1>
+        <div class="main-menu">
+            <button onclick="showGame('flappy')">Flappy Bird</button>
+            <button onclick="showGame('ludo')">Ludo vs Sumant</button>
+            <button onclick="showGame('tictactoe')">Tic-Tac-Toe</button>
+            <button onclick="showGame('snake')">Snake</button>
+            <button onclick="showGame('bubble')">Bubble Shooter</button>
+        </div>
+    </div>
+    <div id="flappy" class="game-section">
+        <canvas id="flappyCanvas" width="400" height="600"></canvas>
+        <div id="flappy-message"></div>
+    </div>
+    <div id="ludo" class="game-section">
+        <div id="ludo-board" style="display: grid; grid-template-columns: repeat(15, 30px);"></div>
+        <div id="ludo-message"></div>
+        <button onclick="ludoGame.rollLudoDice()">Roll Dice</button>
+    </div>
+    <div id="tictactoe" class="game-section">
+        <div id="tictactoe-board"></div>
+        <div id="tictactoe-message"></div>
+    </div>
+    <div id="snake" class="game-section">
+        <canvas id="snakeCanvas" width="400" height="400"></canvas>
+        <div id="snake-message"></div>
+    </div>
+    <div id="bubble" class="game-section">
+        <canvas id="bubbleCanvas" width="400" height="400"></canvas>
+        <div id="bubble-message"></div>
+    </div>
+
     <script>
         // --- Utility for Particle Effects ---
         function createParticles(x, y, container) {
@@ -60,6 +144,7 @@
         }
 
         // --- Game Manager ---
+        let flappyGame, ludoGame, tictactoeGame, snakeGame, bubbleGame;
         function showGame(gameId) {
             document.querySelectorAll('.game-section').forEach(section => {
                 section.classList.remove('active');
@@ -74,43 +159,23 @@
             switch (gameId) {
                 case 'flappy': flappyGame = new FlappyGame('flappyCanvas'); break;
                 case 'ludo': ludoGame = new LudoGame('ludo-board'); break;
-                case 'carrom': carromGame = new CarromGame('carromCanvas'); break;
-                case 'cricket': cricketGame = new CricketGame('cricketCanvas'); break;
                 case 'tictactoe': tictactoeGame = new TicTacToeGame('tictactoe-board'); break;
-                case 'memory': memoryGame = new MemoryGame('memory-board'); break;
-                case 'math': mathGame = new MathQuizGame(); break;
-                case 'guess': guessGame = new GuessTheNumberGame(); break;
-                case 'scramble': scrambleGame = new WordScrambleGame(); break;
                 case 'snake': snakeGame = new SnakeGame('snakeCanvas'); break;
-                case 'pong': pongGame = new PongGame('pongCanvas'); break;
-                case 'tetris': tetrisGame = new TetrisGame('tetrisCanvas'); break;
                 case 'bubble': bubbleGame = new BubbleShooterGame('bubbleCanvas'); break;
-                case 'sudoku': sudokuGame = new SudokuGame('sudoku-board'); break;
-                case 'pacman': pacmanGame = new PacmanGame('pacmanCanvas'); break;
-                case 'minesweeper': minesweeperGame = new MinesweeperGame('minesweeper-board'); break;
-                case 'connect4': connect4Game = new ConnectFourGame('connect4-board'); break;
-                case 'hangman': hangmanGame = new HangmanGame(); break;
-                case '2048': game2048 = new Game2048('2048-board'); break;
-                case 'brick': brickGame = new BrickBreakerGame('brickCanvas'); break;
-                case 'space': spaceGame = new SpaceInvadersGame('spaceCanvas'); break;
-                case 'chess': chessGame = new ChessGame('chess-board'); break;
-                case 'typing': typingGame = new TypingSpeedGame(); break;
-                case 'puzzle': puzzleGame = new JigsawPuzzleGame('puzzleCanvas'); break;
             }
         }
 
-        // --- Flappy Bird Game (Enhanced with Robot Opponent and Particles) ---
+        // --- Flappy Bird Game ---
         class FlappyGame {
             constructor(canvasId) {
                 this.canvas = document.getElementById(canvasId);
                 this.ctx = this.canvas.getContext('2d');
                 this.messageBox = document.getElementById('flappy-message');
                 this.bird = { x: 50, y: this.canvas.height / 2, size: 20, velocity: 0, gravity: 0.2 };
-                this.robotBird = { x: 50, y: this.canvas.height / 2, size: 20, velocity: 0, gravity: 0.2, score: 0 }; // Added robot bird
+                this.robotBird = { x: 50, y: this.canvas.height / 2, size: 20, velocity: 0, gravity: 0.2, score: 0 };
                 this.pipes = [];
                 this.score = 0;
                 this.isPlaying = false;
-                this.particles = []; // For particle effects
                 this.canvas.addEventListener('click', () => this.flap());
                 this.reset();
             }
@@ -120,11 +185,10 @@
                 this.robotBird = { x: 50, y: this.canvas.height / 2, size: 20, velocity: 0, gravity: 0.2, score: 0 };
                 this.pipes = [];
                 this.score = 0;
-                this.particles = [];
                 this.messageBox.style.display = 'none';
                 this.isPlaying = true;
                 this.pipes.push(this.createPipe());
-                this.robotFlapInterval = setInterval(() => this.robotFlap(), 500); // Robot flaps periodically
+                this.robotFlapInterval = setInterval(() => this.robotFlap(), 500);
                 this.gameLoop();
             }
 
@@ -147,7 +211,7 @@
             flap() {
                 if (this.isPlaying) {
                     this.bird.velocity = -5;
-                    createParticles(this.bird.x, this.bird.y, this.canvas.parentElement); // Particle effect on flap
+                    createParticles(this.bird.x, this.bird.y, this.canvas.parentElement);
                 }
             }
 
@@ -155,46 +219,38 @@
                 if (!this.isPlaying) return;
                 const nextPipe = this.pipes.find(pipe => pipe.x > this.robotBird.x);
                 if (nextPipe && this.robotBird.y > nextPipe.gapY - 50) {
-                    this.robotBird.velocity = -5; // Robot flaps to avoid pipe
+                    this.robotBird.velocity = -5;
                 }
             }
 
             update() {
                 if (!this.isPlaying) return;
-                // Update player bird
                 this.bird.velocity += this.bird.gravity;
                 this.bird.y += this.bird.velocity;
-                // Update robot bird
                 this.robotBird.velocity += this.robotBird.gravity;
                 this.robotBird.y += this.robotBird.velocity;
-                // Update pipes
                 this.pipes.forEach(pipe => {
                     pipe.x -= 2;
-                    // Score for player
                     if (this.bird.x > pipe.x + pipe.width && !pipe.passed) {
                         pipe.passed = true;
                         this.score++;
-                        createParticles(this.bird.x, this.bird.y, this.canvas.parentElement); // Particles on score
+                        createParticles(this.bird.x, this.bird.y, this.canvas.parentElement);
                     }
-                    // Score for robot
                     if (this.robotBird.x > pipe.x + pipe.width && !pipe.passedRobot) {
                         pipe.passedRobot = true;
                         this.robotBird.score++;
                     }
-                    // Collision for player
                     if (this.bird.x + this.bird.size > pipe.x && this.bird.x < pipe.x + pipe.width) {
                         if (this.bird.y < pipe.topHeight || this.bird.y + this.bird.size > pipe.gapY) {
                             this.gameOver();
                         }
                     }
-                    // Collision for robot
                     if (this.robotBird.x + this.robotBird.size > pipe.x && this.robotBird.x < pipe.x + pipe.width) {
                         if (this.robotBird.y < pipe.topHeight || this.robotBird.y + this.robotBird.size > pipe.gapY) {
-                            this.robotBird.score = -1; // Robot loses
+                            this.robotBird.score = -1;
                         }
                     }
                 });
-                // Boundary checks
                 if (this.bird.y <= 0 || this.bird.y >= this.canvas.height || this.robotBird.y <= 0 || this.robotBird.y >= this.canvas.height) {
                     this.gameOver();
                 }
@@ -205,19 +261,15 @@
 
             draw() {
                 this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-                // Draw player bird
                 this.ctx.fillStyle = '#ffcc00';
                 this.ctx.fillRect(this.bird.x, this.bird.y, this.bird.size, this.bird.size);
-                // Draw robot bird
                 this.ctx.fillStyle = '#ff5555';
                 this.ctx.fillRect(this.robotBird.x, this.robotBird.y, this.robotBird.size, this.robotBird.size);
-                // Draw pipes
                 this.ctx.fillStyle = '#228B22';
                 this.pipes.forEach(pipe => {
                     this.ctx.fillRect(pipe.x, 0, pipe.width, pipe.topHeight);
                     this.ctx.fillRect(pipe.x, pipe.gapY, pipe.width, this.canvas.height - pipe.gapY);
                 });
-                // Draw scores
                 this.ctx.fillStyle = 'white';
                 this.ctx.font = '24px Poppins';
                 this.ctx.fillText(`Player Score: ${this.score}`, 10, 30);
@@ -240,7 +292,7 @@
             }
         }
 
-        // --- Ludo vs Sumant (Enhanced AI and Animations) ---
+        // --- Ludo vs Sumant ---
         class LudoGame {
             constructor(boardId) {
                 this.boardElement = document.getElementById(boardId);
@@ -252,6 +304,7 @@
                     sumant: [{id: 's1', pos: -1}, {id: 's2', pos: -1}]
                 };
                 this.path = this.createPath();
+                this.isPlaying = true;
                 this.renderBoard();
                 this.setMessage("Player's turn. Roll the dice!");
             }
@@ -288,10 +341,10 @@
                         const cell = this.boardElement.children[this.path[p.pos].y * 15 + this.path[p.pos].x];
                         const piece = document.createElement('div');
                         piece.classList.add('ludo-piece', 'ludo-piece-blue');
-                        piece.style.transition = 'transform 0.3s ease'; // Smooth movement
+                        piece.style.transition = 'transform 0.3s ease';
                         piece.onclick = () => this.movePiece(p, this.lastRoll || 6);
                         cell.appendChild(piece);
-                        createParticles(cell.offsetLeft + 20, cell.offsetTop + 20, this.boardElement); // Particles on piece placement
+                        createParticles(cell.offsetLeft + 20, cell.offsetTop + 20, this.boardElement);
                     }
                 });
                 this.pieces.sumant.forEach(p => {
@@ -339,7 +392,6 @@
                 const diceRoll = Math.floor(Math.random() * 6) + 1;
                 setTimeout(() => {
                     this.setMessage(`Sumant rolled a ${diceRoll}.`);
-                    // Improved AI: Choose piece closest to finish
                     const movablePieces = this.pieces.sumant.filter(p => p.pos !== -1 || diceRoll === 6);
                     const piece = movablePieces.sort((a, b) => (b.pos || -1) - (a.pos || -1))[0];
                     if (piece) {
@@ -351,7 +403,7 @@
             }
         }
 
-        // --- Tic-Tac-Toe Game (Improved AI with Minimax) ---
+        // --- Tic-Tac-Toe Game ---
         class TicTacToeGame {
             constructor(boardId) {
                 this.boardElement = document.getElementById(boardId);
@@ -468,7 +520,7 @@
 
                 if (isMaximizing) {
                     let bestScore = -Infinity;
-                    for (let i = 0; i < board.length; i++) {
+                    for (leti = 0; i < board.length; i++) {
                         if (board[i] === '') {
                             board[i] = 'O';
                             let score = this.minimax(board, depth + 1, false);
@@ -498,7 +550,7 @@
             }
         }
 
-        // --- Snake Game (Enhanced with Robot Opponent) ---
+        // --- Snake Game ---
         class SnakeGame {
             constructor(canvasId) {
                 this.canvas = document.getElementById(canvasId);
@@ -507,11 +559,11 @@
                 this.gridSize = 20;
                 this.tileCount = this.canvas.width / this.gridSize;
                 this.snake = [{ x: 10, y: 10 }];
-                this.robotSnake = [{ x: 5, y: 5 }]; // Added robot snake
+                this.robotSnake = [{ x: 5, y: 5 }];
                 this.food = { x: 15, y: 15 };
                 this.dx = 0;
                 this.dy = 0;
-                this.robotDx = 0;
+                this.robotDx = 1;
                 this.robotDy = 0;
                 this.score = 0;
                 this.robotScore = 0;
@@ -543,7 +595,6 @@
             }
 
             robotMove() {
-                // Simple AI: Move towards food, avoid walls
                 const head = this.robotSnake[0];
                 const dxToFood = this.food.x - head.x;
                 const dyToFood = this.food.y - head.y;
@@ -554,7 +605,6 @@
                     this.robotDx = 0;
                     this.robotDy = dyToFood > 0 ? 1 : -1;
                 }
-                // Avoid collision with self
                 const nextHead = { x: head.x + this.robotDx, y: head.y + this.robotDy };
                 if (this.robotSnake.some(segment => segment.x === nextHead.x && segment.y === nextHead.y)) {
                     this.robotDx = -this.robotDx;
@@ -564,7 +614,6 @@
 
             update() {
                 if (!this.isPlaying) return;
-                // Player snake
                 const head = { x: this.snake[0].x + this.dx, y: this.snake[0].y + this.dy };
                 if (head.x < 0 || head.x >= this.tileCount || head.y < 0 || head.y >= this.tileCount || this.snake.some(segment => segment.x === head.x && segment.y === head.y)) {
                     this.gameOver();
@@ -578,11 +627,10 @@
                 } else {
                     this.snake.pop();
                 }
-                // Robot snake
                 this.robotMove();
                 const robotHead = { x: this.robotSnake[0].x + this.robotDx, y: this.robotSnake[0].y + this.robotDy };
                 if (robotHead.x < 0 || robotHead.x >= this.tileCount || robotHead.y < 0 || robotHead.y >= this.tileCount || this.robotSnake.some(segment => segment.x === robotHead.x && segment.y === robotHead.y)) {
-                    this.robotScore = -1; // Robot loses
+                    this.robotScore = -1;
                 } else {
                     this.robotSnake.unshift(robotHead);
                     if (robotHead.x === this.food.x && robotHead.y === this.food.y) {
@@ -597,20 +645,16 @@
 
             draw() {
                 this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-                // Draw player snake
                 this.ctx.fillStyle = '#00ff00';
                 this.snake.forEach(segment => {
                     this.ctx.fillRect(segment.x * this.gridSize, segment.y * this.gridSize, this.gridSize - 2, this.gridSize - 2);
                 });
-                // Draw robot snake
                 this.ctx.fillStyle = '#ff5555';
                 this.robotSnake.forEach(segment => {
                     this.ctx.fillRect(segment.x * this.gridSize, segment.y * this.gridSize, this.gridSize - 2, this.gridSize - 2);
                 });
-                // Draw food
                 this.ctx.fillStyle = '#ff0000';
                 this.ctx.fillRect(this.food.x * this.gridSize, this.food.y * this.gridSize, this.gridSize - 2, this.gridSize - 2);
-                // Draw scores
                 this.ctx.fillStyle = 'white';
                 this.ctx.font = '24px Poppins';
                 this.ctx.fillText(`Player Score: ${this.score}`, 10, 30);
@@ -632,7 +676,7 @@
             }
         }
 
-        // --- Bubble Shooter Game (Placeholder Structure) ---
+        // --- Bubble Shooter Game ---
         class BubbleShooterGame {
             constructor(canvasId) {
                 this.canvas = document.getElementById(canvasId);
@@ -643,6 +687,7 @@
                 this.currentBubble = null;
                 this.score = 0;
                 this.isPlaying = false;
+                this.canvas.addEventListener('mousemove', (e) => this.updateAngle(e));
                 this.canvas.addEventListener('click', this.shootBubble.bind(this));
                 this.reset();
             }
@@ -677,6 +722,13 @@
                 };
             }
 
+            updateAngle(e) {
+                const rect = this.canvas.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+                this.shooter.angle = Math.atan2(mouseY - this.shooter.y, mouseX - this.shooter.x);
+            }
+
             shootBubble() {
                 if (!this.isPlaying || !this.currentBubble) return;
                 this.currentBubble.dx = Math.cos(this.shooter.angle) * 5;
@@ -692,8 +744,23 @@
                     if (this.currentBubble.y < 0 || this.currentBubble.x < 0 || this.currentBubble.x > this.canvas.width) {
                         this.currentBubble = this.createBubble();
                     }
+                    this.bubbles.forEach((bubble, index) => {
+                        const dx = this.currentBubble.x - bubble.x;
+                        const dy = this.currentBubble.y - bubble.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        if (distance < this.currentBubble.radius + bubble.radius && this.currentBubble.color === bubble.color) {
+                            this.bubbles.splice(index, 1);
+                            this.score += 10;
+                            this.currentBubble = this.createBubble();
+                            createParticles(bubble.x, bubble.y, this.canvas.parentElement);
+                        }
+                    });
+                    if (this.bubbles.length === 0) {
+                        this.isPlaying = false;
+                        this.messageBox.innerText = `You Win! Score: ${this.score}`;
+                        this.messageBox.style.display = 'block';
+                    }
                 }
-                // Placeholder: Add collision detection and bubble matching logic
             }
 
             draw() {
@@ -724,43 +791,7 @@
             }
         }
 
-        // --- Remaining Games (Placeholder Enhancements) ---
-        // For brevity, remaining games follow a similar pattern:
-        // 1. Add robot opponents using simple heuristics or minimax for strategic games.
-        // 2. Integrate particle effects on key events (e.g., scoring, collisions).
-        // 3. Use CSS transitions for smooth movements.
-        // Example for Pong:
-        class PongGame {
-            // Add robot paddle that tracks ball with slight delay for realism
-            update() {
-                // Existing update logic...
-                this.robotPaddle = this.robotPaddle || { x: this.canvas.width / 2 - 50, y: 20, width: 100, height: 10 };
-                this.robotPaddle.x += (this.ball.x - this.robotPaddle.x) * 0.1; // Smooth tracking
-                // Score for robot paddle collision
-                if (this.ball.y <= this.robotPaddle.y + this.robotPaddle.height + this.ball.radius && this.ball.x >= this.robotPaddle.x && this.ball.x <= this.robotPaddle.x + this.robotPaddle.width) {
-                    this.ball.dy *= -1;
-                    this.robotScore = (this.robotScore || 0) + 1;
-                    createParticles(this.ball.x, this.ball.y, this.canvas.parentElement);
-                }
-            }
-
-            draw() {
-                // Existing draw logic...
-                this.ctx.fillStyle = '#ff5555';
-                this.ctx.fillRect(this.robotPaddle.x, this.robotPaddle.y, this.robotPaddle.width, this.robotPaddle.height);
-                this.ctx.fillText(`Robot Score: ${this.robotScore || 0}`, 10, 60);
-            }
-        }
-
-        // --- Existing Game Classes (Unchanged or Minimally Modified) ---
-        // Carrom, Cricket, Memory, Math, Guess, Scramble, Tetris, etc. remain as provided.
-        // Add particle effects and robot opponents similarly:
-        // - Carrom: Add robot striker with random shots.
-        // - Cricket: Robot bowler with varying speeds.
-        // - Memory: Robot flips cards after delay, targeting matches.
-        // - Math, Guess, Scramble: Add visual feedback (particles) on correct/incorrect answers.
-
-        // --- Input Throttling for Smoothness ---
+        // --- Input Throttling ---
         const debounce = (func, wait) => {
             let timeout;
             return (...args) => {
@@ -769,7 +800,6 @@
             };
         };
 
-        // Apply debouncing to key events (e.g., Snake)
         document.addEventListener('keydown', debounce(e => {
             if (snakeGame) snakeGame.changeDirection(e);
         }, 50));
