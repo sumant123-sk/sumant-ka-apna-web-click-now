@@ -59,7 +59,7 @@
       from { transform: translate(0, 0) scale(1); opacity: 0.7; }
       to { transform: translate(50px, 50px) scale(1.1); opacity: 1; }
     }
-    
+    
     /* New Main Title Animation */
     h1 {
       font-size: clamp(2.5rem, 6vw, 4.5rem);
@@ -108,7 +108,7 @@
     @keyframes storyFadeIn {
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
-    
+    
     /* Glowing Border on Hover */
     .story-card::before {
       content: '';
@@ -156,7 +156,7 @@
 <body>
 
   <h1>🌌 Ancient Myths - The Glow of Legends</h1>
-  
+  
   <div class="stories-grid" id="stories-grid">
   </div>
 
@@ -183,9 +183,9 @@
         story: `Gilgamesh was a powerful king of Uruk, known for his immense strength but also his tyrannical rule. The gods created a wild man, Enkidu, to challenge and humble him. After a fierce battle, the two became best friends, embarking on a series of adventures together, including a journey to the Cedar Forest to slay the monster Humbaba. However, their defiance of the gods led to Enkidu's death. Devastated by the loss of his friend and fearing his own mortality, Gilgamesh set out on a quest for immortality. His journey led him to the wise man Utnapishtim, who had survived a great flood. Utnapishtim shared the secret of a plant that could restore youth. Gilgamesh found the plant, but a snake stole and ate it while he was bathing. Though his quest for immortality failed, Gilgamesh returned to Uruk with a new wisdom, accepting his mortality and becoming a great and just king.`
       }
     ];
-    
+    
     const storiesGrid = document.getElementById('stories-grid');
-    
+    
     function loadMyths() {
       myths.forEach((myth, index) => {
         const storyCard = document.createElement('div');
@@ -199,7 +199,7 @@
         storiesGrid.appendChild(storyCard);
       });
     }
-    
+    
     document.addEventListener('DOMContentLoaded', loadMyths);
   </script>
 
