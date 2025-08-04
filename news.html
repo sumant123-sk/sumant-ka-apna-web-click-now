@@ -1,266 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><!-- Google tag (gtag.js) -->
+<head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-K1GQC84RQP"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-K1GQC84RQP');
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-K1GQC84RQP');
 </script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>🌍 Global News - Live Updates</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-    <style>
-        /* Global & Body Styling */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🌍 Global News - Live Updates</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+        /* Global & Body Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            color: white;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            min-height: 100vh;
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            background-size: 400% 400%;
+            animation: bgAnimated 15s ease infinite;
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-        /* 3D and Glowing Title Styling */
-        .title-3d {
-            text-align: center;
-            font-size: clamp(2rem, 8vw, 4rem);
-            color: #ffcc00;
-            margin-bottom: 40px;
-            position: relative;
-            animation: title-anim 3s ease-in-out forwards;
-            opacity: 0;
-            text-shadow:
-                0 1px 0 #ccc,
-                0 2px 0 #c9c9c9,
-                0 3px 0 #bbb,
-                0 4px 0 #b9b9b9,
-                0 5px 0 #aaa,
-                0 6px 1px rgba(0, 0, 0, 0.1),
-                0 0 5px rgba(0, 0, 0, 0.1),
-                0 1px 3px rgba(0, 0, 0, 0.3),
-                0 3px 5px rgba(0, 0, 0, 0.2),
-                0 5px 10px rgba(0, 0, 0, 0.25),
-                0 10px 10px rgba(0, 0, 0, 0.2),
-                0 20px 20px rgba(0, 0, 0, 0.15);
-        }
+        @keyframes bgAnimated {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-        /* Title Animation */
-        @keyframes title-anim {
-            0% { transform: scale(0.8) translateY(-20px); opacity: 0; }
-            100% { transform: scale(1) translateY(0); opacity: 1; }
-        }
+        /* More Dynamic and Energetic Title Styling */
+        .title-3d {
+            text-align: center;
+            font-size: clamp(2.5rem, 9vw, 5rem);
+            color: #ff6f61;
+            margin-bottom: 50px;
+            position: relative;
+            animation: pulse-glow 3s ease-in-out infinite alternate;
+            text-shadow: 0 0 10px rgba(255, 111, 97, 0.8), 0 0 20px rgba(255, 111, 97, 0.5),
+                2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
 
-        /* News Container for a responsive grid layout */
-        .news-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-            width: 100%;
-            max-width: 1200px;
-            transition: all 0.5s ease;
-        }
+        @keyframes pulse-glow {
+            0% { transform: scale(1); text-shadow: 0 0 5px rgba(255, 111, 97, 0.5), 2px 2px 4px rgba(0, 0, 0, 0.3); }
+            100% { transform: scale(1.05); text-shadow: 0 0 15px rgba(255, 111, 97, 0.8), 2px 2px 6px rgba(0, 0, 0, 0.5); }
+        }
 
-        /* Responsive Grid for larger screens */
-        @media (min-width: 768px) {
-            .news-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
+        /* News Container for a responsive grid layout with smoother transitions */
+        .news-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
 
-        @media (min-width: 1024px) {
-            .news-container {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
+        /* Responsive Grid for larger screens */
+        @media (min-width: 768px) {
+            .news-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
 
-        /* Individual News Card Styling */
-        .news-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 15px;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-align: left;
-            opacity: 0; /* Initial state before animation */
-            animation: fadeInSlideUp 0.8s forwards; /* The animation to make it visible */
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden; /* Ensures glowing border stays within bounds */
-        }
-        
-        /* Keyframes for the card entry animation */
-        @keyframes fadeInSlideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+        @media (min-width: 1024px) {
+            .news-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
 
-        /* Glowing Border effect on cards */
-        .news-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
-            animation: color-glow 4s infinite alternate;
-            z-index: -1;
-            transition: all 0.3s ease;
-        }
+        /* Individual News Card Styling with enhanced visual appeal and animation */
+        .news-card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 25px;
+            border-radius: 18px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+            text-align: left;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
 
-        /* Keyframes for the glowing border effect on cards */
-        @keyframes color-glow {
-            0% { box-shadow: 0 0 10px rgba(0, 255, 255, 0.4); } /* Cyan glow */
-            25% { box-shadow: 0 0 10px rgba(255, 255, 0, 0.4); } /* Yellow glow */
-            50% { box-shadow: 0 0 10px rgba(255, 0, 255, 0.4); } /* Magenta glow */
-            75% { box-shadow: 0 0 10px rgba(0, 255, 0, 0.4); } /* Green glow */
-            100% { box-shadow: 0 0 10px rgba(0, 255, 255, 0.4); }
-        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-        /* Hover effect on news cards */
-        .news-card:hover {
-            transform: scale(1.05); /* Zoom-in effect */
-        }
+        /* Dynamic Glowing Border effect with more vibrant colors */
+        .news-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            background: linear-gradient(45deg, #ff6f61, #f44336, #9c27b0, #2196f3, #00bcd4, #4caf50, #ffeb3b, #ff9800);
+            border-radius: 18px;
+            z-index: -1;
+            animation: border-glow 5s linear infinite;
+            background-size: 200% 200%;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
 
-        .news-card:hover::before {
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.4); /* Brighter glow on hover */
-        }
+        .news-card:hover::before {
+            opacity: 1;
+        }
 
-        /* Image styling */
-        .news-card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            transition: transform 0.3s ease;
-        }
+        @keyframes border-glow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-        .news-card:hover img {
-            transform: scale(1.03);
-        }
+        /* More Pronounced Hover effect */
+        .news-card:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
 
-        /* Link and Text Styling (Headline) */
-        .news-card a {
-            font-size: 1.1em;
-            color: #00e0ff;
-            text-decoration: none;
-            font-weight: 600;
-            text-shadow: 0 0 5px rgba(0, 224, 255, 0.5);
-            transition: color 0.3s ease;
-            flex-grow: 1;
-            margin-bottom: 10px;
-        }
+        /* Image Styling with a subtle animation */
+        .news-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            transition: transform 0.3s ease-in-out;
+            animation: image-pulse 2s infinite alternate;
+        }
 
-        .news-card a:hover {
-            color: #fff;
-            text-shadow: 0 0 10px #fff;
-        }
+        @keyframes image-pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.02); }
+        }
 
-        .news-card p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9em;
-        }
-        
-        /* Footer styling with animation */
-        .footer {
-            margin-top: 50px;
-            padding-top: 20px;
-            font-size: 1.2em;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.5);
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-            animation: pulse 4s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.05); opacity: 1; }
-        }
-    </style>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2083692947196571"
-     crossorigin="anonymous"></script>
+        .news-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Link and Text Styling (Headline) with a brighter hover effect */
+        .news-card a {
+            font-size: 1.15em;
+            color: #64b5f6;
+            text-decoration: none;
+            font-weight: 600;
+            text-shadow: 0 0 5px rgba(100, 181, 246, 0.7);
+            transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+            flex-grow: 1;
+            margin-bottom: 10px;
+        }
+
+        .news-card a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #fff;
+        }
+
+        .news-card p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95em;
+        }
+        
+        /* Footer styling with a more dynamic animation */
+        .footer {
+            margin-top: 60px;
+            padding-top: 25px;
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #fdd835;
+            text-shadow: 0 0 15px rgba(253, 216, 53, 0.8);
+            animation: glow-pulse 3s infinite alternate;
+        }
+        
+        @keyframes glow-pulse {
+            0% { transform: scale(1); opacity: 0.8; text-shadow: 0 0 5px rgba(253, 216, 53, 0.5); }
+            100% { transform: scale(1.05); opacity: 1; text-shadow: 0 0 20px rgba(253, 216, 53, 0.9); }
+        }
+    </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2083692947196571" crossorigin="anonymous"></script>
 </head>
 <body>
 
-    <h1 class="title-3d">🌍 Global News - Live Updates</h1>
+    <h1 class="title-3d">🌍 Global News - Live Updates</h1>
 
-    <div id="news-container" class="news-container">
-    </div>
+    <div id="news-container" class="news-container">
+    </div>
 
-    <p class="footer">by sumant</p>
+    <p class="footer">by sumant</p>
 
-    <script>
-        // Array of 100 placeholder news headlines
-        const newsHeadlines = [
-            "Artificial Intelligence Achieves New Breakthrough in Medical Diagnostics", "SpaceX Successfully Launches Reusable Rocket, Lands on Ocean Platform", "Global Climate Summit Concludes with Historic New Agreements", "Archaeologists Discover Ancient City in Amazon Rainforest", "Major Tech Companies Announce Merger to Create New Super-Platform", "New Study Shows Promising Results for Alzheimer's Treatment", "International Team of Scientists Finds Evidence of Liquid Water on Mars", "Quantum Computing Milestone Reached: A Step Closer to Practical Use", "Economic Report Predicts Strong Growth for the Coming Fiscal Year", "World's Largest Solar Farm Powers up in the Sahara Desert", "New Zealand Declares a National Emergency Due to Volcanic Eruption", "Tech Giant's New Smartphone Features Revolutionary Holographic Display", "Global Sports Championship Kicks Off with a Spectacular Opening Ceremony", "Researchers Develop a New Method for Efficient Carbon Capture", "New Documentary on Endangered Species Garners Critical Acclaim", "Virtual Reality Gaming Market Sees Unprecedented Growth", "Historic Peace Treaty Signed Between Two Rival Nations", "Scientists Clone Extinct Species for the First Time", "The Rise of E-commerce in Developing Countries Continues to Accelerate", "Global Music Festival to Feature a Lineup of International Superstars", "Renewable Energy Investment Hits an All-Time High", "NASA Prepares for Manned Mission to Jupiter's Moon, Europa", "Major Film Studio Announces a Reboot of a Beloved Sci-Fi Franchise", "World Health Organization Declares End to a Global Pandemic", "Robotic Automation Transforms Manufacturing Industries Worldwide", "Global Stock Market Reaches Record Highs", "New Food Technology Creates Sustainable Protein Source", "International Art Exhibition showcases Digital and AI-Generated Works", "Humanitarian Aid Reaches Remote Communities After Natural Disaster", "The Future of Transportation: Hyperloop System Successfully Tested", "New Gene Therapy Offers Hope for Curing Genetic Diseases", "Global Cyberattack Averted by International Security Forces", "The Dawn of a New Era in Space Tourism", "Innovative Urban Farming Solutions Combat Food Scarcity", "A New Form of Matter Discovered by Particle Physicists", "World Leaders Meet to Discuss Global Economic Cooperation", "Major Sports League Adopts New Technology to Enhance Player Safety", "Breakthrough in Battery Technology Promises Longer-Lasting Electric Vehicles", "Deep-Sea Exploration Reveals New Marine Species", "The Impact of Social Media on Global Political Movements", "A New Era of Personalized Medicine with AI-Powered Diagnostics", "Global Education Summit Addresses the Future of Learning", "New Satellite Constellation Provides High-Speed Internet to Remote Areas", "Researchers Find a Way to Reverse the Effects of Aging in Cells", "The Return of the Classics: Vinyl Record Sales Soar Globally", "Major Cities Implement Smart City Technology for Better Living", "Astronauts Complete Historic Spacewalk to Repair International Space Station", "The Psychology of Decision-Making: A New Book Explores the Human Mind", "Global Supply Chains Reconfigured for Better Resilience", "A New Culinary Movement Focuses on Sustainable and Local Ingredients", "Major Financial Institutions Embrace Blockchain Technology", "The Role of Robotics in Disaster Relief and Rescue Operations", "New Documentary Explores the History of the Internet", "Sustainable Fashion Becomes a Mainstream Trend", "Global Efforts to Protect Endangered Coral Reefs Show Positive Results", "The Power of Data: How Analytics is Reshaping Industries", "New Archaeological Find Rewrites the History of an Ancient Civilization", "The Rise of Renewable Energy in the Developing World", "Breakthrough in Fusion Energy Research Offers Unlimited Power", "A New Novel Becomes a Global Bestseller Overnight", "Space Telescope Captures Stunning Images of Distant Galaxies", "Global Film Industry Embraces Virtual Production Technology", "The Future of Work: The Rise of Remote and Hybrid Models", "New Antibiotic Discovered to Combat Drug-Resistant Bacteria", "Sustainable Tourism Gains Popularity Around the World", "The Impact of AI on the Creative Arts", "Major Sports Team Wins Championship with an Underdog Story", "Innovative Water Purification System Solves Clean Water Crisis", "The Resurgence of Traditional Crafts in a Modern World", "Global Food Prices Stabilize After Major Harvests", "New Research on the Human Brain Provides Insights into Consciousness", "The Next Generation of Video Games Features Hyper-Realistic Graphics", "Global Efforts to End Hunger Show Significant Progress", "A New Approach to Mental Health Care Through Digital Platforms", "Major City Announces a Plan to Become Carbon Neutral by 2040", "The Evolution of Digital Currencies and Their Impact on the Economy", "International Collaboration Leads to a Cure for a Rare Disease", "The Rise of Space Exploration by Private Companies", "A New Study Reveals the Secret to a Longer, Healthier Life", "Global Music Charts Dominated by a New Independent Artist", "The Role of AI in Predicting and Mitigating Natural Disasters", "New Technology Allows for Instant Translation of Any Language", "The Future of Education: Personalized Learning with AI Tutors", "Major Automotive Company Unveils a Fully Autonomous Electric Car", "Global Efforts to Preserve Biodiversity Gain Momentum", "The Impact of Climate Change on Global Migration Patterns", "A New Book Explores the Philosophy of Time and Existence", "The Role of Social Entrepreneurs in Solving Global Problems", "Breakthrough in Organ Transplantation Using 3D Printing", "The Global Art Market Sees a Surge in Digital Art Sales", "New Research Sheds Light on the Mysteries of the Universe", "The Future of Finance: Decentralized and Digital", "World's Largest Dam Project Completed, Providing Clean Energy", "A New Wave of Innovation in Wearable Technology", "The Rise of Independent Filmmakers on Streaming Platforms", "Global Initiatives to Combat Plastic Pollution Show Results", "New Medical Device Offers Hope for Paralysis Patients", "The Future of Food: Lab-Grown Meat Becomes Commercially Available", "The Impact of AI on Job Markets and the Future of Work", "A New Era of Diplomacy: Global Leaders Meet to Forge Alliances"
-        ];
+    <script>
+        const latestNews = [
+            "Space agencies collaborate on new mission to explore Europa's subsurface ocean",
+            "Major tech companies announce a new industry-wide standard for AI ethics",
+            "Global leaders meet to sign historic agreement on climate change mitigation",
+            "Breakthrough in quantum computing promises to revolutionize data encryption",
+            "New archaeological findings in Egypt reveal insights into a forgotten dynasty",
+            "Global health experts issue a new alert for a widespread respiratory virus",
+            "Financial markets show volatility after unexpected economic report",
+            "A new documentary on deep-sea biodiversity receives critical acclaim",
+            "Innovative urban farming initiative successfully tackles food insecurity in major city",
+            "Researchers develop a new bio-degradable plastic from a surprising source",
+            "International team of astronomers discovers a new exoplanet potentially habitable",
+            "Global sports federations introduce a new rule to promote fairness",
+            "Technology company unveils a fully autonomous electric vehicle for public use",
+            "Humanitarian aid reaches war-torn region after a challenging relief effort",
+            "A new wave of music artists from Africa gains international recognition",
+            "Cybersecurity experts warn of a new global ransomware threat",
+            "The role of social media in modern political movements is debated by sociologists",
+            "New medical treatment for neurological disorders shows promising results",
+            "Conservation efforts lead to the recovery of several endangered species",
+            "The rise of virtual reality in education transforms learning experiences",
+            "World's tallest skyscraper project gets the final approval to proceed",
+            "New book by a renowned philosopher explores the future of humanity and technology"
+        ];
+        
+        const latestKeywordMap = {
+            "Europa's subsurface ocean": "Jupiter", "AI ethics": "AI", "climate change": "Climate", "quantum computing": "Technology", "archaeological findings": "Archaeology", "respiratory virus": "Health", "Financial markets": "Finance", "deep-sea biodiversity": "Ocean", "urban farming": "Farming", "bio-degradable plastic": "Recycling", "new exoplanet": "Space", "sports federations": "Sports", "autonomous electric vehicle": "EV", "Humanitarian aid": "Aid", "music artists from Africa": "Music", "ransomware threat": "Cybersecurity", "social media": "Social", "neurological disorders": "Medicine", "endangered species": "Animals", "virtual reality in education": "Education", "World's tallest skyscraper": "City", "renowned philosopher": "Philosophy"
+        };
 
-        // Function to create a descriptive image URL using Unsplash
-        function getImageFromKeyword(headline) {
-            const keywordMap = {
-                "Artificial Intelligence": "AI", "SpaceX": "Rocket", "Climate": "Earth", "Archaeologists": "History", "Tech Companies": "Tech", "Alzheimer's": "Health", "Mars": "Planet", "Quantum Computing": "Science", "Economic": "Finance", "Solar Farm": "Solar", "Volcanic": "Volcano", "Smartphone": "Phone", "Sports": "Sport", "Carbon Capture": "Environment", "Endangered Species": "Animals", "Virtual Reality": "VR", "Peace Treaty": "Peace", "Clone": "Science", "E-commerce": "E-commerce", "Music Festival": "Music", "Renewable Energy": "Energy", "NASA": "NASA", "Film Studio": "Film", "Pandemic": "Health", "Robotic Automation": "Robotics", "Stock Market": "Market", "Food Technology": "Food", "Art Exhibition": "Art", "Humanitarian Aid": "Aid", "Hyperloop": "Transport", "Gene Therapy": "Genetics", "Cyberattack": "Security", "Space Tourism": "Space", "Farming": "Farming", "Matter Discovered": "Physics", "World Leaders": "Politics", "Player Safety": "Safety", "Battery Technology": "Battery", "Deep-Sea": "Ocean", "Social Media": "Social", "Personalized Medicine": "Medicine", "Education Summit": "Education", "Satellite": "Satellite", "Aging": "Science", "Vinyl Record": "Music", "Smart City": "City", "Astronauts": "Astronauts", "Psychology": "Mind", "Supply Chains": "Logistics", "Culinary": "Cooking", "Blockchain": "Blockchain", "Robotics in Disaster": "Rescue", "Internet": "Internet", "Sustainable Fashion": "Fashion", "Coral Reefs": "Ocean", "Data": "Data", "Archaeological Find": "History", "Fusion Energy": "Energy", "Novel": "Book", "Space Telescope": "Space", "Film Industry": "Cinema", "Remote and Hybrid": "Work", "Antibiotic": "Health", "Tourism": "Travel", "AI on the Creative Arts": "Creativity", "Underdog Story": "Sports", "Water Purification": "Water", "Traditional Crafts": "Crafts", "Food Prices": "Food", "Human Brain": "Brain", "Video Games": "Gaming", "End Hunger": "Hunger", "Mental Health": "Health", "Carbon Neutral": "Environment", "Digital Currencies": "Crypto", "Rare Disease": "Health", "Space Exploration": "Space", "Longer, Healthier Life": "Health", "Independent Artist": "Music", "Predicting": "Prediction", "Translation": "Language", "AI Tutors": "Education", "Autonomous Electric Car": "EV", "Biodiversity": "Nature", "Climate Change": "Climate", "Philosophy of Time": "Philosophy", "Social Entrepreneurs": "Entrepreneurs", "Organ Transplantation": "Surgery", "Digital Art": "Art", "Mysteries of the Universe": "Universe", "Future of Finance": "Finance", "Largest Dam Project": "Dam", "Wearable Technology": "Wearables", "Independent Filmmakers": "Filmmakers", "Plastic Pollution": "Pollution", "Paralysis": "Medical", "Lab-Grown Meat": "Food", "AI on Job Markets": "Jobs", "Diplomacy": "Diplomacy"
-            };
+        function getLatestImage(headline) {
+            for (const keyword in latestKeywordMap) {
+                if (headline.includes(keyword)) {
+                    return `https://source.unsplash.com/600x400/?${latestKeywordMap[keyword]}`;
+                }
+            }
+            return `https://source.unsplash.com/600x400/?global+news`;
+        }
 
-            for (const keyword in keywordMap) {
-                if (headline.includes(keyword)) {
-                    // Use a search query to get an image from Unsplash
-                    const imageUrl = `https://source.unsplash.com/600x400/?${keywordMap[keyword]}`;
-                    return imageUrl;
-                }
-            }
-            // Fallback to a generic "news" image
-            return `https://source.unsplash.com/600x400/?news`;
-        }
+        const newsContainer = document.getElementById("news-container");
 
-        // Get the news container element
-        const newsContainer = document.getElementById("news-container");
+        function loadLatestNews() {
+            const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
-        // Function to load news cards
-        function loadNewsInstantly() {
-            const today = new Date().toDateString();
+            latestNews.forEach((headline, index) => {
+                const card = document.createElement("div");
+                card.className = "news-card";
 
-            newsHeadlines.forEach((headline, index) => {
-                const card = document.createElement("div");
-                card.className = "news-card";
+                const imageUrl = getLatestImage(headline);
 
-                const imageUrl = getImageFromKeyword(headline);
+                card.innerHTML = `
+                    <img src="${imageUrl}" alt="${headline}">
+                    <a href="#">${index + 1}. ${headline}</a>
+                    <p>Published: ${today}</p>
+                `;
 
-                card.innerHTML = `
-                    <img src="${imageUrl}" alt="News Image ${index + 1}" onerror="this.onerror=null;this.src='https://placehold.co/600x400/2c2f3a/ffffff?text=Image+Not+Found';">
-                    <a href="#">${index + 1}. ${headline}</a>
-                    <p>${today}</p>
-                `;
+                card.style.animationDelay = `${index * 0.15}s`;
+                newsContainer.appendChild(card);
+            });
+        }
 
-                // Stagger the animation delay for a smoother effect
-                card.style.animationDelay = `${index * 0.05}s`;
-                newsContainer.appendChild(card);
-            });
-        }
-        
-        // Call the function to load the news as soon as the page is ready
-        document.addEventListener('DOMContentLoaded', loadNewsInstantly);
-    </script>
+        document.addEventListener('DOMContentLoaded', loadLatestNews);
+    </script>
 </body>
 </html>
