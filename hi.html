@@ -149,7 +149,7 @@
         .animated-card span, .animated-card div { z-index: 10; position: relative; }
         
         /* --- Coding Guide Section --- */
-        #coding-guide-section { text-align: left; width: 100%; max-width: 1200px; }
+        #coding-guide-section { text-align: left; width: 100%; max-width: 1200px; display: none; }
         #coding-guide-section h1 { font-size: 2.5rem; color: #00f7ff; text-shadow: 0 0 15px #00f7ff; text-align: center; margin-bottom: 30px; }
         .tab-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; }
         .tab-button {
@@ -267,7 +267,7 @@
         <div class="menu-toggle" id="menu-toggle">☰</div>
         <div class="nav-links">
             <a href="#home-section" class="nav-link active">Home</a>
-            <a href="#coding-guide-section" class="nav-link">Coding Guide</a>
+            <a href="#google-terms-section" class="nav-link">Google Terms & Policy</a>
         </div>
     </nav>
 
@@ -297,10 +297,6 @@
                     <span>🕉️</span>
                     <div>Mythology</div>
                 </a>
-                <a class="card" href="#coding-guide-section">
-                    <span>💻</span>
-                    <div>Coding Guide</div>
-                </a>
                 <a class="card animated-card" href="https://policies.google.com/terms?hl=en" target="_blank">
                     <span>⚖️</span>
                     <div>Google Terms & Policy</div>
@@ -308,110 +304,21 @@
             </div>
         </section>
 
-        <section id="coding-guide-section">
-            <h1>💡 Programming Code Explained</h1>
-            <div class="tab-container">
-                <button class="tab-button" onclick="openTab(event, 'html')">HTML</button>
-                <button class="tab-button" onclick="openTab(event, 'css')">CSS</button>
-                <button class="tab-button" onclick="openTab(event, 'js')">JavaScript</button>
-            </div>
-            
-            <div id="html" class="tab-content">
-                <h2>HTML (HyperText Markup Language)</h2>
-                <p>HTML वेब पेजों की संरचना (structure) बनाने के लिए एक मूलभूत भाषा है। यह तत्वों (elements) और टैग्स (tags) का उपयोग करके कंटेंट को व्यवस्थित करती है। एक वेब पेज पर आप जो कुछ भी देखते हैं, जैसे कि हेडिंग, पैराग्राफ, इमेज, और लिंक्स, वे सभी HTML से ही बने होते हैं।</p>
-                <h3>Basic HTML Document Structure</h3>
-                <p>यहाँ एक आदर्श HTML दस्तावेज़ की संरचना दी गई है:</p>
-                <ul>
-                    <li>**`<!DOCTYPE html>`**: यह दस्तावेज़ को HTML5 के रूप में परिभाषित करता है।</li>
-                    <li>**`<html>`**: यह पूरे HTML पेज का मूल तत्व है।</li>
-                    <li>**`<head>`**: इसमें पेज के बारे में मेटा-जानकारी होती है (जैसे टाइटल, कैरेक्टर सेट)।</li>
-                    <li>**`<body>`**: इसमें पेज का वास्तविक, दिखने वाला कंटेंट होता है।</li>
-                </ul>
-                <pre>
-&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;My Web Page Title&lt;/title&gt;
-    &lt;link rel="stylesheet" href="style.css"&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;header&gt;
-        &lt;nav&gt;
-            &lt;a href="#home"&gt;Home&lt;/a&gt;
-            &lt;a href="#about"&gt;About&lt;/a&gt;
-        &lt;/nav&gt;
-    &lt;/header&gt;
-    &lt;main&gt;
-        &lt;h1&gt;Main Heading&lt;/h1&gt;
-        &lt;p&gt;This is a paragraph of text.&lt;/p&gt;
-        &lt;img src="image.jpg" alt="A descriptive image"&gt;
-        &lt;ul&gt;
-            &lt;li&gt;List item 1&lt;/li&gt;
-            &lt;li&gt;List item 2&lt;/li&gt;
-        &lt;/ul&gt;
-    &lt;/main&gt;
-    &lt;footer&gt;
-        &lt;p&gt;&amp;copy; 2024 My Website&lt;/p&gt;
-    &lt;/footer&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-                </pre>
-            </div>
-
-            <div id="css" class="tab-content">
-                <h2>CSS (Cascading Style Sheets)</h2>
-                <p>CSS वेब पेजों को सुंदर और आकर्षक बनाने के लिए स्टाइलिंग प्रदान करती है। यह रंग, फ़ॉन्ट, लेआउट और एनिमेशन को नियंत्रित करती है। CSS के बिना, वेब पेज साधारण टेक्स्ट की तरह दिखेंगे।</p>
-                <h3>CSS Selector and Properties</h3>
-                <p>CSS में, आप सेलेक्टर (selector) का उपयोग करके HTML तत्वों का चयन करते हैं और फिर गुण (properties) का उपयोग करके उन्हें स्टाइल करते हैं।</p>
-                <pre>
-/* This is a CSS comment */
-body {
-    font-family: 'Poppins', sans-serif;
-    color: white;
-}
-
-.my-class {
-    background-color: #f0f8ff;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-#my-id {
-    font-size: 2rem;
-    text-align: center;
-}
-                </pre>
-            </div>
-
-            <div id="js" class="tab-content">
-                <h2>JavaScript</h2>
-                <p>JavaScript is a powerful scripting language that makes webpages dynamic and interactive. It enables you to manipulate the content of an HTML page, handle user events (like clicks), validate forms, and communicate with web servers. It's the brain of your website.</p>
-                
-                <h3>Basic Event Handling and DOM Manipulation</h3>
-                <p>Here's how you can use JavaScript to listen for user actions and change the page's content dynamically.</p>
-                <pre>
-&lt;script&gt;
-    // A function to handle a click event
-    document.getElementById("myButton").addEventListener("click", function() {
-        alert("Button was clicked!");
-    });
-
-    // A function to change an element's text after a delay
-    setTimeout(function() {
-        document.getElementById("greeting").innerText = "Welcome to our website!";
-    }, 2000); // 2000 milliseconds = 2 seconds
-
-    // A function to add or remove a CSS class
-    const element = document.getElementById("myElement");
-    element.classList.add("highlight");
-    // Or to toggle a class
-    element.classList.toggle("hidden");
-&lt;/script&gt;
-                </pre>
-            </div>
+        <section id="google-terms-section" style="text-align: center; padding: 100px 20px;">
+            <h1>Google Terms & Policy</h1>
+            <p>
+                To ensure a safe and secure experience, please review Google's Terms of Service and Privacy Policy. By using Google's services, you agree to these terms.
+            </p>
+            <a href="https://policies.google.com/terms?hl=en" target="_blank" class="card animated-card" style="display: inline-block; max-width: 400px; margin-top: 30px;">
+                <span>📜</span>
+                <div>Read Google's Terms of Service</div>
+            </a>
+            <a href="https://policies.google.com/privacy?hl=en" target="_blank" class="card" style="display: inline-block; max-width: 400px; margin-top: 20px;">
+                <span>🛡️</span>
+                <div>Read Google's Privacy Policy</div>
+            </a>
         </section>
+
     </main>
 
     <footer class="site-footer">
@@ -439,14 +346,15 @@ body {
         </div>
     </div>
     <script>
-        // Tab switching for Coding Guide section
+        // Tab switching for Coding Guide section (Ab yeh code nahi chalega, kyunki section hata diya gaya hai)
         function openTab(evt, tabName) {
             const tabContents = document.querySelectorAll('.tab-content');
             tabContents.forEach(tab => tab.classList.remove('active'));
             const tabButtons = document.querySelectorAll('.tab-button');
             tabButtons.forEach(btn => btn.classList.remove('active'));
-            document.getElementById(tabName).classList.add('active');
-            evt.currentTarget.classList.add('active');
+            const newContent = document.getElementById(tabName);
+            if(newContent) newContent.classList.add('active');
+            if(evt.currentTarget) evt.currentTarget.classList.add('active');
         }
 
         // Scroll-based active link and section display
@@ -487,22 +395,15 @@ body {
             });
         });
 
-        // Initial load: Set the home section and the first tab as active, then load ads
+        // Initial load: Set the home section as active
         document.addEventListener('DOMContentLoaded', () => {
             const homeSection = document.getElementById('home-section');
             if (homeSection) {
                 homeSection.classList.add('active');
             }
-            const firstTabButton = document.querySelector('.tab-container .tab-button');
-            const firstTabContent = document.querySelector('.tab-content');
-            if (firstTabButton && firstTabContent) {
-                firstTabButton.classList.add('active');
-                firstTabContent.classList.add('active');
-            }
         });
 
         // AdSense Integration - Replace with your actual ad slot ID
-        // (Iske liye aapko apne AdSense account se code mil jayega)
         (function(){
             var adScript = document.createElement('script');
             adScript.async = true;
