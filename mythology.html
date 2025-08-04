@@ -1,209 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-K1GQC84RQP"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-K1GQC84RQP');
-</script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🌌 Ancient Myths - The Glow of Legends</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* Global Styles & Body Background */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      color: #fff;
-      background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1f1c2c);
-      background-size: 400% 400%;
-      animation: bgAnimated 15s ease infinite;
-      min-height: 100vh;
-      padding: 60px 20px;
-      position: relative;
-      overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    @keyframes bgAnimated {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-K1GQC84RQP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-K1GQC84RQP');
+  </script>
 
-    /* Magical Background Orbs */
-    body::before, body::after {
-      content: '';
-      position: absolute;
-      width: 400px;
-      height: 400px;
-      border-radius: 50%;
-      z-index: -1;
-      animation: glowOrb 10s ease-in-out infinite alternate;
-      filter: blur(70px);
-    }
-    body::before {
-      top: -100px; left: -100px;
-      background: radial-gradient(circle, rgba(0, 255, 255, 0.5), transparent 70%);
-    }
-    body::after {
-      bottom: -100px; right: -100px;
-      background: radial-gradient(circle, rgba(255, 0, 255, 0.5), transparent 70%);
-      animation-delay: 5s;
-    }
-    @keyframes glowOrb {
-      from { transform: translate(0, 0) scale(1); opacity: 0.7; }
-      to { transform: translate(50px, 50px) scale(1.1); opacity: 1; }
-    }
-    
-    /* New Main Title Animation */
-    h1 {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      text-align: center;
-      margin-bottom: 50px;
-      color: #ffeb3b; /* Golden color for legends */
-      text-shadow: 0 0 20px #ffeb3b, 0 0 40px rgba(255, 235, 59, 0.5);
-      animation: titleShimmer 6s linear infinite;
-      letter-spacing: 2px;
-    }
-    @keyframes titleShimmer {
-      0% { text-shadow: 0 0 20px #ffeb3b; }
-      50% { text-shadow: 0 0 30px #ffeb3b, 0 0 50px rgba(255, 235, 59, 0.8), 0 0 60px rgba(255, 235, 59, 0.3); }
-      100% { text-shadow: 0 0 20px #ffeb3b; }
-    }
+  <!-- Meta and Fonts -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌌 Ancient Myths - The Glow of Legends</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-    /* New Container for multiple stories */
-    .stories-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 40px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    @media (min-width: 768px) {
-      .stories-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
+  <!-- Google Ads -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2083692947196571"
+    crossorigin="anonymous"></script>
 
-    /* Story Card Styles */
-    .story-card {
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-      padding: 30px;
-      opacity: 0;
-      transform: translateY(60px) scale(0.95);
-      animation: storyFadeIn 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease;
-      position: relative;
-      overflow: hidden;
-    }
+  <!-- Full CSS -->
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
 
-    @keyframes storyFadeIn {
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    
-    /* Glowing Border on Hover */
-    .story-card::before {
-      content: '';
-      position: absolute;
-      top: -2px; left: -2px;
-      width: calc(100% + 4px); height: calc(100% + 4px);
-      background: linear-gradient(45deg, #ffcc00, #ff6f61, #00ffff, #0077ff);
-      border-radius: 20px;
-      z-index: -1;
-      animation: border-glow 5s linear infinite;
-      background-size: 200% 200%;
-      opacity: 0;
-      transition: opacity 0.3s ease-in-out;
-    }
-    .story-card:hover::before { opacity: 1; }
-    @keyframes border-glow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    .story-card:hover {
-      transform: translateY(-15px) scale(1.04);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1f1c2c);
+      background-size: 400% 400%;
+      animation: bgAnimated 15s ease infinite;
+      min-height: 100vh;
+      padding: 60px 20px;
+      position: relative;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-    /* Card Title and Heading Styles */
-    h2 {
-      font-size: clamp(1.5rem, 3vw, 2.2rem);
-      margin-bottom: 15px;
-      color: #00ffff;
-      text-shadow: 0 0 10px #00ffff;
-    }
-    .story-card p {
-      text-align: justify;
-      line-height: 1.8;
-      margin-bottom: 15px;
-      font-size: 1.1rem;
-      color: rgba(255, 255, 255, 0.9);
-    }
-  </style>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2083692947196571"
-     crossorigin="anonymous"></script>
+    @keyframes bgAnimated {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Glowing Orbs + Stars */
+    body::before, body::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      z-index: -1;
+      animation: glowOrb 10s ease-in-out infinite alternate;
+      filter: blur(70px);
+    }
+
+    body::before {
+      top: -100px;
+      left: -100px;
+      background: radial-gradient(circle, rgba(0, 255, 255, 0.5), transparent 70%);
+    }
+
+    body::after {
+      bottom: -100px;
+      right: -100px;
+      background: radial-gradient(circle, rgba(255, 0, 255, 0.5), transparent 70%), 
+                  url('https://www.transparenttextures.com/patterns/stardust.png');
+      background-size: 300px 300px;
+      animation: floatStars 30s linear infinite;
+      animation-delay: 5s;
+    }
+
+    @keyframes glowOrb {
+      from { transform: translate(0, 0) scale(1); opacity: 0.7; }
+      to { transform: translate(50px, 50px) scale(1.1); opacity: 1; }
+    }
+
+    @keyframes floatStars {
+      from { background-position: 0 0; }
+      to { background-position: 1000px 1000px; }
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      text-align: center;
+      margin-bottom: 10px;
+      color: #ffeb3b;
+      text-shadow: 0 0 20px #ffeb3b, 0 0 40px rgba(255, 235, 59, 0.5);
+      animation: titleShimmer 6s linear infinite;
+      letter-spacing: 2px;
+    }
+
+    @keyframes titleShimmer {
+      0% { text-shadow: 0 0 20px #ffeb3b; }
+      50% { text-shadow: 0 0 30px #ffeb3b, 0 0 50px rgba(255, 235, 59, 0.8), 0 0 60px rgba(255, 235, 59, 0.3); }
+      100% { text-shadow: 0 0 20px #ffeb3b; }
+    }
+
+    .subtitle {
+      color: #ccc;
+      text-align: center;
+      font-size: 1.2rem;
+      margin-top: -20px;
+      margin-bottom: 40px;
+    }
+
+    .stories-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 768px) {
+      .stories-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .story-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      padding: 30px;
+      opacity: 0;
+      transform: translateY(60px) scale(0.95);
+      animation: storyFadeIn 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @keyframes storyFadeIn {
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .story-card::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      width: calc(100% + 4px);
+      height: calc(100% + 4px);
+      background: linear-gradient(45deg, #ffcc00, #ff6f61, #00ffff, #0077ff);
+      border-radius: 20px;
+      z-index: -1;
+      animation: border-glow 5s linear infinite;
+      background-size: 200% 200%;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .story-card:hover::before {
+      opacity: 1;
+    }
+
+    @keyframes border-glow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .story-card:hover {
+      transform: translateY(-15px) scale(1.04);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+    }
+
+    h2 {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      margin-bottom: 15px;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .story-card:hover h2 {
+      color: #ffcc00;
+      text-shadow: 0 0 15px #ffcc00, 0 0 30px #ffcc00;
+    }
+
+    .story-card p {
+      text-align: justify;
+      line-height: 1.8;
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .story-text {
+      background: linear-gradient(to right, rgba(255,255,255,0.05), rgba(255,255,255,0.15));
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.05);
+      transition: 0.3s ease-in-out;
+    }
+
+    .story-card:hover .story-text {
+      background: linear-gradient(to right, rgba(255,255,255,0.08), rgba(255,255,255,0.2));
+    }
+  </style>
 </head>
-<body>
-  <header>
-    <h1>🌌 Ancient Myths - The Glow of Legends</h1>
-  </header>
-  <main>
-    <div class="stories-grid" id="stories-grid">
-    </div>
-  </main>
-  <script>
-    const myths = [
-      {
-        title: "The Myth of Amaterasu and the Sun",
-        origin: "Japanese Mythology",
-        story: `In the high heavens of Japanese mythology, the sun goddess Amaterasu ruled with grace and benevolence, bringing light and warmth to the world. Her younger brother, Susanoo, the storm god, was known for his wild and destructive nature, a stark contrast to his sister's peaceful domain. One day, in a fit of rage, Susanoo threw a flayed horse into Amaterasu’s weaving hall, causing one of her attendants to die from shock. Devastated and furious, Amaterasu sealed herself within the Celestial Rock Cave (Amano-Iwato), plunging the entire world into darkness. The gods and goddesses gathered outside, desperate to bring the sun goddess back. They tried everything, but Amaterasu would not emerge. Finally, the goddess of mirth, Ame-no-Uzume, had a brilliant idea. She overturned a tub and began to dance wildly and comically upon it. The gods found this so amusing that they began to laugh uproariously. Intrigued by the sound of laughter, Amaterasu peeked out of the cave. The gods quickly showed her a beautiful, polished mirror and told her that a goddess even more splendid than herself had arrived. As Amaterasu leaned forward to get a better look, the god Ame-no-Tajikarao, a god of immense strength, pulled the rock away and dragged her out. The sun returned, and light filled the world once more.`
-      },
-      {
-        title: "The Birth of Athena",
-        origin: "Greek Mythology",
-        story: `Zeus, the king of the gods, learned of a prophecy that his son by the goddess Metis would one day overthrow him. To prevent this, he tricked Metis and swallowed her whole. However, Metis was already pregnant. After some time, Zeus began to suffer from a terrible headache. The pain became so unbearable that he commanded Hephaestus, the god of the forge, to split his head open with an axe. From his head, a fully grown and armored Athena, the goddess of wisdom, warfare, and crafts, sprang forth with a fierce cry. This birth, a symbol of her strength and intellect, established her as one of the most powerful and revered deities of Olympus.`
-      },
-      {
-        title: "Thor's Hammer is Stolen",
-        origin: "Norse Mythology",
-        story: `In the halls of Asgard, Thor, the god of thunder, awoke one morning to find his mighty hammer, Mjölnir, missing. Without his hammer, Asgard was defenseless against its enemies. The clever god Loki discovered that the giant Thrym had stolen Mjölnir and demanded the hand of the goddess Freyja in marriage as ransom. Unwilling to sacrifice Freyja, the gods devised a plan. They disguised Thor as Freyja, dressing him in a bridal gown and a veil. Thor, furious but determined, traveled to Thrym's hall with Loki, who was disguised as his handmaiden. Thrym, fooled by the disguise, brought Mjölnir out to consecrate his "bride." The moment the hammer was in his grasp, Thor tore off his disguise and slew Thrym and all the other giants in the hall, retrieving his hammer and restoring peace to Asgard.`
-      },
-      {
-        title: "The Epic of Gilgamesh",
-        origin: "Mesopotamian Mythology",
-        story: `Gilgamesh was a powerful king of Uruk, known for his immense strength but also his tyrannical rule. The gods created a wild man, Enkidu, to challenge and humble him. After a fierce battle, the two became best friends, embarking on a series of adventures together, including a journey to the Cedar Forest to slay the monster Humbaba. However, their defiance of the gods led to Enkidu's death. Devastated by the loss of his friend and fearing his own mortality, Gilgamesh set out on a quest for immortality. His journey led him to the wise man Utnapishtim, who had survived a great flood. Utnapishtim shared the secret of a plant that could restore youth. Gilgamesh found the plant, but a snake stole and ate it while he was bathing. Though his quest for immortality failed, Gilgamesh returned to Uruk with a new wisdom, accepting his mortality and becoming a great and just king.`
-      }
-    ];
-    
-    const storiesGrid = document.getElementById('stories-grid');
-    
-    function loadMyths() {
-      myths.forEach((myth, index) => {
-        const storyCard = document.createElement('div');
-        storyCard.className = 'story-card';
-        storyCard.setAttribute('aria-label', `Myth: ${myth.title}`);
-        storyCard.innerHTML = `
-          <h2>${myth.title}</h2>
-          <p style="font-style: italic; color: #aaa; margin-bottom: 20px;">(${myth.origin})</p>
-          <p class="story-text">${myth.story}</p>
-        `;
-        storyCard.style.animationDelay = `${index * 0.2}s`;
-        storiesGrid.appendChild(storyCard);
-      });
-    }
-    
-    document.addEventListener('DOMContentLoaded', loadMyths);
-  </script>
 
+<body>
+  <header>
+    <h1>🌌 Ancient Myths - The Glow of Legends</h1>
+    <p class="subtitle">Discover mythical stories from around the world ✨</p>
+  </header>
+  <main>
+    <div class="stories-grid" id="stories-grid"></div>
+  </main>
+
+  <script>
+    const myths = [
+      {
+        title: "The Myth of Amaterasu and the Sun",
+        origin: "Japanese Mythology",
+        story: `In the high heavens of Japanese mythology, the sun goddess Amaterasu ruled...`
+      },
+      {
+        title: "The Birth of Athena",
+        origin: "Greek Mythology",
+        story: `Zeus, the king of the gods, learned of a prophecy that his son...`
+      },
+      {
+        title: "Thor's Hammer is Stolen",
+        origin: "Norse Mythology",
+        story: `In the halls of Asgard, Thor, the god of thunder, awoke one morning...`
+      },
+      {
+        title: "The Epic of Gilgamesh",
+        origin: "Mesopotamian Mythology",
+        story: `Gilgamesh was a powerful king of Uruk, known for his immense strength...`
+      }
+    ];
+
+    const storiesGrid = document.getElementById('stories-grid');
+
+    function loadMyths() {
+      myths.forEach((myth, index) => {
+        const storyCard = document.createElement('div');
+        storyCard.className = 'story-card';
+        storyCard.setAttribute('aria-label', `Myth: ${myth.title}`);
+        storyCard.innerHTML = `
+          <h2>${myth.title}</h2>
+          <p style="font-style: italic; color: #aaa; margin-bottom: 20px;">(${myth.origin})</p>
+          <p class="story-text">${myth.story}</p>
+        `;
+        storyCard.style.animationDelay = `${index * 0.2}s`;
+        storiesGrid.appendChild(storyCard);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', loadMyths);
+  </script>
 </body>
 </html>
