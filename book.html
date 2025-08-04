@@ -67,7 +67,7 @@
             max-width: 900px;
             margin: 0 auto;
             position: relative;
-            z-index: 1; /* Ensure content is above the background effects */
+            z-index: 1;
         }
 
         h1.main-title {
@@ -102,10 +102,10 @@
         /* ----------------------- Story Card Styling (Glassmorphism) ----------------------- */
         .story-container {
             padding: 40px;
-            background: rgba(255, 255, 255, 0.08); /* Semi-transparent background */
-            backdrop-filter: blur(15px); /* Strong blur effect for glassmorphism */
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            border-radius: 25px; /* Softer rounded corners */
+            border-radius: 25px;
             border: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
             text-align: center;
@@ -149,13 +149,22 @@
             gap: 10px;
             transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
             text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-            -webkit-user-select: none;
-            -moz-user-select: none;
             user-select: none;
             position: relative;
             overflow: hidden;
         }
-
+        
+        .feedback-button.like-button .label {
+            transition: opacity 0.3s ease, width 0.3s ease;
+        }
+        
+        /* Hide "Like" text and adjust spacing when active */
+        .feedback-button.liked .label {
+            opacity: 0;
+            width: 0;
+            margin-right: -10px;
+        }
+        
         .feedback-button::after {
             content: '';
             position: absolute;
@@ -245,7 +254,7 @@
     <p class="story-text">एक छोटे से गाँव में, राहुल नाम का एक बच्चा रहता था। वह पढ़ने में बहुत अच्छा नहीं था, लेकिन उसके पास एक जादुई कलम थी। जब भी वह उस कलम से कुछ लिखता, तो वह सच हो जाता। एक दिन उसने लिखा, "गाँव में बारिश हो।" और तुरंत, आसमान में बादल छा गए और बारिश होने लगी। गाँव के लोग बहुत खुश हुए। राहुल ने अपनी जादुई कलम से गाँव को हरा-भरा और खुशहाल बना दिया।</p>
     <div class="feedback-section">
         <button class="feedback-button like-button" onclick="handleFeedback(this, 1, 'like')">
-            <span class="icon">👍</span> Like <span class="count">0</span>
+            <span class="icon">👍</span> <span class="label">Like</span> <span class="count">10</span>
         </button>
         <button class="feedback-button dislike-button" onclick="handleFeedback(this, 1, 'dislike')">
             <span class="icon">👎</span> Dislike <span class="count">0</span>
@@ -259,10 +268,10 @@
     <p class="story-text">एक पुराने महल के बगीचे में, एक लाल गुलाब था जो रात में चमकता था। सभी लोग सोचते थे कि यह एक जादू है। लेकिन एक बूढ़ा माली जानता था कि वह गुलाब सिर्फ उन लोगों के लिए चमकता है जिनके दिल में सच्ची मोहब्बत होती है। एक दिन एक राजकुमार ने उस गुलाब को अपनी राजकुमारी के लिए तोड़ने की कोशिश की, लेकिन वह नहीं टूटा। उसने अपनी सच्ची मोहब्बत का इज़हार किया, और गुलाब चमकने लगा।</p>
     <div class="feedback-section">
         <button class="feedback-button like-button" onclick="handleFeedback(this, 2, 'like')">
-            <span class="icon">👍</span> Like <span class="count">0</span>
+            <span class="icon">👍</span> <span class="label">Like</span> <span class="count">15</span>
         </button>
         <button class="feedback-button dislike-button" onclick="handleFeedback(this, 2, 'dislike')">
-            <span class="icon">👎</span> Dislike <span class="count">0</span>
+            <span class="icon">👎</span> Dislike <span class="count">2</span>
         </button>
     </div>
     <p id="message-2" class="feedback-message"></p>
@@ -273,10 +282,10 @@
         <p class="story-text">एक बार एक राजा ने घोषणा की कि वह एक अनोखी मछली को इनाम देगा जो उसके लिए एक खास काम कर सके। तालाब में तीन मछलियां रहती थीं - एक बुद्धिमान, एक चालाक और एक मूर्ख। बुद्धिमान मछली ने सोचा कि राजा मूर्ख है और वह बिना मतलब का काम नहीं करेगी। चालाक मछली ने राजा को एक ऐसा काम दिया जिसे करने में उसे समय लगा और वह राजा को बेवकूफ बनाने में सफल रही। लेकिन मूर्ख मछली ने राजा की आज्ञा का पालन किया और उसने राजा को एक ऐसा काम करके दिखाया जो राजा को खुश कर सके। राजा ने मूर्ख मछली को सबसे बड़ा इनाम दिया। इस कहानी से हमें यह सीख मिलती है कि कभी-कभी मूर्खता भी बुद्धिमानी से ज़्यादा काम आती है, क्योंकि मूर्ख लोग बिना सोचे-समझे काम करते हैं और वे सही समय पर सही काम कर पाते हैं।</p>
         <div class="feedback-section">
             <button class="feedback-button like-button" onclick="handleFeedback(this, 20, 'like')">
-                <span class="icon">👍</span> Like <span class="count">0</span>
+                <span class="icon">👍</span> <span class="label">Like</span> <span class="count">8</span>
             </button>
             <button class="feedback-button dislike-button" onclick="handleFeedback(this, 20, 'dislike')">
-                <span class="icon">👎</span> Dislike <span class="count">0</span>
+                <span class="icon">👎</span> Dislike <span class="count">1</span>
             </button>
         </div>
         <p id="message-20" class="feedback-message"></p>
@@ -287,10 +296,10 @@
         <p class="story-text">एक बहुत ही बहादुर राजा था जो अपनी प्रजा की सुरक्षा के लिए हमेशा तत्पर रहता था। एक बार, उसके राज्य पर एक विशाल ड्रैगन ने हमला कर दिया। ड्रैगन हर दिन एक बच्चे को खाने आता था। राजा ने ड्रैगन से लड़ने का फैसला किया। उसने अपने सैनिकों को बुलाया और सभी को अपनी-अपनी तलवारों को तेज़ करने को कहा। राजा ने ड्रैगन से लड़ाई की, लेकिन वह बहुत ताकतवर था। राजा ने एक चाल चली और उसने ड्रैगन को एक गुफा में फंसा दिया। ड्रैगन गुफा में फंस गया और वह वहाँ से बाहर नहीं निकल सका। राजा ने अपनी प्रजा को ड्रैगन से बचाया और उसने अपने सैनिकों को बहादुरी के लिए धन्यवाद दिया।</p>
         <div class="feedback-section">
             <button class="feedback-button like-button" onclick="handleFeedback(this, 21, 'like')">
-                <span class="icon">👍</span> Like <span class="count">0</span>
+                <span class="icon">👍</span> <span class="label">Like</span> <span class="count">25</span>
             </button>
             <button class="feedback-button dislike-button" onclick="handleFeedback(this, 21, 'dislike')">
-                <span class="icon">👎</span> Dislike <span class="count">0</span>
+                <span class="icon">👎</span> Dislike <span class="count">3</span>
             </button>
         </div>
         <p id="message-21" class="feedback-message"></p>
@@ -301,10 +310,10 @@
         <p class="story-text">चाँद और सूरज बहुत अच्छे दोस्त थे, लेकिन वे कभी मिल नहीं पाते थे। सूरज दिन में निकलता था और चाँद रात में। एक दिन सूरज ने चाँद से कहा, "काश हम मिल पाते।" चाँद ने एक योजना बनाई। उसने अपनी सारी रोशनी पृथ्वी पर भेज दी, जिससे रात में भी दिन जैसा उजाला हो गया। सूरज ने उसे देखा और दोनों मिलकर आसमान में एक सुंदर इंद्रधनुष बना दिया।</p>
         <div class="feedback-section">
             <button class="feedback-button like-button" onclick="handleFeedback(this, 22, 'like')">
-                <span class="icon">👍</span> Like <span class="count">0</span>
+                <span class="icon">👍</span> <span class="label">Like</span> <span class="count">30</span>
             </button>
             <button class="feedback-button dislike-button" onclick="handleFeedback(this, 22, 'dislike')">
-                <span class="icon">👎</span> Dislike <span class="count">0</span>
+                <span class="icon">👎</span> Dislike <span class="count">5</span>
             </button>
         </div>
         <p id="message-22" class="feedback-message"></p>
@@ -313,17 +322,26 @@
     <div class="story-container">
         <h3>मूर्ख राजा और तीन मछलियां</h3>
         <p class="story-text">एक बार एक राजा ने घोषणा की कि वह एक अनोखी मछली को इनाम देगा जो उसके लिए एक खास काम कर सके। तालाब में तीन मछलियां रहती थीं - एक बुद्धिमान, एक </p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 23, 'like')">
+                <span class="icon">👍</span> <span class="label">Like</span> <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 23, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-23" class="feedback-message"></p>
     </div>
     
 </div>
 
 <script>
     function handleFeedback(button, storyId, type) {
-        // Find the parent story container
         const storyContainer = button.closest('.story-container');
         const message = storyContainer.querySelector(`#message-${storyId}`);
         const likeButton = storyContainer.querySelector('.like-button');
         const dislikeButton = storyContainer.querySelector('.dislike-button');
+        const likeLabel = likeButton.querySelector('.label');
 
         let messageText = '';
 
@@ -335,6 +353,7 @@
                 likeButton.classList.add('liked');
                 dislikeButton.classList.remove('disliked');
                 messageText = 'धन्यवाद! हमें खुशी है कि आपको यह कहानी पसंद आई।';
+
             } else {
                 // User is unliking
                 let count = parseInt(likeButton.querySelector('.count').innerText) - 1;
@@ -363,7 +382,6 @@
         if (messageText) {
             message.innerText = messageText;
             message.classList.add('show');
-            // Hide the message after 3 seconds
             setTimeout(() => {
                 message.classList.remove('show');
             }, 3000);
