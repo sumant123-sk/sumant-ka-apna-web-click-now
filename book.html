@@ -1,601 +1,927 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-K1GQC84RQP"></script>
+<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-K1GQC84RQP"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  gtag('config', 'G-K1GQC84RQP');
+  gtag('config', 'G-K1GQC84RQP');
 </script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E96EFXBT9W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  gtag('config', 'G-E96EFXBT9W');
+  gtag('config', 'G-E96EFXBT9W');
 </script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>📖 Story Book - Tales with a Glow</title>
-    <!-- Poppins Font from Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        /* Global & Body Styling */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>📖 Story Book - Tales with a Glow</title>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global & Body Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            color: #fff;
-            /* Dynamic background animation with a smooth transition */
-            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1f1c2c);
-            background-size: 400% 400%;
-            animation: bgAnimated 12s ease infinite;
-            min-height: 100vh;
-            padding: 60px 20px;
-            position: relative;
-            overflow-x: hidden;
-        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            /* Dynamic background animation with a smooth transition */
+            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1f1c2c);
+            background-size: 400% 400%;
+            animation: bgAnimated 12s ease infinite;
+            min-height: 100vh;
+            padding: 60px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
 
-        /* Keyframes for the background animation */
-        @keyframes bgAnimated {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+        /* Keyframes for the background animation */
+        @keyframes bgAnimated {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-        /* Animated glowing circles in the background */
-        body::before, body::after {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(0, 255, 255, 0.4), transparent 70%);
-            border-radius: 50%;
-            z-index: -1;
-            animation: pulse 8s ease infinite alternate;
-        }
+        /* Animated glowing circles in the background */
+        body::before, body::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.4), transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: pulse 8s ease infinite alternate;
+        }
 
-        body::before {
-            top: -50px;
-            left: -50px;
-        }
+        body::before {
+            top: -50px;
+            left: -50px;
+        }
 
-        body::after {
-            bottom: -50px;
-            right: -50px;
-            animation-delay: 4s;
-        }
+        body::after {
+            bottom: -50px;
+            right: -50px;
+            animation-delay: 4s;
+        }
 
-        @keyframes pulse {
-            from { transform: scale(0.9); }
-            to { transform: scale(1.1); }
-        }
+        @keyframes pulse {
+            from { transform: scale(0.9); }
+            to { transform: scale(1.1); }
+        }
 
-        /* Container for all stories */
-        .main-container {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
+        /* Container for all stories */
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
 
-        /* Styling for the main headings */
-        h1.main-title {
-            font-size: clamp(2.5rem, 8vw, 4rem);
-            text-align: center;
-            margin-bottom: 20px;
-            color: #00ffff;
-            text-shadow: 0 0 15px #00ffff, 0 0 25px #00ffff;
-            animation: titleGlow 4s infinite alternate;
-        }
+        /* Styling for the main headings */
+        h1.main-title {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            text-align: center;
+            margin-bottom: 20px;
+            color: #00ffff;
+            text-shadow: 0 0 15px #00ffff, 0 0 25px #00ffff;
+            animation: titleGlow 4s infinite alternate;
+        }
 
-        /* Animation for the main title glow */
-        @keyframes titleGlow {
-            from { text-shadow: 0 0 15px #00ffff; }
-            to { text-shadow: 0 0 25px #00ffff, 0 0 40px #00ffff; }
-        }
-        
-        h2 {
-            font-size: clamp(1.8rem, 6vw, 2.5rem);
-            margin-bottom: 30px;
-            color: #ffcc00;
-            text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00;
-            text-align: center;
-        }
+        /* Animation for the main title glow */
+        @keyframes titleGlow {
+            from { text-shadow: 0 0 15px #00ffff; }
+            to { text-shadow: 0 0 25px #00ffff, 0 0 40px #00ffff; }
+        }
+        
+        h2 {
+            font-size: clamp(1.8rem, 6vw, 2.5rem);
+            margin-bottom: 30px;
+            color: #ffcc00;
+            text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00;
+            text-align: center;
+        }
 
-        /* Styling for each story card */
-        .story-container {
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(8px);
-            border-radius: 20px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            animation: cardGlow 6s infinite alternate;
-        }
-        
-        /* Hover effect on story cards */
-        .story-container:hover {
-            transform: scale(1.02); /* Zoom-in effect */
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.4);
-        }
+        /* Styling for each story card */
+        .story-container {
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            animation: cardGlow 6s infinite alternate;
+        }
+        
+        /* Hover effect on story cards */
+        .story-container:hover {
+            transform: scale(1.02); /* Zoom-in effect */
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.4);
+        }
 
-        /* Animation for the card glow */
-        @keyframes cardGlow {
-            from { box-shadow: 0 0 10px rgba(0, 255, 255, 0.4); }
-            to { box-shadow: 0 0 20px rgba(0, 255, 255, 0.6); }
-        }
+        /* Animation for the card glow */
+        @keyframes cardGlow {
+            from { box-shadow: 0 0 10px rgba(0, 255, 255, 0.4); }
+            to { box-shadow: 0 0 20px rgba(0, 255, 255, 0.6); }
+        }
 
-        /* Story text styling */
-        .story-text {
-            text-align: justify;
-            line-height: 1.8;
-            margin-bottom: 25px;
-            font-size: 1.1rem;
-        }
+        /* Story text styling */
+        .story-text {
+            text-align: justify;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
 
-        /* Styling for the like/dislike buttons section */
-        .feedback-section {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
+        /* Styling for the like/dislike buttons section */
+        .feedback-section {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
 
-        /* Styling for feedback buttons */
-        .feedback-button {
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
+        /* Styling for feedback buttons */
+        .feedback-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
 
-        .feedback-button:hover {
-            transform: translateY(-3px);
-            background: rgba(255, 255, 255, 0.2);
-        }
-        
-        .feedback-button:active {
-            transform: translateY(0);
-        }
+        .feedback-button:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .feedback-button:active {
+            transform: translateY(0);
+        }
 
-        /* Specific styles for active/clicked buttons */
-        .feedback-button.liked {
-            background: linear-gradient(to right, #00c6ff, #0072ff);
-            border-color: #00e0ff;
-            box-shadow: 0 0 15px #00e0ff;
-        }
+        /* Specific styles for active/clicked buttons */
+        .feedback-button.liked {
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            border-color: #00e0ff;
+            box-shadow: 0 0 15px #00e0ff;
+        }
 
-        .feedback-button.disliked {
-            background: linear-gradient(to right, #ff416c, #ff4b2b);
-            border-color: #ff416c;
-            box-shadow: 0 0 15px #ff416c;
-        }
+        .feedback-button.disliked {
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            border-color: #ff416c;
+            box-shadow: 0 0 15px #ff416c;
+        }
 
-        /* Feedback message styling */
-        .feedback-message {
-            margin-top: 15px;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #ffcc00;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        .feedback-message.show {
-            opacity: 1;
-        }
+        /* Feedback message styling */
+        .feedback-message {
+            margin-top: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #ffcc00;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .feedback-message.show {
+            opacity: 1;
+        }
 
-        /* Responsive design adjustments */
-        @media (max-width: 768px) {
-            body { padding: 40px 10px; }
-            h1.main-title { font-size: 2rem; }
-            h2 { font-size: 1.5rem; margin-bottom: 20px; }
-            .story-container { padding: 25px; }
-            .story-text { font-size: 1rem; line-height: 1.6; }
-            .feedback-button { font-size: 0.9rem; padding: 8px 16px; }
-        }
-    </style>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2083692947196571"
-     crossorigin="anonymous"></script>
+        /* Responsive design adjustments */
+        @media (max-width: 768px) {
+            body { padding: 40px 10px; }
+            h1.main-title { font-size: 2rem; }
+            h2 { font-size: 1.5rem; margin-bottom: 20px; }
+            .story-container { padding: 25px; }
+            .story-text { font-size: 1rem; line-height: 1.6; }
+            .feedback-button { font-size: 0.9rem; padding: 8px 16px; }
+        }
+    </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2083692947196571"
+     crossorigin="anonymous"></script>
 </head>
 <body>
 
 <div class="main-container">
-    <h1 class="main-title">📖 कहानी की किताब और कहानियाँ (Story Book)</h1>
+    <h1 class="main-title">📖 कहानी की किताब और कहानियाँ (Story Book)</h1>
 
-    <!-- Hindi Stories Section -->
-    <h2>हिंदी कहानियाँ</h2>
-    
-    <!-- Hindi Story 1 -->
-    <div class="story-container">
-        <h3>एक जादुई कलम की कहानी</h3>
-        <p class="story-text">एक छोटे से गाँव में, राहुल नाम का एक बच्चा रहता था। वह पढ़ने में बहुत अच्छा नहीं था, लेकिन उसके पास एक जादुई कलम थी। जब भी वह उस कलम से कुछ लिखता, तो वह सच हो जाता। एक दिन उसने लिखा, "गाँव में बारिश हो।" और तुरंत, आसमान में बादल छा गए और बारिश होने लगी। गाँव के लोग बहुत खुश हुए। राहुल ने अपनी जादुई कलम से गाँव को हरा-भरा और खुशहाल बना दिया।</p>
-        <div class="feedback-section">
-            <button class="feedback-button like-button" onclick="handleFeedback(this, 1, 'like')">
-                <span class="icon">👍</span> Like <span class="count">0</span>
-            </button>
-            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 1, 'dislike')">
-                <span class="icon">👎</span> Dislike <span class="count">0</span>
-            </button>
-        </div>
-        <p id="message-1" class="feedback-message"></p>
-    </div>
+        <h2>हिंदी कहानियाँ</h2>
+    
+        <div class="story-container">
+        <h3>एक जादुई कलम की कहानी</h3>
+        <p class="story-text">एक छोटे से गाँव में, राहुल नाम का एक बच्चा रहता था। वह पढ़ने में बहुत अच्छा नहीं था, लेकिन उसके पास एक जादुई कलम थी। जब भी वह उस कलम से कुछ लिखता, तो वह सच हो जाता। एक दिन उसने लिखा, "गाँव में बारिश हो।" और तुरंत, आसमान में बादल छा गए और बारिश होने लगी। गाँव के लोग बहुत खुश हुए। राहुल ने अपनी जादुई कलम से गाँव को हरा-भरा और खुशहाल बना दिया।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 1, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 1, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-1" class="feedback-message"></p>
+    </div>
 
-    <!-- Hindi Story 2 -->
-    <div class="story-container">
-        <h3>लाल गुलाब का रहस्य</h3>
-        <p class="story-text">एक पुराने महल के बगीचे में, एक लाल गुलाब था जो रात में चमकता था। सभी लोग सोचते थे कि यह एक जादू है। लेकिन एक बूढ़ा माली जानता था कि वह गुलाब सिर्फ उन लोगों के लिए चमकता है जिनके दिल में सच्ची मोहब्बत होती है। एक दिन एक राजकुमार ने उस गुलाब को अपनी राजकुमारी के लिए तोड़ने की कोशिश की, लेकिन वह नहीं टूटा। उसने अपनी सच्ची मोहब्बत का इज़हार किया, और गुलाब चमकने लगा।</p>
-        <div class="feedback-section">
-            <button class="feedback-button like-button" onclick="handleFeedback(this, 2, 'like')">
-                <span class="icon">👍</span> Like <span class="count">0</span>
-            </button>
-            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 2, 'dislike')">
-                <span class="icon">👎</span> Dislike <span class="count">0</span>
-            </button>
-        </div>
-        <p id="message-2" class="feedback-message"></p>
-    </div>
-    
-    <!-- Hindi Story 3 -->
-    <div class="story-container">
-        <h3>पानी में रहने वाला छोटा राक्षस</h3>
-        <p class="story-text">एक गहरी झील में, एक छोटा और डरपोक राक्षस रहता था। वह सभी से छुपकर रहता था क्योंकि उसे डर था कि लोग उसे देखकर डर जाएँगे। एक दिन एक छोटी बच्ची वहाँ आई और उसने राक्षस को देखा। वह डरी नहीं, बल्कि उसने राक्षस को एक बिस्किट दिया। राक्षस ने बिस्किट खाया और खुश होकर पानी में एक सुंदर फूल उगा दिया। तब से, राक्षस और बच्ची दोस्त बन गए।</p>
-        <div class="feedback-section">
-            <button class="feedback-button like-button" onclick="handleFeedback(this, 3, 'like')">
-                <span class="icon">👍</span> Like <span class="count">0</span>
-            </button>
-            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 3, 'dislike')">
-                <span class="icon">👎</span> Dislike <span class="count">0</span>
-            </button>
-        </div>
-        <p id="message-3" class="feedback-message"></p>
-    </div>
+        <div class="story-container">
+        <h3>लाल गुलाब का रहस्य</h3>
+        <p class="story-text">एक पुराने महल के बगीचे में, एक लाल गुलाब था जो रात में चमकता था। सभी लोग सोचते थे कि यह एक जादू है। लेकिन एक बूढ़ा माली जानता था कि वह गुलाब सिर्फ उन लोगों के लिए चमकता है जिनके दिल में सच्ची मोहब्बत होती है। एक दिन एक राजकुमार ने उस गुलाब को अपनी राजकुमारी के लिए तोड़ने की कोशिश की, लेकिन वह नहीं टूटा। उसने अपनी सच्ची मोहब्बत का इज़हार किया, और गुलाब चमकने लगा।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 2, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 2, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-2" class="feedback-message"></p>
+    </div>
+    
+        <div class="story-container">
+        <h3>पानी में रहने वाला छोटा राक्षस</h3>
+        <p class="story-text">एक गहरी झील में, एक छोटा और डरपोक राक्षस रहता था। वह सभी से छुपकर रहता था क्योंकि उसे डर था कि लोग उसे देखकर डर जाएँगे। एक दिन एक छोटी बच्ची वहाँ आई और उसने राक्षस को देखा। वह डरी नहीं, बल्कि उसने राक्षस को एक बिस्किट दिया। राक्षस ने बिस्किट खाया और खुश होकर पानी में एक सुंदर फूल उगा दिया। तब से, राक्षस और बच्ची दोस्त बन गए।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 3, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 3, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-3" class="feedback-message"></p>
+    </div>
 
-    <!-- Hindi Story 4 -->
-    <div class="story-container">
-        <h3>बोलने वाली चिड़िया</h3>
-        <p class="story-text">एक जंगल में एक ऐसी चिड़िया रहती थी जो इंसानों की तरह बात कर सकती थी। वह सभी जानवरों को सलाह देती थी और उनके झगड़ों को सुलझाती थी। एक बार जंगल में आग लग गई, और सभी जानवर डर गए। चिड़िया ने सभी को समझाया कि मिलकर काम करने से वे आग बुझा सकते हैं। सभी ने मिलकर कोशिश की और आग को बुझा दिया। चिड़िया की बुद्धिमानी ने जंगल को बचा लिया।</p>
-        <div class="feedback-section">
-            <button class="feedback-button like-button" onclick="handleFeedback(this, 4, 'like')">
-                <span class="icon">👍</span> Like <span class="count">0</span>
-            </button>
-            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 4, 'dislike')">
-                <span class="icon">👎</span> Dislike <span class="count">0</span>
-            </button>
-        </div>
-        <p id="message-4" class="feedback-message"></p>
-    </div>
+        <div class="story-container">
+        <h3>बोलने वाली चिड़िया</h3>
+        <p class="story-text">एक जंगल में एक ऐसी चिड़िया रहती थी जो इंसानों की तरह बात कर सकती थी। वह सभी जानवरों को सलाह देती थी और उनके झगड़ों को सुलझाती थी। एक बार जंगल में आग लग गई, और सभी जानवर डर गए। चिड़िया ने सभी को समझाया कि मिलकर काम करने से वे आग बुझा सकते हैं। सभी ने मिलकर कोशिश की और आग को बुझा दिया। चिड़िया की बुद्धिमानी ने जंगल को बचा लिया।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 4, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 4, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-4" class="feedback-message"></p>
+    </div>
 
-    <!-- Hindi Story 5 -->
-    <div class="story-container">
-        <h3>चाँद और सूरज की दोस्ती</h3>
-        <p class="story-text">चाँद और सूरज बहुत अच्छे दोस्त थे, लेकिन वे कभी मिल नहीं पाते थे। सूरज दिन में निकलता था और चाँद रात में। एक दिन सूरज ने चाँद से कहा, "काश हम मिल पाते।" चाँद ने एक योजना बनाई। उसने अपनी सारी रोशनी पृथ्वी पर भेज दी, जिससे रात में भी दिन जैसा उजाला हो गया। सूरज ने उसे देखा और दोनों मिलकर आसमान में एक सुंदर इंद्रधनुष बना दिया।</p>
-        <div class="feedback-section">
-            <button class="feedback-button like-button" onclick="handleFeedback(this, 5, 'like')">
-                <span class="icon">👍</span> Like <span class="count">0</span>
-            </button>
-            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 5, 'dislike')">
-                <span class="icon">👎</span> Dislike <span class="count">0</span>
-            </button>
-        </div>
-        <p id="message-5" class="feedback-message"></p>
-    </div>
+        <div class="story-container">
+        <h3>चाँद और सूरज की दोस्ती</h3>
+        <p class="story-text">चाँद और सूरज बहुत अच्छे दोस्त थे, लेकिन वे कभी मिल नहीं पाते थे। सूरज दिन में निकलता था और चाँद रात में। एक दिन सूरज ने चाँद से कहा, "काश हम मिल पाते।" चाँद ने एक योजना बनाई। उसने अपनी सारी रोशनी पृथ्वी पर भेज दी, जिससे रात में भी दिन जैसा उजाला हो गया। सूरज ने उसे देखा और दोनों मिलकर आसमान में एक सुंदर इंद्रधनुष बना दिया।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 5, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 5, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-5" class="feedback-message"></p>
+    </div>
 
-    <!-- Hindi Story 6 -->
-    <div class="story-container">
-        <h3>पहाड़ों के ऊपर का राज्य</h3>
-        <p class="story-text">एक बहुत ऊँचे पहाड़ पर एक छोटा सा राज्य था, जहाँ सब कुछ बादलों से बना था। वहाँ के लोग बादलों पर चलते थे और बादलों से ही खेलते थे। एक दिन एक छोटा बच्चा ज़मीन पर आ गया। वह बहुत उदास था। उसने ज़मीन पर रहने वाले लोगों को अपने राज्य के बारे में बताया। उन्होंने एक गुब्बारा बनाया और उस बच्चे को वापस उसके घर भेज दिया।</p>
-        <div class="feedback-section">
-            <button class="feedback-button like-button" onclick="handleFeedback(this, 6, 'like')">
-                <span class="icon">👍</span> Like <span class="count">0</span>
-            </button>
-            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 6, 'dislike')">
-                <span class="icon">👎</span> Dislike <span class="count">0</span>
-            </button>
-        </div>
-        <p id="message-6" class="feedback-message"></p>
-    </div>
-    
-    <!-- Hindi Story 7 -->
-    <div class="story-container">
-        <h3>एक खोया हुआ खिलौना</h3>
-        <p class="story-text">एक छोटे से शहर में, एक लड़की का पसंदीदा खिलौना खो गया था। वह बहुत उदास थी। शहर के सभी जानवर उस खिलौने को ढूंढने में मदद करने लगे। एक बिल्ली ने उसे एक पेड़ पर देखा, एक कुत्ते ने उसे उठाया, और एक चिड़िया ने उसे लड़की के घर तक पहुँचाया। लड़की बहुत खुश हुई और उसने सभी जानवरों को धन्यवाद दिया।</p>
-        <div class="feedback-section">
-            <button class="feedback-button like-button" onclick="handleFeedback(this, 7, 'like')">
-                <span class="icon">👍</span> Like <span class="count">0</span>
-            </button>
-            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 7, 'dislike')">
-                <span class="icon">👎</span> Dislike <span class="count">0</span>
-            </button>
-        </div>
-        <p id="message-7" class="feedback-message"></p>
-    </div>
+        <div class="story-container">
+        <h3>पहाड़ों के ऊपर का राज्य</h3>
+        <p class="story-text">एक बहुत ऊँचे पहाड़ पर एक छोटा सा राज्य था, जहाँ सब कुछ बादलों से बना था। वहाँ के लोग बादलों पर चलते थे और बादलों से ही खेलते थे। एक दिन एक छोटा बच्चा ज़मीन पर आ गया। वह बहुत उदास था। उसने ज़मीन पर रहने वाले लोगों को अपने राज्य के बारे में बताया। उन्होंने एक गुब्बारा बनाया और उस बच्चे को वापस उसके घर भेज दिया।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 6, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 6, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-6" class="feedback-message"></p>
+    </div>
+    
+        <div class="story-container">
+        <h3>एक खोया हुआ खिलौना</h3>
+        <p class="story-text">एक छोटे से शहर में, एक लड़की का पसंदीदा खिलौना खो गया था। वह बहुत उदास थी। शहर के सभी जानवर उस खिलौने को ढूंढने में मदद करने लगे। एक बिल्ली ने उसे एक पेड़ पर देखा, एक कुत्ते ने उसे उठाया, और एक चिड़िया ने उसे लड़की के घर तक पहुँचाया। लड़की बहुत खुश हुई और उसने सभी जानवरों को धन्यवाद दिया।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 7, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 7, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-7" class="feedback-message"></p>
+    </div>
 
-    <!-- Hindi Story 8 -->
-    <div class="story-container">
-        <h3>जंगल का राजा और एक नन्ही गिलहरी</h3>
-        <p class="story-text">एक बार जंगल का राजा शेर बीमार पड़ गया। कोई भी जानवर उसकी मदद नहीं कर पाया। एक नन्ही गिलहरी ने एक विशेष जड़ी-बूटी के बारे में सुना था। उसने अपनी जान जोखिम में डालकर उस जड़ी-बूटी को ढूंढ निकाला और राजा को दे दिया। राजा ठीक हो गया और उसने गिलहरी को जंगल का सबसे बहादुर जानवर घोषित किया।</p>
-        <div class="feedback-section">
-            <button class="feedback-button like-button" onclick="handleFeedback(this, 8, 'like')">
-                <span class="icon">👍</span> Like <span class="count">0</span>
-            </button>
-            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 8, 'dislike')">
-                <span class="icon">👎</span> Dislike <span class="count">0</span>
-            </button>
-        </div>
-        <p id="message-8" class="feedback-message"></p>
-    </div>
+        <div class="story-container">
+        <h3>जंगल का राजा और एक नन्ही गिलहरी</h3>
+        <p class="story-text">एक बार जंगल का राजा शेर बीमार पड़ गया। कोई भी जानवर उसकी मदद नहीं कर पाया। एक नन्ही गिलहरी ने एक विशेष जड़ी-बूटी के बारे में सुना था। उसने अपनी जान जोखिम में डालकर उस जड़ी-बूटी को ढूंढ निकाला और राजा को दे दिया। राजा ठीक हो गया और उसने गिलहरी को जंगल का सबसे बहादुर जानवर घोषित किया।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 8, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 8, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-8" class="feedback-message"></p>
+    </div>
 
-    <!-- Hindi Story 9 -->
-    <div class="story-container">
-        <h3>समय यात्रा करने वाला बच्चा</h3>
-        <p class="story-text">एक लड़का था जिसके पास एक खास घड़ी थी। वह घड़ी उसे समय में यात्रा करने में मदद करती थी। एक दिन उसने अपने दादा-दादी को उनकी जवानी में देखा। उसने उनके साथ खेला और उन्हें हँसाया। जब वह वापस अपने समय में आया, तो उसने महसूस किया कि समय सबसे कीमती चीज है।</p>
-        <div class="feedback-section">
-            <button class="feedback-button like-button" onclick="handleFeedback(this, 9, 'like')">
-                <span class="icon">👍</span> Like <span class="count">0</span>
-            </button>
-            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 9, 'dislike')">
-                <span class="icon">👎</span> Dislike <span class="count">0</span>
-            </button>
-        </div>
-        <p id="message-9" class="feedback-message"></p>
-    </div>
+        <div class="story-container">
+        <h3>समय यात्रा करने वाला बच्चा</h3>
+        <p class="story-text">एक लड़का था जिसके पास एक खास घड़ी थी। वह घड़ी उसे समय में यात्रा करने में मदद करती थी। एक दिन उसने अपने दादा-दादी को उनकी जवानी में देखा। उसने उनके साथ खेला और उन्हें हँसाया। जब वह वापस अपने समय में आया, तो उसने महसूस किया कि समय सबसे कीमती चीज है।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 9, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 9, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-9" class="feedback-message"></p>
+    </div>
 
-    <!-- Hindi Story 10 -->
-    <div class="story-container">
-        <h3>सपनों की दुनिया का दरवाजा</h3>
-        <p class="story-text">एक लड़की को एक जादुई दरवाजा मिला। जब वह उस दरवाजे से गुजरती थी, तो वह सपनों की दुनिया में पहुँच जाती थी। वहाँ हर सपने को वह अपनी मर्जी से पूरा कर सकती थी। लेकिन उसने सीखा कि असली दुनिया में जीना और सपने सच करना ज्यादा महत्वपूर्ण है।</p>
-        <div class="feedback-section">
-            <button class="feedback-button like-button" onclick="handleFeedback(this, 10, 'like')">
-                <span class="icon">👍</span> Like <span class="count">0</span>
-            </button>
-            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 10, 'dislike')">
-                <span class="icon">👎</span> Dislike <span class="count">0</span>
-            </button>
-        </div>
-        <p id="message-10" class="feedback-message"></p>
-    </div>
+        <div class="story-container">
+        <h3>सपनों की दुनिया का दरवाजा</h3>
+        <p class="story-text">एक लड़की को एक जादुई दरवाजा मिला। जब वह उस दरवाजे से गुजरती थी, तो वह सपनों की दुनिया में पहुँच जाती थी। वहाँ हर सपने को वह अपनी मर्जी से पूरा कर सकती थी। लेकिन उसने सीखा कि असली दुनिया में जीना और सपने सच करना ज्यादा महत्वपूर्ण है।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 10, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 10, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-10" class="feedback-message"></p>
+    </div>
 
-    <br>
+        <div class="story-container">
+        <h3>खोया हुआ खजाना और एक बहादुर मछुआरा</h3>
+        <p class="story-text">समुद्र के किनारे एक गाँव में, अर्जुन नाम का एक बहादुर मछुआरा रहता था। गाँव के लोग मानते थे कि समुद्र की गहराइयों में एक खोया हुआ खजाना है, जिसे एक विशाल समुद्री राक्षस ने छुपा रखा है। कई मछुआरों ने खजाने को खोजने की कोशिश की, लेकिन कोई भी वापस नहीं लौटा। अर्जुन ने इस रहस्य को सुलझाने का फैसला किया। उसने अपनी छोटी नाव ली और उस जगह की ओर निकल पड़ा जहाँ राक्षस के होने की अफवाह थी। वहाँ जाकर उसने देखा कि वह राक्षस असल में एक विशाल, लेकिन शांत कछुआ था, जिसके शरीर पर पुराने सिक्के और गहने जम गए थे। अर्जुन ने डरने की बजाय, कछुए की मदद की और उसके शरीर से कचरा और सिक्के साफ किए। बदले में, कछुए ने अर्जुन को एक रास्ता दिखाया जो एक छिपी हुई गुफा तक जाता था। गुफा के अंदर कोई खजाना नहीं था, बल्कि एक जादुई मोती था जो झील के पानी को मीठा बना सकता था। अर्जुन ने उस मोती को गाँव में लाकर रखा, जिससे गाँव वालों को मीठा पानी मिलने लगा। गाँव वालों को एहसास हुआ कि असली खजाना धन-दौलत नहीं, बल्कि गाँव की भलाई थी।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 11, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 11, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-11" class="feedback-message"></p>
+    </div>
 
-    <!-- English Stories Section -->
-    <h2>English Stories</h2>
+        <div class="story-container">
+        <h3>पहाड़ की जादुई नदी</h3>
+        <p class="story-text">एक दूरदराज के गाँव में, एक नदी थी जो एक ऊँचे पहाड़ से निकलती थी। यह नदी बहुत खास थी क्योंकि यह सिर्फ उन लोगों को रास्ता दिखाती थी जिनके इरादे नेक होते थे। एक बार, गाँव में एक व्यापारी आया जो लालची था। उसने नदी के रास्ते से एक गुप्त खजाने तक पहुँचने की कोशिश की। जैसे ही वह नदी में उतरा, नदी का पानी तेज हो गया और उसे वापस धकेल दिया। कुछ समय बाद, एक गरीब किसान आया। उसकी फसल सूख रही थी और उसे पानी की तलाश थी। उसने नदी से प्रार्थना की और उसकी मदद माँगी। नदी का पानी शांत हो गया और उसने किसान को एक नया रास्ता दिखाया जो एक हरे-भरे मैदान की ओर जाता था, जहाँ उसकी फसलें अच्छी तरह से उग सकती थीं। इस घटना के बाद, गाँव के लोगों ने सीखा कि लालच से कुछ नहीं मिलता, लेकिन सच्चे इरादे और मेहनत से जीवन में सब कुछ पाया जा सकता है।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 12, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 12, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-12" class="feedback-message"></p>
+    </div>
 
-    <!-- English Story 1 -->
-    <div class="story-container">
-        <h3>The Whispering Woods of Eldoria</h3>
-        <p class="story-text">In the heart of Eldoria lay a forest where trees told secrets to the wind. A young elf, Elara, could hear their whispers. They spoke of a lost star-seed, a relic of immense power. Driven by the whispers, Elara ventured deep into the woods, her courage her only guide. She found the star-seed, not glittering, but humble, planted in the soil. It taught her that true power isn’t in might, but in nurturing the world around you.</p>
-        <div class="feedback-section">
-            <button class="feedback-button like-button" onclick="handleFeedback(this, 11, 'like')">
-                <span class="icon">👍</span> Like <span class="count">0</span>
-            </button>
-            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 11, 'dislike')">
-                <span class="icon">👎</span> Dislike <span class="count">0</span>
-            </button>
-        </div>
-        <p id="message-11" class="feedback-message"></p>
-    </div>
+        <div class="story-container">
+        <h3>टिमटिमाते तारों का रहस्य</h3>
+        <p class="story-text">एक शहर की छत पर, एक बूढ़ा खगोलशास्त्री रोज रात को तारों को देखता था। उसे लगता था कि तारे सिर्फ चमकते नहीं हैं, बल्कि वे एक दूसरे से बात भी करते हैं। एक रात, एक छोटा बच्चा उसके पास आया और उसने पूछा, "चाचा, क्या तारे सच में बातें करते हैं?" खगोलशास्त्री ने मुस्कुराते हुए कहा, "हाँ, लेकिन उनकी बातें सिर्फ वही सुन सकता है जो दिल से शांत हो।" बच्चे ने आँखें बंद की और तारों की ओर ध्यान लगाया। उसे कोई आवाज तो नहीं सुनाई दी, लेकिन उसने महसूस किया कि तारे उसे एक संदेश दे रहे थे - शांति का और उम्मीद का। बच्चे ने यह बात पूरे शहर में फैलाई। लोग रात में अपनी छतों पर बैठकर तारों को देखने लगे। शहर में शांति और आपसी समझ बढ़ गई। खगोलशास्त्री ने उस बच्चे से कहा, "तुमने वही सुना जो तुम्हारे दिल में था। तारे हमें हमेशा वही दिखाते हैं जो हम देखना चाहते हैं।"</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 13, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 13, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-13" class="feedback-message"></p>
+    </div>
 
-    <!-- English Story 2 -->
-    <div class="story-container">
-        <h3>The Secret of the Star-Stone</h3>
-        <p class="story-text">A small coastal village lived in fear of the eternal fog. Their only hope was a Star-Stone, said to hold the power to clear the skies. A brave fisherman's daughter, Lyra, found the stone. It was dull and lifeless. The stone's ancient guardian told her its power wasn't a magic spell, but a reflection of the hope in people's hearts. Lyra returned to her village and rallied the people to sing songs of hope, and as they did, the stone glowed and the fog vanished.</p>
-        <div class="feedback-section">
-            <button class="feedback-button like-button" onclick="handleFeedback(this, 12, 'like')">
-                <span class="icon">👍</span> Like <span class="count">0</span>
-            </button>
-            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 12, 'dislike')">
-                <span class="icon">👎</span> Dislike <span class="count">0</span>
-            </button>
-        </div>
-        <p id="message-12" class="feedback-message"></p>
-    </div>
+        <div class="story-container">
+        <h3>बोलने वाला जंगल</h3>
+        <p class="story-text">एक घना जंगल था, जहाँ पेड़-पौधे एक दूसरे से बात करते थे। उनकी भाषा को सिर्फ़ एक जादूगर समझ सकता था। यह जादूगर पेड़-पौधों की बातें सुनकर लोगों की मदद करता था। एक बार गाँव में अकाल पड़ गया। जादूगर ने जंगल से पूछा, "क्या कोई रास्ता है जिससे हम गाँव की मदद कर सकें?" जंगल ने बताया कि एक सूखी नदी के नीचे एक छोटा झरना छिपा हुआ है। अगर लोग मिलकर उस जगह की खुदाई करें, तो उन्हें पानी मिल सकता है। जादूगर ने गाँव वालों को समझाया और सभी ने मिलकर खुदाई शुरू की। कुछ ही दिनों में, उन्हें वह झरना मिल गया और सूखी नदी फिर से बहने लगी। गाँव में खुशहाली लौट आई। जादूगर ने गाँव वालों से कहा, "जंगल ने हमें सिर्फ़ पानी नहीं दिया, बल्कि यह भी सिखाया कि मिलकर काम करने से मुश्किल से मुश्किल काम भी आसान हो जाता है।"</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 14, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 14, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-14" class="feedback-message"></p>
+    </div>
 
-    <!-- English Story 3 -->
-    <div class="story-container">
-        <h3>The Clockmaker's Last Creation</h3>
-        <p class="story-text">Elias, an old clockmaker, spent his life building a clock that didn’t measure time, but captured memories. His last creation, a small pocket watch, was gifted to a lonely girl named Lily. Every time she looked at it, she would see a happy memory of her past. The watch taught her that while time moves forward, cherished memories are always with us, a treasure to hold.</p>
-        <div class="feedback-section">
-            <button class="feedback-button like-button" onclick="handleFeedback(this, 13, 'like')">
-                <span class="icon">👍</span> Like <span class="count">0</span>
-            </button>
-            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 13, 'dislike')">
-                <span class="icon">👎</span> Dislike <span class="count">0</span>
-            </button>
-        </div>
-        <p id="message-13" class="feedback-message"></p>
-    </div>
+        <div class="story-container">
+        <h3>उड़ान भरने वाला लड़का</h3>
+        <p class="story-text">एक छोटे से गाँव में, आकाश नाम का एक लड़का रहता था। वह हमेशा आसमान में उड़ने का सपना देखता था। एक दिन उसने एक खास तरह का पंख बनाया जो हवा को नियंत्रित कर सकता था। गाँव के लोग उसका मज़ाक उड़ाते थे, लेकिन आकाश ने हार नहीं मानी। वह रोज़ अपने पंखों को ठीक करता रहा। एक दिन, एक बड़ा तूफान आया। गाँव के सभी लोग डर गए। आकाश ने अपने पंखों को पहना और आसमान में उड़ गया। उसने गाँव के ऊपर एक सुरक्षा घेरा बनाया जिससे तूफान का असर गाँव पर नहीं हुआ। गाँव वालों ने आकाश की बहादुरी और उसके सपने का सम्मान किया। इस घटना के बाद, आकाश ने सभी को सिखाया कि सपने देखने से कुछ नहीं होता, जब तक आप उन्हें सच करने के लिए कड़ी मेहनत न करें।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 15, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 15, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-15" class="feedback-message"></p>
+    </div>
 
-    <!-- English Story 4 -->
-    <div class="story-container">
-        <h3>The City Built on Clouds</h3>
-        <p class="story-text">A long time ago, a city was built on a floating cloud, a sanctuary from a broken world below. The people of Aerium lived peaceful lives until their cloud began to dissipate. A young inventor named Zephyr discovered that the cloud was powered by laughter and joy, which they had forgotten to express. He created a festival of jokes and games, and as the city filled with laughter, the cloud grew stronger, brighter, and more stable than ever before.</p>
-        <div class="feedback-section">
-            <button class="feedback-button like-button" onclick="handleFeedback(this, 14, 'like')">
-                <span class="icon">👍</span> Like <span class="count">0</span>
-            </button>
-            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 14, 'dislike')">
-                <span class="icon">👎</span> Dislike <span class="count">0</span>
-            </button>
-        </div>
-        <p id="message-14" class="feedback-message"></p>
-    </div>
+        <div class="story-container">
+        <h3>पुरानी गुफा का रहस्य</h3>
+        <p class="story-text">एक पुराने गाँव के पास एक रहस्यमय गुफा थी। लोगों का मानना था कि गुफा के अंदर एक राक्षस रहता है। एक दिन, नेहा नाम की एक जिज्ञासु लड़की गुफा के अंदर गई। उसे कोई राक्षस नहीं मिला, बल्कि एक पुरानी लाइब्रेरी मिली। उसमें कई प्राचीन किताबें थीं। उन किताबों में ज्ञान और विज्ञान की बातें लिखी थीं। नेहा ने उन किताबों को पढ़ा और गाँव में ज्ञान फैलाने लगी। गाँव के लोग पढ़े-लिखे और समझदार बन गए। उन्होंने महसूस किया कि उनका असली खजाना गुफा के अंदर छिपा हुआ डर नहीं, बल्कि ज्ञान था।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 16, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 16, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-16" class="feedback-message"></p>
+    </div>
 
-    <!-- English Story 5 -->
-    <div class="story-container">
-        <h3>The Ghost of the Sunken Ship</h3>
-        <p class="story-text">In a tranquil bay, a ghostly ship would appear every night. It was the spirit of a captain, searching for a lost treasure he never found. A young boy, Finn, who loved the sea, promised the captain he would help. He dove deep and found not a chest of gold, but a small, wooden music box. The captain's ghost played the box, and its beautiful melody brought peace to his restless soul. The ghost and his ship finally sailed into the stars, leaving behind a bay filled with calm and music.</p>
-        <div class="feedback-section">
-            <button class="feedback-button like-button" onclick="handleFeedback(this, 15, 'like')">
-                <span class="icon">👍</span> Like <span class="count">0</span>
-            </button>
-            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 15, 'dislike')">
-                <span class="icon">👎</span> Dislike <span class="count">0</span>
-            </button>
-        </div>
-        <p id="message-15" class="feedback-message"></p>
-    </div>
+        <div class="story-container">
+        <h3>चींटियों का साम्राज्य</h3>
+        <p class="story-text">एक बड़े जंगल में, चींटियों का एक बहुत बड़ा साम्राज्य था। वहाँ एक छोटी सी चींटी थी, जिसका नाम रानी था। वह सबसे छोटी होने के बावजूद, सबसे ज़्यादा मेहनती थी। रानी ने देखा कि चींटियों को एक जगह से दूसरी जगह जाने में बहुत समय लगता है। उसने एक रास्ता ढूँढा, जिसमें एक पत्ती को पुल की तरह इस्तेमाल किया जा सकता था। उसने सभी चींटियों को मिलकर पत्ती को खींचकर लाने को कहा। सभी ने मिलकर कोशिश की और पत्ती को ले आए। रानी ने उस पत्ती को एक छोटी नदी के ऊपर रखा और सभी चींटियों के लिए एक नया और तेज़ रास्ता बना दिया। रानी ने अपने साम्राज्य को सिखाया कि मिलकर काम करने से कोई भी काम असंभव नहीं होता है।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 17, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 17, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-17" class="feedback-message"></p>
+    </div>
 
-    <!-- English Story 6 -->
-    <div class="story-container">
-        <h3>The Boy Who Befriended a Dragon</h3>
-        <p class="story-text">In a village where dragons were feared, a boy named Kael found a dragon hatchling with a broken wing. He secretly nursed it back to health. The dragon, named Ignis, was gentle and kind, not the monster the villagers imagined. When a terrible storm threatened to destroy the village, Ignis used his fire to create a protective barrier, saving everyone. The villagers learned that kindness can bridge even the widest of divides.</p>
-        <div class="feedback-section">
-            <button class="feedback-button like-button" onclick="handleFeedback(this, 16, 'like')">
-                <span class="icon">👍</span> Like <span class="count">0</span>
-            </button>
-            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 16, 'dislike')">
-                <span class="icon">👎</span> Dislike <span class="count">0</span>
-            </button>
-        </div>
-        <p id="message-16" class="feedback-message"></p>
-    </div>
+        <div class="story-container">
+        <h3>बादलों का रहस्य</h3>
+        <p class="story-text">एक दिन एक छोटा लड़का आसमान में बादलों को देख रहा था। उसने सोचा कि बादल कहाँ जाते हैं और क्या करते हैं। उसने एक बड़ा पतंग बनाया और उसे बादलों तक उड़ाया। पतंग के धागे से वह बादलों की दुनिया में पहुँच गया। वहाँ उसने देखा कि बादल अलग-अलग आकार में थे और वे बारिश के लिए एक दूसरे को पानी देते थे। लड़के ने देखा कि बादल सिर्फ़ पानी नहीं लाते, बल्कि वे एक दूसरे के साथ मिलकर काम करते हैं। जब वह वापस लौटा, तो उसने सभी को बादलों की कहानी सुनाई। लोग बादलों को सिर्फ़ बारिश लाने वाला नहीं, बल्कि एक दोस्त के रूप में देखने लगे।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 18, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 18, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-18" class="feedback-message"></p>
+    </div>
 
-    <!-- English Story 7 -->
-    <div class="story-container">
-        <h3>The Echoes of the Forgotten Library</h3>
-        <p class="story-text">A magical library existed that contained every book ever written, but it was forgotten by the world. The books began to fade. A girl named Clara stumbled upon the library and, seeing the books disappear, began to read them aloud. As she did, the words and stories came back to life, echoing throughout the halls. Clara saved the library by sharing the knowledge and joy of stories, proving that a story only truly dies when it is no longer told.</p>
-        <div class="feedback-section">
-            <button class="feedback-button like-button" onclick="handleFeedback(this, 17, 'like')">
-                <span class="icon">👍</span> Like <span class="count">0</span>
-            </button>
-            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 17, 'dislike')">
-                <span class="icon">👎</span> Dislike <span class="count">0</span>
-            </button>
-        </div>
-        <p id="message-17" class="feedback-message"></p>
-    </div>
+        <div class="story-container">
+        <h3>बोलने वाली गुड़िया</h3>
+        <p class="story-text">एक छोटी लड़की को जन्मदिन पर एक गुड़िया मिली। वह कोई साधारण गुड़िया नहीं थी, बल्कि वह बात कर सकती थी। वह गुड़िया लड़की को अच्छी-अच्छी बातें सिखाती थी और उसे सही रास्ते पर चलने की सलाह देती थी। लड़की ने अपनी गुड़िया की बात मानी और वह एक बहुत अच्छी और दयालु इंसान बन गई। एक दिन गुड़िया ने कहा, "मैं अब जा रही हूँ, लेकिन मेरी बातें हमेशा तुम्हारे साथ रहेंगी।" लड़की उदास हो गई, लेकिन उसने सोचा कि गुड़िया ने उसे जो सिखाया है, वह हमेशा उसके साथ रहेगा।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 19, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 19, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-19" class="feedback-message"></p>
+    </div>
 
-    <!-- English Story 8 -->
-    <div class="story-container">
-        <h3>The Locket of Three Wishes</h3>
-        <p class="story-text">An old hermit gave a simple silver locket to a young traveler named Leo, telling him it held three wishes. Leo journeyed far, but his wishes remained. He wished for a starving family to have food, a lost puppy to find its way home, and a broken boat to be mended for a fisherman. To his surprise, all his wishes came true. He realized the locket's magic wasn't to grant wishes, but to empower him to do good deeds for others, a far greater magic than he had ever imagined.</p>
-        <div class="feedback-section">
-            <button class="feedback-button like-button" onclick="handleFeedback(this, 18, 'like')">
-                <span class="icon">👍</span> Like <span class="count">0</span>
-            </button>
-            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 18, 'dislike')">
-                <span class="icon">👎</span> Dislike <span class="count">0</span>
-            </button>
-        </div>
-        <p id="message-18" class="feedback-message"></p>
-    </div>
+        <div class="story-container">
+        <h3>मूर्ख राजा और तीन मछलियां</h3>
+        <p class="story-text">एक बार एक राजा ने घोषणा की कि वह एक अनोखी मछली को इनाम देगा जो उसके लिए एक खास काम कर सके। तालाब में तीन मछलियां रहती थीं - एक बुद्धिमान, एक चालाक और एक मूर्ख। बुद्धिमान मछली ने सोचा कि राजा मूर्ख है और वह बिना मतलब का काम नहीं करेगी। चालाक मछली ने राजा को एक ऐसा काम दिया जिसे करने में उसे समय लगा और वह राजा को बेवकूफ बनाने में सफल रही। लेकिन मूर्ख मछली ने राजा की आज्ञा का पालन किया और उसने राजा को एक ऐसा काम करके दिखाया जो राजा को खुश कर सके। राजा ने मूर्ख मछली को सबसे बड़ा इनाम दिया। इस कहानी से हमें यह सीख मिलती है कि कभी-कभी मूर्खता भी बुद्धिमानी से ज़्यादा काम आती है, क्योंकि मूर्ख लोग बिना सोचे-समझे काम करते हैं और वे सही समय पर सही काम कर पाते हैं।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 20, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 20, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-20" class="feedback-message"></p>
+    </div>
 
-    <!-- English Story 9 -->
-    <div class="story-container">
-        <h3>The Last Garden on Mars</h3>
-        <p class="story-text">On a future Mars colony, a young botanist, Anya, tended the last surviving garden from Earth. The other colonists saw it as a pointless effort. But Anya, with her love for the planet she had never seen, cultivated a single, vibrant flower. It grew and bloomed, its scent bringing tears to the eyes of the other colonists, reminding them of home. The garden taught them that even in the most desolate of places, hope and life can bloom with enough care.</p>
-        <div class="feedback-section">
-            <button class="feedback-button like-button" onclick="handleFeedback(this, 19, 'like')">
-                <span class="icon">👍</span> Like <span class="count">0</span>
-            </button>
-            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 19, 'dislike')">
-                <span class="icon">👎</span> Dislike <span class="count">0</span>
-            </button>
-        </div>
-        <p id="message-19" class="feedback-message"></p>
-    </div>
+        <div class="story-container">
+        <h3>एक बहादुर राजा की कहानी</h3>
+        <p class="story-text">एक बहुत ही बहादुर राजा था जो अपनी प्रजा की सुरक्षा के लिए हमेशा तत्पर रहता था। एक बार, उसके राज्य पर एक विशाल ड्रैगन ने हमला कर दिया। ड्रैगन हर दिन एक बच्चे को खाने आता था। राजा ने ड्रैगन से लड़ने का फैसला किया। उसने अपने सैनिकों को बुलाया और सभी को अपनी-अपनी तलवारों को तेज़ करने को कहा। राजा ने ड्रैगन से लड़ाई की, लेकिन वह बहुत ताकतवर था। राजा ने एक चाल चली और उसने ड्रैगन को एक गुफा में फंसा दिया। ड्रैगन गुफा में फंस गया और वह वहाँ से बाहर नहीं निकल सका। राजा ने अपनी प्रजा को ड्रैगन से बचाया और उसने अपने सैनिकों को बहादुरी के लिए धन्यवाद दिया।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 21, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 21, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-21" class="feedback-message"></p>
+    </div>
 
-    <!-- English Story 10 -->
-    <div class="story-container">
-        <h3>The Legend of the Aurora Bear</h3>
-        <p class="story-text">In the frozen north, people believed the Aurora Borealis was the dance of the sky spirits. The elder, however, told a different story: the lights were the footprints of a giant polar bear made of stars, who protected the land. A young hunter, lost in a blizzard, saw the Aurora Bear. It didn’t harm him; it gently guided him home, its starlight footsteps lighting his way. The hunter returned and shared his story, teaching his people that the wild is not always a thing to be feared, but to be respected.</p>
-        <div class="feedback-section">
-            <button class="feedback-button like-button" onclick="handleFeedback(this, 20, 'like')">
-                <span class="icon">👍</span> Like <span class="count">0</span>
-            </button>
-            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 20, 'dislike')">
-                <span class="icon">👎</span> Dislike <span class="count">0</span>
-            </button>
-        </div>
-        <p id="message-20" class="feedback-message"></p>
-    </div>
+        <div class="story-container">
+        <h3>चाँद और सूरज की दोस्ती</h3>
+        <p class="story-text">चाँद और सूरज बहुत अच्छे दोस्त थे, लेकिन वे कभी मिल नहीं पाते थे। सूरज दिन में निकलता था और चाँद रात में। एक दिन सूरज ने चाँद से कहा, "काश हम मिल पाते।" चाँद ने एक योजना बनाई। उसने अपनी सारी रोशनी पृथ्वी पर भेज दी, जिससे रात में भी दिन जैसा उजाला हो गया। सूरज ने उसे देखा और दोनों मिलकर आसमान में एक सुंदर इंद्रधनुष बना दिया।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 22, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 22, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-22" class="feedback-message"></p>
+    </div>
+
+        <div class="story-container">
+        <h3>मूर्ख राजा और तीन मछलियां</h3>
+        <p class="story-text">एक बार एक राजा ने घोषणा की कि वह एक अनोखी मछली को इनाम देगा जो उसके लिए एक खास काम कर सके। तालाब में तीन मछलियां रहती थीं - एक बुद्धिमान, एक चालाक और एक मूर्ख। बुद्धिमान मछली ने सोचा कि राजा मूर्ख है और वह बिना मतलब का काम नहीं करेगी। चालाक मछली ने राजा को एक ऐसा काम दिया जिसे करने में उसे समय लगा और वह राजा को बेवकूफ बनाने में सफल रही। लेकिन मूर्ख मछली ने राजा की आज्ञा का पालन किया और उसने राजा को एक ऐसा काम करके दिखाया जो राजा को खुश कर सके। राजा ने मूर्ख मछली को सबसे बड़ा इनाम दिया। इस कहानी से हमें यह सीख मिलती है कि कभी-कभी मूर्खता भी बुद्धिमानी से ज़्यादा काम आती है, क्योंकि मूर्ख लोग बिना सोचे-समझे काम करते हैं और वे सही समय पर सही काम कर पाते हैं।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 23, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 23, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-23" class="feedback-message"></p>
+    </div>
+
+        <div class="story-container">
+        <h3>एक बहादुर राजा की कहानी</h3>
+        <p class="story-text">एक बहुत ही बहादुर राजा था जो अपनी प्रजा की सुरक्षा के लिए हमेशा तत्पर रहता था। एक बार, उसके राज्य पर एक विशाल ड्रैगन ने हमला कर दिया। ड्रैगन हर दिन एक बच्चे को खाने आता था। राजा ने ड्रैगन से लड़ने का फैसला किया। उसने अपने सैनिकों को बुलाया और सभी को अपनी-अपनी तलवारों को तेज़ करने को कहा। राजा ने ड्रैगन से लड़ाई की, लेकिन वह बहुत ताकतवर था। राजा ने एक चाल चली और उसने ड्रैगन को एक गुफा में फंसा दिया। ड्रैगन गुफा में फंस गया और वह वहाँ से बाहर नहीं निकल सका। राजा ने अपनी प्रजा को ड्रैगन से बचाया और उसने अपने सैनिकों को बहादुरी के लिए धन्यवाद दिया।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 24, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 24, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-24" class="feedback-message"></p>
+    </div>
+
+        <div class="story-container">
+        <h3>समय यात्रा करने वाला बच्चा</h3>
+        <p class="story-text">एक लड़का था जिसके पास एक खास घड़ी थी। वह घड़ी उसे समय में यात्रा करने में मदद करती थी। एक दिन उसने अपने दादा-दादी को उनकी जवानी में देखा। उसने उनके साथ खेला और उन्हें हँसाया। जब वह वापस अपने समय में आया, तो उसने महसूस किया कि समय सबसे कीमती चीज है।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 25, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 25, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-25" class="feedback-message"></p>
+    </div>
+
+        <div class="story-container">
+        <h3>मूर्ख राजा और तीन मछलियां</h3>
+        <p class="story-text">एक बार एक राजा ने घोषणा की कि वह एक अनोखी मछली को इनाम देगा जो उसके लिए एक खास काम कर सके। तालाब में तीन मछलियां रहती थीं - एक बुद्धिमान, एक चालाक और एक मूर्ख। बुद्धिमान मछली ने सोचा कि राजा मूर्ख है और वह बिना मतलब का काम नहीं करेगी। चालाक मछली ने राजा को एक ऐसा काम दिया जिसे करने में उसे समय लगा और वह राजा को बेवकूफ बनाने में सफल रही। लेकिन मूर्ख मछली ने राजा की आज्ञा का पालन किया और उसने राजा को एक ऐसा काम करके दिखाया जो राजा को खुश कर सके। राजा ने मूर्ख मछली को सबसे बड़ा इनाम दिया। इस कहानी से हमें यह सीख मिलती है कि कभी-कभी मूर्खता भी बुद्धिमानी से ज़्यादा काम आती है, क्योंकि मूर्ख लोग बिना सोचे-समझे काम करते हैं और वे सही समय पर सही काम कर पाते हैं।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 26, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 26, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-26" class="feedback-message"></p>
+    </div>
+
+        <div class="story-container">
+        <h3>चाँद और सूरज की दोस्ती</h3>
+        <p class="story-text">चाँद और सूरज बहुत अच्छे दोस्त थे, लेकिन वे कभी मिल नहीं पाते थे। सूरज दिन में निकलता था और चाँद रात में। एक दिन सूरज ने चाँद से कहा, "काश हम मिल पाते।" चाँद ने एक योजना बनाई। उसने अपनी सारी रोशनी पृथ्वी पर भेज दी, जिससे रात में भी दिन जैसा उजाला हो गया। सूरज ने उसे देखा और दोनों मिलकर आसमान में एक सुंदर इंद्रधनुष बना दिया।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 27, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 27, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-27" class="feedback-message"></p>
+    </div>
+
+        <div class="story-container">
+        <h3>एक बहादुर राजा की कहानी</h3>
+        <p class="story-text">एक बहुत ही बहादुर राजा था जो अपनी प्रजा की सुरक्षा के लिए हमेशा तत्पर रहता था। एक बार, उसके राज्य पर एक विशाल ड्रैगन ने हमला कर दिया। ड्रैगन हर दिन एक बच्चे को खाने आता था। राजा ने ड्रैगन से लड़ने का फैसला किया। उसने अपने सैनिकों को बुलाया और सभी को अपनी-अपनी तलवारों को तेज़ करने को कहा। राजा ने ड्रैगन से लड़ाई की, लेकिन वह बहुत ताकतवर था। राजा ने एक चाल चली और उसने ड्रैगन को एक गुफा में फंसा दिया। ड्रैगन गुफा में फंस गया और वह वहाँ से बाहर नहीं निकल सका। राजा ने अपनी प्रजा को ड्रैगन से बचाया और उसने अपने सैनिकों को बहादुरी के लिए धन्यवाद दिया।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 28, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 28, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-28" class="feedback-message"></p>
+    </div>
+
+        <div class="story-container">
+        <h3>मूर्ख राजा और तीन मछलियां</h3>
+        <p class="story-text">एक बार एक राजा ने घोषणा की कि वह एक अनोखी मछली को इनाम देगा जो उसके लिए एक खास काम कर सके। तालाब में तीन मछलियां रहती थीं - एक बुद्धिमान, एक चालाक और एक मूर्ख। बुद्धिमान मछली ने सोचा कि राजा मूर्ख है और वह बिना मतलब का काम नहीं करेगी। चालाक मछली ने राजा को एक ऐसा काम दिया जिसे करने में उसे समय लगा और वह राजा को बेवकूफ बनाने में सफल रही। लेकिन मूर्ख मछली ने राजा की आज्ञा का पालन किया और उसने राजा को एक ऐसा काम करके दिखाया जो राजा को खुश कर सके। राजा ने मूर्ख मछली को सबसे बड़ा इनाम दिया। इस कहानी से हमें यह सीख मिलती है कि कभी-कभी मूर्खता भी बुद्धिमानी से ज़्यादा काम आती है, क्योंकि मूर्ख लोग बिना सोचे-समझे काम करते हैं और वे सही समय पर सही काम कर पाते हैं।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 29, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 29, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-29" class="feedback-message"></p>
+    </div>
+
+        <div class="story-container">
+        <h3>पहाड़ों के ऊपर का राज्य</h3>
+        <p class="story-text">एक बहुत ऊँचे पहाड़ पर एक छोटा सा राज्य था, जहाँ सब कुछ बादलों से बना था। वहाँ के लोग बादलों पर चलते थे और बादलों से ही खेलते थे। एक दिन एक छोटा बच्चा ज़मीन पर आ गया। वह बहुत उदास था। उसने ज़मीन पर रहने वाले लोगों को अपने राज्य के बारे में बताया। उन्होंने एक गुब्बारा बनाया और उस बच्चे को वापस उसके घर भेज दिया।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 30, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 30, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-30" class="feedback-message"></p>
+    </div>
+
+        <div class="story-container">
+        <h3>एक बहादुर राजा की कहानी</h3>
+        <p class="story-text">एक बहुत ही बहादुर राजा था जो अपनी प्रजा की सुरक्षा के लिए हमेशा तत्पर रहता था। एक बार, उसके राज्य पर एक विशाल ड्रैगन ने हमला कर दिया। ड्रैगन हर दिन एक बच्चे को खाने आता था। राजा ने ड्रैगन से लड़ने का फैसला किया। उसने अपने सैनिकों को बुलाया और सभी को अपनी-अपनी तलवारों को तेज़ करने को कहा। राजा ने ड्रैगन से लड़ाई की, लेकिन वह बहुत ताकतवर था। राजा ने एक चाल चली और उसने ड्रैगन को एक गुफा में फंसा दिया। ड्रैगन गुफा में फंस गया और वह वहाँ से बाहर नहीं निकल सका। राजा ने अपनी प्रजा को ड्रैगन से बचाया और उसने अपने सैनिकों को बहादुरी के लिए धन्यवाद दिया।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 31, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 31, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-31" class="feedback-message"></p>
+    </div>
+
+        <div class="story-container">
+        <h3>मूर्ख राजा और तीन मछलियां</h3>
+        <p class="story-text">एक बार एक राजा ने घोषणा की कि वह एक अनोखी मछली को इनाम देगा जो उसके लिए एक खास काम कर सके। तालाब में तीन मछलियां रहती थीं - एक बुद्धिमान, एक चालाक और एक मूर्ख। बुद्धिमान मछली ने सोचा कि राजा मूर्ख है और वह बिना मतलब का काम नहीं करेगी। चालाक मछली ने राजा को एक ऐसा काम दिया जिसे करने में उसे समय लगा और वह राजा को बेवकूफ बनाने में सफल रही। लेकिन मूर्ख मछली ने राजा की आज्ञा का पालन किया और उसने राजा को एक ऐसा काम करके दिखाया जो राजा को खुश कर सके। राजा ने मूर्ख मछली को सबसे बड़ा इनाम दिया। इस कहानी से हमें यह सीख मिलती है कि कभी-कभी मूर्खता भी बुद्धिमानी से ज़्यादा काम आती है, क्योंकि मूर्ख लोग बिना सोचे-समझे काम करते हैं और वे सही समय पर सही काम कर पाते हैं।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 32, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 32, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-32" class="feedback-message"></p>
+    </div>
+
+        <div class="story-container">
+        <h3>पहाड़ों के ऊपर का राज्य</h3>
+        <p class="story-text">एक बहुत ऊँचे पहाड़ पर एक छोटा सा राज्य था, जहाँ सब कुछ बादलों से बना था। वहाँ के लोग बादलों पर चलते थे और बादलों से ही खेलते थे। एक दिन एक छोटा बच्चा ज़मीन पर आ गया। वह बहुत उदास था। उसने ज़मीन पर रहने वाले लोगों को अपने राज्य के बारे में बताया। उन्होंने एक गुब्बारा बनाया और उस बच्चे को वापस उसके घर भेज दिया।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 33, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 33, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-33" class="feedback-message"></p>
+    </div>
+
+        <h2>English Stories</h2>
+
+        <div class="story-container">
+        <h3>The Whispering Woods of Eldoria</h3>
+        <p class="story-text">In the heart of Eldoria lay a forest where trees told secrets to the wind. A young elf, Elara, could hear their whispers. They spoke of a lost star-seed, a relic of immense power. Driven by the whispers, Elara ventured deep into the woods, her courage her only guide. She found the star-seed, not glittering, but humble, planted in the soil. It taught her that true power isn’t in might, but in nurturing the world around you.</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 34, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 34, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-34" class="feedback-message"></p>
+    </div>
+
+        <div class="story-container">
+        <h3>The Secret of the Star-Stone</h3>
+        <p class="story-text">A small coastal village lived in fear of the eternal fog. Their only hope was a Star-Stone, said to hold the power to clear the skies. A brave fisherman's daughter, Lyra, found the stone. It was dull and lifeless. The stone's ancient guardian told her its power wasn't a magic spell, but a reflection of the hope in people's hearts. Lyra returned to her village and rallied the people to sing songs of hope, and as they did, the stone glowed and the fog vanished.</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 35, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 35, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-35" class="feedback-message"></p>
+    </div>
+
+        <div class="story-container">
+        <h3>The Clockmaker's Last Creation</h3>
+        <p class="story-text">Elias, an old clockmaker, spent his life building a clock that didn’t measure time, but captured memories. His last creation, a small pocket watch, was gifted to a lonely girl named Lily. Every time she looked at it, she would see a happy memory of her past. The watch taught her that while time moves forward, cherished memories are always with us, a treasure to hold.</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 36, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 36, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-36" class="feedback-message"></p>
+    </div>
+
+        <div class="story-container">
+        <h3>The City Built on Clouds</h3>
+        <p class="story-text">A long time ago, a city was built on a floating cloud, a sanctuary from a broken world below. The people of Aerium lived peaceful lives until their cloud began to dissipate. A young inventor named Zephyr discovered that the cloud was powered by laughter and joy, which they had forgotten to express. He created a festival of jokes and games, and as the city filled with laughter, the cloud grew stronger, brighter, and more stable than ever before.</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 37, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 37, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-37" class="feedback-message"></p>
+    </div>
+
+        <div class="story-container">
+        <h3>The Ghost of the Sunken Ship</h3>
+        <p class="story-text">In a tranquil bay, a ghostly ship would appear every night. It was the spirit of a captain, searching for a lost treasure he never found. A young boy, Finn, who loved the sea, promised the captain he would help. He dove deep and found not a chest of gold, but a small, wooden music box. The captain's ghost played the box, and its beautiful melody brought peace to his restless soul. The ghost and his ship finally sailed into the stars, leaving behind a bay filled with calm and music.</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 38, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 38, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-38" class="feedback-message"></p>
+    </div>
+
+        <div class="story-container">
+        <h3>The Boy Who Befriended a Dragon</h3>
+        <p class="story-text">In a village where dragons were feared, a boy named Kael found a dragon hatchling with a broken wing. He secretly nursed it back to health. The dragon, named Ignis, was gentle and kind, not the monster the villagers imagined. When a terrible storm threatened to destroy the village, Ignis used his fire to create a protective barrier, saving everyone. The villagers learned that kindness can bridge even the widest of divides.</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 39, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 39, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-39" class="feedback-message"></p>
+    </div>
+
+        <div class="story-container">
+        <h3>The Echoes of the Forgotten Library</h3>
+        <p class="story-text">A magical library existed that contained every book ever written, but it was forgotten by the world. The books began to fade. A girl named Clara stumbled upon the library and, seeing the books disappear, began to read them aloud. As she did, the words and stories came back to life, echoing throughout the halls. Clara saved the library by sharing the knowledge and joy of stories, proving that a story only truly dies when it is no longer told.</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 40, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 40, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-40" class="feedback-message"></p>
+    </div>
+
+        <div class="story-container">
+        <h3>The Locket of Three Wishes</h3>
+        <p class="story-text">An old hermit gave a simple silver locket to a young traveler named Leo, telling him it held three wishes. Leo journeyed far, but his wishes remained. He wished for a starving family to have food, a lost puppy to find its way home, and a broken boat to be mended for a fisherman. To his surprise, all his wishes came true. He realized the locket's magic wasn't to grant wishes, but to empower him to do good deeds for others, a far greater magic than he had ever imagined.</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 41, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 41, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-41" class="feedback-message"></p>
+    </div>
+
+        <div class="story-container">
+        <h3>The Last Garden on Mars</h3>
+        <p class="story-text">On a future Mars colony, a young botanist, Anya, tended the last surviving garden from Earth. The other colonists saw it as a pointless effort. But Anya, with her love for the planet she had never seen, cultivated a single, vibrant flower. It grew and bloomed, its scent bringing tears to the eyes of the other colonists, reminding them of home. The garden taught them that even in the most desolate of places, hope and life can bloom with enough care.</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 42, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 42, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-42" class="feedback-message"></p>
+    </div>
+
+        <div class="story-container">
+        <h3>The Legend of the Aurora Bear</h3>
+        <p class="story-text">In the frozen north, people believed the Aurora Borealis was the dance of the sky spirits. The elder, however, told a different story: the lights were the footprints of a giant polar bear made of stars, who protected the land. A young hunter, lost in a blizzard, saw the Aurora Bear. It didn’t harm him; it gently guided him home, its starlight footsteps lighting his way. The hunter returned and shared his story, teaching his people that the wild is not always a thing to be feared, but to be respected.</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 43, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 43, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-43" class="feedback-message"></p>
+    </div>
+
+        <div class="story-container">
+        <h3>The Locket of Three Wishes</h3>
+        <p class="story-text">An old hermit gave a simple silver locket to a young traveler named Leo, telling him it held three wishes. Leo journeyed far, but his wishes remained. He wished for a starving family to have food, a lost puppy to find its way home, and a broken boat to be mended for a fisherman. To his surprise, all his wishes came true. He realized the locket's magic wasn't to grant wishes, but to empower him to do good deeds for others, a far greater magic than he had ever imagined.</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 44, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 44, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-44" class="feedback-message"></p>
+    </div>
+
+        <div class="story-container">
+        <h3>The Legend of the Aurora Bear</h3>
+        <p class="story-text">In the frozen north, people believed the Aurora Borealis was the dance of the sky spirits. The elder, however, told a different story: the lights were the footprints of a giant polar bear made of stars, who protected the land. A young hunter, lost in a blizzard, saw the Aurora Bear. It didn’t harm him; it gently guided him home, its starlight footsteps lighting his way. The hunter returned and shared his story, teaching his people that the wild is not always a thing to be feared, but to be respected.</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 45, 'like')">
+                <span class="icon">👍</span> Like <span class="count">0</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 45, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-45" class="feedback-message"></p>
+    </div>
 
 </div>
 
 <script>
-    // This object stores the feedback state for each story to prevent multiple clicks
-    const feedbackState = {};
+    // This object stores the feedback state for each story to prevent multiple clicks
+    const feedbackState = {};
 
-    /**
-     * Handles the click event for the like and dislike buttons.
-     * It updates the button styles and displays a feedback message.
-     * @param {HTMLElement} buttonElement - The button that was clicked.
-     * @param {number} storyId - The unique ID of the story.
-     * @param {string} type - The type of feedback: 'like' or 'dislike'.
-     */
-    function handleFeedback(buttonElement, storyId, type) {
-        // Check if the user has already given feedback for this story
-        if (feedbackState[storyId]) {
-            // Already gave feedback, do nothing or show a message
-            showMessage(storyId, "You've already given feedback for this story!");
-            return;
-        }
+    /**
+     * Handles the click event for the like and dislike buttons.
+     * It updates the button styles and displays a feedback message.
+     * @param {HTMLElement} buttonElement - The button that was clicked.
+     * @param {number} storyId - The unique ID of the story.
+     * @param {string} type - The type of feedback: 'like' or 'dislike'.
+     */
+    function handleFeedback(buttonElement, storyId, type) {
+        // Check if the user has already given feedback for this story
+        if (feedbackState[storyId]) {
+            // Already gave feedback, do nothing or show a message
+            showMessage(storyId, "You've already given feedback for this story!");
+            return;
+        }
 
-        // Get the parent container for the buttons
-        const feedbackContainer = buttonElement.parentElement;
-        
-        // Find the other button of the same story
-        const otherButton = feedbackContainer.querySelector(
-            type === 'like' ? '.dislike-button' : '.like-button'
-        );
+        // Get the parent container for the buttons
+        const feedbackContainer = buttonElement.parentElement;
+        
+        // Find the other button of the same story
+        const otherButton = feedbackContainer.querySelector(
+            type === 'like' ? '.dislike-button' : '.like-button'
+        );
 
-        // Add the 'liked' or 'disliked' class to the clicked button for styling
-        buttonElement.classList.add(type === 'like' ? 'liked' : 'disliked');
-        
-        // Disable both buttons to prevent further clicks
-        buttonElement.disabled = true;
-        otherButton.disabled = true;
+        // Add the 'liked' or 'disliked' class to the clicked button for styling
+        buttonElement.classList.add(type === 'like' ? 'liked' : 'disliked');
+        
+        // Disable both buttons to prevent further clicks
+        buttonElement.disabled = true;
+        otherButton.disabled = true;
 
-        // Get the count element and update the count
-        const countElement = buttonElement.querySelector('.count');
-        let currentCount = parseInt(countElement.innerText);
-        countElement.innerText = currentCount + 1;
+        // Get the count element and update the count
+        const countElement = buttonElement.querySelector('.count');
+        let currentCount = parseInt(countElement.innerText);
+        countElement.innerText = currentCount + 1;
 
-        // Set the feedback state for this story
-        feedbackState[storyId] = type;
+        // Set the feedback state for this story
+        feedbackState[storyId] = type;
 
-        // Show a message to the user
-        if (type === 'like') {
-            showMessage(storyId, "Thanks for liking this story!");
-        } else {
-            showMessage(storyId, "We'll use your feedback to improve!");
-        }
-    }
+        // Show a message to the user
+        if (type === 'like') {
+            showMessage(storyId, "Thanks for liking this story!");
+        } else {
+            showMessage(storyId, "We'll use your feedback to improve!");
+        }
+    }
 
-    /**
-     * Displays a temporary message to the user.
-     * @param {number} storyId - The ID of the story to show the message for.
-     * @param {string} messageText - The text of the message to display.
-     */
-    function showMessage(storyId, messageText) {
-        const messageElement = document.getElementById(`message-${storyId}`);
-        messageElement.innerText = messageText;
-        messageElement.classList.add('show');
-        setTimeout(() => {
-            messageElement.classList.remove('show');
-        }, 3000); // Hide the message after 3 seconds
-    }
+    /**
+     * Displays a temporary message to the user.
+     * @param {number} storyId - The ID of the story to show the message for.
+     * @param {string} messageText - The text of the message to display.
+     */
+    function showMessage(storyId, messageText) {
+        const messageElement = document.getElementById(`message-${storyId}`);
+        messageElement.innerText = messageText;
+        messageElement.classList.add('show');
+        setTimeout(() => {
+            messageElement.classList.remove('show');
+        }, 3000); // Hide the message after 3 seconds
+    }
 </script>
 </body>
 </html>
