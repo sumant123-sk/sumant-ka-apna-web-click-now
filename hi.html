@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-K1GQC84RQP"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-K1GQC84RQP');
-</script>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>🌐 My Trending Web</title>
     <meta name="description" content="Discover the latest in technology, global news, captivating stories, and comprehensive coding guides for HTML, CSS, and JavaScript.">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2083692947196571" crossorigin="anonymous"></script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YOUR_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-YOUR_MEASUREMENT_ID');
+    </script>
+    
     <style>
         /* --- Main Page Styles --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -75,23 +77,8 @@
             color: #00ffff;
             text-shadow: 0 0 5px #00ffff;
         }
-
-        /* --- Mobile Navigation Menu --- */
-        .menu-toggle {
-            display: none;
-            cursor: pointer;
-            font-size: 2rem;
-            position: absolute;
-            right: 20px;
-            top: 10px;
-            color: #00ffff;
-        }
-        .nav-links {
-            display: flex;
-            gap: 25px;
-            justify-content: center;
-            align-items: center;
-        }
+        .menu-toggle { display: none; cursor: pointer; font-size: 2rem; position: absolute; right: 20px; top: 10px; color: #00ffff; }
+        .nav-links { display: flex; gap: 25px; justify-content: center; align-items: center; }
 
         /* --- Sections & Content --- */
         section {
@@ -107,424 +94,170 @@
             transform: translateY(20px);
             padding: 100px 20px 20px;
         }
-        section.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        section.active { opacity: 1; transform: translateY(0); }
 
         /* --- AdSense Ad Container --- */
         .ads-container {
-            width: 100%;
-            max-width: 728px;
-            height: auto;
-            min-height: 100px;
+            width: 100%; max-width: 728px; height: auto; min-height: 100px;
             background-color: rgba(255, 255, 255, 0.05);
             border: 1px dashed rgba(0, 255, 255, 0.5);
-            margin: 40px auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            font-size: 1rem;
+            margin: 40px auto; display: flex; justify-content: center;
+            align-items: center; text-align: center; font-size: 1rem;
             color: rgba(255, 255, 255, 0.7);
         }
 
         /* --- Hero Section --- */
-        #home-section h1 {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            margin-bottom: 20px;
-            text-shadow: 0 0 20px cyan;
-        }
-        #home-section p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            animation: fadeIn 1.5s ease forwards;
-            animation-delay: 0.5s;
-            opacity: 0;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+        #home-section h1 { font-size: clamp(2.5rem, 8vw, 5rem); margin-bottom: 20px; text-shadow: 0 0 20px cyan; }
+        #home-section p { font-size: 1.2rem; max-width: 800px; animation: fadeIn 1.5s ease forwards; animation-delay: 0.5s; opacity: 0; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         /* --- Card Grid --- */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            max-width: 1000px;
-            margin-top: 50px;
-        }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; max-width: 1000px; margin-top: 50px; }
         .card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 20px;
-            color: white;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
-            transition: 0.3s ease;
-            display: block;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            text-decoration: none;
+            background: rgba(255, 255, 255, 0.1); padding: 30px; border-radius: 20px;
+            color: white; box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+            transition: 0.3s ease; display: block; position: relative;
+            overflow: hidden; cursor: pointer; text-decoration: none;
         }
-        .card:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
-        }
-        .card span {
-            font-size: 3rem;
-            display: block;
-            margin-bottom: 10px;
-            z-index: 1;
-            position: relative;
-            text-shadow: 0 0 15px #00ffff;
-        }
-        .card div {
-            font-size: 1.3rem;
-            z-index: 1;
-            position: relative;
-        }
-        .highlighted-names {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-        }
+        .card:hover { background: rgba(255, 255, 255, 0.2); transform: scale(1.05); box-shadow: 0 0 30px rgba(0, 255, 255, 0.8); }
+        .card span { font-size: 3rem; display: block; margin-bottom: 10px; z-index: 1; position: relative; text-shadow: 0 0 15px #00ffff; }
+        .card div { font-size: 1.3rem; z-index: 1; position: relative; }
+        .highlighted-names { font-size: 1.5rem; margin-bottom: 20px; }
         .highlighted-names span {
-            background-color: rgba(255, 255, 255, 0.2);
-            padding: 5px 10px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px cyan;
-            display: inline-block;
-            margin: 0 10px;
+            background-color: rgba(255, 255, 255, 0.2); padding: 5px 10px;
+            border-radius: 10px; box-shadow: 0 0 10px cyan;
+            display: inline-block; margin: 0 10px;
         }
+        
+        /* --- New Animation Styles for Google Terms Card --- */
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        @keyframes glow { 0% { box-shadow: 0 0 10px #00ffff, 0 0 20px #ff00ff; } 50% { box-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff; } 100% { box-shadow: 0 0 10px #00ffff, 0 0 20px #ff00ff; } }
+        .animated-card {
+            position: relative; overflow: hidden;
+            animation: pulse 3s infinite ease-in-out, glow 2s infinite ease-in-out;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(255, 0, 255, 0.2));
+            border: 2px solid transparent; transition: all 0.3s ease;
+        }
+        .animated-card:hover { transform: scale(1.1); animation: none; box-shadow: 0 0 30px #00ffff, 0 0 50px #ff00ff; }
+        .animated-card::before {
+            content: ''; position: absolute; top: 50%; left: 50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent 70%);
+            transform: translate(-50%, -50%) scale(0); transition: transform 0.5s ease;
+        }
+        .animated-card:hover::before { transform: translate(-50%, -50%) scale(1); }
+        .animated-card span, .animated-card div { z-index: 10; position: relative; }
         
         /* --- Coding Guide Section --- */
-        #coding-guide-section {
-            text-align: left;
-            width: 100%;
-            max-width: 1200px;
-        }
-        #coding-guide-section h1 {
-            font-size: 2.5rem;
-            color: #00f7ff;
-            text-shadow: 0 0 15px #00f7ff;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .tab-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
+        #coding-guide-section { text-align: left; width: 100%; max-width: 1200px; }
+        #coding-guide-section h1 { font-size: 2.5rem; color: #00f7ff; text-shadow: 0 0 15px #00f7ff; text-align: center; margin-bottom: 30px; }
+        .tab-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; }
         .tab-button {
-            padding: 10px 20px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            border: 2px solid #00ffff;
-            background: transparent;
-            color: #00ffff;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            padding: 10px 20px; font-size: 1.1rem; font-weight: 700;
+            border: 2px solid #00ffff; background: transparent; color: #00ffff;
+            border-radius: 50px; cursor: pointer; transition: all 0.3s ease;
         }
-        .tab-button.active, .tab-button:hover {
-            background: #00ffff;
-            color: #000428;
-            box-shadow: 0 0 15px #00ffff;
-        }
+        .tab-button.active, .tab-button:hover { background: #00ffff; color: #000428; box-shadow: 0 0 15px #00ffff; }
         .tab-content {
-            display: none;
-            background-color: rgba(255, 255, 255, 0.08);
-            padding: 30px;
-            border-radius: 20px;
-            animation: fadeIn 0.8s ease;
-            max-width: 100%;
+            display: none; background-color: rgba(255, 255, 255, 0.08);
+            padding: 30px; border-radius: 20px; animation: fadeIn 0.8s ease; max-width: 100%;
         }
-        .tab-content.active {
-            display: block;
-        }
-        .tab-content h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .tab-content h3 {
-            margin-top: 30px;
-            color: #00ffff;
-        }
-        .tab-content p, .tab-content ul, .tab-content pre {
-            max-width: 100%;
-            line-height: 1.6;
-            font-size: 1.05rem;
-            margin-bottom: 20px;
-        }
+        .tab-content.active { display: block; }
+        .tab-content h2 { text-align: center; margin-bottom: 20px; }
+        .tab-content h3 { margin-top: 30px; color: #00ffff; }
+        .tab-content p, .tab-content ul, .tab-content pre { max-width: 100%; line-height: 1.6; font-size: 1.05rem; margin-bottom: 20px; }
         pre {
-            background-color: #1a1a2e;
-            color: #e0e0e0;
-            padding: 20px;
-            border-radius: 10px;
-            overflow-x: auto;
-            font-family: 'Courier New', Courier, monospace;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            border: 1px solid rgba(0, 247, 255, 0.3);
-            line-height: 1.5;
-            margin-top: 15px;
+            background-color: #1a1a2e; color: #e0e0e0; padding: 20px;
+            border-radius: 10px; overflow-x: auto; font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap; word-wrap: break-word;
+            border: 1px solid rgba(0, 247, 255, 0.3); line-height: 1.5; margin-top: 15px;
         }
-        
+
         /* --- Footer Styles --- */
-        .site-footer {
-            width: 100%;
-            text-align: center;
-            padding: 40px 20px 20px;
-            color: rgba(255, 255, 255, 0.6);
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(5px);
-            z-index: 10;
-        }
-        .site-footer a {
-            color: #00ffff;
-            text-decoration: none;
-            margin: 0 10px;
-            transition: color 0.3s ease;
-        }
-        .site-footer a:hover {
-            color: #ff416c;
-        }
+        .site-footer { width: 100%; text-align: center; padding: 40px 20px 20px; color: rgba(255, 255, 255, 0.6); background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(5px); z-index: 10; }
+        .site-footer a { color: #00ffff; text-decoration: none; margin: 0 10px; transition: color 0.3s ease; }
+        .site-footer a:hover { color: #ff416c; }
 
         /* --- Back to Top button --- */
         .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #ff416c;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.5rem;
-            text-decoration: none;
-            box-shadow: 0 0 15px #ff416c;
-            transition: all 0.3s ease;
-            z-index: 999;
+            position: fixed; bottom: 30px; right: 30px; background: #ff416c;
+            color: white; width: 50px; height: 50px; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 1.5rem; text-decoration: none; box-shadow: 0 0 15px #ff416c;
+            transition: all 0.3s ease; z-index: 999;
         }
-        .back-to-top:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 20px #ff416c;
-        }
+        .back-to-top:hover { transform: scale(1.1); box-shadow: 0 0 20px #ff416c; }
 
         /* --- Chatbot Styles --- */
         .chatbot-icon {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #ff416c;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 2.5rem;
-            cursor: pointer;
-            box-shadow: 0 0 15px #ff416c;
-            transition: all 0.3s ease;
-            z-index: 1001;
+            position: fixed; bottom: 30px; right: 30px; background: #ff416c;
+            color: white; width: 60px; height: 60px; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 2.5rem; cursor: pointer; box-shadow: 0 0 15px #ff416c;
+            transition: all 0.3s ease; z-index: 1001;
         }
-        .chatbot-icon:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 20px #ff416c;
-        }
+        .chatbot-icon:hover { transform: scale(1.1); box-shadow: 0 0 20px #ff416c; }
         .chatbot-window {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            width: 350px;
-            height: 450px;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(8px);
-            border-radius: 15px;
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
-            display: none;
-            flex-direction: column;
-            z-index: 1002;
-            overflow: hidden;
+            position: fixed; bottom: 100px; right: 30px; width: 350px;
+            height: 450px; background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px); border-radius: 15px;
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.5); display: none;
+            flex-direction: column; z-index: 1002; overflow: hidden;
             animation: fadeInScale 0.3s ease-out forwards;
         }
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        .chatbot-window.active {
-            display: flex;
-        }
+        @keyframes fadeInScale { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        .chatbot-window.active { display: flex; }
         .chatbot-header {
-            background: rgba(0, 255, 255, 0.2);
-            padding: 15px;
-            text-align: center;
-            border-bottom: 2px solid #00ffff;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: rgba(0, 255, 255, 0.2); padding: 15px; text-align: center;
+            border-bottom: 2px solid #00ffff; display: flex;
+            justify-content: space-between; align-items: center;
         }
-        .chatbot-header h3 {
-            margin: 0;
-            font-size: 1.2rem;
-            color: #00ffff;
-            text-shadow: 0 0 5px #00ffff;
-        }
-        .close-btn {
-            font-size: 2rem;
-            cursor: pointer;
-            color: #00ffff;
-            line-height: 1;
-            transition: color 0.3s ease;
-        }
-        .close-btn:hover {
-            color: #ff416c;
-        }
-        .chatbot-body {
-            flex-grow: 1;
-            padding: 20px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .chat-message {
-            padding: 12px 18px;
-            border-radius: 20px;
-            max-width: 80%;
-            line-height: 1.5;
-            word-wrap: break-word;
-        }
-        .user-message {
-            background-color: #ff416c;
-            color: white;
-            align-self: flex-end;
-            box-shadow: 0 0 8px rgba(255, 65, 108, 0.5);
-        }
-        .bot-message {
-            background-color: #00ffff;
-            color: #000428;
-            align-self: flex-start;
-            box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
-        }
-        .chatbot-footer {
-            display: flex;
-            padding: 15px;
-            gap: 10px;
-            border-top: 2px solid #00ffff;
-        }
+        .chatbot-header h3 { margin: 0; font-size: 1.2rem; color: #00ffff; text-shadow: 0 0 5px #00ffff; }
+        .close-btn { font-size: 2rem; cursor: pointer; color: #00ffff; line-height: 1; transition: color 0.3s ease; }
+        .close-btn:hover { color: #ff416c; }
+        .chatbot-body { flex-grow: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
+        .chat-message { padding: 12px 18px; border-radius: 20px; max-width: 80%; line-height: 1.5; word-wrap: break-word; }
+        .user-message { background-color: #ff416c; color: white; align-self: flex-end; box-shadow: 0 0 8px rgba(255, 65, 108, 0.5); }
+        .bot-message { background-color: #00ffff; color: #000428; align-self: flex-start; box-shadow: 0 0 8px rgba(0, 255, 255, 0.5); }
+        .chatbot-footer { display: flex; padding: 15px; gap: 10px; border-top: 2px solid #00ffff; }
         #user-input {
-            flex-grow: 1;
-            padding: 10px;
-            border-radius: 50px;
-            border: 2px solid #00ffff;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.3s ease;
+            flex-grow: 1; padding: 10px; border-radius: 50px;
+            border: 2px solid #00ffff; background: rgba(255, 255, 255, 0.1);
+            color: white; font-size: 1rem; outline: none; transition: border-color 0.3s ease;
         }
-        #user-input:focus {
-            border-color: #ff416c;
-        }
+        #user-input:focus { border-color: #ff416c; }
         #send-btn {
-            padding: 10px 20px;
-            background: #00ffff;
-            border: none;
-            border-radius: 50px;
-            color: #000428;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            padding: 10px 20px; background: #00ffff; border: none;
+            border-radius: 50px; color: #000428; font-weight: bold;
+            cursor: pointer; transition: all 0.3s ease;
         }
-        #send-btn:hover {
-            background: #ff416c;
-            color: white;
-            box-shadow: 0 0 10px #ff416c;
-        }
+        #send-btn:hover { background: #ff416c; color: white; box-shadow: 0 0 10px #ff416c; }
 
         /* --- Mobile-Specific Styles --- */
         @media (max-width: 768px) {
-            nav {
-                justify-content: flex-start;
-                padding: 15px;
-            }
+            nav { justify-content: flex-start; padding: 15px; }
             .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background: rgba(0, 0, 0, 0.8);
-                padding: 20px 0;
-                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+                display: none; flex-direction: column; position: absolute; top: 70px;
+                left: 0; width: 100%; background: rgba(0, 0, 0, 0.8);
+                padding: 20px 0; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             }
-            .nav-links.show {
-                display: flex;
-            }
-            .menu-toggle {
-                display: block;
-            }
-            .grid {
-                grid-template-columns: 1fr;
-            }
-            .highlighted-names {
-                font-size: 1.2rem;
-            }
-            .highlighted-names span {
-                margin: 5px;
-            }
-            #home-section h1 {
-                font-size: 2.2rem;
-            }
-            #home-section p {
-                font-size: 1rem;
-            }
-            #coding-guide-section h1 {
-                font-size: 2rem;
-            }
-            .tab-button {
-                font-size: 1rem;
-                padding: 8px 15px;
-            }
-            .tab-container {
-                gap: 10px;
-            }
-            .tab-content {
-                padding: 20px;
-            }
-            .tab-content h2 {
-                font-size: 1.5rem;
-            }
-            .tab-content h3 {
-                font-size: 1.2rem;
-            }
-            .tab-content p, .tab-content ul, .tab-content pre {
-                font-size: 0.95rem;
-            }
-            .grid-container {
-                grid-template-columns: 1fr;
-            }
-            .grid-header, .grid-main, .grid-sidebar, .grid-footer {
-                grid-column: 1 / span 1;
-            }
-            .chatbot-window {
-                width: 90%;
-                right: 5%;
-                left: 5%;
-                bottom: 80px;
-                height: 70vh;
-            }
+            .nav-links.show { display: flex; }
+            .menu-toggle { display: block; }
+            .grid { grid-template-columns: 1fr; }
+            .highlighted-names { font-size: 1.2rem; }
+            .highlighted-names span { margin: 5px; }
+            #home-section h1 { font-size: 2.2rem; }
+            #home-section p { font-size: 1rem; }
+            #coding-guide-section h1 { font-size: 2rem; }
+            .tab-button { font-size: 1rem; padding: 8px 15px; }
+            .tab-container { gap: 10px; }
+            .tab-content { padding: 20px; }
+            .tab-content h2 { font-size: 1.5rem; }
+            .tab-content h3 { font-size: 1.2rem; }
+            .tab-content p, .tab-content ul, .tab-content pre { font-size: 0.95rem; }
+            .grid-container { grid-template-columns: 1fr; }
+            .grid-header, .grid-main, .grid-sidebar, .grid-footer { grid-column: 1 / span 1; }
+            .chatbot-window { width: 90%; right: 5%; left: 5%; bottom: 80px; height: 70vh; }
         }
     </style>
 </head>
@@ -546,13 +279,7 @@
             <h1>🌟 Welcome to My Trending Web</h1>
             <p>Discover the latest in tech, dive into captivating stories, and learn to code with our interactive guides.</p>
             <div class="ads-container">
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-2083692947196571"
-                     data-ad-slot="YOUR_AD_SLOT_ID_HERE"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-            </div>
+                </div>
             <div class="grid">
                 <a class="card" href="news.html">
                     <span>📰</span>
@@ -573,6 +300,10 @@
                 <a class="card" href="#coding-guide-section">
                     <span>💻</span>
                     <div>Coding Guide</div>
+                </a>
+                <a class="card animated-card" href="https://policies.google.com/terms?hl=en" target="_blank">
+                    <span>⚖️</span>
+                    <div>Google Terms & Policy</div>
                 </a>
             </div>
         </section>
@@ -627,53 +358,6 @@
 &lt;/body&gt;
 &lt;/html&gt;
                 </pre>
-
-                <h3>Creating Advanced Forms</h3>
-                <p>HTML फ़ॉर्म्स यूज़र से डेटा इकट्ठा करने का एक महत्वपूर्ण तरीका है। यहाँ एक विस्तृत फ़ॉर्म का उदाहरण है, जिसमें कई तरह के इनपुट फ़ील्ड्स (input fields) शामिल हैं:</p>
-                <pre>
-&lt;form action="/submit-form" method="POST"&gt;
-    &lt;fieldset&gt;
-        &lt;legend&gt;User Information&lt;/legend&gt;
-        
-        &lt;label for="name"&gt;Full Name:&lt;/label&gt;
-        &lt;input type="text" id="name" name="user_name" required&gt;
-        
-        &lt;label for="email"&gt;Email Address:&lt;/label&gt;
-        &lt;input type="email" id="email" name="user_email" required&gt;
-
-        &lt;label for="password"&gt;Password:&lt;/label&gt;
-        &lt;input type="password" id="password" name="user_password" minlength="8" required&gt;
-
-        &lt;label for="dob"&gt;Date of Birth:&lt;/label&gt;
-        &lt;input type="date" id="dob" name="user_dob"&gt;
-
-        &lt;p&gt;Choose your favorite coding language:&lt;/p&gt;
-        &lt;input type="radio" id="html_lang" name="fav_lang" value="HTML"&gt;
-        &lt;label for="html_lang"&gt;HTML&lt;/label&gt;
-        &lt;input type="radio" id="css_lang" name="fav_lang" value="CSS"&gt;
-        &lt;label for="css_lang"&gt;CSS&lt;/label&gt;
-        &lt;input type="radio" id="js_lang" name="fav_lang" value="JavaScript"&gt;
-        &lt;label for="js_lang"&gt;JavaScript&lt;/label&gt;
-
-        &lt;label for="message"&gt;Your Message:&lt;/label&gt;
-        &lt;textarea id="message" name="user_message" rows="4" cols="50"&gt;&lt;/textarea&gt;
-
-        &lt;label for="country"&gt;Country:&lt;/label&gt;
-        &lt;select id="country" name="user_country"&gt;
-            &lt;option value="india"&gt;India&lt;/option&gt;
-            &lt;option value="usa"&gt;USA&lt;/option&gt;
-            &lt;option value="uk"&gt;UK&lt;/option&gt;
-        &lt;/select&gt;
-
-        &lt;label&gt;
-            &lt;input type="checkbox" id="newsletter" name="newsletter_consent"&gt;
-            Subscribe to newsletter
-        &lt;/label&gt;
-
-        &lt;button type="submit"&gt;Submit&lt;/button&gt;
-    &lt;/fieldset&gt;
-&lt;/form&gt;
-                </pre>
             </div>
 
             <div id="css" class="tab-content">
@@ -699,113 +383,12 @@ body {
     text-align: center;
 }
                 </pre>
-                <h3>A Flexible Layout with Flexbox</h3>
-                <p>Flexbox एक शक्तिशाली एक-आयामी लेआउट सिस्टम है जो आइटमों को एक पंक्ति (row) या स्तंभ (column) में संरेखित (align) करता है। यह आइटमों को उनकी उपलब्ध जगह के अनुसार स्वचालित रूप से व्यवस्थित करता है, जिससे responsive design बनाना आसान हो जाता है।</p>
-                <pre>
-.flex-container {
-    display: flex;
-    flex-direction: row; /* row | column */
-    flex-wrap: wrap; /* nowrap | wrap */
-    justify-content: space-between; /* start | end | center | space-around */
-    align-items: center; /* stretch | start | end | center | baseline */
-    height: 200px;
-    border: 2px solid #00ffff;
-    padding: 10px;
-}
-
-.flex-item {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
-    padding: 20px;
-    margin: 5px;
-    text-align: center;
-    font-size: 1.2rem;
-    flex-grow: 1;
-}
-                </pre>
-
-                <h3>A Powerful 2D Layout with CSS Grid</h3>
-                <p>CSS Grid एक दो-आयामी लेआउट सिस्टम है जो जटिल वेब पेज लेआउट बनाने के लिए पंक्तियों (rows) और स्तंभों (columns) दोनों का उपयोग करता है। यह आपको अपनी वेबसाइट के लेआउट पर पूर्ण नियंत्रण देता है, जिससे आप हेडर, साइडबार और फ़ुटर जैसे तत्वों को आसानी से व्यवस्थित कर सकते हैं।</p>
-                <pre>
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
-    grid-template-rows: auto 1fr auto; /* Header, Main, Footer */
-    gap: 20px;
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-    border: 2px solid #ff416c;
-    padding: 20px;
-}
-
-.grid-header {
-    grid-column: 1 / span 3;
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 15px;
-    text-align: center;
-}
-
-.grid-main {
-    grid-column: 1 / span 2;
-    background-color: rgba(255, 255, 255, 0.05);
-    padding: 20px;
-}
-
-.grid-sidebar {
-    grid-column: 3;
-    background-color: rgba(255, 255, 255, 0.08);
-    padding: 20px;
-}
-
-.grid-footer {
-    grid-column: 1 / span 3;
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 15px;
-    text-align: center;
-}
-                </pre>
-                
-                <h3>Creative 3D Button Animation</h3>
-                <p>CSS एनिमेशन का उपयोग करके आप एक साधारण बटन को एक आकर्षक 3D इफ़ेक्ट दे सकते हैं। यह इफ़ेक्ट यूज़र के इंटरैक्शन को और अधिक मज़ेदार बनाता है।</p>
-                <pre>
-/* CSS for 3D Button */
-.button-3d {
-    display: inline-block;
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: white;
-    background: linear-gradient(135deg, #00ffff, #00b3b3);
-    border: none;
-    border-radius: 10px;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
-    box-shadow: 0 5px 0 #008080;
-    cursor: pointer;
-    position: relative;
-    top: 0;
-    transition: all 0.1s ease;
-}
-
-.button-3d:active {
-    top: 5px;
-    box-shadow: 0 0 0 #008080;
-}
-                </pre>
             </div>
 
             <div id="js" class="tab-content">
                 <h2>JavaScript</h2>
                 <p>JavaScript is a powerful scripting language that makes webpages dynamic and interactive. It enables you to manipulate the content of an HTML page, handle user events (like clicks), validate forms, and communicate with web servers. It's the brain of your website.</p>
                 
-                <div class="ads-container">
-                    <ins class="adsbygoogle"
-                             style="display:block"
-                             data-ad-client="ca-pub-2083692947196571"
-                             data-ad-slot="YOUR_AD_SLOT_ID_HERE"
-                             data-ad-format="auto"
-                             data-full-width-responsive="true"></ins>
-                </div>
                 <h3>Basic Event Handling and DOM Manipulation</h3>
                 <p>Here's how you can use JavaScript to listen for user actions and change the page's content dynamically.</p>
                 <pre>
@@ -827,22 +410,6 @@ body {
     element.classList.toggle("hidden");
 &lt;/script&gt;
                 </pre>
-
-                <h3>Form Validation Example</h3>
-                <p>JavaScript is commonly used to validate form data on the client side before it's sent to the server. This provides immediate feedback to the user and improves the overall experience.</p>
-                <pre>
-&lt;script&gt;
-    const myForm = document.getElementById("myForm");
-    myForm.addEventListener("submit", function(event) {
-        const emailInput = document.getElementById("email");
-        if (!emailInput.value.includes("@")) {
-            event.preventDefault(); // Stop the form from submitting
-            alert("Please enter a valid email address.");
-        }
-    });
-&lt;/script&gt;
-                </pre>
-                <p>JavaScript's core strength lies in its ability to interact with the **Document Object Model (DOM)**. The DOM is a tree-like representation of your HTML page, and JavaScript allows you to access and modify any element within it. This is what makes features like animated sliders, form validation, and real-time content updates possible.</p>
             </div>
         </section>
     </main>
@@ -876,10 +443,8 @@ body {
         function openTab(evt, tabName) {
             const tabContents = document.querySelectorAll('.tab-content');
             tabContents.forEach(tab => tab.classList.remove('active'));
-
             const tabButtons = document.querySelectorAll('.tab-button');
             tabButtons.forEach(btn => btn.classList.remove('active'));
-
             document.getElementById(tabName).classList.add('active');
             evt.currentTarget.classList.add('active');
         }
@@ -893,7 +458,6 @@ body {
         window.addEventListener('scroll', () => {
             let current = '';
             const scrollPosition = window.scrollY + 150;
-
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
                 const sectionHeight = section.offsetHeight;
@@ -901,7 +465,6 @@ body {
                     current = section.getAttribute('id');
                 }
             });
-
             navLinks.forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('href').includes(current)) {
@@ -930,117 +493,22 @@ body {
             if (homeSection) {
                 homeSection.classList.add('active');
             }
-            
             const firstTabButton = document.querySelector('.tab-container .tab-button');
             const firstTabContent = document.querySelector('.tab-content');
             if (firstTabButton && firstTabContent) {
                 firstTabButton.classList.add('active');
                 firstTabContent.classList.add('active');
             }
-
-            loadAds();
         });
 
-        // A new function to push the ad code to AdSense
-        function loadAds() {
-            if (typeof (window.adsbygoogle) === 'object' && window.adsbygoogle.length > 0) {
-                (window.adsbygoogle = window.adsbygoogle || []).push({});
-            }
-        }
-        
-        // CHATBOT SCRIPT START
-        const chatbotIcon = document.getElementById('chatbot-icon');
-        const chatbotWindow = document.getElementById('chatbot-window');
-        const closeBtn = document.getElementById('close-btn');
-        const sendBtn = document.getElementById('send-btn');
-        const userInput = document.getElementById('user-input');
-        const chatBody = document.getElementById('chatbot-body');
-
-        chatbotIcon.addEventListener('click', () => {
-            chatbotWindow.classList.toggle('active');
-            chatbotIcon.style.display = 'none';
-        });
-
-        closeBtn.addEventListener('click', () => {
-            chatbotWindow.classList.remove('active');
-            chatbotIcon.style.display = 'flex';
-        });
-
-        function sendMessage() {
-            const userMessage = userInput.value.trim();
-            if (userMessage === '') return;
-
-            const userDiv = document.createElement('div');
-            userDiv.className = 'chat-message user-message';
-            userDiv.innerText = userMessage;
-            chatBody.appendChild(userDiv);
-
-            userInput.value = '';
-
-            chatBody.scrollTop = chatBody.scrollHeight;
-
-            setTimeout(() => {
-                const botResponse = getBotResponse(userMessage);
-                const botDiv = document.createElement('div');
-                botDiv.className = 'chat-message bot-message';
-                botDiv.innerText = botResponse;
-                chatBody.appendChild(botDiv);
-                chatBody.scrollTop = chatBody.scrollHeight;
-            }, 500);
-        }
-
-        sendBtn.addEventListener('click', sendMessage);
-        userInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-        
-        function getBotResponse(userMessage) {
-            const lowerCaseMessage = userMessage.toLowerCase();
-
-            if (lowerCaseMessage.includes('hello') || lowerCaseMessage.includes('hi') || lowerCaseMessage.includes('hey')) {
-                return 'Hello! I am your personal assistant. How can I assist you today? Feel free to ask me about the site content or how to navigate.';
-            }
-            if (lowerCaseMessage.includes('how are you')) {
-                return 'I am a chatbot, so I am always great! How about you?';
-            }
-
-            if (lowerCaseMessage.includes('news') || lowerCaseMessage.includes('global news')) {
-                return 'You can find the latest news by clicking on the "Global News" card or the corresponding link in the navigation menu.';
-            }
-            if (lowerCaseMessage.includes('story') || lowerCaseMessage.includes('story book')) {
-                return 'To read captivating stories, please go to the "Story Book" section. You can find the link on the home page.';
-            }
-            if (lowerCaseMessage.includes('coding') || lowerCaseMessage.includes('coding guide')) {
-                return 'The "Coding Guide" section provides detailed information on HTML, CSS, and JavaScript. You can find it by scrolling down or clicking the link in the navigation.';
-            }
-            if (lowerCaseMessage.includes('game') || lowerCaseMessage.includes('mini game')) {
-                return 'If you want to play a mini-game, please click on the "Mini Game" card on the home page.';
-            }
-            if (lowerCaseMessage.includes('mythology')) {
-                return 'The "Mythology" section contains stories and information about various mythologies. You can access it from the home page.';
-            }
-            if (lowerCaseMessage.includes('creator') || lowerCaseMessage.includes('who made this')) {
-                return 'This website was created by Sumant. I am here to help you learn and explore the web!';
-            }
-
-            if (lowerCaseMessage.includes('what is html')) {
-                return 'HTML is the foundational language for building the structure of a webpage. The Coding Guide section has a detailed explanation with examples.';
-            }
-            if (lowerCaseMessage.includes('what is css')) {
-                return 'CSS is used for styling and making webpages look beautiful. It controls colors, fonts, and layouts. Check out the Coding Guide for more!';
-            }
-            if (lowerCaseMessage.includes('what is javascript') || lowerCaseMessage.includes('what is js')) {
-                return 'JavaScript makes a website interactive and dynamic. It handles user events, animations, and more. You can learn more about it in the Coding Guide.';
-            }
-            if (lowerCaseMessage.includes('thank you') || lowerCaseMessage.includes('thanks')) {
-                return 'You\'re welcome! Is there anything else I can help with?';
-            }
-
-            return "I'm sorry, I didn't understand that. I can help with questions about the website's content, like 'What is the Coding Guide?' or 'How do I find the news?'";
-        }
-        // CHATBOT SCRIPT END
+        // AdSense Integration - Replace with your actual ad slot ID
+        // (Iske liye aapko apne AdSense account se code mil jayega)
+        (function(){
+            var adScript = document.createElement('script');
+            adScript.async = true;
+            adScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+            document.head.appendChild(adScript);
+        })();
     </script>
 </body>
 </html>
