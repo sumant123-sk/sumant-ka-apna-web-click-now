@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-K1GQC84RQP"></script>
+<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-K1GQC84RQP"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -31,6 +30,49 @@
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
+        }
+        
+        /* New Loader Animation */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: #000;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: slideOut 1s ease-out forwards;
+            animation-delay: 2.5s;
+        }
+        @keyframes slideOut {
+            to {
+                transform: translateX(-100%);
+            }
+        }
+        
+        .loader-text {
+            color: white;
+            font-size: 5vw;
+            text-shadow: 0 0 10px #00ffff;
+            animation: fadeAndScale 2s ease forwards;
+            opacity: 0;
+        }
+        @keyframes fadeAndScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1.2);
+            }
         }
 
         /* --- Terms & Conditions Modal --- */
@@ -588,6 +630,10 @@
 </head>
 <body>
 
+    <div class="page-loader">
+        <div class="loader-text">Welcome to Sumant's Web</div>
+    </div>
+
     <div class="terms-modal-overlay" id="terms-modal">
         <div class="terms-modal-content">
             <h1>Terms and Conditions</h1>
@@ -597,546 +643,4 @@
                 <p><strong>2. General Use:</strong> This website is provided for personal use only. You may not use this site for any commercial purpose without our express written consent.</p>
                 <p><strong>3. User Conduct:</strong> You agree not to use the website in a way that may cause the website to be damaged or its availability impaired. Any unauthorized use of this website may give rise to a claim for damages.</p>
                 <p><strong>4. Intellectual Property:</strong> All content on this website, including text, graphics, logos, and images, is our property and is protected by copyright laws. Unauthorized use is prohibited.</p>
-                <p><strong>5. Limitation of Liability:</strong> We shall not be liable for any direct, indirect, special, or consequential damages that result from the use of, or the inability to use, the materials on this site.</p>
-                <p><strong>6. Governing Law:</strong> This agreement is governed by the laws of India.</p>
-                <p>By clicking "Accept," you confirm that you have read, understood, and agreed to this policy.</p>
-            </div>
-            <div class="accept-section">
-                <button id="acceptBtn">Accept & Continue</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="main-content" style="display: none;">
-        <nav>
-            <div class="menu-toggle" id="menu-toggle">☰</div>
-            <div class="nav-links">
-                <a href="#home-section" class="nav-link active">Home</a>
-                <a href="#coding-guide-section" class="nav-link">Coding Guide</a>
-            </div>
-        </nav>
-
-        <main>
-            <section id="home-section" class="active">
-                <div class="highlighted-names">
-                    <span>Sumant</span>
-                </div>
-                <h1>🌟 Welcome to My Trending Web</h1>
-                <p>Discover the latest in tech, dive into captivating stories, and learn to code with our interactive guides.</p>
-                <div class="ads-container">
-                    <ins class="adsbygoogle"
-                         style="display:block"
-                         data-ad-client="ca-pub-2083692947196571"
-                         data-ad-slot="YOUR_AD_SLOT_ID_HERE"
-                         data-ad-format="auto"
-                         data-full-width-responsive="true"></ins>
-                </div>
-                <div class="grid">
-                    <a class="card" href="news.html">
-                        <span>📰</span>
-                        <div>Global News</div>
-                    </a>
-                    <a class="card" href="book.html">
-                        <span>📖</span>
-                        <div>Story Book</div>
-                    </a>
-                    <a class="card" href="game.html">
-                        <span>🎮</span>
-                        <div>Mini Game</div>
-                    </a>
-                    <a class="card" href="mythology.html">
-                        <span>🕉️</span>
-                        <div>Mythology</div>
-                    </a>
-                    <a class="card" href="#coding-guide-section">
-                        <span>💻</span>
-                        <div>Coding Guide</div>
-                    </a>
-                </div>
-            </section>
-
-            <section id="coding-guide-section">
-                <h1>💡 Programming Code Explained</h1>
-                <div class="tab-container">
-                    <button class="tab-button" onclick="openTab(event, 'html')">HTML</button>
-                    <button class="tab-button" onclick="openTab(event, 'css')">CSS</button>
-                    <button class="tab-button" onclick="openTab(event, 'js')">JavaScript</button>
-                </div>
-                
-                <div id="html" class="tab-content">
-                    <h2>HTML (HyperText Markup Language)</h2>
-                    <p>HTML वेब पेजों की संरचना (structure) बनाने के लिए एक मूलभूत भाषा है। यह तत्वों (elements) और टैग्स (tags) का उपयोग करके कंटेंट को व्यवस्थित करती है। एक वेब पेज पर आप जो कुछ भी देखते हैं, जैसे कि हेडिंग, पैराग्राफ, इमेज, और लिंक्स, वे सभी HTML से ही बने होते हैं।</p>
-                    <h3>Basic HTML Document Structure</h3>
-                    <p>यहाँ एक आदर्श HTML दस्तावेज़ की संरचना दी गई है:</p>
-                    <ul>
-                        <li>**`<!DOCTYPE html>`**: यह दस्तावेज़ को HTML5 के रूप में परिभाषित करता है।</li>
-                        <li>**`<html>`**: यह पूरे HTML पेज का मूल तत्व है।</li>
-                        <li>**`<head>`**: इसमें पेज के बारे में मेटा-जानकारी होती है (जैसे टाइटल, कैरेक्टर सेट)।</li>
-                        <li>**`<body>`**: इसमें पेज का वास्तविक, दिखने वाला कंटेंट होता है।</li>
-                    </ul>
-                    <pre>
-&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;My Web Page Title&lt;/title&gt;
-    &lt;link rel="stylesheet" href="style.css"&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;header&gt;
-        &lt;nav&gt;
-            &lt;a href="#home"&gt;Home&lt;/a&gt;
-            &lt;a href="#about"&gt;About&lt;/a&gt;
-        &lt;/nav&gt;
-    &lt;/header&gt;
-    &lt;main&gt;
-        &lt;h1&gt;Main Heading&lt;/h1&gt;
-        &lt;p&gt;This is a paragraph of text.&lt;/p&gt;
-        &lt;img src="image.jpg" alt="A descriptive image"&gt;
-        &lt;ul&gt;
-            &lt;li&gt;List item 1&lt;/li&gt;
-            &lt;li&gt;List item 2&lt;/li&gt;
-        &lt;/ul&gt;
-    &lt;/main&gt;
-    &lt;footer&gt;
-        &lt;p&gt;&amp;copy; 2024 My Website&lt;/p&gt;
-    &lt;/footer&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-                    </pre>
-
-                    <h3>Creating Advanced Forms</h3>
-                    <p>HTML फ़ॉर्म्स यूज़र से डेटा इकट्ठा करने का एक महत्वपूर्ण तरीका है। यहाँ एक विस्तृत फ़ॉर्म का उदाहरण है, जिसमें कई तरह के इनपुट फ़ील्ड्स (input fields) शामिल हैं:</p>
-                    <pre>
-&lt;form action="/submit-form" method="POST"&gt;
-    &lt;fieldset&gt;
-        &lt;legend&gt;User Information&lt;/legend&gt;
-        
-        &lt;label for="name"&gt;Full Name:&lt;/label&gt;
-        &lt;input type="text" id="name" name="user_name" required&gt;
-        
-        &lt;label for="email"&gt;Email Address:&lt;/label&gt;
-        &lt;input type="email" id="email" name="user_email" required&gt;
-
-        &lt;label for="password"&gt;Password:&lt;/label&gt;
-        &lt;input type="password" id="password" name="user_password" minlength="8" required&gt;
-
-        &lt;label for="dob"&gt;Date of Birth:&lt;/label&gt;
-        &lt;input type="date" id="dob" name="user_dob"&gt;
-
-        &lt;p&gt;Choose your favorite coding language:&lt;/p&gt;
-        &lt;input type="radio" id="html_lang" name="fav_lang" value="HTML"&gt;
-        &lt;label for="html_lang"&gt;HTML&lt;/label&gt;
-        &lt;input type="radio" id="css_lang" name="fav_lang" value="CSS"&gt;
-        &lt;label for="css_lang"&gt;CSS&lt;/label&gt;
-        &lt;input type="radio" id="js_lang" name="fav_lang" value="JavaScript"&gt;
-        &lt;label for="js_lang"&gt;JavaScript&lt;/label&gt;
-
-        &lt;label for="message"&gt;Your Message:&lt;/label&gt;
-        &lt;textarea id="message" name="user_message" rows="4" cols="50"&gt;&lt;/textarea&gt;
-
-        &lt;label for="country"&gt;Country:&lt;/label&gt;
-        &lt;select id="country" name="user_country"&gt;
-            &lt;option value="india"&gt;India&lt;/option&gt;
-            &lt;option value="usa"&gt;USA&lt;/option&gt;
-            &lt;option value="uk"&gt;UK&lt;/option&gt;
-        &lt;/select&gt;
-
-        &lt;label&gt;
-            &lt;input type="checkbox" id="newsletter" name="newsletter_consent"&gt;
-            Subscribe to newsletter
-        &lt;/label&gt;
-
-        &lt;button type="submit"&gt;Submit&lt;/button&gt;
-    &lt;/fieldset&gt;
-&lt;/form&gt;
-                    </pre>
-                </div>
-
-                <div id="css" class="tab-content">
-                    <h2>CSS (Cascading Style Sheets)</h2>
-                    <p>CSS वेब पेजों को सुंदर और आकर्षक बनाने के लिए स्टाइलिंग प्रदान करती है। यह रंग, फ़ॉन्ट, लेआउट और एनिमेशन को नियंत्रित करती है। CSS के बिना, वेब पेज साधारण टेक्स्ट की तरह दिखेंगे।</p>
-                    <h3>CSS Selector and Properties</h3>
-                    <p>CSS में, आप सेलेक्टर (selector) का उपयोग करके HTML तत्वों का चयन करते हैं और फिर गुण (properties) का उपयोग करके उन्हें स्टाइल करते हैं।</p>
-                    <pre>
-/* This is a CSS comment */
-body {
-    font-family: 'Poppins', sans-serif;
-    color: white;
-}
-
-.my-class {
-    background-color: #f0f8ff;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-#my-id {
-    font-size: 2rem;
-    text-align: center;
-}
-                    </pre>
-                    <h3>A Flexible Layout with Flexbox</h3>
-                    <p>Flexbox एक शक्तिशाली एक-आयामी लेआउट सिस्टम है जो आइटमों को एक पंक्ति (row) या स्तंभ (column) में संरेखित (align) करता है। यह आइटमों को उनकी उपलब्ध जगह के अनुसार स्वचालित रूप से व्यवस्थित करता है, जिससे responsive design बनाना आसान हो जाता है।</p>
-                    <pre>
-.flex-container {
-    display: flex;
-    flex-direction: row; /* row | column */
-    flex-wrap: wrap; /* nowrap | wrap */
-    justify-content: space-between; /* start | end | center | space-around */
-    align-items: center; /* stretch | start | end | center | baseline */
-    height: 200px;
-    border: 2px solid #00ffff;
-    padding: 10px;
-}
-
-.flex-item {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
-    padding: 20px;
-    margin: 5px;
-    text-align: center;
-    font-size: 1.2rem;
-    flex-grow: 1;
-}
-                    </pre>
-
-                    <h3>A Powerful 2D Layout with CSS Grid</h3>
-                    <p>CSS Grid एक दो-आयामी लेआउट सिस्टम है जो जटिल वेब पेज लेआउट बनाने के लिए पंक्तियों (rows) और स्तंभों (columns) दोनों का उपयोग करता है। यह आपको अपनी वेबसाइट के लेआउट पर पूर्ण नियंत्रण देता है, जिससे आप हेडर, साइडबार और फ़ुटर जैसे तत्वों को आसानी से व्यवस्थित कर सकते हैं।</p>
-                    <pre>
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
-    grid-template-rows: auto 1fr auto; /* Header, Main, Footer */
-    gap: 20px;
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-    border: 2px solid #ff416c;
-    padding: 20px;
-}
-
-.grid-header {
-    grid-column: 1 / span 3;
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 15px;
-    text-align: center;
-}
-
-.grid-main {
-    grid-column: 1 / span 2;
-    background-color: rgba(255, 255, 255, 0.05);
-    padding: 20px;
-}
-
-.grid-sidebar {
-    grid-column: 3;
-    background-color: rgba(255, 255, 255, 0.08);
-    padding: 20px;
-}
-
-.grid-footer {
-    grid-column: 1 / span 3;
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 15px;
-    text-align: center;
-}
-                    </pre>
-                    
-                    <h3>Creative 3D Button Animation</h3>
-                    <p>CSS एनिमेशन का उपयोग करके आप एक साधारण बटन को एक आकर्षक 3D इफ़ेक्ट दे सकते हैं। यह इफ़ेक्ट यूज़र के इंटरैक्शन को और अधिक मज़ेदार बनाता है।</p>
-                    <pre>
-/* CSS for 3D Button */
-.button-3d {
-    display: inline-block;
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: white;
-    background: linear-gradient(135deg, #00ffff, #00b3b3);
-    border: none;
-    border-radius: 10px;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
-    box-shadow: 0 5px 0 #008080;
-    cursor: pointer;
-    position: relative;
-    top: 0;
-    transition: all 0.1s ease;
-}
-
-.button-3d:active {
-    top: 5px;
-    box-shadow: 0 0 0 #008080;
-}
-                    </pre>
-                </div>
-
-                <div id="js" class="tab-content">
-                    <h2>JavaScript</h2>
-                    <p>JavaScript is a powerful scripting language that makes webpages dynamic and interactive. It enables you to manipulate the content of an HTML page, handle user events (like clicks), validate forms, and communicate with web servers. It's the brain of your website.</p>
-                    
-                    <div class="ads-container">
-                        <ins class="adsbygoogle"
-                                 style="display:block"
-                                 data-ad-client="ca-pub-2083692947196571"
-                                 data-ad-slot="YOUR_AD_SLOT_ID_HERE"
-                                 data-ad-format="auto"
-                                 data-full-width-responsive="true"></ins>
-                    </div>
-                    <h3>Basic Event Handling and DOM Manipulation</h3>
-                    <p>Here's how you can use JavaScript to listen for user actions and change the page's content dynamically.</p>
-                    <pre>
-&lt;script&gt;
-    // A function to handle a click event
-    document.getElementById("myButton").addEventListener("click", function() {
-        alert("Button was clicked!");
-    });
-
-    // A function to change an element's text after a delay
-    setTimeout(function() {
-        document.getElementById("greeting").innerText = "Welcome to our website!";
-    }, 2000); // 2000 milliseconds = 2 seconds
-
-    // A function to add or remove a CSS class
-    const element = document.getElementById("myElement");
-    element.classList.add("highlight");
-    // Or to toggle a class
-    element.classList.toggle("hidden");
-&lt;/script&gt;
-                    </pre>
-
-                    <h3>Form Validation Example</h3>
-                    <p>JavaScript is commonly used to validate form data on the client side before it's sent to the server. This provides immediate feedback to the user and improves the overall experience.</p>
-                    <pre>
-&lt;script&gt;
-    const myForm = document.getElementById("myForm");
-    myForm.addEventListener("submit", function(event) {
-        const emailInput = document.getElementById("email");
-        if (!emailInput.value.includes("@")) {
-            event.preventDefault(); // Stop the form from submitting
-            alert("Please enter a valid email address.");
-        }
-    });
-&lt;/script&gt;
-                    </pre>
-                    <p>JavaScript's core strength lies in its ability to interact with the **Document Object Model (DOM)**. The DOM is a tree-like representation of your HTML page, and JavaScript allows you to access and modify any element within it. This is what makes features like animated sliders, form validation, and real-time content updates possible.</p>
-                </div>
-            </section>
-        </main>
-
-        <footer class="site-footer">
-            &copy; 2025 My Trending Web. All Rights Reserved.
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Service</a>
-        </footer>
-
-        <a href="#home-section" class="back-to-top">▲</a>
-
-        <div class="chatbot-icon" id="chatbot-icon">
-            🤖
-        </div>
-        <div class="chatbot-window" id="chatbot-window">
-            <div class="chatbot-header">
-                <h3>MyTrendingWeb AI Assistant</h3>
-                <span class="close-btn" id="close-btn">&times;</span>
-            </div>
-            <div class="chatbot-body" id="chatbot-body">
-                <div class="chat-message bot-message">Hello! I am your personal assistant. How can I help you today?</div>
-            </div>
-            <div class="chatbot-footer">
-                <input type="text" id="user-input" placeholder="Ask me anything...">
-                <button id="send-btn">Send</button>
-            </div>
-        </div>
-        </div>
-
-    <script>
-        // Terms and Conditions Logic
-        const termsModal = document.getElementById('terms-modal');
-        const acceptBtn = document.getElementById('acceptBtn');
-        const mainContent = document.getElementById('main-content');
-        const chatbotIcon = document.getElementById('chatbot-icon');
-
-        acceptBtn.addEventListener('click', function() {
-            termsModal.style.display = 'none';
-            mainContent.style.display = 'block';
-            chatbotIcon.style.display = 'flex'; // Show chatbot icon after terms are accepted
-            document.body.style.overflow = 'auto'; // Re-enable scrolling
-        });
-
-        // Tab switching for Coding Guide section
-        function openTab(evt, tabName) {
-            const tabContents = document.querySelectorAll('.tab-content');
-            tabContents.forEach(tab => tab.classList.remove('active'));
-
-            const tabButtons = document.querySelectorAll('.tab-button');
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-
-            document.getElementById(tabName).classList.add('active');
-            evt.currentTarget.classList.add('active');
-        }
-
-        // Scroll-based active link and section display
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-links a');
-        const navLinksContainer = document.querySelector('.nav-links');
-        const menuToggle = document.getElementById('menu-toggle');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            const scrollPosition = window.scrollY + 150;
-
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.offsetHeight;
-                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Mobile menu toggle
-        menuToggle.addEventListener('click', () => {
-            navLinksContainer.classList.toggle('show');
-        });
-
-        // Hide mobile menu when a link is clicked
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth <= 768) {
-                    navLinksContainer.classList.remove('show');
-                }
-            });
-        });
-
-        // Initial load: Set the home section and the first tab as active, then load ads
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initially hide the main content
-            mainContent.style.display = 'none';
-            document.body.style.overflow = 'hidden'; // Disable scrolling on the main page
-
-            const homeSection = document.getElementById('home-section');
-            if (homeSection) {
-                homeSection.classList.add('active');
-            }
-            
-            const firstTabButton = document.querySelector('.tab-container .tab-button');
-            const firstTabContent = document.querySelector('.tab-content');
-            if (firstTabButton && firstTabContent) {
-                firstTabButton.classList.add('active');
-                firstTabContent.classList.add('active');
-            }
-
-            loadAds();
-        });
-
-        // A new function to push the ad code to AdSense
-        function loadAds() {
-            if (typeof (window.adsbygoogle) === 'object' && window.adsbygoogle.length > 0) {
-                (window.adsbygoogle = window.adsbygoogle || []).push({});
-            }
-        }
-        
-        // CHATBOT SCRIPT START
-        const chatbotWindow = document.getElementById('chatbot-window');
-        const closeBtn = document.getElementById('close-btn');
-        const sendBtn = document.getElementById('send-btn');
-        const userInput = document.getElementById('user-input');
-        const chatBody = document.getElementById('chatbot-body');
-
-        chatbotIcon.addEventListener('click', () => {
-            chatbotWindow.classList.toggle('active');
-            chatbotIcon.style.display = 'none';
-        });
-
-        closeBtn.addEventListener('click', () => {
-            chatbotWindow.classList.remove('active');
-            chatbotIcon.style.display = 'flex';
-        });
-
-        function sendMessage() {
-            const userMessage = userInput.value.trim();
-            if (userMessage === '') return;
-
-            const userDiv = document.createElement('div');
-            userDiv.className = 'chat-message user-message';
-            userDiv.innerText = userMessage;
-            chatBody.appendChild(userDiv);
-
-            userInput.value = '';
-
-            chatBody.scrollTop = chatBody.scrollHeight;
-
-            setTimeout(() => {
-                const botResponse = getBotResponse(userMessage);
-                const botDiv = document.createElement('div');
-                botDiv.className = 'chat-message bot-message';
-                botDiv.innerText = botResponse;
-                chatBody.appendChild(botDiv);
-                chatBody.scrollTop = chatBody.scrollHeight;
-            }, 500);
-        }
-
-        sendBtn.addEventListener('click', sendMessage);
-        userInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-        
-        function getBotResponse(userMessage) {
-            const lowerCaseMessage = userMessage.toLowerCase();
-
-            if (lowerCaseMessage.includes('hello') || lowerCaseMessage.includes('hi') || lowerCaseMessage.includes('hey')) {
-                return 'Hello! I am your personal assistant. How can I assist you today? Feel free to ask me about the site content or how to navigate.';
-            }
-            if (lowerCaseMessage.includes('how are you')) {
-                return 'I am a chatbot, so I am always great! How about you?';
-            }
-
-            if (lowerCaseMessage.includes('news') || lowerCaseMessage.includes('global news')) {
-                return 'You can find the latest news by clicking on the "Global News" card or the corresponding link in the navigation menu.';
-            }
-            if (lowerCaseMessage.includes('story') || lowerCaseMessage.includes('story book')) {
-                return 'To read captivating stories, please go to the "Story Book" section. You can find the link on the home page.';
-            }
-            if (lowerCaseMessage.includes('coding') || lowerCaseMessage.includes('coding guide')) {
-                return 'The "Coding Guide" section provides detailed information on HTML, CSS, and JavaScript. You can find it by scrolling down or clicking the link in the navigation.';
-            }
-            if (lowerCaseMessage.includes('game') || lowerCaseMessage.includes('mini game')) {
-                return 'If you want to play a mini-game, please click on the "Mini Game" card on the home page.';
-            }
-            if (lowerCaseMessage.includes('mythology')) {
-                return 'The "Mythology" section contains stories and information about various mythologies. You can access it from the home page.';
-            }
-            if (lowerCaseMessage.includes('creator') || lowerCaseMessage.includes('who made this')) {
-                return 'This website was created by Sumant. I am here to help you learn and explore the web!';
-            }
-
-            if (lowerCaseMessage.includes('what is html')) {
-                return 'HTML is the foundational language for building the structure of a webpage. The Coding Guide section has a detailed explanation with examples.';
-            }
-            if (lowerCaseMessage.includes('what is css')) {
-                return 'CSS is used for styling and making webpages look beautiful. It controls colors, fonts, and layouts. Check out the Coding Guide for more!';
-            }
-            if (lowerCaseMessage.includes('what is javascript') || lowerCaseMessage.includes('what is js')) {
-                return 'JavaScript makes a website interactive and dynamic. It handles user events, animations, and more. You can learn more about it in the Coding Guide.';
-            }
-            if (lowerCaseMessage.includes('thank you') || lowerCaseMessage.includes('thanks')) {
-                return 'You\'re welcome! Is there anything else I can help with?';
-            }
-
-            return "I'm sorry, I didn't understand that. I can help with questions about the website's content, like 'What is the Coding Guide?' or 'How do I find the news?'";
-        }
-        // CHATBOT SCRIPT END
-    </script>
-</body>
-</html>
+                <p><strong>5. Limitation of Liability:</strong> We shall not be liable for any direct, indirect, special, or consequential damages that result
