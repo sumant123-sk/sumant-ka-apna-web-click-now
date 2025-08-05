@@ -71,7 +71,7 @@
         }
 
         h1.main-title {
-            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-size: clamp(2rem, 7vw, 3.5rem);
             text-align: center;
             margin-bottom: 20px;
             color: #ffcc00;
@@ -85,15 +85,15 @@
         }
         
         h2 {
-            font-size: clamp(1.8rem, 6vw, 2.5rem);
-            margin-bottom: 30px;
+            font-size: clamp(1.6rem, 5vw, 2.2rem);
+            margin-bottom: 25px;
             color: #00e0ff;
             text-shadow: 0 0 8px rgba(0, 224, 255, 0.7), 0 0 15px rgba(0, 224, 255, 0.4);
             text-align: center;
         }
 
         h3 {
-            font-size: 1.5rem;
+            font-size: clamp(1.3rem, 4vw, 1.8rem);
             color: #ffb3b3;
             margin-bottom: 15px;
             text-shadow: 0 0 5px rgba(255, 179, 179, 0.5);
@@ -101,17 +101,32 @@
 
         /* ----------------------- Story Card Styling (Glassmorphism) ----------------------- */
         .story-container {
-            padding: 40px;
+            padding: 30px;
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            border-radius: 25px;
+            border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
             text-align: center;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.6s ease;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: calc(var(--index) * 0.2s);
         }
         
+        .story-container:nth-child(1) { --index: 1; }
+        .story-container:nth-child(2) { --index: 2; }
+        .story-container:nth-child(3) { --index: 3; }
+        .story-container:nth-child(4) { --index: 4; }
+        .story-container:nth-child(5) { --index: 5; }
+        .story-container:nth-child(6) { --index: 6; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .story-container:hover {
             transform: translateY(-10px) scale(1.03);
             box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 255, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.4);
@@ -119,11 +134,23 @@
 
         .story-text {
             text-align: justify;
-            line-height: 1.8;
-            margin-bottom: 25px;
-            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: clamp(0.95rem, 3vw, 1.05rem);
             color: rgba(255, 255, 255, 0.9);
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .story-text.english {
+            color: #b3e5fc;
+            border-left: 3px solid #00e0ff;
+            padding-left: 15px;
+            margin-bottom: 30px;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .story-container:hover .story-text.english {
+            transform: translateX(10px);
         }
 
         /* ----------------------- Feedback Buttons ----------------------- */
@@ -131,7 +158,7 @@
             margin-top: 20px;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
         }
 
@@ -139,32 +166,31 @@
             background: rgba(255, 255, 255, 0.1);
             border: 2px solid rgba(255, 255, 255, 0.2);
             color: #fff;
-            padding: 10px 25px;
+            padding: 8px 20px;
             border-radius: 50px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
             font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
             text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
             user-select: none;
             position: relative;
             overflow: hidden;
         }
-        
+
         .feedback-button.like-button .label {
             transition: opacity 0.3s ease, width 0.3s ease;
         }
-        
-        /* Hide "Like" text and adjust spacing when active */
+
         .feedback-button.liked .label {
             opacity: 0;
             width: 0;
-            margin-right: -10px;
+            margin-right: -8px;
         }
-        
+
         .feedback-button::after {
             content: '';
             position: absolute;
@@ -178,17 +204,17 @@
             transition: width 0.4s ease, height 0.4s ease;
             z-index: 0;
         }
-        
+
         .feedback-button:hover::after {
-            width: 200px;
-            height: 200px;
+            width: 150px;
+            height: 150px;
         }
 
         .feedback-button .icon, .feedback-button .count {
             position: relative;
             z-index: 1;
         }
-        
+
         .feedback-button:hover {
             transform: translateY(-5px);
             background: rgba(255, 255, 255, 0.2);
@@ -199,7 +225,6 @@
             transform: translateY(-2px);
         }
 
-        /* Specific styles for active/clicked buttons with glowing effect */
         .feedback-button.liked {
             background: linear-gradient(to right, #2bc0e4, #eaecc6);
             border-color: #e3f2fd;
@@ -218,7 +243,7 @@
 
         .feedback-message {
             margin-top: 15px;
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
             font-weight: 600;
             color: #ffeb3b;
             opacity: 0;
@@ -231,13 +256,19 @@
 
         /* Responsive design adjustments */
         @media (max-width: 768px) {
-            body { padding: 40px 10px; }
-            h1.main-title { font-size: 2.2rem; }
-            h2 { font-size: 1.8rem; margin-bottom: 25px; }
-            h3 { font-size: 1.3rem; }
-            .story-container { padding: 25px; }
-            .story-text { font-size: 1rem; line-height: 1.6; }
-            .feedback-button { font-size: 0.9rem; padding: 8px 16px; gap: 6px; }
+            body { padding: 30px 10px; }
+            h1.main-title { font-size: clamp(1.8rem, 6vw, 2.2rem); }
+            h2 { font-size: clamp(1.4rem, 5vw, 1.8rem); margin-bottom: 20px; }
+            h3 { font-size: clamp(1.1rem, 4vw, 1.4rem); }
+            .story-container { padding: 20px; }
+            .story-text { font-size: clamp(0.85rem, 3vw, 0.95rem); line-height: 1.6; }
+            .feedback-button { font-size: clamp(0.8rem, 2.5vw, 0.9rem); padding: 7px 15px; gap: 6px; }
+        }
+
+        @media (max-width: 480px) {
+            .main-container { gap: 30px; }
+            .story-container { padding: 15px; }
+            .feedback-section { gap: 10px; }
         }
     </style>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2083692947196571" crossorigin="anonymous"></script>
@@ -250,36 +281,42 @@
     <h2>हिंदी कहानियाँ</h2>
     
     <div class="story-container">
-    <h3>एक जादुई कलम की कहानी</h3>
-    <p class="story-text">एक छोटे से गाँव में, राहुल नाम का एक बच्चा रहता था। वह पढ़ने में बहुत अच्छा नहीं था, लेकिन उसके पास एक जादुई कलम थी। जब भी वह उस कलम से कुछ लिखता, तो वह सच हो जाता। एक दिन उसने लिखा, "गाँव में बारिश हो।" और तुरंत, आसमान में बादल छा गए और बारिश होने लगी। गाँव के लोग बहुत खुश हुए। राहुल ने अपनी जादुई कलम से गाँव को हरा-भरा और खुशहाल बना दिया।</p>
-    <div class="feedback-section">
-        <button class="feedback-button like-button" onclick="handleFeedback(this, 1, 'like')">
-            <span class="icon">👍</span> <span class="label">Like</span> <span class="count">10</span>
-        </button>
-        <button class="feedback-button dislike-button" onclick="handleFeedback(this, 1, 'dislike')">
-            <span class="icon">👎</span> Dislike <span class="count">0</span>
-        </button>
-    </div>
-    <p id="message-1" class="feedback-message"></p>
+        <h3>English Translation: The Story of a Magical Pen</h3>
+        <p class="story-text english">In a small village, there lived a boy named Rahul who struggled with his studies. One day, he found a magical pen that brought to life anything he wrote. Curious, he wrote, "Let it rain in the village." Instantly, clouds gathered, and rain poured, delighting the villagers. Rahul used his pen to write about green fields, clean rivers, and happy people. Each wish came true, transforming the village into a paradise. However, he learned that the pen’s magic worked only when his intentions were pure. One day, he tried writing for selfish gains, but the pen refused to work. Rahul realized the importance of selflessness and used the pen to help others, making the village prosperous. The villagers praised him, and he learned that true magic lies in kindness.</p>
+        <h3>एक जादुई कलम की कहानी</h3>
+        <p class="story-text">एक छोटे से गाँव में राहुल नाम का एक बच्चा रहता था, जो पढ़ाई में कमजोर था। एक दिन उसे एक जादुई कलम मिली, जिससे वह जो कुछ भी लिखता, वह सच हो जाता। उत्सुकता में उसने लिखा, "गाँव में बारिश हो।" तुरंत बादल छाए और बारिश होने लगी, जिससे गाँव वाले खुश हो गए। राहुल ने अपनी कलम से हरे-भरे खेत, साफ नदियाँ और खुशहाल लोग लिखे। हर इच्छा पूरी हुई, और गाँव स्वर्ग बन गया। लेकिन उसे पता चला कि कलम का जादू तभी काम करता है जब इरादे शुद्ध हों। एक दिन उसने स्वार्थी इच्छा लिखी, पर कलम ने काम नहीं किया। राहुल को समझ आया कि सच्ची ताकत दयालुता में है। उसने दूसरों की भलाई के लिए लिखा, और गाँव समृद्ध हो गया। गाँव वालों ने उसकी तारीफ की, और उसने सीखा कि सच्चा जादू दयालुता में है।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 1, 'like')">
+                <span class="icon">👍</span> <span class="label">Like</span> <span class="count">10</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 1, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">0</span>
+            </button>
+        </div>
+        <p id="message-1" class="feedback-message"></p>
     </div>
     
     <div class="story-container">
-    <h3>लाल गुलाब का रहस्य</h3>
-    <p class="story-text">एक पुराने महल के बगीचे में, एक लाल गुलाब था जो रात में चमकता था। सभी लोग सोचते थे कि यह एक जादू है। लेकिन एक बूढ़ा माली जानता था कि वह गुलाब सिर्फ उन लोगों के लिए चमकता है जिनके दिल में सच्ची मोहब्बत होती है। एक दिन एक राजकुमार ने उस गुलाब को अपनी राजकुमारी के लिए तोड़ने की कोशिश की, लेकिन वह नहीं टूटा। उसने अपनी सच्ची मोहब्बत का इज़हार किया, और गुलाब चमकने लगा।</p>
-    <div class="feedback-section">
-        <button class="feedback-button like-button" onclick="handleFeedback(this, 2, 'like')">
-            <span class="icon">👍</span> <span class="label">Like</span> <span class="count">15</span>
-        </button>
-        <button class="feedback-button dislike-button" onclick="handleFeedback(this, 2, 'dislike')">
-            <span class="icon">👎</span> Dislike <span class="count">2</span>
-        </button>
-    </div>
-    <p id="message-2" class="feedback-message"></p>
+        <h3>English Translation: The Mystery of the Red Rose</h3>
+        <p class="story-text english">In an ancient palace garden, a red rose glowed every night, puzzling everyone. An old gardener revealed that it shone only for those with true love in their hearts. A young prince, eager to gift it to his beloved princess, tried to pluck it, but it wouldn’t budge. Determined, he returned each night, confessing his love under the stars. One night, his heartfelt words made the rose glow brighter, and it willingly let itself be picked. The prince gave it to the princess, and their love deepened. The garden bloomed with more glowing roses, symbolizing pure love. The story spread, teaching that true love makes even the impossible possible.</p>
+        <h3>लाल गुलाब का रहस्य</h3>
+        <p class="story-text">एक पुराने महल के बगीचे में एक लाल गुलाब था जो हर रात चमकता था। सभी इसे जादुई मानते थे। एक बूढ़ा माली जानता था कि यह गुलाब केवल सच्चे प्रेमियों के लिए चमकता है। एक युवा राजकुमार ने इसे अपनी प्रिय राजकुमारी को देने की कोशिश की, पर गुलाब नहीं टूटा। वह हर रात तारों के नीचे अपनी मोहब्बत का इजहार करने लगा। एक रात, उसके सच्चे शब्दों से गुलाब और चमक उठा और आसानी से टूट गया। राजकुमार ने गुलाब राजकुमारी को दिया, और उनका प्यार गहरा हो गया। बगीचे में और चमकते गुलाब उगे, जो सच्चे प्यार का प्रतीक बने। यह कहानी फैली, और लोगों ने सीखा कि सच्चा प्यार असंभव को भी संभव बनाता है।</p>
+        <div class="feedback-section">
+            <button class="feedback-button like-button" onclick="handleFeedback(this, 2, 'like')">
+                <span class="icon">👍</span> <span class="label">Like</span> <span class="count">15</span>
+            </button>
+            <button class="feedback-button dislike-button" onclick="handleFeedback(this, 2, 'dislike')">
+                <span class="icon">👎</span> Dislike <span class="count">2</span>
+            </button>
+        </div>
+        <p id="message-2" class="feedback-message"></p>
     </div>
 
     <div class="story-container">
+        <h3>English Translation: The Foolish King and the Three Fish</h3>
+        <p class="story-text english">A king announced a reward for a fish that could perform a special task. In a pond lived three fish: Wise, Clever, and Foolish. Wise refused, thinking the king’s task was pointless. Clever tricked the king with a task that wasted his time, succeeding in her deception. Foolish, however, obeyed without overthinking and performed a simple task—fetching a pearl from the pond’s depths. The king, impressed by her sincerity, gave her the biggest reward. The village celebrated, and Foolish learned that honesty sometimes outshines cleverness. The story teaches that simplicity and obedience can lead to unexpected success.</p>
         <h3>मूर्ख राजा और तीन मछलियां</h3>
-        <p class="story-text">एक बार एक राजा ने घोषणा की कि वह एक अनोखी मछली को इनाम देगा जो उसके लिए एक खास काम कर सके। तालाब में तीन मछलियां रहती थीं - एक बुद्धिमान, एक चालाक और एक मूर्ख। बुद्धिमान मछली ने सोचा कि राजा मूर्ख है और वह बिना मतलब का काम नहीं करेगी। चालाक मछली ने राजा को एक ऐसा काम दिया जिसे करने में उसे समय लगा और वह राजा को बेवकूफ बनाने में सफल रही। लेकिन मूर्ख मछली ने राजा की आज्ञा का पालन किया और उसने राजा को एक ऐसा काम करके दिखाया जो राजा को खुश कर सके। राजा ने मूर्ख मछली को सबसे बड़ा इनाम दिया। इस कहानी से हमें यह सीख मिलती है कि कभी-कभी मूर्खता भी बुद्धिमानी से ज़्यादा काम आती है, क्योंकि मूर्ख लोग बिना सोचे-समझे काम करते हैं और वे सही समय पर सही काम कर पाते हैं।</p>
+        <p class="story-text">एक राजा ने घोषणा की कि वह उस मछली को इनाम देगा जो एक विशेष काम करे। तालाब में तीन मछलियाँ थीं: बुद्धिमान, चालाक, और मूर्ख। बुद्धिमान ने मना किया, क्योंकि उसे राजा का काम व्यर्थ लगा। चालाक मछली ने राजा को एक जटिल काम देकर बेवकूफ बनाया और सफल रही। मूर्ख मछली ने बिना ज्यादा सोचे आज्ञा मानी और तालाब की गहराई से एक मोती लाकर दिया। राजा उसकी सादगी से प्रभावित हुआ और उसे सबसे बड़ा इनाम दिया। गाँव ने उत्सव मनाया, और मूर्ख मछली ने सीखा कि ईमानदारी कभी-कभी चालाकी से बढ़कर होती है। यह कहानी सिखाती है कि सादगी और आज्ञाकारिता अप्रत्याशित सफलता दिला सकती है।</p>
         <div class="feedback-section">
             <button class="feedback-button like-button" onclick="handleFeedback(this, 20, 'like')">
                 <span class="icon">👍</span> <span class="label">Like</span> <span class="count">8</span>
@@ -292,8 +329,10 @@
     </div>
 
     <div class="story-container">
+        <h3>English Translation: The Tale of a Brave King</h3>
+        <p class="story-text english">A brave king always protected his people. When a giant dragon attacked, demanding a child daily, the king vowed to fight it. He rallied his soldiers, sharpening their swords, and led them to battle. The dragon was too strong, burning fields and homes. The king devised a clever plan, luring the dragon into a narrow cave with a hidden trap. Trapped, the dragon roared but couldn’t escape. The kingdom was saved, and the people hailed the king’s courage. He thanked his soldiers, teaching that bravery and strategy can defeat even the greatest threats.</p>
         <h3>एक बहादुर राजा की कहानी</h3>
-        <p class="story-text">एक बहुत ही बहादुर राजा था जो अपनी प्रजा की सुरक्षा के लिए हमेशा तत्पर रहता था। एक बार, उसके राज्य पर एक विशाल ड्रैगन ने हमला कर दिया। ड्रैगन हर दिन एक बच्चे को खाने आता था। राजा ने ड्रैगन से लड़ने का फैसला किया। उसने अपने सैनिकों को बुलाया और सभी को अपनी-अपनी तलवारों को तेज़ करने को कहा। राजा ने ड्रैगन से लड़ाई की, लेकिन वह बहुत ताकतवर था। राजा ने एक चाल चली और उसने ड्रैगन को एक गुफा में फंसा दिया। ड्रैगन गुफा में फंस गया और वह वहाँ से बाहर नहीं निकल सका। राजा ने अपनी प्रजा को ड्रैगन से बचाया और उसने अपने सैनिकों को बहादुरी के लिए धन्यवाद दिया।</p>
+        <p class="story-text">एक बहादुर राजा अपनी प्रजा की रक्षा के लिए हमेशा तैयार रहता था। जब एक विशाल ड्रैगन ने हमला किया, जो हर दिन एक बच्चे की मांग करता था, राजा ने उससे लड़ने का प्रण लिया। उसने अपने सैनिकों को बुलाया और तलवारें तेज करने को कहा। ड्रैगन बहुत ताकतवर था, उसने खेत और घर जला दिए। राजा ने एक चतुर योजना बनाई और ड्रैगन को एक तंग गुफा में फंसाया, जहाँ एक जाल छिपा था। ड्रैगन फंस गया और निकल न सका। राजा ने अपने सैनिकों का धन्यवाद किया और प्रजा ने उसकी बहादुरी की सराहना की। यह कहानी सिखाती है कि साहस और रणनीति सबसे बड़े खतरे को भी हरा सकती है।</p>
         <div class="feedback-section">
             <button class="feedback-button like-button" onclick="handleFeedback(this, 21, 'like')">
                 <span class="icon">👍</span> <span class="label">Like</span> <span class="count">25</span>
@@ -306,8 +345,10 @@
     </div>
     
     <div class="story-container">
+        <h3>English Translation: The Friendship of Moon and Sun</h3>
+        <p class="story-text english">The Moon and Sun were best friends but could never meet, as Sun shone by day and Moon by night. Wishing to unite, Moon devised a plan. One night, it sent all its light to Earth, creating a day-like glow. Sun saw this and joined Moon in the sky, their lights merging to form a radiant rainbow. People on Earth marveled at the sight, celebrating their friendship. The event became a legend, teaching that true friendship can create wonders, even defying nature’s rules.</p>
         <h3>चाँद और सूरज की दोस्ती</h3>
-        <p class="story-text">चाँद और सूरज बहुत अच्छे दोस्त थे, लेकिन वे कभी मिल नहीं पाते थे। सूरज दिन में निकलता था और चाँद रात में। एक दिन सूरज ने चाँद से कहा, "काश हम मिल पाते।" चाँद ने एक योजना बनाई। उसने अपनी सारी रोशनी पृथ्वी पर भेज दी, जिससे रात में भी दिन जैसा उजाला हो गया। सूरज ने उसे देखा और दोनों मिलकर आसमान में एक सुंदर इंद्रधनुष बना दिया।</p>
+        <p class="story-text">चाँद और सूरज बहुत अच्छे दोस्त थे, पर कभी मिल नहीं पाते थे, क्योंकि सूरज दिन में चमकता और चाँद रात में। मिलने की इच्छा में चाँद ने एक योजना बनाई। एक रात, उसने अपनी सारी रोशनी पृथ्वी पर भेज दी, जिससे रात दिन जैसी उज्ज्वल हो गई। सूरज ने इसे देखा और चाँद के साथ आकाश में आ गया। उनकी रोशनी मिलकर एक सुंदर इंद्रधनुष बनी। पृथ्वी के लोग इस नजारे को देखकर चकित हुए और उनकी दोस्ती का उत्सव मनाया। यह घटना एक किंवदंती बन गई, जो सिखाती है कि सच्ची दोस्ती चमत्कार कर सकती है, यहाँ तक कि प्रकृति के नियमों को भी तोड़ सकती है।</p>
         <div class="feedback-section">
             <button class="feedback-button like-button" onclick="handleFeedback(this, 22, 'like')">
                 <span class="icon">👍</span> <span class="label">Like</span> <span class="count">30</span>
@@ -320,8 +361,10 @@
     </div>
     
     <div class="story-container">
-        <h3>मूर्ख राजा और तीन मछलियां</h3>
-        <p class="story-text">एक बार एक राजा ने घोषणा की कि वह एक अनोखी मछली को इनाम देगा जो उसके लिए एक खास काम कर सके। तालाब में तीन मछलियां रहती थीं - एक बुद्धिमान, एक </p>
+        <h3>English Translation: The Magic Carpet’s Adventure</h3>
+        <p class="story-text english">In a bustling market, a girl named Meera found a dusty old carpet that could fly when she sang to it. Excited, she sang a sweet melody, and the carpet soared above the village, showing her mountains, rivers, and forests. Meera used it to help her neighbors, delivering food to remote homes and rescuing lost animals. One day, a storm trapped her friend on a cliff. Meera sang bravely, guiding the carpet through the winds to save him. The village honored her, and the carpet became a symbol of hope. Meera learned that kindness and courage make any magic stronger.</p>
+        <h3>जादुई कालीन का साहसिक सफर</h3>
+        <p class="story-text">एक व्यस्त बाजार में मीरा नाम की एक लड़की को एक पुराना, धूल भरा कालीन मिला, जो उसके गाने पर उड़ सकता था। उत्साहित होकर उसने एक मधुर गीत गाया, और कालीन गाँव के ऊपर उड़ने लगा, उसे पहाड़, नदियाँ और जंगल दिखाए। मीरा ने इसका उपयोग पड़ोसियों की मदद के लिए किया, दूर के घरों में भोजन पहुँचाया और खोए हुए जानवरों को बचाया। एक दिन, तूफान में उसका दोस्त एक चट्टान पर फंस गया। मीरा ने साहसपूर्वक गाना गाया और कालीन को हवाओं के बीच ले जाकर दोस्त को बचाया। गाँव ने उसका सम्मान किया, और कालीन आशा का प्रतीक बन गया। मीरा ने सीखा कि दयालुता और साहस किसी भी जादू को और मजबूत करते हैं।</p>
         <div class="feedback-section">
             <button class="feedback-button like-button" onclick="handleFeedback(this, 23, 'like')">
                 <span class="icon">👍</span> <span class="label">Like</span> <span class="count">0</span>
@@ -332,7 +375,6 @@
         </div>
         <p id="message-23" class="feedback-message"></p>
     </div>
-    
 </div>
 
 <script>
@@ -347,15 +389,12 @@
 
         if (type === 'like') {
             if (!likeButton.classList.contains('liked')) {
-                // User is liking for the first time
                 let count = parseInt(likeButton.querySelector('.count').innerText) + 1;
                 likeButton.querySelector('.count').innerText = count;
                 likeButton.classList.add('liked');
                 dislikeButton.classList.remove('disliked');
                 messageText = 'धन्यवाद! हमें खुशी है कि आपको यह कहानी पसंद आई।';
-
             } else {
-                // User is unliking
                 let count = parseInt(likeButton.querySelector('.count').innerText) - 1;
                 likeButton.querySelector('.count').innerText = count;
                 likeButton.classList.remove('liked');
@@ -363,14 +402,12 @@
             }
         } else if (type === 'dislike') {
             if (!dislikeButton.classList.contains('disliked')) {
-                // User is disliking for the first time
                 let count = parseInt(dislikeButton.querySelector('.count').innerText) + 1;
                 dislikeButton.querySelector('.count').innerText = count;
                 dislikeButton.classList.add('disliked');
                 likeButton.classList.remove('liked');
                 messageText = 'ठीक है, हम भविष्य में ऐसी कहानियों को बेहतर बनाने की कोशिश करेंगे।';
             } else {
-                // User is undisliking
                 let count = parseInt(dislikeButton.querySelector('.count').innerText) - 1;
                 dislikeButton.querySelector('.count').innerText = count;
                 dislikeButton.classList.remove('disliked');
@@ -378,7 +415,6 @@
             }
         }
 
-        // Display the message
         if (messageText) {
             message.innerText = messageText;
             message.classList.add('show');
@@ -386,9 +422,19 @@
                 message.classList.remove('show');
             }, 3000);
         } else {
-             message.classList.remove('show');
+            message.classList.remove('show');
         }
     }
+
+    // Scroll-triggered animation for story containers
+    window.addEventListener('scroll', () => {
+        document.querySelectorAll('.story-container').forEach((container, index) => {
+            const rect = container.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.8) {
+                container.style.animation = `fadeIn 1s ease forwards ${index * 0.2}s`;
+            }
+        });
+    });
 </script>
 
 </body>
