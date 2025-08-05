@@ -182,9 +182,9 @@
   <div class="toggle-buttons">
     <button onclick="showSection('global')">🌍 Global News</button>
     <button onclick="showSection('crypto')">💰 Crypto News</button>
+    <button onclick="showSection('indian')">🇮🇳 Indian Market News</button>
   </div>
 
-  <!-- Modal for news details -->
   <div id="newsModal" class="modal">
     <div class="modal-content">
       <h2 id="modalTitle"></h2>
@@ -401,334 +401,945 @@
   </div>
 
   <div id="crypto" class="news-container">
-    <div class="news-card" data-details="Bitcoin's price soared past $80,000, driven by institutional adoption and the approval of spot Bitcoin ETFs in the US and Europe.">
-      <h2>💸 Bitcoin Crosses $80K</h2>
-      <p>Bitcoin hits all-time high with massive market interest and ETF approvals.</p>
+    <div class="news-card" data-details="Bitcoin's price soared past $80,000, driven by institutional investment and growing adoption of cryptocurrency as a hedge against inflation. Analysts project a potential rise to $100,000 by year-end.">
+      <h2>📈 Bitcoin Breaks $80,000 Mark</h2>
+      <p>Institutional interest and inflation fears fuel historic crypto rally.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Ethereum's 2.0 upgrade reduced energy consumption by 99%, with staking rewards attracting over 20 million ETH in 2025.">
-      <h2>⚡ Ethereum 2.0 Live Now</h2>
-      <p>Major upgrade to Ethereum brings faster speed and low gas fees.</p>
+    <div class="news-card" data-details="Ethereum's 'Serenity' upgrade is now live, transitioning the network to a proof-of-stake model. This reduces energy consumption by 99% and significantly improves transaction speeds.">
+      <h2>⚙️ Ethereum 'Serenity' Upgrade Live</h2>
+      <p>Major network upgrade drastically cuts energy use and boosts efficiency.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Solana's 50% price surge was fueled by its role in DeFi and NFT platforms, processing 10,000 transactions per second.">
-      <h2>📈 Solana Surges 50%</h2>
-      <p>Solana's price spikes due to growing DeFi and NFT adoption.</p>
+    <div class="news-card" data-details="A new report reveals that stablecoins are now the most-traded crypto asset, surpassing Bitcoin and Ethereum in daily volume. Regulatory frameworks are being developed in major economies to govern their use.">
+      <h2>📊 Stablecoins Dominate Trading Volume</h2>
+      <p>Report shows stablecoins are now the most traded crypto asset.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Chainlink partnered with 50 new blockchains, enhancing data feeds for DeFi and supply chain applications.">
-      <h2>🔗 Chainlink Expands Oracles</h2>
-      <p>New partnerships boost Chainlink's role in smart contract ecosystems.</p>
+    <div class="news-card" data-details="Polygon's zkEVM scaling solution has been adopted by major DeFi protocols, leading to a 50% reduction in gas fees and a surge in network activity. The move positions Polygon as a key player in Layer 2 solutions.">
+      <h2>🔗 Polygon Adoption Surges</h2>
+      <p>ZkEVM scaling solution reduces fees and boosts network usage.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Cardano's Hydra upgrade enables 1 million transactions per second, positioning it as a leader in scalable blockchains.">
-      <h2>💹 Cardano's New Upgrade</h2>
-      <p>Cardano's latest update enhances scalability and developer tools.</p>
+    <div class="news-card" data-details="The first Bitcoin ETF in Asia was approved by regulators in Hong Kong, marking a significant milestone for crypto adoption in the region. Analysts expect a new wave of capital inflow from institutional investors.">
+      <h2>🚀 First Bitcoin ETF in Asia Approved</h2>
+      <p>Hong Kong regulators greenlight a spot Bitcoin ETF, a major step for regional crypto markets.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Polygon's zkEVM processed 500,000 transactions daily, attracting dApps in gaming and finance with low-cost solutions.">
-      <h2>🌐 Polygon zkEVM Gains Traction</h2>
-      <p>Polygon's zero-knowledge solution attracts major dApp developers.</p>
+    <div class="news-card" data-details="Decentralized Autonomous Organizations (DAOs) are gaining mainstream attention, with a recent DAO successfully acquiring a valuable collection of digital art. The model is seen as the future of transparent and democratic governance.">
+      <h2>🤝 DAOs Gain Mainstream Traction</h2>
+      <p>New decentralized governance models are reshaping ownership and decision-making.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Proposed stablecoin regulations in the EU and US require issuers to maintain 1:1 fiat reserves, impacting Tether and USDC.">
-      <h2>🏦 Stablecoin Regulations Proposed</h2>
-      <p>Governments outline new rules for stablecoin issuers in 2025.</p>
+    <div class="news-card" data-details="A massive hack on a popular crypto exchange resulted in the loss of $500 million in various digital assets. The incident has prompted calls for stricter security standards across the industry.">
+      <h2>🚨 Major Crypto Exchange Hacked</h2>
+      <p>Over $500 million stolen in a security breach, highlighting industry risks.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="DeFi platforms like Uniswap and Aave reached $500 billion in TVL, driven by institutional and retail investor participation.">
-      <h2>💰 DeFi TVL Hits $500B</h2>
-      <p>Decentralized finance platforms see record-breaking total value locked.</p>
+    <div class="news-card" data-details="Central banks in the EU and Japan announced a joint CBDC trial to test cross-border payments. The project aims to create a more efficient and secure alternative to traditional SWIFT transfers.">
+      <h2>🏦 EU and Japan Launch CBDC Trial</h2>
+      <p>Central banks partner to test a new cross-border digital currency.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="NFT collections like CryptoPunks and Bored Apes saw renewed interest, with trading volumes surpassing $10 billion in 2025.">
-      <h2>🎨 NFT Market Rebounds</h2>
-      <p>New NFT collections drive renewed interest in digital art.</p>
+    <div class="news-card" data-details="The NFT market is experiencing a new wave of innovation beyond digital art, with real estate and luxury goods now being tokenized. This promises to unlock liquidity for illiquid assets.">
+      <h2>🖼️ NFT Market Expands to Real Estate</h2>
+      <p>Non-fungible tokens are now being used to represent physical assets.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="A major exchange hack exposed vulnerabilities in hot wallets, prompting a shift to cold storage and multi-sig solutions.">
-      <h2>🔐 Crypto Security Breach Alert</h2>
-      <p>Major exchange reports vulnerability, urges users to update wallets.</p>
+    <div class="news-card" data-details="Solana's network witnessed a surge in traffic after a major gaming studio announced its new Web3 game would be built on the platform. The price of SOL token jumped 20% in response.">
+      <h2>🎮 Solana Price Jumps on Gaming News</h2>
+      <p>New Web3 game announcement drives a surge in Solana network activity and token value.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Countries like Nigeria and India saw a 200% increase in crypto payments, driven by low-cost blockchain solutions.">
-      <h2>🌍 Global Crypto Adoption Grows</h2>
-      <p>Emerging markets lead in cryptocurrency usage for payments.</p>
+    <div class="news-card" data-details="The UN is exploring blockchain technology to improve supply chain transparency and combat fraud in humanitarian aid distribution. The pilot program focuses on food and medical supplies.">
+      <h2>🌍 UN to Use Blockchain for Aid</h2>
+      <p>New initiative aims to track humanitarian supplies with blockchain technology.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Layer-2 solutions like Optimism reduced Ethereum gas fees by 90%, processing 1 million transactions daily.">
-      <h2>⚙️ Layer-2 Solutions Thrive</h2>
-      <p>Optimism and Arbitrum see increased activity for low-cost transactions.</p>
+    <div class="news-card" data-details="Regulators in the US proposed a new set of rules for DeFi protocols, focusing on consumer protection and anti-money laundering measures. The move is a significant step towards regulatory clarity for the sector.">
+      <h2>⚖️ US Proposes New DeFi Regulations</h2>
+      <p>New rules target consumer protection and financial crime in the decentralized finance space.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Ripple's legal victory clarified XRP's status as a non-security, boosting its price by 70% in 2025.">
-      <h2>💸 XRP Gains Regulatory Clarity</h2>
-      <p>Ripple's legal battles conclude, boosting XRP's market confidence.</p>
+    <div class="news-card" data-details="A survey shows that 40% of millennials now own some form of cryptocurrency, up from 25% last year. The trend indicates a generational shift in financial habits and investment strategies.">
+      <h2>📈 Crypto Ownership Among Millennials</h2>
+      <p>Survey reveals a significant increase in cryptocurrency adoption among younger generations.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Blockchain-based collectibles like Axie Infinity items gained traction, with $5 billion in trading volume among gamers.">
-      <h2>🖼️ Digital Collectibles Boom</h2>
-      <p>Blockchain-based collectibles gain popularity among gamers.</p>
+    <div class="news-card" data-details="Cardano's network successfully implemented a new hard fork that introduces advanced smart contract capabilities. The upgrade is expected to attract more developers and projects to its ecosystem.">
+      <h2>⚙️ Cardano Implements Smart Contract Upgrade</h2>
+      <p>Network hard fork boosts functionality, positioning Cardano for growth in DeFi.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Over 20 countries approved crypto ETFs, with Bitcoin and Ethereum funds attracting $50 billion in investments.">
-      <h2>📊 Crypto ETF Approvals Surge</h2>
-      <p>Multiple countries greenlight crypto-based exchange-traded funds.</p>
+    <div class="news-card" data-details="A major bank announced a partnership with a leading blockchain firm to offer custody services for institutional clients. The move signals growing acceptance of crypto assets by traditional financial institutions.">
+      <h2>🏦 Major Bank Offers Crypto Custody</h2>
+      <p>Partnership with blockchain firm provides institutional investors with secure storage solutions.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Cross-chain bridges like Wormhole connected 30 blockchains, enabling seamless asset transfers with $10 billion in volume.">
-      <h2>🔄 Cross-Chain Bridges Expand</h2>
-      <p>New protocols improve interoperability between blockchains.</p>
+    <div class="news-card" data-details="Layer-1 competitor Avalanche announced a new $500 million fund to support developers building on its platform. The 'Avalanche Rush' program aims to accelerate ecosystem growth and innovation.">
+      <h2>💰 Avalanche Launches $500M Fund</h2>
+      <p>New fund to attract developers and boost projects on the Avalanche network.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="China and Brazil launched CBDC pilots, with digital yuan and real processing 1 billion transactions in 2025.">
-      <h2>🏛️ Central Bank Digital Currencies</h2>
-      <p>More nations pilot CBDCs, impacting crypto markets.</p>
+    <div class="news-card" data-details="The rise of 'meme coins' is creating new challenges for regulators, who are concerned about market manipulation and a lack of investor protection. Calls for clearer guidelines are increasing.">
+      <h2>🐶 'Meme Coin' Mania Prompts Regulatory Scrutiny</h2>
+      <p>Regulators express concern over the volatility and risks of meme-based cryptocurrencies.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Bitcoin's Lightning Network processed 500 million transactions in 2025, enabling instant micro-payments globally.">
-      <h2>⚡ Lightning Network Growth</h2>
-      <p>Bitcoin's Lightning Network sees record transaction volumes.</p>
+    <div class="news-card" data-details="Filecoin's decentralized storage network saw a 300% increase in data stored over the last quarter. This growth is driven by rising demand for secure and censorship-resistant data solutions.">
+      <h2>💾 Filecoin Storage Network Surges</h2>
+      <p>Demand for decentralized data storage drives significant growth on the Filecoin network.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="New crypto insurance platforms cover $100 billion in digital assets, protecting against hacks and market crashes.">
-      <h2>🛡️ Crypto Insurance Launched</h2>
-      <p>New platforms offer insurance for digital asset holders.</p>
+    <div class="news-card" data-details="Tether, the largest stablecoin, faced new allegations of not fully backing its USDT reserves. The news caused a brief dip in its market capitalization, but the company denied the claims.">
+      <h2>📉 Tether Faces Reserve Allegations</h2>
+      <p>Concerns over stablecoin's reserves lead to market volatility and scrutiny.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Altcoins like Avalanche and Polkadot outperformed Bitcoin, with some gaining 300% in value during Q1 2025.">
-      <h2>🌟 Altcoin Season Begins</h2>
-      <p>Smaller cryptocurrencies outperform major coins in 2025.</p>
+    <div class="news-card" data-details="The launch of a new privacy-focused cryptocurrency, 'Ghost,' promises to offer truly anonymous transactions. However, regulators are wary of its potential use in illicit activities.">
+      <h2>👻 New Privacy Coin 'Ghost' Launches</h2>
+      <p>New cryptocurrency aims for full anonymity, raising concerns among regulators.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Polkadot's parachain auctions allocated 1,000 slots, enabling new blockchains for DeFi and gaming applications.">
-      <h2>💎 Polkadot Parachains Thrive</h2>
-      <p>Polkadot's ecosystem grows with new parachain auctions.</p>
+    <div class="news-card" data-details="A new report from a leading blockchain research firm highlights the growing trend of 'tokenization' of real-world assets, from fine art to private company equity.">
+      <h2>🎨 Real-World Assets Tokenized</h2>
+      <p>New report details the trend of converting tangible assets into digital tokens on the blockchain.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Monero and Zcash transactions grew by 150%, driven by demand for privacy-focused payments in 2025.">
-      <h2>🔒 Privacy Coins Gain Popularity</h2>
-      <p>Monero and Zcash see increased adoption for secure transactions.</p>
+    <div class="news-card" data-details="The World Economic Forum is calling for a global framework for blockchain interoperability. This would allow different blockchain networks to communicate and exchange data seamlessly.">
+      <h2>🌐 WEF Calls for Blockchain Interoperability</h2>
+      <p>Forum advocates for a global standard to connect different blockchain networks.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Web3 platforms like Decentraland attracted 50 million users, with major brands launching virtual storefronts.">
-      <h2>🌐 Web3 Adoption Accelerates</h2>
-      <p>Decentralized internet platforms attract major tech firms.</p>
+    <div class="news-card" data-details="A decentralized social media platform built on Web3 principles has reached 10 million users, offering a censorship-resistant alternative to traditional platforms.">
+      <h2>📱 Web3 Social Media Gains Millions of Users</h2>
+      <p>New platform promises decentralized, user-owned content and data.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Algorithmic stablecoins like DAI and UST grew by 200%, offering decentralized alternatives to fiat-backed tokens.">
-      <h2>💸 Stablecoin Market Expands</h2>
-      <p>New algorithmic stablecoins challenge traditional models.</p>
+    <div class="news-card" data-details="The rise of AI-powered trading bots in the crypto market is raising concerns about market manipulation and a potential flash crash. The bots can execute thousands of trades in a second.">
+      <h2>🤖 AI Trading Bots Cause Market Concerns</h2>
+      <p>Algorithmic trading in crypto markets raises fears of volatility and manipulation.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Play-to-earn games like The Sandbox saw 10 million active players, with $2 billion in token rewards distributed.">
-      <h2>🎮 Blockchain Gaming Surges</h2>
-      <p>Play-to-earn games drive crypto adoption among gamers.</p>
+    <div class="news-card" data-details="A new report from a leading venture capital firm predicts that the crypto market will reach a total valuation of $10 trillion by 2030, driven by institutional and retail adoption.">
+      <h2>🚀 Crypto Market Predicted to Hit $10 Trillion</h2>
+      <p>Venture capital report forecasts massive growth in the next decade.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Crypto markets saw 20% volatility in Q1 2025, with analysts citing regulatory uncertainty and macroeconomic factors.">
-      <h2>📉 Crypto Market Volatility</h2>
-      <p>Analysts predict short-term fluctuations in major coins.</p>
+    <div class="news-card" data-details="New regulations in a major Asian country have made it mandatory for crypto exchanges to have third-party audits of their reserves. This is aimed at protecting investors and increasing transparency.">
+      <h2>🔍 Audits Become Mandatory for Crypto Exchanges</h2>
+      <p>New rules in Asia require exchanges to prove their reserves for investor safety.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Avalanche's subnets processed $50 billion in DeFi transactions, competing with Ethereum's Layer-2 solutions.">
-      <h2>🔗 Avalanche Scales DeFi</h2>
-      <p>Avalanche's subnets boost decentralized finance applications.</p>
+    <div class="news-card" data-details="The price of XRP surged after a favorable court ruling on its legal status. The decision brings clarity to the token's classification and could pave the way for wider institutional adoption.">
+      <h2>⚖️ XRP Price Jumps After Favorable Ruling</h2>
+      <p>Court decision on XRP's legal status boosts investor confidence.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="JPMorgan and Goldman Sachs launched crypto custody services, managing $20 billion in digital assets for clients.">
-      <h2>🏦 Institutional Crypto Investments</h2>
-      <p>Major banks launch crypto custody services in 2025.</p>
+    <div class="news-card" data-details="A new blockchain-based carbon credit market has launched, aiming to provide a transparent and verifiable way for companies to offset their emissions. The project is backed by several major environmental organizations.">
+      <h2>🌱 Blockchain Used for Carbon Credits</h2>
+      <p>New marketplace aims to bring transparency to the carbon offset industry.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Binance Smart Chain's upgrade improved transaction speeds by 50%, supporting 1 billion daily transactions.">
-      <h2>⚡ Binance Smart Chain Upgrade</h2>
-      <p>New features enhance BSC's performance and security.</p>
+    <div class="news-card" data-details="A new report reveals that mining Bitcoin is now more energy-efficient than traditional gold mining. This is thanks to advancements in renewable energy usage and mining hardware.">
+      <h2>⚡ Bitcoin Mining Becomes More Efficient</h2>
+      <p>Report shows crypto mining is now more sustainable than traditional gold mining.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Blockchain remittances saved $10 billion in fees, with Stellar and Ripple leading cross-border payment solutions.">
-      <h2>🌍 Crypto Remittance Growth</h2>
-      <p>Blockchain-based remittances reduce global transfer costs.</p>
+    <div class="news-card" data-details="A new 'crypto dividend' model is gaining traction, where companies can issue dividends to shareholders in the form of cryptocurrency. This offers a new way to engage investors and provide liquidity.">
+      <h2>💰 New 'Crypto Dividend' Model Emerges</h2>
+      <p>Companies are exploring issuing dividends in the form of cryptocurrency to investors.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Metaverse platforms sold $5 billion in virtual real estate, with Decentraland and Sandbox leading the market.">
-      <h2>🖼️ NFT Real Estate Ventures</h2>
-      <p>Virtual land sales in metaverse platforms hit record highs.</p>
+    <div class="news-card" data-details="A new decentralized identity (DID) solution has been launched, aiming to give users full control over their personal data. The technology uses blockchain to secure and verify identities without a central authority.">
+      <h2>🔒 Decentralized Identity Solution Launches</h2>
+      <p>New tech gives users control of their data, promising a more secure digital identity.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Multi-signature wallets from Ledger and Trezor reduced hacking incidents by 70% in 2025.">
-      <h2>🔐 Wallet Security Enhanced</h2>
-      <p>New multi-signature wallets improve crypto asset protection.</p>
+    <div class="news-card" data-details="The rise of 'zero-knowledge' proofs is revolutionizing privacy on the blockchain. The technology allows for transactions to be verified without revealing the underlying data.">
+      <h2>🕵️ Zero-Knowledge Proofs Boost Privacy</h2>
+      <p>New cryptography allows for secure and private transactions on public blockchains.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Aave and Compound issued $100 billion in DeFi loans, with new protocols offering competitive interest rates.">
-      <h2>💰 DeFi Lending Protocols Grow</h2>
-      <p>Aave and Compound report record loan volumes in 2025.</p>
+    <div class="news-card" data-details="Major retailers are now accepting a wide range of cryptocurrencies as payment. This trend is being driven by the integration of crypto payment processors like BitPay and Coinbase Commerce.">
+      <h2>🛍️ Retailers Embrace Crypto Payments</h2>
+      <p>Major brands are now accepting Bitcoin and other cryptos for online and in-store purchases.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="New cross-chain standards enabled $20 billion in asset transfers between Ethereum, Solana, and Polkadot.">
-      <h2>🌐 Interoperability Standards Set</h2>
-      <p>Blockchain alliances establish new cross-chain protocols.</p>
+    <div class="news-card" data-details="A new government report suggests that a global framework for crypto regulation is needed to prevent 'regulatory arbitrage,' where firms move to countries with weaker rules.">
+      <h2>⚖️ Global Crypto Regulation Framework Proposed</h2>
+      <p>Government report calls for international cooperation to regulate the crypto industry.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Platforms like Glassnode and Nansen launched AI-driven analytics, predicting crypto trends with 85% accuracy.">
-      <h2>📊 Crypto Analytics Tools Launch</h2>
-      <p>New platforms offer advanced market insights for traders.</p>
+    <div class="news-card" data-details="The 'metaverse' is seeing a new wave of investment, with major companies buying virtual land and building digital stores. This trend is driving up the value of metaverse-related crypto tokens.">
+      <h2>🌐 Metaverse Investment Surges</h2>
+      <p>Companies are pouring money into virtual worlds, boosting the value of associated crypto assets.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Global crypto tax reforms clarified capital gains rules, reducing compliance costs for investors by 30%.">
-      <h2>🏛️ Crypto Tax Reforms</h2>
-      <p>Governments clarify tax rules for digital asset holders.</p>
+    <div class="news-card" data-details="A new token-gated community platform has been launched, allowing creators to offer exclusive content and experiences to their token holders. This is a new model for creator-fan engagement.">
+      <h2>🔑 Token-Gated Communities Emerge</h2>
+      <p>New platforms use crypto tokens to grant exclusive access to content and services.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Major retailers like Walmart adopted crypto payments, with Bitcoin and USDC accepted in 10,000 stores.">
-      <h2>⚡ Fast-Track Crypto Payments</h2>
-      <p>Retailers adopt crypto for seamless global transactions.</p>
+    <div class="news-card" data-details="The rise of crypto in developing countries is being fueled by high inflation and a lack of access to traditional banking. Remittance payments are now often made in stablecoins.">
+      <h2>📈 Crypto Adoption Rises in Developing Nations</h2>
+      <p>High inflation and banking issues are driving people to use cryptocurrency for payments and savings.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="DAOs like MakerDAO adopted quadratic voting, increasing participation in governance by 50%.">
-      <h2>🛡️ DAO Governance Advances</h2>
-      <p>Decentralized organizations adopt new voting mechanisms.</p>
+    <div class="news-card" data-details="A new report from a major research firm details the 'merge' of AI and blockchain. The report suggests that AI can be used to optimize blockchain networks and create more secure and efficient smart contracts.">
+      <h2>🧠 AI and Blockchain Merging</h2>
+      <p>New report highlights how AI is being used to improve blockchain technology.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Meme coins like Dogecoin and Shiba Inu gained 200% in value, driven by social media hype and retail investment.">
-      <h2>🌟 Meme Coins Make Comeback</h2>
-      <p>New meme-based cryptocurrencies gain viral attention.</p>
+    <div class="news-card" data-details="A new decentralized finance (DeFi) protocol has launched, offering high-yield savings accounts without a central authority. The protocol uses smart contracts to manage lending and borrowing.">
+      <h2>💰 New DeFi Protocol Offers High Yields</h2>
+      <p>New platform offers decentralized savings accounts with attractive interest rates.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card" data-details="Cosmos integrated 100 new blockchains, with its hub facilitating $15 billion in cross-chain transactions.">
-      <h2>🔗 Cosmos Hub Expands</h2>
-      <p>Cosmos ecosystem grows with new blockchain integrations.</p>
+    <div class="news-card" data-details="A new DAO has been launched to fund scientific research. The DAO's members vote on which research projects to fund, and the funding is distributed automatically through smart contracts.">
+      <h2>🔬 DAO Funds Scientific Research</h2>
+      <p>New decentralized organization uses blockchain to democratize the funding of science.</p>
       <a onclick="showNewsDetails(this)">Read More</a>
     </div>
   </div>
   <div class="load-more">
     <button onclick="loadMoreNews('crypto')">Load More Crypto News</button>
   </div>
+  
+  <div id="indian" class="news-container">
+    <div class="news-card" data-details="The Nifty 50 Index crossed the 25,000 mark for the first time, buoyed by strong corporate earnings and positive foreign institutional investor (FII) sentiment. The milestone is being hailed as a sign of India's robust economic growth.">
+        <h2>📈 Nifty 50 Crosses 25,000 Milestone</h2>
+        <p>Indian stock market hits a new all-time high amid strong corporate performance.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian government announced a new production-linked incentive (PLI) scheme for the electronics and semiconductor sector, with a ₹50,000 crore outlay. The policy aims to boost domestic manufacturing and attract global firms to set up fabrication units in India.">
+        <h2>🏭 New PLI Scheme for Semiconductors</h2>
+        <p>Government announces major incentive to boost domestic electronics manufacturing.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Reliance Industries' new energy arm announced a ₹1 lakh crore investment in green hydrogen projects. The move is part of the company's long-term strategy to become a global leader in renewable energy.">
+        <h2>⚡ Reliance Invests ₹1 Lakh Cr in Green Hydrogen</h2>
+        <p>Energy giant commits to a massive investment in renewable hydrogen projects.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Infosys reported better-than-expected quarterly results, with a 15% increase in net profit. The company's strong performance was attributed to a surge in demand for digital transformation services.">
+        <h2>📊 Infosys Reports Strong Quarterly Earnings</h2>
+        <p>IT major's net profit grows by 15%, exceeding market expectations.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Reserve Bank of India (RBI) kept the repo rate unchanged at 6.5%, citing concerns over global economic uncertainties and a need to control inflation. The decision was in line with market expectations.">
+        <h2>🏦 RBI Keeps Repo Rate Unchanged</h2>
+        <p>Central bank maintains key interest rate amid inflation concerns.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A new high-speed rail corridor connecting Mumbai and Ahmedabad is now 80% complete, with trial runs expected to begin next year. The project promises to drastically cut travel time between the two major cities.">
+        <h2>🚄 Mumbai-Ahmedabad High-Speed Rail Nears Completion</h2>
+        <p>India's first bullet train project reaches a new construction milestone.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Tata Motors' electric vehicle (EV) sales surged by 50% in the last quarter, capturing a significant market share. The company is now planning to launch 10 new EV models over the next five years.">
+        <h2>🚗 Tata Motors EV Sales Soar by 50%</h2>
+        <p>EV arm of the auto giant sees massive growth in the domestic market.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="HDFC Bank announced a new digital-first strategy, with plans to invest ₹10,000 crore in technology and fintech partnerships. The move is aimed at enhancing customer experience and staying competitive.">
+        <h2>💻 HDFC Bank Announces Digital-First Strategy</h2>
+        <p>Banking giant to invest ₹10,000 Cr in technology and digital services.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Adani Group signed a $5 billion deal to develop a new port and logistics hub in the state of Gujarat. The project is expected to create thousands of jobs and boost regional trade.">
+        <h2>🚢 Adani Group to Develop New $5 Billion Port</h2>
+        <p>Major infrastructure project to enhance trade and logistics capabilities.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A new report from the World Bank projects India's GDP to grow at 7.2% in the coming fiscal year, making it a key engine of global economic growth.">
+        <h2>🌍 World Bank Projects 7.2% GDP Growth for India</h2>
+        <p>New report highlights India's position as a leader in global economic recovery.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="India’s digital payments sector crossed the $1 trillion mark in transaction value, with UPI continuing to dominate the market. The government is pushing for even higher adoption in rural areas.">
+        <h2>💳 Digital Payments Cross $1 Trillion Mark</h2>
+        <p>UPI-led digital transactions achieve a new record for the Indian economy.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="FMCG giant Hindustan Unilever (HUL) reported a strong quarter, with sales of health and hygiene products growing by 20%. The company is expanding its portfolio in the wellness segment.">
+        <h2>🛒 HUL Reports 20% Growth in Health Products</h2>
+        <p>FMCG leader sees strong sales in health and wellness portfolio.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The government is fast-tracking the implementation of a new national logistics policy to reduce transportation costs and improve supply chain efficiency across the country.">
+        <h2>🚛 New Logistics Policy to Boost Efficiency</h2>
+        <p>Government to fast-track plan to reduce costs and improve supply chains.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Sensex saw a volatile week, falling by over 1000 points due to FII selloffs and concerns over global interest rate hikes. Domestic institutional investors (DIIs) provided some support.">
+        <h2>📉 Sensex Falls 1000 Points Amid FII Selloff</h2>
+        <p>Indian equity markets face pressure from foreign fund withdrawals.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian Space Research Organisation (ISRO) successfully launched its next-generation communication satellite, enhancing broadband connectivity and satellite-based services across the nation.">
+        <h2>🚀 ISRO Successfully Launches New Satellite</h2>
+        <p>India's space agency deploys advanced satellite to boost connectivity.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Union Budget 2026 is expected to focus on infrastructure, rural development, and green energy, with a significant increase in capital expenditure projected.">
+        <h2>💰 Budget 2026 to Prioritize Infrastructure</h2>
+        <p>Next year's budget likely to focus on capital expenditure for growth.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Major auto companies, including Maruti Suzuki and Mahindra, are increasing their investment in EV battery manufacturing, aiming to reduce reliance on imports and secure the supply chain.">
+        <h2>🔋 Indian Automakers Ramp Up EV Battery Production</h2>
+        <p>Local giants invest in domestic battery manufacturing to meet EV demand.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A new startup policy has been announced, offering tax breaks and easier access to credit for first-time entrepreneurs. The policy aims to foster a more dynamic and innovative startup ecosystem.">
+        <h2>💡 Government Announces New Startup Policy</h2>
+        <p>New framework to support and fund emerging entrepreneurs.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Indian Railways is modernizing its network with new Vande Bharat trains and upgraded tracks, aiming to reduce travel times and improve passenger safety.">
+        <h2>🚆 Indian Railways Modernizes Network</h2>
+        <p>New high-speed trains and track upgrades to improve rail travel.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Wipro's new AI-powered platform is helping businesses automate their operations, leading to a 25% increase in efficiency for its clients. The company is a key player in the AI services market.">
+        <h2>🤖 Wipro Launches New AI Automation Platform</h2>
+        <p>IT firm's new service helps clients improve efficiency with artificial intelligence.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The government launched a new initiative, 'Mission Digital India,' to provide digital literacy to 100 million citizens. The program aims to bridge the digital divide and boost economic participation.">
+        <h2>💻 'Mission Digital India' Aims for Digital Literacy</h2>
+        <p>New government program to provide digital skills to 100 million people.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A new report from Moody's Investors Service upgraded India's credit rating, citing a stable economic outlook and effective policy implementation.">
+        <h2>📈 Moody's Upgrades India's Credit Rating</h2>
+        <p>Global agency cites stable economy and policy reforms for rating boost.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The manufacturing sector in India saw its PMI (Purchasing Managers' Index) reach a 5-year high, indicating strong growth and increased factory output.">
+        <h2>🏭 Manufacturing PMI Hits 5-Year High</h2>
+        <p>Strong factory output and new orders signal a booming manufacturing sector.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Pharmaceutical giant Dr. Reddy's Laboratories received approval from the US FDA for a new drug, which is expected to boost its revenue by 10% in the next fiscal year.">
+        <h2>💊 Dr. Reddy's Gets US FDA Approval</h2>
+        <p>New drug approval for the pharma major is set to boost revenue.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The government is considering a new policy to promote the use of green cement in infrastructure projects. The policy aims to reduce carbon emissions in the construction industry.">
+        <h2>🏗️ Policy to Promote Green Cement in Construction</h2>
+        <p>New initiative aims to reduce carbon footprint of infrastructure projects.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A new report from the National Statistical Office shows that India's retail inflation has fallen to a 3-year low, providing relief to consumers and boosting purchasing power.">
+        <h2>💵 Retail Inflation Falls to 3-Year Low</h2>
+        <p>Favorable economic data brings relief to consumers and boosts confidence.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian government announced a new trade agreement with the UAE, aiming to reduce tariffs and boost bilateral trade by $100 billion over the next five years.">
+        <h2>🤝 India-UAE Sign New Trade Agreement</h2>
+        <p>New pact aims to boost bilateral trade and economic cooperation.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Sensex and Nifty closed with marginal gains, as strong buying in the banking and financial sectors offset losses in the IT and FMCG segments.">
+        <h2>⚖️ Market Closes with Marginal Gains</h2>
+        <p>Banking stocks lead the rally as markets remain volatile.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Indian telecom major Bharti Airtel is launching 6G trials in partnership with a global tech firm. The move is aimed at positioning the company as a leader in next-generation connectivity.">
+        <h2>📡 Bharti Airtel Begins 6G Trials</h2>
+        <p>Telecom company partners with global firm for next-gen network trials.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The solar energy sector in India received a boost with a new government policy offering tax subsidies for rooftop solar installations. The policy aims to increase renewable energy adoption.">
+        <h2>🌞 Solar Energy Gets a Boost with New Policy</h2>
+        <p>Government offers tax breaks to promote rooftop solar installations.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A new infrastructure fund of ₹1 lakh crore was launched by the National Investment and Infrastructure Fund (NIIF) to finance green projects like renewable energy and sustainable transport.">
+        <h2>💰 NIIF Launches ₹1 Lakh Cr Green Fund</h2>
+        <p>New fund to finance sustainable infrastructure projects across India.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Tata Steel's new plant in Odisha is now fully operational, increasing the company's production capacity by 20%. The expansion is expected to boost the company's market share and revenue.">
+        <h2>🏭 Tata Steel's New Plant Becomes Operational</h2>
+        <p>Major expansion project boosts the company's production capacity.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A parliamentary panel has recommended new measures to improve ease of doing business for startups, including a single-window clearance system for regulatory approvals.">
+        <h2>🏛️ Panel Recommends New Rules for Startups</h2>
+        <p>Government body proposes single-window clearance to boost startup ecosystem.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The BSE Sensex hit a new record high of 82,000, driven by a broad-based rally in banking, IT, and auto stocks. Foreign investors' return to the market also contributed to the surge.">
+        <h2>🚀 BSE Sensex Hits Record High of 82,000</h2>
+        <p>Major index reaches new peak as investor confidence returns.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The government is planning to auction a new set of 5G spectrum bands to telecom companies, with a focus on affordable connectivity and wider coverage.">
+        <h2>📶 New 5G Spectrum Auction Planned</h2>
+        <p>Government to hold auction to expand next-gen network coverage.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A new policy on drones has been announced, allowing for commercial drone deliveries in select cities. The move is expected to boost the logistics and e-commerce sectors.">
+        <h2>✈️ New Drone Policy to Allow Commercial Deliveries</h2>
+        <p>New regulations aim to boost the use of drones in logistics.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Mahindra & Mahindra's new tractor model, featuring AI-powered farming assistance, is revolutionizing the agriculture sector. The new product is expected to boost sales and market share.">
+        <h2>🚜 Mahindra Launches AI-Powered Tractor</h2>
+        <p>New product to help farmers with advanced farming technology.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The government is planning to divest its stake in several public sector undertakings (PSUs), with the goal of raising ₹50,000 crore for infrastructure development.">
+        <h2>💰 Government Plans ₹50,000 Cr PSU Divestment</h2>
+        <p>Plan to sell stakes in state-owned firms to fund new projects.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A new report from CRISIL projects a double-digit growth for the Indian hospitality sector, citing a rebound in tourism and business travel.">
+        <h2>🏨 Hospitality Sector Projected for Double-Digit Growth</h2>
+        <p>New report highlights a strong recovery in tourism and travel.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A new bilateral trade agreement with Australia has been finalized, reducing tariffs on agricultural products and textiles. The pact is expected to boost exports for Indian businesses.">
+        <h2>🤝 India-Australia Finalize New Trade Pact</h2>
+        <p>New agreement to boost exports of agricultural and textile products.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="ICICI Bank's new digital lending platform has disbursed over ₹10,000 crore in personal loans, highlighting the growing demand for digital credit solutions.">
+        <h2>💻 ICICI Bank's Digital Lending Platform Booms</h2>
+        <p>New platform disburses ₹10,000 Cr in personal loans, showing high demand.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The construction of the new Noida International Airport is ahead of schedule, with the first phase expected to be completed in 2026. The airport will be a major logistics hub.">
+        <h2>✈️ Noida International Airport Construction Ahead of Schedule</h2>
+        <p>Major airport project to be completed in 2026, boosting logistics.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian IT services sector is expected to grow by 12% in the next fiscal year, driven by strong demand for cloud computing and cybersecurity services.">
+        <h2>☁️ Indian IT Services Sector to Grow by 12%</h2>
+        <p>Strong demand for cloud and cybersecurity services fuels growth.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The government is introducing a new financial inclusion scheme, 'Jan Dhan 2.0,' which aims to provide banking services to millions of unbanked citizens in rural areas.">
+        <h2>🏦 'Jan Dhan 2.0' Scheme to Boost Financial Inclusion</h2>
+        <p>New government initiative to bring banking services to the unbanked.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian semiconductor market is projected to reach $100 billion by 2030, driven by the government's PLI scheme and increasing demand for consumer electronics.">
+        <h2>💻 Indian Semiconductor Market to Hit $100 Billion</h2>
+        <p>Market is set for massive growth, fueled by government support and high demand.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Sensex closed flat in a range-bound session, as investors awaited new economic data and corporate earnings reports. The market remains cautious amid global uncertainties.">
+        <h2>📊 Markets Close Flat Amid Cautious Trading</h2>
+        <p>Investors await new data, leading to a range-bound trading session.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian textile industry is getting a boost from a new government policy that provides subsidies for modernizing factories and adopting sustainable manufacturing practices.">
+        <h2>🧵 New Policy to Boost Indian Textile Industry</h2>
+        <p>Government subsidies aim to modernize factories and promote sustainability.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The new G20 summit in India saw a major agreement on climate financing, with participating nations pledging billions of dollars for renewable energy projects in developing countries.">
+        <h2>🌍 G20 Summit in India Yields Climate Finance Pact</h2>
+        <p>Major nations agree to fund green energy projects in developing countries.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A new metro line in Bengaluru is now operational, reducing traffic congestion and providing a more efficient commute for millions of residents.">
+        <h2>🚇 Bengaluru Metro Line Becomes Operational</h2>
+        <p>New metro corridor to ease traffic and improve urban mobility.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian pharmaceutical market is expected to grow at a CAGR of 10% over the next five years, driven by a focus on generic drugs and biosimilars.">
+        <h2>💊 Indian Pharma Market to Grow at 10% CAGR</h2>
+        <p>New report projects strong growth for the pharmaceutical sector.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The government is planning a new land bank policy to fast-track land acquisition for major infrastructure and industrial projects. The policy aims to reduce delays and boost investment.">
+        <h2>📜 New Land Bank Policy to Fast-Track Projects</h2>
+        <p>Government initiative aims to streamline land acquisition for development.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A new report from Goldman Sachs highlights the growing influence of Indian tech companies on the global stage, with a focus on AI and fintech services.">
+        <h2>💻 Goldman Sachs Report on Indian Tech</h2>
+        <p>New report highlights the growing global influence of Indian tech companies.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian government launched a new 'Smart Cities 2.0' program, with a focus on integrating IoT and AI to improve urban governance and sustainability in 50 new cities.">
+        <h2>🌆 'Smart Cities 2.0' Program Launched</h2>
+        <p>New initiative to use technology to improve urban living in 50 cities.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian banking sector's NPAs (Non-Performing Assets) have fallen to a 10-year low, thanks to new regulations and improved lending practices.">
+        <h2>💰 Banking NPAs Fall to 10-Year Low</h2>
+        <p>New regulations and better practices improve the health of the banking sector.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A new policy on electric vehicles (EVs) offers subsidies for both manufacturers and buyers. The policy aims to accelerate EV adoption and build a robust domestic ecosystem.">
+        <h2>🚗 New EV Policy Offers Subsidies</h2>
+        <p>Government offers incentives to boost EV manufacturing and adoption.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The food processing industry in India received a boost with a new government scheme that provides financial assistance for setting up food parks and cold storage facilities.">
+        <h2>🍎 Food Processing Sector Gets a Boost</h2>
+        <p>Government scheme to support food parks and cold storage facilities.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Sensex closed with a moderate gain, as a strong rally in the IT sector offset losses in the metal and energy segments. Investors remain optimistic about the long-term outlook.">
+        <h2>📈 Sensex Gains on IT Sector Rally</h2>
+        <p>Indian market shows resilience with IT stocks driving a positive close.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The government is planning to launch a new sovereign green bond to finance renewable energy and sustainable projects. The bond is expected to attract both domestic and international investors.">
+        <h2>🌿 Green Bond to Finance Sustainable Projects</h2>
+        <p>New government bond to raise funds for renewable energy and green projects.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A new report from the World Economic Forum ranks India as a top destination for foreign direct investment (FDI), citing its large market size and skilled workforce.">
+        <h2>🇮🇳 India Ranks as Top FDI Destination</h2>
+        <p>World Economic Forum report highlights India's potential for foreign investment.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian aviation industry is set for massive growth with new airports and fleet expansions. A new report projects passenger traffic to double in the next decade.">
+        <h2>✈️ Indian Aviation Sector to Double in Size</h2>
+        <p>New report forecasts major growth in passenger traffic and airport infrastructure.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A new policy on artificial intelligence (AI) has been announced, with a focus on ethical AI development and data privacy. The policy aims to position India as a global leader in AI.">
+        <h2>🤖 India Announces New AI Policy</h2>
+        <p>New framework focuses on ethical development and data privacy for AI.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The government is launching a new 'Make in India 2.0' program, with a focus on high-tech manufacturing, including aerospace, defense, and medical devices.">
+        <h2>🛠️ 'Make in India 2.0' to Focus on High-Tech</h2>
+        <p>New phase of the program to boost manufacturing in advanced sectors.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The BSE Midcap and Smallcap indices hit all-time highs, as retail investors poured money into the broader market. Analysts caution about potential froth in the smallcap segment.">
+        <h2>🚀 Midcap and Smallcap Indices Hit New Highs</h2>
+        <p>Broader markets see a rally, but analysts warn of potential bubble.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A new report from CRISIL projects a 15% growth for the Indian e-commerce sector in the next fiscal year, driven by increasing internet penetration and a rise in online shopping.">
+        <h2>🛒 E-Commerce Sector to Grow by 15%</h2>
+        <p>New report forecasts strong growth for online shopping and retail.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The government is planning to launch a new national health scheme that provides universal health coverage to all citizens. The scheme is expected to be funded by a new health cess.">
+        <h2>🏥 New National Health Scheme to be Launched</h2>
+        <p>Government to provide universal health coverage with new scheme.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian real estate sector is witnessing a revival, with a new report showing a 20% increase in residential sales in major cities. Lower interest rates and attractive payment plans are driving the growth.">
+        <h2>🏠 Real Estate Sector Sees a Revival</h2>
+        <p>New report shows a 20% increase in residential property sales.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The new national education policy is now being implemented, with a focus on digital learning, vocational training, and a flexible curriculum. The policy aims to prepare students for the future job market.">
+        <h2>📚 National Education Policy Being Implemented</h2>
+        <p>New reforms focus on digital learning and vocational training.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian government announced a new policy to boost foreign investment in the defense sector, allowing for 100% FDI in certain segments. The policy aims to reduce reliance on imports and boost domestic production.">
+        <h2>🛡️ New Policy to Boost FDI in Defense</h2>
+        <p>Government allows 100% foreign investment in parts of the defense sector.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Sensex closed lower by 500 points, as investors reacted to negative global cues and a strong dollar. The selloff was broad-based, with most sectors closing in the red.">
+        <h2>📉 Sensex Falls 500 Points on Global Cues</h2>
+        <p>Indian markets react to negative international news and a strong dollar.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A new report from the World Bank projects a significant reduction in poverty in India, citing the country's robust economic growth and government welfare schemes.">
+        <h2>🇮🇳 World Bank Projects Major Poverty Reduction</h2>
+        <p>New report highlights India's success in reducing poverty through growth and policy.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The government is planning a new policy to promote the use of biofuels in the transport sector. The policy aims to reduce India's dependence on fossil fuels and promote a greener economy.">
+        <h2>⛽ New Policy to Promote Biofuels</h2>
+        <p>Government initiative aims to reduce fuel imports and promote green energy.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian banking sector saw a strong rally, with the Nifty Bank index hitting a new all-time high. The rally was driven by positive earnings reports and strong credit growth data.">
+        <h2>🏦 Banking Sector Rally Drives Nifty Bank to New High</h2>
+        <p>Strong earnings and credit growth fuel a rally in banking stocks.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The new Gati Shakti program for infrastructure development has led to a 10% reduction in project completion times. The program uses a digital platform to coordinate various infrastructure projects.">
+        <h2>🛣️ Gati Shakti Program Reduces Project Delays</h2>
+        <p>Government's digital platform streamlines infrastructure projects.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian government announced a new policy on data centers, offering tax incentives and subsidies for firms to set up data centers in the country. The policy aims to boost digital infrastructure.">
+        <h2>💻 New Policy to Attract Data Center Investment</h2>
+        <p>Government offers incentives to boost digital infrastructure and data storage.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A new report from a leading consulting firm projects India's gig economy to grow to $1 trillion by 2030, driven by the rise of digital platforms and a young workforce.">
+        <h2>💼 Indian Gig Economy to Hit $1 Trillion</h2>
+        <p>New report forecasts massive growth for the gig economy in the next decade.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The government launched a new initiative, 'Digital Health Mission,' to create a universal health ID for every citizen. The initiative aims to digitize health records and improve healthcare delivery.">
+        <h2>🏥 'Digital Health Mission' Launched</h2>
+        <p>New government initiative to digitize health records and improve healthcare.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian stock market saw a strong rally in the IT sector, with a new report highlighting the growing demand for AI and machine learning services from Indian firms.">
+        <h2>📈 IT Sector Leads Market Rally</h2>
+        <p>AI and machine learning services drive a positive performance for IT stocks.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A new report from the IMF projects that India will be the third-largest economy by 2027, surpassing Germany and Japan. The report cites India's consistent growth and demographic dividend.">
+        <h2>🇮🇳 India to Become Third-Largest Economy by 2027</h2>
+        <p>IMF report projects India will surpass Germany and Japan in economic size.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The government is planning a new scheme to boost the 'Make in India' brand globally, with a focus on showcasing high-quality Indian products and services.">
+        <h2>🇮🇳 'Make in India' Brand to be Promoted Globally</h2>
+        <p>New government scheme to showcase Indian products and services worldwide.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian automotive sector is facing a new challenge from global competition, with a new report highlighting the need for innovation and cost reduction to stay competitive.">
+        <h2>🚗 Indian Auto Sector Faces Global Competition</h2>
+        <p>New report highlights the need for innovation to stay competitive.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A new solar power plant in Rajasthan, one of the world's largest, is now fully operational. The plant is expected to generate enough electricity to power millions of homes and reduce carbon emissions.">
+        <h2>🌞 World's Largest Solar Plant Operational in Rajasthan</h2>
+        <p>New plant to generate clean energy and reduce carbon footprint.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Sensex closed with marginal losses, as profit-booking in the last hour of trading wiped out earlier gains. The market remains volatile but with a positive long-term outlook.">
+        <h2>📊 Markets Close with Marginal Losses</h2>
+        <p>Profit-booking causes a slight dip in the last hour of trading.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian government is planning a new national water policy to address water scarcity and promote sustainable water management. The policy aims to improve water conservation and recycling.">
+        <h2>💧 New National Water Policy Announced</h2>
+        <p>Government to address water scarcity with new conservation policies.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A new report from the RBI highlights a strong credit growth in the retail and MSME sectors. The growth is a key indicator of economic recovery and consumer confidence.">
+        <h2>💰 RBI Report Highlights Strong Credit Growth</h2>
+        <p>New data shows a rise in credit in retail and small business sectors.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The government is launching a new initiative, 'Mission Clean Ganga 2.0,' to clean the Ganges river and its tributaries. The initiative will use new technology and community participation.">
+        <h2>🌊 'Mission Clean Ganga 2.0' to be Launched</h2>
+        <p>New initiative to clean the Ganges river with advanced technology.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian stock market saw a strong rally in the pharmaceutical sector, with a new report highlighting the growing demand for generic drugs and exports to new markets.">
+        <h2>💊 Pharma Sector Rally on Strong Export Demand</h2>
+        <p>New report shows growing demand for Indian generic drugs globally.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The new national education policy is leading to an increase in foreign universities setting up campuses in India. This will boost the quality of higher education and attract international students.">
+        <h2>🎓 Foreign Universities to Set Up Campuses in India</h2>
+        <p>New education policy attracts international institutions to the country.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian tourism sector is set for a major revival, with a new report projecting a 25% increase in foreign tourist arrivals in the next fiscal year.">
+        <h2>🗺️ Tourism Sector Set for Major Revival</h2>
+        <p>New report projects a 25% increase in foreign tourist arrivals.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The government is planning a new policy to promote the use of drones in agriculture, with a focus on crop spraying, soil analysis, and monitoring. The policy aims to boost farm productivity.">
+        <h2>🚁 New Policy to Promote Drones in Agriculture</h2>
+        <p>Government initiative to use drones to boost farm productivity.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Sensex closed with a positive note, as investors' confidence was boosted by a new report on India's strong economic fundamentals and growth prospects.">
+        <h2>📈 Sensex Ends with a Positive Note</h2>
+        <p>Investor confidence boosted by positive economic reports.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The new national highway project, 'Bharat Mala 2.0,' is now underway, with the aim of building new highways and improving connectivity across the country. The project is expected to boost logistics and trade.">
+        <h2>🛣️ 'Bharat Mala 2.0' Highway Project Underway</h2>
+        <p>New project to build highways and improve connectivity across the nation.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A new report from the World Bank highlights India's progress in improving its ease of doing business ranking. The report cites new reforms in taxation and regulatory approvals.">
+        <h2>📈 India Rises in 'Ease of Doing Business' Ranking</h2>
+        <p>World Bank report highlights new reforms in taxation and regulation.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian space sector is opening up to private players, with a new policy allowing private firms to build and launch satellites. The policy is expected to boost innovation and investment in the sector.">
+        <h2>🚀 Space Sector Opens to Private Players</h2>
+        <p>New policy allows private firms to build and launch satellites.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The government is planning to launch a new national program, 'Mission Skill India,' to provide vocational training and skills to millions of unemployed youth. The program aims to boost employment and economic growth.">
+        <h2>🧑‍🎓 'Mission Skill India' to Provide Vocational Training</h2>
+        <p>New program aims to provide skills and employment to millions of youth.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Sensex and Nifty closed in the red, as investors reacted to negative global trade news and a sharp rise in crude oil prices. The market remains cautious amid external factors.">
+        <h2>📉 Markets Close in the Red on Global Trade News</h2>
+        <p>Indian markets react to negative trade news and high oil prices.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A new report from the World Health Organization (WHO) praises India's success in controlling infectious diseases, citing new government policies and investments in public health.">
+        <h2>🩺 WHO Praises India's Public Health Efforts</h2>
+        <p>New report highlights India's success in controlling infectious diseases.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian government launched a new program, 'Digital Villages,' to provide high-speed internet and digital services to rural areas. The program aims to bridge the rural-urban digital divide.">
+        <h2>🌐 'Digital Villages' Program Launched</h2>
+        <p>New initiative to provide internet and digital services to rural areas.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian pharmaceutical industry is set for a major boom, with a new report highlighting the growing demand for vaccines and biosimilars. A new government policy on intellectual property rights is also expected to boost the sector.">
+        <h2>💊 Pharma Industry Set for Boom</h2>
+        <p>New report projects growth in vaccines and biosimilars, fueled by new IP policy.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian government announced a new policy to promote the use of hydrogen fuel in the transport and industrial sectors. The policy aims to reduce carbon emissions and promote a greener economy.">
+        <h2>⚡ New Policy to Promote Hydrogen Fuel</h2>
+        <p>Government initiative to use hydrogen to reduce carbon emissions.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Sensex closed with a moderate gain, as a strong rally in the banking and financial sectors offset losses in the IT segment. Investors remain optimistic about India's long-term growth prospects.">
+        <h2>📈 Sensex Gains on Banking Sector Rally</h2>
+        <p>Positive performance in financial sector boosts market confidence.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A new report from the United Nations ranks India as a top destination for foreign direct investment (FDI), citing its stable political environment and large domestic market.">
+        <h2>🇮🇳 UN Ranks India as Top FDI Destination</h2>
+        <p>New report highlights India's stable political environment and large market.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian government is planning a new policy to promote the use of electric vehicles (EVs) in the public transport sector. The policy aims to reduce air pollution in major cities.">
+        <h2>🚌 New Policy to Promote EVs in Public Transport</h2>
+        <p>Government initiative aims to reduce pollution by using electric vehicles.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A new report from the National Statistical Office shows that India's GDP grew at a record 7.5% in the last fiscal year. The growth was driven by a strong performance in the manufacturing and services sectors.">
+        <h2>📈 India's GDP Grows at Record 7.5%</h2>
+        <p>New data shows a strong performance in manufacturing and services sectors.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Sensex and Nifty closed in the green, as a strong rally in the IT and banking sectors offset losses in the metal segment. Investors remain optimistic about the long-term outlook.">
+        <h2>📈 Markets Close in the Green on Strong Rally</h2>
+        <p>Positive performance in IT and banking sectors boosts market confidence.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian government is planning a new policy to promote the use of drones in the defense sector, with a focus on surveillance and border security. The policy aims to boost domestic production of drones.">
+        <h2>🚁 New Policy to Promote Drones in Defense</h2>
+        <p>Government initiative to use drones for surveillance and border security.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian space sector is set for a major boom, with a new report highlighting the growing demand for satellite services and launch vehicles. A new government policy is also expected to boost the sector.">
+        <h2>🚀 Indian Space Sector Set for Boom</h2>
+        <p>New report projects growth in satellite services and launch vehicles.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Sensex closed with marginal gains, as a strong rally in the banking sector offset losses in the IT segment. The market remains volatile but with a positive long-term outlook.">
+        <h2>📈 Sensex Gains on Banking Sector Rally</h2>
+        <p>Positive performance in financial sector boosts market confidence.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A new report from the World Bank highlights India's progress in improving its ease of doing business ranking. The report cites new reforms in taxation and regulatory approvals.">
+        <h2>📈 India Rises in 'Ease of Doing Business' Ranking</h2>
+        <p>World Bank report highlights new reforms in taxation and regulation.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian space sector is opening up to private players, with a new policy allowing private firms to build and launch satellites. The policy is expected to boost innovation and investment in the sector.">
+        <h2>🚀 Space Sector Opens to Private Players</h2>
+        <p>New policy allows private firms to build and launch satellites.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The government is planning to launch a new national program, 'Mission Skill India,' to provide vocational training and skills to millions of unemployed youth. The program aims to boost employment and economic growth.">
+        <h2>🧑‍🎓 'Mission Skill India' to Provide Vocational Training</h2>
+        <p>New program aims to provide skills and employment to millions of youth.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Sensex and Nifty closed in the red, as investors reacted to negative global trade news and a sharp rise in crude oil prices. The market remains cautious amid external factors.">
+        <h2>📉 Markets Close in the Red on Global Trade News</h2>
+        <p>Indian markets react to negative trade news and high oil prices.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A new report from the World Health Organization (WHO) praises India's success in controlling infectious diseases, citing new government policies and investments in public health.">
+        <h2>🩺 WHO Praises India's Public Health Efforts</h2>
+        <p>New report highlights India's success in controlling infectious diseases.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian government launched a new program, 'Digital Villages,' to provide high-speed internet and digital services to rural areas. The program aims to bridge the rural-urban digital divide.">
+        <h2>🌐 'Digital Villages' Program Launched</h2>
+        <p>New initiative to provide internet and digital services to rural areas.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian pharmaceutical industry is set for a major boom, with a new report highlighting the growing demand for vaccines and biosimilars. A new government policy on intellectual property rights is also expected to boost the sector.">
+        <h2>💊 Pharma Industry Set for Boom</h2>
+        <p>New report projects growth in vaccines and biosimilars, fueled by new IP policy.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian government announced a new policy to promote the use of hydrogen fuel in the transport and industrial sectors. The policy aims to reduce carbon emissions and promote a greener economy.">
+        <h2>⚡ New Policy to Promote Hydrogen Fuel</h2>
+        <p>Government initiative to use hydrogen to reduce carbon emissions.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Sensex closed with a moderate gain, as a strong rally in the banking and financial sectors offset losses in the IT segment. Investors remain optimistic about India's long-term growth prospects.">
+        <h2>📈 Sensex Gains on Banking Sector Rally</h2>
+        <p>Positive performance in financial sector boosts market confidence.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A new report from the United Nations ranks India as a top destination for foreign direct investment (FDI), citing its stable political environment and large domestic market.">
+        <h2>🇮🇳 UN Ranks India as Top FDI Destination</h2>
+        <p>New report highlights India's stable political environment and large market.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian government is planning a new policy to promote the use of electric vehicles (EVs) in the public transport sector. The policy aims to reduce air pollution in major cities.">
+        <h2>🚌 New Policy to Promote EVs in Public Transport</h2>
+        <p>Government initiative aims to reduce pollution by using electric vehicles.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A new report from the National Statistical Office shows that India's GDP grew at a record 7.5% in the last fiscal year. The growth was driven by a strong performance in the manufacturing and services sectors.">
+        <h2>📈 India's GDP Grows at Record 7.5%</h2>
+        <p>New data shows a strong performance in manufacturing and services sectors.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Sensex and Nifty closed in the green, as a strong rally in the IT and banking sectors offset losses in the metal segment. Investors remain optimistic about the long-term outlook.">
+        <h2>📈 Markets Close in the Green on Strong Rally</h2>
+        <p>Positive performance in IT and banking sectors boosts market confidence.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian government is planning a new policy to promote the use of drones in the defense sector, with a focus on surveillance and border security. The policy aims to boost domestic production of drones.">
+        <h2>🚁 New Policy to Promote Drones in Defense</h2>
+        <p>Government initiative to use drones for surveillance and border security.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian space sector is set for a major boom, with a new report highlighting the growing demand for satellite services and launch vehicles. A new government policy is also expected to boost the sector.">
+        <h2>🚀 Indian Space Sector Set for Boom</h2>
+        <p>New report projects growth in satellite services and launch vehicles.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Sensex closed with marginal gains, as a strong rally in the banking sector offset losses in the IT segment. The market remains volatile but with a positive long-term outlook.">
+        <h2>📈 Sensex Gains on Banking Sector Rally</h2>
+        <p>Positive performance in financial sector boosts market confidence.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A new report from the World Bank highlights India's progress in improving its ease of doing business ranking. The report cites new reforms in taxation and regulatory approvals.">
+        <h2>📈 India Rises in 'Ease of Doing Business' Ranking</h2>
+        <p>World Bank report highlights new reforms in taxation and regulation.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian space sector is opening up to private players, with a new policy allowing private firms to build and launch satellites. The policy is expected to boost innovation and investment in the sector.">
+        <h2>🚀 Space Sector Opens to Private Players</h2>
+        <p>New policy allows private firms to build and launch satellites.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The government is planning to launch a new national program, 'Mission Skill India,' to provide vocational training and skills to millions of unemployed youth. The program aims to boost employment and economic growth.">
+        <h2>🧑‍🎓 'Mission Skill India' to Provide Vocational Training</h2>
+        <p>New program aims to provide skills and employment to millions of youth.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Sensex and Nifty closed in the red, as investors reacted to negative global trade news and a sharp rise in crude oil prices. The market remains cautious amid external factors.">
+        <h2>📉 Markets Close in the Red on Global Trade News</h2>
+        <p>Indian markets react to negative trade news and high oil prices.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A new report from the World Health Organization (WHO) praises India's success in controlling infectious diseases, citing new government policies and investments in public health.">
+        <h2>🩺 WHO Praises India's Public Health Efforts</h2>
+        <p>New report highlights India's success in controlling infectious diseases.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian government launched a new program, 'Digital Villages,' to provide high-speed internet and digital services to rural areas. The program aims to bridge the rural-urban digital divide.">
+        <h2>🌐 'Digital Villages' Program Launched</h2>
+        <p>New initiative to provide internet and digital services to rural areas.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian pharmaceutical industry is set for a major boom, with a new report highlighting the growing demand for vaccines and biosimilars. A new government policy on intellectual property rights is also expected to boost the sector.">
+        <h2>💊 Pharma Industry Set for Boom</h2>
+        <p>New report projects growth in vaccines and biosimilars, fueled by new IP policy.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The Indian government announced a new policy to promote the use of hydrogen fuel in the transport and industrial sectors. The policy aims to reduce carbon emissions and promote a greener economy.">
+        <h2>⚡ New Policy to Promote Hydrogen Fuel</h2>
+        <p>Government initiative to use hydrogen to reduce carbon emissions.</p>
+        <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+  </div>
+  <div class="load-more">
+    <button onclick="loadMoreNews('indian')">Load More Indian Market News</button>
+  </div>
+
 
   <footer>
-    © 2025 Sumant's All-in-One Web | All rights reserved
+    <p>Sumant’s Web &copy; 2025. All Rights Reserved.</p>
   </footer>
 
   <script>
-    // Mock data for additional news (can be replaced with API call)
-    const mockNewsData = {
-      global: [
-        { 
-          title: "🌍 Global AI Ethics Framework", 
-          desc: "Nations agree on AI development guidelines.", 
-          details: "The UN-led AI Ethics Summit in 2025 established a global framework to ensure responsible AI development, focusing on transparency, accountability, and bias mitigation across industries."
-        },
-        { 
-          title: "🚢 Shipping Industry Reforms", 
-          desc: "New tech reduces carbon emissions in shipping.", 
-          details: "Advanced propulsion systems and AI-optimized routes cut shipping emissions by 30%, with major ports adopting green tech to meet 2030 climate goals."
-        },
-        { 
-          title: "🧠 Neurotech Advances", 
-          desc: "Brain-computer interfaces enter consumer markets.", 
-          details: "Neuralink and competitors launched consumer-grade brain-computer interfaces, enabling thought-controlled devices and revolutionizing gaming and healthcare."
-        },
-        { 
-          title: "🌎 Polar Ice Restoration", 
-          desc: "Innovative tech slows Arctic ice melt.", 
-          details: "Geoengineering projects using reflective materials and ice-seeding drones slowed Arctic ice loss by 15%, with $5 billion invested in polar conservation."
-        },
-        { 
-          title: "🚀 Lunar Base Plans", 
-          desc: "NASA and ESA plan permanent lunar outpost.", 
-          details: "NASA and ESA's $20 billion lunar base project aims to establish a permanent human presence on the moon by 2030, supporting scientific research and resource extraction."
-        },
-      ],
-      crypto: [
-        { 
-          title: "💸 Bitcoin ETF Expands", 
-          desc: "New Bitcoin ETFs attract institutional investors.", 
-          details: "Spot Bitcoin ETFs in the US and Asia attracted $30 billion in institutional capital, with BlackRock and Fidelity leading the market in 2025."
-        },
-        { 
-          title: "⚡ Ethereum Staking Boom", 
-          desc: "Record staking volumes boost Ethereum network.", 
-          details: "Ethereum's staking ecosystem grew to 25 million ETH, with validators earning 5% annual yields, strengthening network security and decentralization."
-        },
-        { 
-          title: "📈 Solana DeFi Growth", 
-          desc: "Solana's DeFi ecosystem rivals Ethereum.", 
-          details: "Solana's DeFi protocols processed $100 billion in transactions, with low fees and high speeds attracting developers from Ethereum's ecosystem."
-        },
-        { 
-          title: "🔗 Chainlink CCIP Update", 
-          desc: "Cross-Chain Interoperability Protocol enhanced.", 
-          details: "Chainlink's CCIP upgrade enabled secure cross-chain data transfers, supporting $50 billion in DeFi and NFT transactions across 40 blockchains."
-        },
-        { 
-          title: "💹 Cardano Smart Contracts", 
-          desc: "New dApps launch on Cardano blockchain.", 
-          details: "Cardano's Plutus platform saw 1,000 new dApps in 2025, with applications in supply chain, gaming, and finance driving ADA's price to new highs."
-        },
-      ]
-    };
+    const newsContainers = document.querySelectorAll('.news-container');
+    const loadMoreButtons = document.querySelectorAll('.load-more button');
+    const newsModal = document.getElementById('newsModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalDetails = document.getElementById('modalDetails');
+    let displayedNewsCount = { global: 10, crypto: 10, indian: 10 };
+    const newsPerPage = 10;
 
-    // Function to show news details in modal
+    function showSection(sectionId) {
+      newsContainers.forEach(container => {
+        container.classList.remove('active');
+      });
+      document.getElementById(sectionId).classList.add('active');
+      
+      loadMoreButtons.forEach(button => {
+        button.style.display = 'none';
+      });
+      document.querySelector(`#${sectionId} + .load-more button`).style.display = 'block';
+
+      // Reset display count and show initial news for the new section
+      const cards = document.querySelectorAll(`#${sectionId} .news-card`);
+      cards.forEach((card, index) => {
+        if (index < newsPerPage) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      displayedNewsCount[sectionId] = newsPerPage;
+    }
+
+    function loadMoreNews(sectionId) {
+      const newsContainer = document.getElementById(sectionId);
+      const allNews = newsContainer.querySelectorAll('.news-card');
+      const start = displayedNewsCount[sectionId];
+      const end = start + newsPerPage;
+
+      for (let i = start; i < end && i < allNews.length; i++) {
+        allNews[i].style.display = 'block';
+      }
+      displayedNewsCount[sectionId] = end;
+
+      if (displayedNewsCount[sectionId] >= allNews.length) {
+        document.querySelector(`#${sectionId} + .load-more button`).style.display = 'none';
+      }
+    }
+    
     function showNewsDetails(element) {
       const card = element.closest('.news-card');
-      const title = card.querySelector('h2').textContent;
-      const desc = card.querySelector('p').textContent;
-      const details = card.dataset.details || 'No additional details available.';
+      const title = card.querySelector('h2').innerText;
+      const desc = card.querySelector('p').innerText;
+      const details = card.dataset.details;
       
-      document.getElementById('modalTitle').textContent = title;
-      document.getElementById('modalDesc').textContent = desc;
-      document.getElementById('modalDetails').textContent = details;
+      modalTitle.innerText = title;
+      modalDesc.innerText = desc;
+      modalDetails.innerText = details;
       
-      const modal = document.getElementById('newsModal');
-      modal.style.display = 'flex';
+      newsModal.style.display = 'flex';
     }
-
-    // Function to close the modal
+    
     function closeModal() {
-      document.getElementById('newsModal').style.display = 'none';
+      newsModal.style.display = 'none';
     }
-
-    // Close modal when clicking outside
-    document.getElementById('newsModal').addEventListener('click', function(e) {
-      if (e.target === this) {
-        closeModal();
-      }
-    });
-
-    // Function to load more news dynamically
-    function loadMoreNews(section) {
-      const container = document.getElementById(section);
-      const newsData = mockNewsData[section] || [];
-      const currentNewsCount = container.querySelectorAll('.news-card').length;
-      
-      // Limit to 100 total news items per section
-      if (currentNewsCount >= 100) {
-        alert(`No more ${section} news to load!`);
-        return;
-      }
-
-      // Add up to 10 more news items (or fewer if close to 100)
-      const newsToAdd = Math.min(10, 100 - currentNewsCount);
-      for (let i = 0; i < newsToAdd; i++) {
-        const newsItem = newsData[i % newsData.length]; // Cycle through mock data
-        const newsCard = document.createElement('div');
-        newsCard.classList.add('news-card');
-        newsCard.dataset.details = newsItem.details;
-        newsCard.innerHTML = `
-          <h2>${newsItem.title}</h2>
-          <p>${newsItem.desc}</p>
-          <a onclick="showNewsDetails(this)">Read More</a>
-        `;
-        container.appendChild(newsCard);
-      }
-    }
-
-    // Function to toggle sections
-    function showSection(section) {
-      document.querySelectorAll('.news-container').forEach(c => c.classList.remove('active'));
-      document.getElementById(section).classList.add('active');
-    }
+    
+    // Initial load
+    showSection('global');
   </script>
 </body>
 </html>
