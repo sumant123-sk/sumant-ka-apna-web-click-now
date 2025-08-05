@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -129,10 +130,38 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(0);
         }
         #acceptBtn:hover {
             background-color: #218838;
+        }
+        #acceptBtn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        #acceptBtn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 50%;
+            transform: scale(0);
+        }
+        #acceptBtn:active::after {
+            animation: ripple 0.3s ease-out;
+        }
+        @keyframes ripple {
+            to {
+                transform: scale(100);
+                opacity: 0;
+            }
         }
 
         /* --- Navigation Bar --- */
@@ -644,7 +673,4 @@
             <h1>Terms and Conditions</h1>
             <div class="policy-content">
                 <p>This is a basic terms and conditions policy for your website. By using our services, you agree to these terms.</p>
-                <p><strong>1. Acceptance of Terms:</strong> By accessing and using this website, you accept and agree to be bound by the terms and provisions of this agreement. If you do not agree to abide by the above, please do not use this service.</p>
-                <p><strong>2. General Use:</strong> This website is provided for personal use only. You may not use this site for any commercial purpose without our express written consent.</p>
-                <p><strong>3. User Conduct:</strong> You agree not to use the website in a way that may cause the website to be damaged or its availability impaired. Any unauthorized use of this website may give rise to a claim for damages.</p>
-                <p><strong>4. Intellectual Property:</strong> All content on this website, including text, graphics, 
+                <p><strong>1. Acceptanc
