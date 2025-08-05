@@ -1,676 +1,475 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K1GQC84RQP"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-K1GQC84RQP');
-    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>🌐 My Trending Web</title>
-    <meta name="description" content="Discover the latest in technology, global news, captivating stories, and comprehensive coding guides for HTML, CSS, and JavaScript.">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2083692947196571" crossorigin="anonymous"></script>
+    <meta name="description" content="Trending tech, global news, stories, and code guides in HTML, CSS, JavaScript.">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap">
     <style>
-        /* --- Main Page Styles --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* Reset and base styles */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #000428, #004e92);
-            color: white;
+            color: #fff;
             min-height: 100vh;
-            overflow-x: hidden;
-            animation: bgAnim 20s ease infinite;
             scroll-behavior: smooth;
+            transition: background 0.7s;
+            overflow-x: hidden;
         }
-        @keyframes bgAnim {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        /* New Loader Animation */
+        a { color: inherit; text-decoration: none; }
+
+        /* Loader */
         .page-loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
+            position: fixed; inset: 0;
             background: #000;
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: slideOut 1s ease-out forwards;
-            animation-delay: 2.5s;
+            z-index: 10000;
+            display: flex; justify-content: center; align-items: center;
         }
-        @keyframes slideOut {
-            to {
-                transform: translateX(-100%);
-            }
-        }
-        
         .loader-text {
-            color: white;
-            font-size: 5vw;
-            text-shadow: 0 0 10px #00ffff;
-            animation: fadeAndScale 2s ease forwards;
-            opacity: 0;
+            font-size: 2.3rem;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px #00ffff;
+            animation: fadeAndScale 2.5s ease-in-out;
         }
         @keyframes fadeAndScale {
-            0% {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.1);
-            }
-            100% {
-                opacity: 0;
-                transform: scale(1.2);
-            }
+            0% { opacity: 0; transform: scale(0.8);}
+            50% { opacity: 1; transform: scale(1.05);}
+            100% { opacity: 0; transform: scale(1.12);}
         }
 
-        /* --- Terms & Conditions Modal --- */
-        .terms-modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            display: none; /* Initially hidden */
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            animation: fadeIn 0.5s ease forwards;
-            animation-delay: 3s; /* Delay showing the modal until the loader is gone */
+        /* Modal */
+        .modal {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.82);
+            display: none; z-index: 12000;
+            justify-content: center; align-items: center;
         }
-        .terms-modal-content {
-            max-width: 600px;
-            background: #fff;
-            color: #333;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 25px rgba(0, 255, 255, 0.5);
-            animation: fadeInScale 0.5s ease-out;
-            max-height: 90vh;
-            display: flex;
-            flex-direction: column;
+        .modal.active { display: flex; }
+        .modal-content {
+            background: #fff; color: #111;
+            border-radius: 1em; padding: 2em 2.5em;
+            max-width: 500px; width: 90%; box-shadow: 0 8px 32px #00ffff50;
+            text-align: left;
         }
-        .terms-modal-content h1 {
-            color: #0056b3;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .policy-content {
-            flex-grow: 1;
-            overflow-y: auto;
-            border: 1px solid #ccc;
-            padding: 15px;
-            margin-bottom: 20px;
-            background-color: #fafafa;
-        }
-        .policy-content p, .policy-content li {
-            font-size: 0.9em;
-        }
-        .accept-section {
-            text-align: center;
-        }
-        #acceptBtn {
-            padding: 10px 20px;
-            font-size: 16px;
-            color: #fff;
-            background-color: #28a745;
-            border: none;
-            border-radius: 5px;
+        .modal-content h2 { color: #0056b3; text-align: center; margin-bottom: 16px;}
+        .modal-content button {
+            margin: 15px auto 0; display: block;
+            padding: 11px 30px; background: #27ae60;
+            color: #fff; border: none; border-radius: 8px; font-size: 1.1em; font-weight: bold;
+            transition: background 0.3s;
             cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            transform: translateY(0);
         }
-        #acceptBtn:hover {
-            background-color: #218838;
-        }
-        #acceptBtn:active {
-            transform: translateY(2px);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-        #acceptBtn::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 5px;
-            height: 5px;
-            background: rgba(255, 255, 255, 0.5);
-            opacity: 0;
-            border-radius: 50%;
-            transform: scale(0);
-        }
-        #acceptBtn:active::after {
-            animation: ripple 0.3s ease-out;
-        }
-        @keyframes ripple {
-            to {
-                transform: scale(100);
-                opacity: 0;
-            }
-        }
+        .modal-content button:hover { background: #16a358;}
 
-        /* --- Navigation Bar --- */
+        /* Navbar */
         nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(8px);
-            z-index: 1000;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            position: fixed; top: 0; left: 0; width: 100%;
+            background: rgba(0,0,0,0.7); z-index: 1000;
+            display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 4px 15px #1117;
+            padding: 16px 0;
         }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 8px 15px;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        nav a::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: 0;
-            transform: translateX(-50%) scaleX(0);
-            width: 80%;
-            height: 2px;
-            background: #00ffff;
-            transition: transform 0.3s ease;
-        }
-        nav a:hover::after, nav a.active::after {
-            transform: translateX(-50%) scaleX(1);
-        }
-        nav a:hover, nav a.active {
-            color: #00ffff;
-            text-shadow: 0 0 5px #00ffff;
+        .nav-links { display: flex; gap: 35px;}
+        .nav-link { font-weight: 500; font-size: 1.05rem; border-radius: 22px; padding: 8px 25px;}
+        .nav-link.active,
+        .nav-link:hover { color: #00ffff; background: rgba(0,255,255,0.10); }
+
+        .menu-toggle { display: none; font-size: 2rem; color: #00ffff; position: absolute; right: 3vw; top: 13px; cursor: pointer;}
+
+        @media (max-width: 768px) {
+            .nav-links { flex-direction: column; background: #002244ee; width: 100vw; max-width: 350px;
+                position: absolute; left: 0; top: 58px; display: none; box-shadow: 0 6px 10px #1d35;}
+            .nav-links.open { display: flex;}
+            .menu-toggle { display: block;}
         }
 
-        /* --- Mobile Navigation Menu --- */
-        .menu-toggle {
-            display: none;
-            cursor: pointer;
-            font-size: 2rem;
-            position: absolute;
-            right: 20px;
-            top: 10px;
-            color: #00ffff;
-        }
-        .nav-links {
-            display: flex;
-            gap: 25px;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* --- Sections & Content --- */
-        section {
-            min-height: 100vh;
-            padding-top: 100px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            transition: all 0.5s ease;
-            opacity: 0;
-            transform: translateY(20px);
-            padding: 100px 20px 20px;
-        }
-        section.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- AdSense Ad Container --- */
-        .ads-container {
-            width: 100%;
-            max-width: 728px;
-            height: auto;
-            min-height: 100px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px dashed rgba(0, 255, 255, 0.5);
-            margin: 40px auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* --- Hero Section --- */
-        #home-section h1 {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            margin-bottom: 20px;
-            text-shadow: 0 0 20px cyan;
-        }
-        #home-section p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            animation: fadeIn 1.5s ease forwards;
-            animation-delay: 0.5s;
-            opacity: 0;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* --- Card Grid --- */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            max-width: 1000px;
-            margin-top: 50px;
-        }
-        .card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 20px;
-            color: white;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
-            transition: 0.3s ease;
-            display: block;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .card:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
-        }
-        .card span {
-            font-size: 3rem;
-            display: block;
-            margin-bottom: 10px;
-            z-index: 1;
-            position: relative;
-            text-shadow: 0 0 15px #00ffff;
-        }
-        .card div {
-            font-size: 1.3rem;
-            z-index: 1;
-            position: relative;
-        }
-        .highlighted-names {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+        /* Hero section */
+        .hero {
+            margin-top: 110px; text-align: center;
+            padding: 40px 0 25px;
         }
         .highlighted-names span {
-            background-color: rgba(255, 255, 255, 0.2);
-            padding: 5px 10px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px cyan;
+            background: #00ffff44; color: #fff; padding: 8px 14px; border-radius: 14px;
+            font-size: 1.4rem; box-shadow: 0 0 10px #00ffffaa; margin-bottom: 18px;
             display: inline-block;
-            margin: 0 10px;
         }
-        
-        /* --- Coding Guide Section --- */
-        #coding-guide-section {
-            text-align: left;
-            width: 100%;
-            max-width: 1200px;
+        .hero h1 { font-size: clamp(2.5rem,7vw,5rem); margin-bottom: 14px; text-shadow: 0 0 19px cyan;}
+        .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 20px; }
+
+        /* Cards grid */
+        .grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+            gap: 23px; max-width: 1000px; margin: 35px auto;
         }
-        #coding-guide-section h1 {
-            font-size: 2.5rem;
-            color: #00f7ff;
-            text-shadow: 0 0 15px #00f7ff;
-            text-align: center;
-            margin-bottom: 30px;
+        .card {
+            background: rgba(255,255,255,0.11);
+            color: #fff; border-radius: 20px; box-shadow: 0 0 12px #00ffff50;
+            padding: 38px 20px; text-align: center; transition: 0.25s;
+            cursor: pointer; font-size: 1.3rem;
+            border: 2px solid transparent;
         }
-        .tab-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
+        .card:hover {
+            background: rgba(0,255,255,0.12);
+            border-color: #00ffff;
+            transform: scale(1.06);
         }
+        .card span {font-size: 2.6rem; display: block; margin-bottom: 10px;}
+
+        /* Ad panel style */
+        .ads-container {
+            width: 100%; max-width: 700px; min-height: 70px; margin: 24px auto;
+            display: flex; align-items: center; justify-content: center;
+            border: 1px dashed #00fffbaa;
+            background: rgba(255,255,255,0.03);
+            color: #fff;
+        }
+
+        /* Coding Guide section with tabs */
+        .section { min-height: 60vh; padding: 110px 12px 30px;}
+        .section h1 { text-align: center; font-size: 2.2rem; color: #00ffff; margin-bottom: 22px;
+            text-shadow: 0 5px 20px #00f7ff33;
+        }
+
+        .tab-container { display: flex; justify-content: center; gap: 8px; margin-bottom: 25px; flex-wrap: wrap;}
         .tab-button {
-            padding: 10px 20px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            border: 2px solid #00ffff;
-            background: transparent;
-            color: #00ffff;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            background: transparent; border: 2px solid #00ffff; border-radius: 25px;
+            color: #00ffff; font-weight: 700; font-size:1.07rem; cursor: pointer; padding: 10px 29px;
+            transition: 0.22s;
         }
-        .tab-button.active, .tab-button:hover {
-            background: #00ffff;
-            color: #000428;
-            box-shadow: 0 0 15px #00ffff;
-        }
-        .tab-content {
-            display: none;
-            background-color: rgba(255, 255, 255, 0.08);
-            padding: 30px;
-            border-radius: 20px;
-            animation: fadeIn 0.8s ease;
-            max-width: 100%;
-        }
-        .tab-content.active {
-            display: block;
-        }
-        .tab-content h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .tab-content h3 {
-            margin-top: 30px;
-            color: #00ffff;
-        }
-        .tab-content p, .tab-content ul, .tab-content pre {
-            max-width: 100%;
-            line-height: 1.6;
-            font-size: 1.05rem;
-            margin-bottom: 20px;
-        }
+        .tab-button.active, .tab-button:hover { background: #00ffff; color: #001c28; box-shadow: 0 0 10px #00ffff; }
+        .tab-content { display: none; background: rgba(255,255,255,0.07); border-radius: 18px; padding: 32px 22px; }
+        .tab-content.active { display: block; }
+
         pre {
-            background-color: #1a1a2e;
-            color: #e0e0e0;
-            padding: 20px;
-            border-radius: 10px;
-            overflow-x: auto;
-            font-family: 'Courier New', Courier, monospace;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            border: 1px solid rgba(0, 247, 255, 0.3);
-            line-height: 1.5;
-            margin-top: 15px;
+            background: #1a1a2e; color: #d5faff; border-radius: 10px; padding: 15px 12px;
+            font-family: 'Courier New', Courier, monospace; font-size: 0.96rem;
+            min-width: 0; word-break: break-all; overflow-x: auto; margin-top: 1.1em; margin-bottom: 1.5em;
+            border: 1px solid #00f7ff45;
         }
-        
-        /* --- Footer Styles --- */
+
+        /* Footer */
         .site-footer {
-            width: 100%;
-            text-align: center;
-            padding: 40px 20px 20px;
-            color: rgba(255, 255, 255, 0.6);
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(5px);
-            z-index: 10;
+            width: 100%; text-align: center; color: #eee; background: #00204099;
+            padding: 37px 10px 10px; margin-top: 30px;
+            font-size: 1rem;
         }
-        .site-footer a {
-            color: #00ffff;
-            text-decoration: none;
-            margin: 0 10px;
-            transition: color 0.3s ease;
-        }
-        .site-footer a:hover {
-            color: #ff416c;
-        }
+        .site-footer a { color: #00ffff; margin: 0 10px;}
+        .site-footer a:hover { color: #ff416c; }
 
-        /* --- Back to Top button --- */
+        /* Back to top button */
         .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #ff416c;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.5rem;
-            text-decoration: none;
-            box-shadow: 0 0 15px #ff416c;
-            transition: all 0.3s ease;
-            z-index: 999;
+            position: fixed; right: 30px; bottom: 40px;
+            width: 50px; height: 50px; border-radius: 50%; color: #fff;
+            background: #ff416c; font-size: 2rem; display: none; justify-content: center; align-items: center;
+            box-shadow: 0 0 18px #ff416c; cursor: pointer; z-index: 1500;
+            transition: 0.2s;
         }
-        .back-to-top.visible {
-            display: flex;
-        }
-        .back-to-top:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 20px #ff416c;
-        }
+        .back-to-top.visible { display: flex;}
+        .back-to-top:hover { background: #ff648c; }
 
-        /* --- Chatbot Styles --- */
+        /* Chatbot Bubble and Window */
         .chatbot-icon {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #ff416c;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            font-size: 2.5rem;
-            cursor: pointer;
-            box-shadow: 0 0 15px #ff416c;
-            transition: all 0.3s ease;
-            z-index: 1001;
-        }
-        .chatbot-icon:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 20px #ff416c;
+            position: fixed; right: 38px; bottom: 110px;
+            background: #ff416c; color: #fff; width: 58px; height: 58px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem; cursor: pointer; z-index: 1200;
+            box-shadow: 0 0 14px #ff416c;
         }
         .chatbot-window {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            width: 350px;
-            height: 450px;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(8px);
-            border-radius: 15px;
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
-            display: none;
-            flex-direction: column;
-            z-index: 1002;
+            position: fixed; right: 25px; bottom: 180px; width: 335px; height: 420px;
+            background: rgba(0,0,0,0.93); border-radius: 14px;
+            display: none; flex-direction: column; box-shadow: 0 0 20px #00ffff65; z-index: 2001;
             overflow: hidden;
-            animation: fadeInScale 0.3s ease-out forwards;
         }
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        .chatbot-window.active {
-            display: flex;
-        }
+        .chatbot-window.active { display: flex; }
         .chatbot-header {
-            background: rgba(0, 255, 255, 0.2);
-            padding: 15px;
-            text-align: center;
-            border-bottom: 2px solid #00ffff;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: rgba(0,255,255,0.14); color: #00ffff;
+            font-size: 1rem; font-weight: 700; display: flex; align-items: center; justify-content: space-between;
+            padding: 11px 18px;
+            border-bottom: 1.5px solid #00ffff;
         }
-        .chatbot-header h3 {
-            margin: 0;
-            font-size: 1.2rem;
-            color: #00ffff;
-            text-shadow: 0 0 5px #00ffff;
-        }
-        .close-btn {
-            font-size: 2rem;
-            cursor: pointer;
-            color: #00ffff;
-            line-height: 1;
-            transition: color 0.3s ease;
-        }
-        .close-btn:hover {
-            color: #ff416c;
-        }
-        .chatbot-body {
-            flex-grow: 1;
-            padding: 20px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .chat-message {
-            padding: 12px 18px;
-            border-radius: 20px;
-            max-width: 80%;
-            line-height: 1.5;
-            word-wrap: break-word;
-        }
-        .user-message {
-            background-color: #ff416c;
-            color: white;
-            align-self: flex-end;
-            box-shadow: 0 0 8px rgba(255, 65, 108, 0.5);
-        }
-        .bot-message {
-            background-color: #00ffff;
-            color: #000428;
-            align-self: flex-start;
-            box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
-        }
-        .chatbot-footer {
-            display: flex;
-            padding: 15px;
-            gap: 10px;
-            border-top: 2px solid #00ffff;
-        }
+        .close-btn { font-size: 2rem; color: #00ffff; cursor: pointer; }
+        .close-btn:hover { color: #ff416c;}
+        .chatbot-body { flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 13px; }
+        .chat-message { max-width: 78%; border-radius: 1.1em; padding:11px 17px;}
+        .user-message { background: #ff416c; color: #fff; align-self: flex-end; }
+        .bot-message { background: #02ebff; color: #001c28; align-self: flex-start; }
+        .chatbot-footer { display: flex; gap: 10px; padding: 11px 18px; border-top: 1.5px solid #00ffff;}
         #user-input {
-            flex-grow: 1;
-            padding: 10px;
-            border-radius: 50px;
-            border: 2px solid #00ffff;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.3s ease;
+            flex: 1; border-radius: 18px; padding: 8px 15px;
+            border: 2px solid #00ffff; background: #132136cc; color: #fff; font-size: 1em; outline: none;
         }
-        #user-input:focus {
-            border-color: #ff416c;
-        }
-        #send-btn {
-            padding: 10px 20px;
-            background: #00ffff;
-            border: none;
-            border-radius: 50px;
-            color: #000428;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        #send-btn:hover {
-            background: #ff416c;
-            color: white;
-            box-shadow: 0 0 10px #ff416c;
-        }
+        #user-input:focus { border-color: #ff416c;}
+        #send-btn { background: #00ffff; color: #001c28; border-radius: 18px;
+            border: none; padding: 8px 18px; font-weight: bold; cursor: pointer;}
+        #send-btn:hover { background: #ff416c; color: #fff;}
 
-        /* --- Mobile-Specific Styles --- */
-        @media (max-width: 768px) {
-            nav {
-                justify-content: flex-start;
-                padding: 15px;
-            }
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background: rgba(0, 0, 0, 0.8);
-                padding: 20px 0;
-                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            }
-            .nav-links.show {
-                display: flex;
-            }
-            .menu-toggle {
-                display: block;
-            }
-            .grid {
-                grid-template-columns: 1fr;
-            }
-            .highlighted-names {
-                font-size: 1.2rem;
-            }
-            .highlighted-names span {
-                margin: 5px;
-            }
-            #home-section h1 {
-                font-size: 2.2rem;
-            }
-            #home-section p {
-                font-size: 1rem;
-            }
-            #coding-guide-section h1 {
-                font-size: 2rem;
-            }
-            .tab-button {
-                font-size: 1rem;
-                padding: 8px 15px;
-            }
-            .tab-container {
-                gap: 10px;
-            }
-            .tab-content {
-                padding: 20px;
-            }
-            .tab-content h2 {
-                font-size: 1.5rem;
-            }
-            .tab-content h3 {
-                font-size: 1.2rem;
-            }
-            .tab-content p, .tab-content ul, .tab-content pre {
-                font-size: 0.95rem;
-            }
-            .grid-container {
-                grid-template-columns: 1fr;
-            }
-            .grid-header, .grid-main, .grid-sidebar, .grid-footer {
-                grid-column: 1 / span 1;
-            }
-            .chatbot-window {
-                width: 90%;
-                right: 5%;
-                left: 5%;
-                bottom: 80px;
-                height: 70vh;
-            }
+        /* Mobile responsive tweaks */
+        @media (max-width: 800px) {
+            .section {padding-top: 85px;}
+        }
+        @media (max-width: 600px) {
+            .hero {padding-top: 80px;}
+            .section {padding: 60px 5vw;}
+            .chatbot-window, .chatbot-icon {right: 5vw;}
+            .chatbot-window {width: 96vw; height: 60vh; bottom: 100px;}
         }
     </style>
 </head>
 <body>
 
-    <div class="page-loader">
-        <div class="loader-text">Welcome to Sumant's Web</div>
+    <!-- Loader -->
+    <div class="page-loader"><div class="loader-text">Welcome to Sumant's Web</div></div>
+
+    <!-- Terms modal -->
+    <div class="modal" id="terms-modal">
+        <div class="modal-content">
+            <h2>Terms and Conditions</h2>
+            <p>By using this site, you agree to our terms: for personal use only, no commercial use without permission, do not damage or misuse the site, and respect all copyrights. See full terms for details.</p>
+            <p>This agreement is governed by the laws of India.</p>
+            <button id="acceptBtn">Accept & Continue</button>
+        </div>
     </div>
 
-    <div class="terms-modal-overlay" id="terms-modal">
-        <div class="terms-modal-content">
-            <h1>Terms and Conditions</h1>
-            <div class="policy-content">
-                <p>This is a basic terms and conditions policy for your website. By using our services, you agree to these terms.</p>
-                <p><strong>1. Acceptanc
+    <!-- Navbar -->
+    <nav>
+        <div class="menu-toggle" id="menu-toggle">☰</div>
+        <div class="nav-links" id="nav-links">
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#coding-guide" class="nav-link">Coding Guide</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Home Section -->
+        <section class="hero section" id="home">
+            <div class="highlighted-names"><span>Sumant</span></div>
+            <h1>🌟 Welcome to My Trending Web</h1>
+            <p>Discover the latest in tech, dive into captivating stories, and learn to code with interactive guides.</p>
+            <div class="ads-container">[AdSense Space]</div>
+            <div class="grid">
+                <a class="card" href="news.html"><span>📰</span>Global News</a>
+                <a class="card" href="book.html"><span>📖</span>Story Book</a>
+                <a class="card" href="game.html"><span>🎮</span>Mini Game</a>
+                <a class="card" href="mythology.html"><span>🕉️</span>Mythology</a>
+                <a class="card" href="#coding-guide"><span>💻</span>Coding Guide</a>
+            </div>
+        </section>
+
+        <!-- Coding Guide Section -->
+        <section class="section" id="coding-guide">
+            <h1>💡 Programming Code Explained</h1>
+            <div class="tab-container">
+                <button class="tab-button active" data-tab="html">HTML</button>
+                <button class="tab-button" data-tab="css">CSS</button>
+                <button class="tab-button" data-tab="js">JavaScript</button>
+            </div>
+            <div class="tab-content active" id="tab-html">
+                <h2>HTML (HyperText Markup Language)</h2>
+                <p>HTML वेब पेज की structure बनाने वाली भाषा है। यह elements और tags का उपयोग कर content को शो करता है।</p>
+                <h3>Basic HTML Document Structure</h3>
+                <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;My Web Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Main Heading&lt;/h1&gt;
+    &lt;p&gt;This is a paragraph of text.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+                <h3>Advanced Form Example</h3>
+                <pre>&lt;form action="/submit" method="POST"&gt;
+  &lt;input type="text" name="name" required placeholder="Your Name"&gt;
+  &lt;input type="email" name="email" required placeholder="Email"&gt;
+  &lt;input type="password" name="pass" minlength="8" required&gt;
+  &lt;button type="submit"&gt;Send&lt;/button&gt;
+&lt;/form&gt;</pre>
+            </div>
+            <div class="tab-content" id="tab-css">
+                <h2>CSS (Cascading Style Sheets)</h2>
+                <p>CSS वेबसाइट को सुंदर और responsive बनाता है। Isse colors, fonts, layout, animation set kiye jaate hain.</p>
+                <h3>Flexbox Example</h3>
+                <pre>.flex-container {
+  display: flex;
+  gap: 10px;
+}
+.flex-item {
+  background: #05f7ff33;
+  padding: 19px;
+  border-radius: 9px;
+}</pre>
+                <h3>CSS Grid Example</h3>
+                <pre>.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 17px;
+}</pre>
+                <h3>3D Button Effect</h3>
+                <pre>.button-3d {
+  background: linear-gradient(135deg, #00ffff, #00b3b3);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 28px;
+  box-shadow: 0 5px 0 #008080;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.button-3d:active {
+  top: 5px;
+  box-shadow: none;
+}</pre>
+            </div>
+            <div class="tab-content" id="tab-js">
+                <h2>JavaScript</h2>
+                <p>JavaScript आपके webpage ko dynamic और interactive banata hai. Ye DOM se interact karke real-time content change karta hai!</p>
+                <h3>Button Click Example</h3>
+                <pre>&lt;button id="myBtn"&gt;Click me&lt;/button&gt;
+&lt;script&gt;
+  document.getElementById('myBtn').onclick = function() {
+    alert('Button was clicked!');
+  }
+&lt;/script&gt;</pre>
+                <h3>Form Validation</h3>
+                <pre>&lt;form id="f"&gt;
+  &lt;input id="em" type="email" required&gt;
+  &lt;button type="submit"&gt;Go&lt;/button&gt;
+&lt;/form&gt;
+&lt;script&gt;
+  document.getElementById('f').onsubmit = function(e){
+    if(!document.getElementById('em').value.includes('@')){
+      e.preventDefault();
+      alert('Please enter valid email.');
+    }
+  }
+&lt;/script&gt;</pre>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        &copy; 2025 My Trending Web. All Rights Reserved.
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+    </footer>
+    <a href="#home" class="back-to-top" id="back-to-top" title="Back to Top">▲</a>
+
+    <!-- Chatbot Icon & Window -->
+    <div class="chatbot-icon" id="chatbot-icon" title="Open Chatbot">🤖</div>
+    <div class="chatbot-window" id="chatbot-window">
+        <div class="chatbot-header">
+            <span>MyTrendingWeb AI Assistant</span>
+            <span class="close-btn" id="close-chat">&times;</span>
+        </div>
+        <div class="chatbot-body" id="chatbot-body">
+            <div class="chat-message bot-message">Hello! How can I help you?</div>
+        </div>
+        <div class="chatbot-footer">
+            <input type="text" id="user-input" placeholder="Ask me anything...">
+            <button id="send-btn">Send</button>
+        </div>
+    </div>
+
+    <!-- Script part -->
+    <script>
+        // Loader & terms modal logic
+        const loader = document.querySelector('.page-loader');
+        const modal = document.getElementById('terms-modal');
+        const acceptBtn = document.getElementById('acceptBtn');
+        const body = document.body;
+
+        body.style.overflow = 'hidden';
+        setTimeout(() => {
+            loader.style.display = 'none';
+            modal.classList.add('active');
+        }, 2500);
+
+        acceptBtn.addEventListener('click', function() {
+            modal.classList.remove('active');
+            body.style.overflow = '';
+        });
+
+        // Navbar toggle for Mobile
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+        menuToggle.addEventListener('click', function(){
+            navLinks.classList.toggle('open');
+        });
+
+        // Tabbed Coding Guide section
+        document.querySelectorAll('.tab-button').forEach(btn => {
+            btn.addEventListener('click', function(){
+                document.querySelectorAll('.tab-button').forEach(b=>b.classList.remove('active'));
+                btn.classList.add('active');
+                document.querySelectorAll('.tab-content').forEach(tc=>tc.classList.remove('active'));
+                document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Navbar link highlighting & section scroll
+        const sections = document.querySelectorAll('.section');
+        const navLinksA = document.querySelectorAll('.nav-link');
+        window.addEventListener('scroll', function() {
+            let current = '';
+            const scrollY = window.scrollY + 150;
+            sections.forEach(section => {
+                if(scrollY >= section.offsetTop && scrollY < section.offsetTop + section.offsetHeight){
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinksA.forEach(link=>{
+                link.classList.remove('active');
+                if(link.getAttribute('href').slice(1) === current){
+                    link.classList.add('active');
+                }
+            });
+            // Back-to-top
+            document.getElementById('back-to-top').classList.toggle('visible', window.scrollY > 300);
+        });
+
+        // Hide nav when clicking a link (mobile)
+        navLinksA.forEach(link => link.addEventListener('click', () => {
+            if(window.innerWidth <= 768) navLinks.classList.remove('open');
+        }));
+
+        // Back to top
+        document.getElementById('back-to-top').addEventListener('click', function(e){
+            e.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'});
+        });
+
+        // Chatbot logic (dummy, UI only)
+        const chatbotIcon = document.getElementById('chatbot-icon');
+        const chatbotWindow = document.getElementById('chatbot-window');
+        const closeChat = document.getElementById('close-chat');
+        const chatbotBody = document.getElementById('chatbot-body');
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-btn');
+
+        chatbotIcon.addEventListener('click', ()=> {
+            chatbotWindow.classList.add('active');
+        });
+        closeChat.addEventListener('click', ()=> {
+            chatbotWindow.classList.remove('active');
+        });
+
+        sendBtn.addEventListener('click', sendMessage);
+        userInput.addEventListener('keydown', function(e){
+            if(e.key==="Enter") sendMessage();
+        });
+
+        function sendMessage() {
+            const text = userInput.value.trim();
+            if(!text) return;
+            const userBubble = document.createElement('div');
+            userBubble.className = 'chat-message user-message';
+            userBubble.textContent = text;
+            chatbotBody.appendChild(userBubble);
+            // Fake AI reply
+            setTimeout(() => {
+                const botBubble = document.createEl
