@@ -86,8 +86,76 @@
       border-radius: 30px;
       font-weight: bold;
       transition: background 0.3s ease;
+      cursor: pointer;
     }
     .news-card a:hover {
+      background-color: #00ccaa;
+    }
+    .load-more {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .load-more button {
+      padding: 10px 30px;
+      font-size: 1em;
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      background-color: #00ffd5;
+      color: #000;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .load-more button:hover {
+      background-color: #00ccaa;
+    }
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background: linear-gradient(to right, #0f2027, #203a43);
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 20px rgba(0,255,255,0.4);
+    }
+    .modal-content h2 {
+      font-size: 1.8em;
+      color: #00ffcc;
+      margin-bottom: 15px;
+    }
+    .modal-content p {
+      font-size: 1em;
+      color: #ddd;
+      margin-bottom: 15px;
+    }
+    .modal-content .close-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #00ffd5;
+      color: #000;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      text-align: center;
+    }
+    .modal-content .close-btn:hover {
       background-color: #00ccaa;
     }
     footer {
@@ -100,6 +168,8 @@
       header h1 { font-size: 1.8em; }
       .news-card h2 { font-size: 1em; }
       .news-card p { font-size: 0.85em; }
+      .modal-content h2 { font-size: 1.5em; }
+      .modal-content p { font-size: 0.9em; }
     }
   </style>
 </head>
@@ -114,25 +184,426 @@
     <button onclick="showSection('crypto')">💰 Crypto News</button>
   </div>
 
+  <!-- Modal for news details -->
+  <div id="newsModal" class="modal">
+    <div class="modal-content">
+      <h2 id="modalTitle"></h2>
+      <p id="modalDesc"></p>
+      <p id="modalDetails"></p>
+      <span class="close-btn" onclick="closeModal()">Close</span>
+    </div>
+  </div>
+
   <div id="global" class="news-container active">
-    <!-- 20 Global News cards -->
-    <!-- (Already added in your original code, repeated or extended here) -->
+    <div class="news-card" data-details="The 2025 Climate Summit, held in Geneva, saw 195 countries commit to reducing carbon emissions by 50% by 2035. New funding for renewable energy and reforestation projects was announced, alongside stricter regulations on industrial emissions.">
+      <h2>🌎 Climate Summit 2025 Concludes</h2>
+      <p>World leaders agree on new carbon reduction targets to combat climate change.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Aerospace startup SkySonic unveiled a supersonic jet capable of Mach 2 speeds, reducing flight times across the Atlantic to under 3 hours. The jet uses sustainable fuels, aiming to revolutionize eco-friendly air travel.">
+      <h2>🛩️ New Supersonic Jet Unveiled</h2>
+      <p>Revolutionary aircraft promises to cut transatlantic flight times in half.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Researchers at MIT developed a novel immunotherapy that targets cancer cells with unprecedented precision, achieving an 80% success rate in early trials for lung and breast cancer patients.">
+      <h2>🏥 Breakthrough in Cancer Research</h2>
+      <p>New immunotherapy treatment shows promising results in clinical trials.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A massive volcanic eruption in the Pacific Ring of Fire triggered tsunamis and displaced thousands. International aid efforts are underway to support affected communities in the region.">
+      <h2>🌋 Volcano Erupts in Pacific</h2>
+      <p>Massive eruption prompts evacuation of nearby islands.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="NASA's Perseverance II rover found traces of ancient riverbeds, suggesting Mars once had flowing water. Scientists are analyzing samples to explore potential signs of past microbial life.">
+      <h2>🪐 Space Mission to Mars</h2>
+      <p>NASA's latest rover discovers evidence of ancient water on Mars.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Strong GDP growth in major economies led to a 5% surge in global stock indices. Investors are optimistic about recovery in tech and green energy sectors.">
+      <h2>🏦 Global Markets Rally</h2>
+      <p>Stock markets surge after positive economic data release.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The WHO introduced updated protocols for managing respiratory illnesses, emphasizing early detection and ventilation improvements in public spaces.">
+      <h2>🦠 New Health Guidelines Issued</h2>
+      <p>WHO updates recommendations for managing respiratory illnesses.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Solar and wind energy now account for 40% of global electricity production, driven by massive investments in Asia and Europe.">
+      <h2>⚡ Renewable Energy Boom</h2>
+      <p>Solar and wind energy adoption reaches record highs globally.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Starlink's new satellite constellation provides high-speed internet to over 1 billion users in remote areas, bridging the digital divide.">
+      <h2>🌐 Internet Access Expanded</h2>
+      <p>New satellite network aims to connect remote regions worldwide.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Historic peace talks in the Middle East, mediated by the UN, aim to resolve conflicts through economic cooperation and resource sharing.">
+      <h2>🏛️ Historic Peace Talks</h2>
+      <p>Negotiations begin to resolve long-standing regional conflicts.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Electric vehicle sales grew by 60% in 2025, with Tesla and BYD leading the market. Government subsidies and charging infrastructure expansion fueled demand.">
+      <h2>🚗 Electric Vehicle Sales Soar</h2>
+      <p>Global demand for EVs outpaces traditional car sales in 2025.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Ocean Cleanup's advanced filtration systems removed 10 million tons of plastic from the Pacific Garbage Patch, setting a new environmental milestone.">
+      <h2>🌊 Ocean Cleanup Success</h2>
+      <p>Innovative technology removes millions of tons of plastic from oceans.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="AI algorithms now detect diseases like Alzheimer's with 95% accuracy, enabling earlier interventions and improved patient outcomes.">
+      <h2>🧠 AI Breakthrough in Healthcare</h2>
+      <p>AI-powered diagnostics improve early detection of diseases.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Vertical farming systems in cities like Tokyo and Singapore produce 30% of local produce, reducing reliance on traditional agriculture.">
+      <h2>🌍 Urban Farming Revolution</h2>
+      <p>Vertical farms transform city landscapes and food production.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="6G trials in South Korea achieved data speeds of 1 Tbps, paving the way for holographic communication and IoT advancements.">
+      <h2>📡 6G Technology Trials Begin</h2>
+      <p>Next-generation networks promise unprecedented connectivity speeds.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Over 20 countries expanded national parks by 10 million acres, protecting endangered species and boosting eco-tourism.">
+      <h2>🏞️ National Parks Expand</h2>
+      <p>New protected areas designated to preserve biodiversity.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="New education reforms integrate AI tutors and VR classrooms, aiming to make learning more accessible and personalized globally.">
+      <h2>📚 Education Reforms Announced</h2>
+      <p>Global push for inclusive and digital-focused education systems.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A $2 trillion global infrastructure plan focuses on upgrading roads, bridges, and public transit with sustainable materials.">
+      <h2>🛠️ Infrastructure Overhaul Plans</h2>
+      <p>Major investments aim to modernize global transportation networks.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Breakthroughs in solar panel efficiency reach 35%, making solar energy more affordable for developing nations.">
+      <h2>🌞 Solar Energy Innovations</h2>
+      <p>New panel designs increase efficiency and affordability.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="New trade agreements between Asia, Europe, and Africa reduce tariffs, boosting cross-continental commerce by 15%.">
+      <h2>🌎 Global Trade Agreements Signed</h2>
+      <p>New pacts aim to boost economic cooperation across continents.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The 2025 hurricane season saw 12 major storms, prompting $500 billion in global disaster relief funds and new coastal defenses.">
+      <h2>🌪️ Hurricane Season Intensifies</h2>
+      <p>Record-breaking storms prompt global disaster preparedness efforts.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Google's quantum processor solved complex problems in seconds, accelerating drug discovery and cryptography advancements.">
+      <h2>🖥️ Quantum Computing Milestone</h2>
+      <p>New quantum processor achieves unprecedented computational speeds.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The UN Food Summit addressed supply chain issues, with $1 trillion pledged to improve global food distribution networks.">
+      <h2>🌾 Global Food Security Summit</h2>
+      <p>Leaders address rising food prices and supply chain disruptions.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A 300% rise in cyberattacks prompted NATO and ASEAN to form a global cybersecurity task force to protect critical infrastructure.">
+      <h2>🛡️ Cybersecurity Threats Surge</h2>
+      <p>Nations collaborate to combat rising cyberattacks on critical infrastructure.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Smart cities in Dubai and Singapore integrate IoT for traffic management, reducing congestion by 25% in urban areas.">
+      <h2>🌆 Smart Cities Expand</h2>
+      <p>New urban projects integrate IoT for sustainable living.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="CRISPR-Cas12 trials successfully corrected genetic mutations in 90% of test subjects, targeting rare disorders like cystic fibrosis.">
+      <h2>🧬 Gene Editing Advances</h2>
+      <p>CRISPR technology shows promise in curing genetic disorders.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="The UN's new refugee framework aims to resettle 10 million people by 2030, with funding for housing and job training programs.">
+      <h2>🌍 Refugee Crisis Solutions</h2>
+      <p>UN proposes new framework for global refugee resettlement.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="SpaceX and Blue Origin launched affordable orbital trips, with tickets starting at $200,000, democratizing space tourism.">
+      <h2>🚀 Commercial Space Travel Grows</h2>
+      <p>Private companies offer affordable orbital tourism packages.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Global reforestation initiatives planted 5 billion trees in 2025, with drones used to seed remote areas efficiently.">
+      <h2>🌳 Reforestation Efforts Scale Up</h2>
+      <p>Global initiatives plant billions of trees to combat deforestation.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Synthetic biology advancements led to lab-grown leather and plastics, reducing reliance on fossil fuels by 20%.">
+      <h2>🧪 Synthetic Biology Breakthrough</h2>
+      <p>Lab-grown materials revolutionize manufacturing industries.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Global inflation hit 7% in 2025, prompting central banks to raise interest rates and stabilize economies.">
+      <h2>📉 Inflation Concerns Rise</h2>
+      <p>Central banks adjust policies to tackle global inflation spikes.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Tidal energy projects in Norway and Canada received $10 billion in funding, generating 5 GW of clean energy.">
+      <h2>🌊 Tidal Energy Projects Funded</h2>
+      <p>New investments boost ocean-based renewable energy solutions.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Amazon and FedEx expanded drone delivery networks, covering 50% of urban deliveries in major cities.">
+      <h2>🛫 Drone Delivery Expands</h2>
+      <p>Global logistics firms adopt drones for faster urban deliveries.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="New desalination plants in the Middle East provide clean water to 20 million people, addressing chronic shortages.">
+      <h2>🌍 Water Scarcity Solutions</h2>
+      <p>Innovative desalination tech addresses global water shortages.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="VR-based digital museums, like the Louvre's virtual wing, saw 100 million visitors in 2025, redefining art access.">
+      <h2>🖼️ Digital Art Museums Open</h2>
+      <p>Virtual reality transforms how global audiences experience art.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="High-speed rail networks in China and Europe cut travel times by 30%, boosting regional economic growth.">
+      <h2>🚄 High-Speed Rail Expansions</h2>
+      <p>New rail networks connect major cities with record speeds.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Cities like Delhi and Los Angeles adopted air purification towers, reducing smog levels by 40%.">
+      <h2>🌬️ Air Quality Improvements</h2>
+      <p>Cities adopt new tech to reduce urban pollution levels.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="AI-driven teacher training programs in Africa and Asia improved literacy rates by 15% in underserved regions.">
+      <h2>🧑‍🏫 Teacher Training Reforms</h2>
+      <p>Global programs aim to enhance education with AI tools.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="International efforts to protect Arctic ecosystems include banning offshore drilling and expanding marine sanctuaries.">
+      <h2>🌎 Arctic Conservation Efforts</h2>
+      <p>Nations unite to protect melting Arctic ecosystems.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Next-gen smartphones with AI assistants and holographic displays hit markets, with sales projected at 2 billion units.">
+      <h2>📱 Next-Gen Smartphone Tech</h2>
+      <p>New devices integrate AI and holographic displays.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+  </div>
+  <div class="load-more">
+    <button onclick="loadMoreNews('global')">Load More Global News</button>
   </div>
 
   <div id="crypto" class="news-container">
-    <!-- 20 Crypto News cards -->
-    <!-- Example crypto news -->
-    <div class="news-card">
+    <div class="news-card" data-details="Bitcoin's price soared past $80,000, driven by institutional adoption and the approval of spot Bitcoin ETFs in the US and Europe.">
       <h2>💸 Bitcoin Crosses $80K</h2>
       <p>Bitcoin hits all-time high with massive market interest and ETF approvals.</p>
-      <a href="#">Read More</a>
+      <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <div class="news-card">
+    <div class="news-card" data-details="Ethereum's 2.0 upgrade reduced energy consumption by 99%, with staking rewards attracting over 20 million ETH in 2025.">
       <h2>⚡ Ethereum 2.0 Live Now</h2>
       <p>Major upgrade to Ethereum brings faster speed and low gas fees.</p>
-      <a href="#">Read More</a>
+      <a onclick="showNewsDetails(this)">Read More</a>
     </div>
-    <!-- Add more cards as per requirement -->
+    <div class="news-card" data-details="Solana's 50% price surge was fueled by its role in DeFi and NFT platforms, processing 10,000 transactions per second.">
+      <h2>📈 Solana Surges 50%</h2>
+      <p>Solana's price spikes due to growing DeFi and NFT adoption.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Chainlink partnered with 50 new blockchains, enhancing data feeds for DeFi and supply chain applications.">
+      <h2>🔗 Chainlink Expands Oracles</h2>
+      <p>New partnerships boost Chainlink's role in smart contract ecosystems.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Cardano's Hydra upgrade enables 1 million transactions per second, positioning it as a leader in scalable blockchains.">
+      <h2>💹 Cardano's New Upgrade</h2>
+      <p>Cardano's latest update enhances scalability and developer tools.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Polygon's zkEVM processed 500,000 transactions daily, attracting dApps in gaming and finance with low-cost solutions.">
+      <h2>🌐 Polygon zkEVM Gains Traction</h2>
+      <p>Polygon's zero-knowledge solution attracts major dApp developers.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Proposed stablecoin regulations in the EU and US require issuers to maintain 1:1 fiat reserves, impacting Tether and USDC.">
+      <h2>🏦 Stablecoin Regulations Proposed</h2>
+      <p>Governments outline new rules for stablecoin issuers in 2025.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="DeFi platforms like Uniswap and Aave reached $500 billion in TVL, driven by institutional and retail investor participation.">
+      <h2>💰 DeFi TVL Hits $500B</h2>
+      <p>Decentralized finance platforms see record-breaking total value locked.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="NFT collections like CryptoPunks and Bored Apes saw renewed interest, with trading volumes surpassing $10 billion in 2025.">
+      <h2>🎨 NFT Market Rebounds</h2>
+      <p>New NFT collections drive renewed interest in digital art.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="A major exchange hack exposed vulnerabilities in hot wallets, prompting a shift to cold storage and multi-sig solutions.">
+      <h2>🔐 Crypto Security Breach Alert</h2>
+      <p>Major exchange reports vulnerability, urges users to update wallets.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Countries like Nigeria and India saw a 200% increase in crypto payments, driven by low-cost blockchain solutions.">
+      <h2>🌍 Global Crypto Adoption Grows</h2>
+      <p>Emerging markets lead in cryptocurrency usage for payments.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Layer-2 solutions like Optimism reduced Ethereum gas fees by 90%, processing 1 million transactions daily.">
+      <h2>⚙️ Layer-2 Solutions Thrive</h2>
+      <p>Optimism and Arbitrum see increased activity for low-cost transactions.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Ripple's legal victory clarified XRP's status as a non-security, boosting its price by 70% in 2025.">
+      <h2>💸 XRP Gains Regulatory Clarity</h2>
+      <p>Ripple's legal battles conclude, boosting XRP's market confidence.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Blockchain-based collectibles like Axie Infinity items gained traction, with $5 billion in trading volume among gamers.">
+      <h2>🖼️ Digital Collectibles Boom</h2>
+      <p>Blockchain-based collectibles gain popularity among gamers.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Over 20 countries approved crypto ETFs, with Bitcoin and Ethereum funds attracting $50 billion in investments.">
+      <h2>📊 Crypto ETF Approvals Surge</h2>
+      <p>Multiple countries greenlight crypto-based exchange-traded funds.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Cross-chain bridges like Wormhole connected 30 blockchains, enabling seamless asset transfers with $10 billion in volume.">
+      <h2>🔄 Cross-Chain Bridges Expand</h2>
+      <p>New protocols improve interoperability between blockchains.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="China and Brazil launched CBDC pilots, with digital yuan and real processing 1 billion transactions in 2025.">
+      <h2>🏛️ Central Bank Digital Currencies</h2>
+      <p>More nations pilot CBDCs, impacting crypto markets.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Bitcoin's Lightning Network processed 500 million transactions in 2025, enabling instant micro-payments globally.">
+      <h2>⚡ Lightning Network Growth</h2>
+      <p>Bitcoin's Lightning Network sees record transaction volumes.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="New crypto insurance platforms cover $100 billion in digital assets, protecting against hacks and market crashes.">
+      <h2>🛡️ Crypto Insurance Launched</h2>
+      <p>New platforms offer insurance for digital asset holders.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Altcoins like Avalanche and Polkadot outperformed Bitcoin, with some gaining 300% in value during Q1 2025.">
+      <h2>🌟 Altcoin Season Begins</h2>
+      <p>Smaller cryptocurrencies outperform major coins in 2025.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Polkadot's parachain auctions allocated 1,000 slots, enabling new blockchains for DeFi and gaming applications.">
+      <h2>💎 Polkadot Parachains Thrive</h2>
+      <p>Polkadot's ecosystem grows with new parachain auctions.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Monero and Zcash transactions grew by 150%, driven by demand for privacy-focused payments in 2025.">
+      <h2>🔒 Privacy Coins Gain Popularity</h2>
+      <p>Monero and Zcash see increased adoption for secure transactions.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Web3 platforms like Decentraland attracted 50 million users, with major brands launching virtual storefronts.">
+      <h2>🌐 Web3 Adoption Accelerates</h2>
+      <p>Decentralized internet platforms attract major tech firms.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Algorithmic stablecoins like DAI and UST grew by 200%, offering decentralized alternatives to fiat-backed tokens.">
+      <h2>💸 Stablecoin Market Expands</h2>
+      <p>New algorithmic stablecoins challenge traditional models.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Play-to-earn games like The Sandbox saw 10 million active players, with $2 billion in token rewards distributed.">
+      <h2>🎮 Blockchain Gaming Surges</h2>
+      <p>Play-to-earn games drive crypto adoption among gamers.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Crypto markets saw 20% volatility in Q1 2025, with analysts citing regulatory uncertainty and macroeconomic factors.">
+      <h2>📉 Crypto Market Volatility</h2>
+      <p>Analysts predict short-term fluctuations in major coins.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Avalanche's subnets processed $50 billion in DeFi transactions, competing with Ethereum's Layer-2 solutions.">
+      <h2>🔗 Avalanche Scales DeFi</h2>
+      <p>Avalanche's subnets boost decentralized finance applications.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="JPMorgan and Goldman Sachs launched crypto custody services, managing $20 billion in digital assets for clients.">
+      <h2>🏦 Institutional Crypto Investments</h2>
+      <p>Major banks launch crypto custody services in 2025.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Binance Smart Chain's upgrade improved transaction speeds by 50%, supporting 1 billion daily transactions.">
+      <h2>⚡ Binance Smart Chain Upgrade</h2>
+      <p>New features enhance BSC's performance and security.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Blockchain remittances saved $10 billion in fees, with Stellar and Ripple leading cross-border payment solutions.">
+      <h2>🌍 Crypto Remittance Growth</h2>
+      <p>Blockchain-based remittances reduce global transfer costs.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Metaverse platforms sold $5 billion in virtual real estate, with Decentraland and Sandbox leading the market.">
+      <h2>🖼️ NFT Real Estate Ventures</h2>
+      <p>Virtual land sales in metaverse platforms hit record highs.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Multi-signature wallets from Ledger and Trezor reduced hacking incidents by 70% in 2025.">
+      <h2>🔐 Wallet Security Enhanced</h2>
+      <p>New multi-signature wallets improve crypto asset protection.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Aave and Compound issued $100 billion in DeFi loans, with new protocols offering competitive interest rates.">
+      <h2>💰 DeFi Lending Protocols Grow</h2>
+      <p>Aave and Compound report record loan volumes in 2025.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="New cross-chain standards enabled $20 billion in asset transfers between Ethereum, Solana, and Polkadot.">
+      <h2>🌐 Interoperability Standards Set</h2>
+      <p>Blockchain alliances establish new cross-chain protocols.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Platforms like Glassnode and Nansen launched AI-driven analytics, predicting crypto trends with 85% accuracy.">
+      <h2>📊 Crypto Analytics Tools Launch</h2>
+      <p>New platforms offer advanced market insights for traders.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Global crypto tax reforms clarified capital gains rules, reducing compliance costs for investors by 30%.">
+      <h2>🏛️ Crypto Tax Reforms</h2>
+      <p>Governments clarify tax rules for digital asset holders.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Major retailers like Walmart adopted crypto payments, with Bitcoin and USDC accepted in 10,000 stores.">
+      <h2>⚡ Fast-Track Crypto Payments</h2>
+      <p>Retailers adopt crypto for seamless global transactions.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="DAOs like MakerDAO adopted quadratic voting, increasing participation in governance by 50%.">
+      <h2>🛡️ DAO Governance Advances</h2>
+      <p>Decentralized organizations adopt new voting mechanisms.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Meme coins like Dogecoin and Shiba Inu gained 200% in value, driven by social media hype and retail investment.">
+      <h2>🌟 Meme Coins Make Comeback</h2>
+      <p>New meme-based cryptocurrencies gain viral attention.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+    <div class="news-card" data-details="Cosmos integrated 100 new blockchains, with its hub facilitating $15 billion in cross-chain transactions.">
+      <h2>🔗 Cosmos Hub Expands</h2>
+      <p>Cosmos ecosystem grows with new blockchain integrations.</p>
+      <a onclick="showNewsDetails(this)">Read More</a>
+    </div>
+  </div>
+  <div class="load-more">
+    <button onclick="loadMoreNews('crypto')">Load More Crypto News</button>
   </div>
 
   <footer>
@@ -140,6 +611,120 @@
   </footer>
 
   <script>
+    // Mock data for additional news (can be replaced with API call)
+    const mockNewsData = {
+      global: [
+        { 
+          title: "🌍 Global AI Ethics Framework", 
+          desc: "Nations agree on AI development guidelines.", 
+          details: "The UN-led AI Ethics Summit in 2025 established a global framework to ensure responsible AI development, focusing on transparency, accountability, and bias mitigation across industries."
+        },
+        { 
+          title: "🚢 Shipping Industry Reforms", 
+          desc: "New tech reduces carbon emissions in shipping.", 
+          details: "Advanced propulsion systems and AI-optimized routes cut shipping emissions by 30%, with major ports adopting green tech to meet 2030 climate goals."
+        },
+        { 
+          title: "🧠 Neurotech Advances", 
+          desc: "Brain-computer interfaces enter consumer markets.", 
+          details: "Neuralink and competitors launched consumer-grade brain-computer interfaces, enabling thought-controlled devices and revolutionizing gaming and healthcare."
+        },
+        { 
+          title: "🌎 Polar Ice Restoration", 
+          desc: "Innovative tech slows Arctic ice melt.", 
+          details: "Geoengineering projects using reflective materials and ice-seeding drones slowed Arctic ice loss by 15%, with $5 billion invested in polar conservation."
+        },
+        { 
+          title: "🚀 Lunar Base Plans", 
+          desc: "NASA and ESA plan permanent lunar outpost.", 
+          details: "NASA and ESA's $20 billion lunar base project aims to establish a permanent human presence on the moon by 2030, supporting scientific research and resource extraction."
+        },
+      ],
+      crypto: [
+        { 
+          title: "💸 Bitcoin ETF Expands", 
+          desc: "New Bitcoin ETFs attract institutional investors.", 
+          details: "Spot Bitcoin ETFs in the US and Asia attracted $30 billion in institutional capital, with BlackRock and Fidelity leading the market in 2025."
+        },
+        { 
+          title: "⚡ Ethereum Staking Boom", 
+          desc: "Record staking volumes boost Ethereum network.", 
+          details: "Ethereum's staking ecosystem grew to 25 million ETH, with validators earning 5% annual yields, strengthening network security and decentralization."
+        },
+        { 
+          title: "📈 Solana DeFi Growth", 
+          desc: "Solana's DeFi ecosystem rivals Ethereum.", 
+          details: "Solana's DeFi protocols processed $100 billion in transactions, with low fees and high speeds attracting developers from Ethereum's ecosystem."
+        },
+        { 
+          title: "🔗 Chainlink CCIP Update", 
+          desc: "Cross-Chain Interoperability Protocol enhanced.", 
+          details: "Chainlink's CCIP upgrade enabled secure cross-chain data transfers, supporting $50 billion in DeFi and NFT transactions across 40 blockchains."
+        },
+        { 
+          title: "💹 Cardano Smart Contracts", 
+          desc: "New dApps launch on Cardano blockchain.", 
+          details: "Cardano's Plutus platform saw 1,000 new dApps in 2025, with applications in supply chain, gaming, and finance driving ADA's price to new highs."
+        },
+      ]
+    };
+
+    // Function to show news details in modal
+    function showNewsDetails(element) {
+      const card = element.closest('.news-card');
+      const title = card.querySelector('h2').textContent;
+      const desc = card.querySelector('p').textContent;
+      const details = card.dataset.details || 'No additional details available.';
+      
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalDesc').textContent = desc;
+      document.getElementById('modalDetails').textContent = details;
+      
+      const modal = document.getElementById('newsModal');
+      modal.style.display = 'flex';
+    }
+
+    // Function to close the modal
+    function closeModal() {
+      document.getElementById('newsModal').style.display = 'none';
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('newsModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+
+    // Function to load more news dynamically
+    function loadMoreNews(section) {
+      const container = document.getElementById(section);
+      const newsData = mockNewsData[section] || [];
+      const currentNewsCount = container.querySelectorAll('.news-card').length;
+      
+      // Limit to 100 total news items per section
+      if (currentNewsCount >= 100) {
+        alert(`No more ${section} news to load!`);
+        return;
+      }
+
+      // Add up to 10 more news items (or fewer if close to 100)
+      const newsToAdd = Math.min(10, 100 - currentNewsCount);
+      for (let i = 0; i < newsToAdd; i++) {
+        const newsItem = newsData[i % newsData.length]; // Cycle through mock data
+        const newsCard = document.createElement('div');
+        newsCard.classList.add('news-card');
+        newsCard.dataset.details = newsItem.details;
+        newsCard.innerHTML = `
+          <h2>${newsItem.title}</h2>
+          <p>${newsItem.desc}</p>
+          <a onclick="showNewsDetails(this)">Read More</a>
+        `;
+        container.appendChild(newsCard);
+      }
+    }
+
+    // Function to toggle sections
     function showSection(section) {
       document.querySelectorAll('.news-container').forEach(c => c.classList.remove('active'));
       document.getElementById(section).classList.add('active');
