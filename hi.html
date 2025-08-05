@@ -1,756 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>🌐 My Trending Web - Your Source for Tech & Stories</title>
-    <meta name="description" content="Explore the latest in technology, global news, captivating stories, and comprehensive coding guides for HTML, CSS, and JavaScript.">
-    <meta name="keywords" content="technology, news, coding, HTML, CSS, JavaScript, mythology, stories">
-    <meta name="author" content="My Trending Web">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://www.mytrendingweb.com/" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
-    
-    <!-- Open Graph Meta Tags for Social Sharing -->
-    <meta property="og:title" content="My Trending Web - Tech, News & Stories" />
-    <meta property="og:description" content="Discover the latest in technology, global news, captivating stories, and coding guides." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.mytrendingweb.com/" />
-    <meta property="og:image" content="https://www.mytrendingweb.com/images/og-image.jpg" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🌟 Sumant’s All-in-One Web Hub</title>
+  <meta name="description" content="Play 50+ online games, read mythological stories, explore global news & use AI tools - all at Sumant's magical web universe!">
+  <meta name="keywords" content="free games, AI tools, sumant website, storybook, trending news, all in one web">
+  <meta name="author" content="Sumant">
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/272/272525.png" type="image/png">
 
-    <!-- Structured Data for SEO -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "My Trending Web",
-        "url": "https://www.mytrendingweb.com/",
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://www.mytrendingweb.com/search?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-        }
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      overflow-x: hidden;
+      text-align: center;
     }
-    </script>
 
-    <!-- AdSense Script -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2083692947196571" crossorigin="anonymous"></script>
+    header {
+      padding: 40px 20px;
+    }
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YOUR_MEASUREMENT_ID"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-YOUR_MEASUREMENT_ID');
-    </script>
-    
-    <style>
-        /* --- Main Page Styles --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #000428, #004e92);
-            color: white;
-            min-height: 100vh;
-            overflow-x: hidden;
-            animation: bgAnim 20s ease infinite;
-            scroll-behavior: smooth;
-        }
-        @keyframes bgAnim {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.8rem;
+      color: #00f7ff;
+      text-shadow: 0 0 10px #00f7ff;
+    }
 
-        /* --- Navigation Bar --- */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(8px);
-            z-index: 1000;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 8px 15px;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        nav a::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: 0;
-            transform: translateX(-50%) scaleX(0);
-            width: 80%;
-            height: 2px;
-            background: #00ffff;
-            transition: transform 0.3s ease;
-        }
-        nav a:hover::after, nav a.active::after {
-            transform: translateX(-50%) scaleX(1);
-        }
-        nav a:hover, nav a.active {
-            color: #00ffff;
-            text-shadow: 0 0 5px #00ffff;
-        }
-        .menu-toggle { 
-            display: none; 
-            cursor: pointer; 
-            font-size: 2rem; 
-            position: absolute; 
-            right: 20px; 
-            top: 10px; 
-            color: #00ffff; 
-        }
-        .nav-links { 
-            display: flex; 
-            gap: 25px; 
-            justify-content: center; 
-            align-items: center; 
-        }
+    p {
+      font-size: 1.1rem;
+      color: #ccc;
+      margin-bottom: 30px;
+    }
 
-        /* --- Sections & Content --- */
-        section {
-            min-height: 100vh;
-            padding-top: 100px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            transition: all 0.5s ease;
-            opacity: 0;
-            transform: translateY(20px);
-            padding: 100px 20px 20px;
-        }
-        section.active { 
-            opacity: 1; 
-            transform: translateY(0); 
-        }
+    .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
 
-        /* --- AdSense Ad Container --- */
-        .ads-container {
-            width: 100%; 
-            max-width: 728px; 
-            height: auto; 
-            min-height: 100px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px dashed rgba(0, 255, 255, 0.5);
-            margin: 40px auto; 
-            display: flex; 
-            justify-content: center;
-            align-items: center; 
-            text-align: center; 
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-        ins.adsbygoogle { 
-            display: block; 
-            margin: 0 auto; 
-        }
+    .btn {
+      background: #1e90ff;
+      color: white;
+      padding: 15px 25px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 0 15px #1e90ff;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-        /* --- Hero Section --- */
-        #home-section h1 { 
-            font-size: clamp(2.5rem, 8vw, 5rem); 
-            margin-bottom: 20px; 
-            text-shadow: 0 0 20px cyan; 
-        }
-        #home-section p { 
-            font-size: 1.2rem; 
-            max-width: 800px; 
-            animation: fadeIn 1.5s ease forwards; 
-            animation-delay: 0.5s; 
-            opacity: 0; 
-        }
-        @keyframes fadeIn { 
-            from { opacity: 0; } 
-            to { opacity: 1; } 
-        }
+    .btn:hover {
+      background: #00bcd4;
+      box-shadow: 0 0 25px #00bcd4;
+      transform: scale(1.05);
+    }
 
-        /* --- Card Grid --- */
-        .grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
-            gap: 20px; 
-            max-width: 1000px; 
-            margin-top: 50px; 
-        }
-        .card {
-            background: rgba(255, 255, 255, 0.1); 
-            padding: 30px; 
-            border-radius: 20px;
-            color: white; 
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
-            transition: 0.3s ease; 
-            display: block; 
-            position: relative;
-            overflow: hidden; 
-            cursor: pointer; 
-            text-decoration: none;
-        }
-        .card:hover { 
-            background: rgba(255, 255, 255, 0.2); 
-            transform: scale(1.05); 
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8); 
-        }
-        .card span { 
-            font-size: 3rem; 
-            display: block; 
-            margin-bottom: 10px; 
-            z-index: 1; 
-            position: relative; 
-            text-shadow: 0 0 15px #00ffff; 
-        }
-        .card div { 
-            font-size: 1.3rem; 
-            z-index: 1; 
-            position: relative; 
-        }
-        .highlighted-names { 
-            font-size: 1.5rem; 
-            margin-bottom: 20px; 
-        }
-        .highlighted-names span {
-            background-color: rgba(255, 255, 255, 0.2); 
-            padding: 5px 10px;
-            border-radius: 10px; 
-            box-shadow: 0 0 10px cyan;
-            display: inline-block; 
-            margin: 0 10px;
-        }
-        
-        /* --- New Animation Styles for Google Terms Card --- */
-        @keyframes pulse { 
-            0% { transform: scale(1); } 
-            50% { transform: scale(1.05); } 
-            100% { transform: scale(1); } 
-        }
-        @keyframes glow { 
-            0% { box-shadow: 0 0 10px #00ffff, 0 0 20px #ff00ff; } 
-            50% { box-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff; } 
-            100% { box-shadow: 0 0 10px #00ffff, 0 0 20px #ff00ff; } 
-        }
-        .animated-card {
-            position: relative; 
-            overflow: hidden;
-            animation: pulse 3s infinite ease-in-out, glow 2s infinite ease-in-out;
-            background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(255, 0, 255, 0.2));
-            border: 2px solid transparent; 
-            transition: all 0.3s ease;
-        }
-        .animated-card:hover { 
-            transform: scale(1.1); 
-            animation: none; 
-            box-shadow: 0 0 30px #00ffff, 0 0 50px #ff00ff; 
-        }
-        .animated-card::before {
-            content: ''; 
-            position: absolute; 
-            top: 50%; 
-            left: 50%;
-            width: 200%; 
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent 70%);
-            transform: translate(-50%, -50%) scale(0); 
-            transition: transform 0.5s ease;
-        }
-        .animated-card:hover::before { 
-            transform: translate(-50%, -50%) scale(1); 
-        }
-        .animated-card span, .animated-card div { 
-            z-index: 10; 
-            position: relative; 
-        }
+    footer {
+      margin-top: 50px;
+      font-size: 0.9rem;
+      color: #888;
+    }
 
-        /* --- About Section --- */
-        #about-section { 
-            text-align: left; 
-            max-width: 1000px; 
-        }
-        #about-section h1 { 
-            font-size: 2.5rem; 
-            color: #00f7ff; 
-            text-shadow: 0 0 15px #00f7ff; 
-            text-align: center; 
-            margin-bottom: 30px; 
-        }
-        #about-section p { 
-            font-size: 1.1rem; 
-            line-height: 1.6; 
-            margin-bottom: 20px; 
-        }
-        #about-section ul { 
-            list-style-type: disc; 
-            margin-left: 30px; 
-            font-size: 1.05rem; 
-        }
-
-        /* --- Footer Styles --- */
-        .site-footer { 
-            width: 100%; 
-            text-align: center; 
-            padding: 40px 20px 20px; 
-            color: rgba(255, 255, 255, 0.6); 
-            background: rgba(0, 0, 0, 0.4); 
-            backdrop-filter: blur(5px); 
-            z-index: 10; 
-        }
-        .site-footer a { 
-            color: #00ffff; 
-            text-decoration: none; 
-            margin: 0 10px; 
-            transition: color 0.3s ease; 
-        }
-        .site-footer a:hover { 
-            color: #ff416c; 
-        }
-
-        /* --- Back to Top Button --- */
-        .back-to-top {
-            position: fixed; 
-            bottom: 30px; 
-            right: 30px; 
-            background: #ff416c;
-            color: white; 
-            width: 50px; 
-            height: 50px; 
-            border-radius: 50%;
-            display: flex; 
-            justify-content: center; 
-            align-items: center;
-            font-size: 1.5rem; 
-            text-decoration: none; 
-            box-shadow: 0 0 15px #ff416c;
-            transition: all 0.3s ease; 
-            z-index: 999;
-        }
-        .back-to-top:hover { 
-            transform: scale(1.1); 
-            box-shadow: 0 0 20px #ff416c; 
-        }
-
-        /* --- Chatbot Styles --- */
-        .chatbot-icon {
-            position: fixed; 
-            bottom: 30px; 
-            right: 30px; 
-            background: #ff416c;
-            color: white; 
-            width: 60px; 
-            height: 60px; 
-            border-radius: 50%;
-            display: flex; 
-            justify-content: center; 
-            align-items: center;
-            font-size: 2.5rem; 
-            cursor: pointer; 
-            box-shadow: 0 0 15px #ff416c;
-            transition: all 0.3s ease; 
-            z-index: 1001;
-        }
-        .chatbot-icon:hover { 
-            transform: scale(1.1); 
-            box-shadow: 0 0 20px #ff416c; 
-        }
-        .chatbot-window {
-            position: fixed; 
-            bottom: 100px; 
-            right: 30px; 
-            width: 350px;
-            height: 450px; 
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(8px); 
-            border-radius: 15px;
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.5); 
-            display: none;
-            flex-direction: column; 
-            z-index: 1002; 
-            overflow: hidden;
-            animation: fadeInScale 0.3s ease-out forwards;
-        }
-        @keyframes fadeInScale { 
-            from { opacity: 0; transform: scale(0.9); } 
-            to { opacity: 1; transform: scale(1); } 
-        }
-        .chatbot-window.active { 
-            display: flex; 
-        }
-        .chatbot-header {
-            background: rgba(0, 255, 255, 0.2); 
-            padding: 15px; 
-            text-align: center;
-            border-bottom: 2px solid #00ffff; 
-            display: flex;
-            justify-content: space-between; 
-            align-items: center;
-        }
-        .chatbot-header h3 { 
-            margin: 0; 
-            font-size: 1.2rem; 
-            color: #00ffff; 
-            text-shadow: 0 0 5px #00ffff; 
-        }
-        .close-btn { 
-            font-size: 2rem; 
-            cursor: pointer; 
-            color: #00ffff; 
-            line-height: 1; 
-            transition: color 0.3s ease; 
-        }
-        .close-btn:hover { 
-            color: #ff416c; 
-        }
-        .chatbot-body { 
-            flex-grow: 1; 
-            padding: 20px; 
-            overflow-y: auto; 
-            display: flex; 
-            flex-direction: column; 
-            gap: 15px; 
-        }
-        .chat-message { 
-            padding: 12px 18px; 
-            border-radius: 20px; 
-            max-width: 80%; 
-            line-height: 1.5; 
-            word-wrap: break-word; 
-        }
-        .user-message { 
-            background-color: #ff416c; 
-            color: white; 
-            align-self: flex-end; 
-            box-shadow: 0 0 8px rgba(255, 65, 108, 0.5); 
-        }
-        .bot-message { 
-            background-color: #00ffff; 
-            color: #000428; 
-            align-self: flex-start; 
-            box-shadow: 0 0 8px rgba(0, 255, 255, 0.5); 
-        }
-        .chatbot-footer { 
-            display: flex; 
-            padding: 15px; 
-            gap: 10px; 
-            border-top: 2px solid #00ffff; 
-        }
-        #user-input {
-            flex-grow: 1; 
-            padding: 10px; 
-            border-radius: 50px;
-            border: 2px solid #00ffff; 
-            background: rgba(255, 255, 255, 0.1);
-            color: white; 
-            font-size: 1rem; 
-            outline: none; 
-            transition: border-color 0.3s ease;
-        }
-        #user-input:focus { 
-            border-color: #ff416c; 
-        }
-        #send-btn {
-            padding: 10px 20px; 
-            background: #00ffff; 
-            border: none;
-            border-radius: 50px; 
-            color: #000428; 
-            font-weight: bold;
-            cursor: pointer; 
-            transition: all 0.3s ease;
-        }
-        #send-btn:hover { 
-            background: #ff416c; 
-            color: white; 
-            box-shadow: 0 0 10px #ff416c; 
-        }
-
-        /* --- Mobile-Specific Styles --- */
-        @media (max-width: 768px) {
-            nav { 
-                justify-content: flex-start; 
-                padding: 15px; 
-            }
-            .nav-links {
-                display: none; 
-                flex-direction: column; 
-                position: absolute; 
-                top: 70px;
-                left: 0; 
-                width: 100%; 
-                background: rgba(0, 0, 0, 0.8);
-                padding: 20px 0; 
-                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            }
-            .nav-links.show { 
-                display: flex; 
-            }
-            .menu-toggle { 
-                display: block; 
-            }
-            .grid { 
-                grid-template-columns: 1fr; 
-            }
-            .highlighted-names { 
-                font-size: 1.2rem; 
-            }
-            .highlighted-names span { 
-                margin: 5px; 
-            }
-            #home-section h1 { 
-                font-size: 2.2rem; 
-            }
-            #home-section p { 
-                font-size: 1rem; 
-            }
-            #about-section h1 { 
-                font-size: 2rem; 
-            }
-            #about-section p, #about-section ul { 
-                font-size: 0.95rem; 
-            }
-            .chatbot-window { 
-                width: 90%; 
-                right: 5%; 
-                left: 5%; 
-                bottom: 80px; 
-                height: 70vh; 
-            }
-        }
-    </style>
+    @media screen and (max-width: 600px) {
+      .btn {
+        flex-direction: column;
+        padding: 10px 15px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <nav aria-label="Main navigation">
-        <div class="menu-toggle" id="menu-toggle" role="button" aria-label="Toggle menu">☰</div>
-        <div class="nav-links">
-            <a href="#home-section" class="nav-link active" aria-current="page">Home</a>
-            <a href="#about-section" class="nav-link">About Us</a>
-            <a href="#google-terms-section" class="nav-link">Google Terms & Policy</a>
-        </div>
-    </nav>
+  <header>
+    <h1>🌟 Sumant’s All-in-One Web Hub</h1>
+    <p>🎮 Games | 📚 Stories | 🧠 AI Tools | 🌍 World News – Explore it all in one magical place!</p>
+  </header>
 
-    <main>
-        <section id="home-section" class="active" aria-labelledby="home-heading">
-            <div class="highlighted-names">
-                <span>Sumant</span>
-            </div>
-            <h1 id="home-heading">🌟 Welcome to My Trending Web</h1>
-            <p>Discover the latest in tech, dive into captivating stories, and learn to code with our interactive guides.</p>
-            <div class="ads-container">
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-2083692947196571"
-                     data-ad-slot="YOUR_AD_SLOT_ID"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
-            <div class="grid">
-                <a class="card" href="news.html" aria-label="Global News">
-                    <span>📰</span>
-                    <div>Global News</div>
-                </a>
-                <a class="card" href="book.html" aria-label="Story Book">
-                    <span>📖</span>
-                    <div>Story Book</div>
-                </a>
-                <a class="card" href="game.html" aria-label="Mini Game">
-                    <span>🎮</span>
-                    <div>Mini Game</div>
-                </a>
-                <a class="card" href="mythology.html" aria-label="Mythology">
-                    <span>🕉️</span>
-                    <div>Mythology</div>
-                </a>
-                <a class="card animated-card" href="https://policies.google.com/terms?hl=en" target="_blank" aria-label="Google Terms and Policy">
-                    <span>⚖️</span>
-                    <div>Google Terms & Policy</div>
-                </a>
-            </div>
-        </section>
+  <div class="button-container">
+    <a class="btn" href="game.html"><i class="fas fa-gamepad"></i> Play Games</a>
+    <a class="btn" href="book.html"><i class="fas fa-book-open"></i> Read Stories</a>
+    <a class="btn" href="tools.html"><i class="fas fa-robot"></i> AI Tools</a>
+    <a class="btn" href="news.html"><i class="fas fa-newspaper"></i> Global News</a>
+    <a class="btn" href="hi.html"><i class="fas fa-user"></i> Hello Page</a>
+  </div>
 
-        <section id="about-section" aria-labelledby="about-heading">
-            <h1 id="about-heading">About My Trending Web</h1>
-            <p>Welcome to My Trending Web, your go-to platform for staying updated with the latest trends in technology, global news, and captivating stories. Our mission is to provide high-quality, engaging content that inspires and educates our readers.</p>
-            <p>We offer a variety of resources, including:</p>
-            <ul>
-                <li>Up-to-date technology news and insights.</li>
-                <li>Engaging stories and mythology from around the world.</li>
-                <li>Interactive coding guides for beginners and advanced learners.</li>
-                <li>Fun and educational mini-games to enhance your skills.</li>
-            </ul>
-            <p>Our team is dedicated to delivering content that is both informative and entertaining, ensuring you have a seamless and enjoyable experience on our platform.</p>
-            <div class="ads-container">
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-2083692947196571"
-                     data-ad-slot="YOUR_AD_SLOT_ID"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
-        </section>
-
-        <section id="google-terms-section" aria-labelledby="terms-heading">
-            <h1 id="terms-heading">Google Terms & Policy</h1>
-            <p>At My Trending Web, we prioritize user trust and transparency. To ensure a safe and secure experience, we adhere to Google's Terms of Service and Privacy Policy for all integrated services, including advertisements and analytics.</p>
-            <p>By using our website, you agree to comply with Google's policies, which outline the responsibilities and expectations for users. These policies help maintain a secure and fair environment for everyone.</p>
-            <p>Learn more about Google's policies through the links below:</p>
-            <a href="https://policies.google.com/terms?hl=en" target="_blank" class="card animated-card" style="display: inline-block; max-width: 400px; margin-top: 30px;" aria-label="Read Google's Terms of Service">
-                <span>📜</span>
-                <div>Read Google's Terms of Service</div>
-            </a>
-            <a href="https://policies.google.com/privacy?hl=en" target="_blank" class="card" style="display: inline-block; max-width: 400px; margin-top: 20px;" aria-label="Read Google's Privacy Policy">
-                <span>🛡️</span>
-                <div>Read Google's Privacy Policy</div>
-            </a>
-            <div class="ads-container">
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-2083692947196571"
-                     data-ad-slot="YOUR_AD_SLOT_ID"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
-        </section>
-    </main>
-
-    <footer class="site-footer" aria-label="Site footer">
-        <p>&copy; 2025 My Trending Web. All Rights Reserved.</p>
-        <nav aria-label="Footer navigation">
-            <a href="privacy.html" aria-label="Privacy Policy">Privacy Policy</a>
-            <a href="terms.html" aria-label="Terms of Service">Terms of Service</a>
-            <a href="contact.html" aria-label="Contact Us">Contact Us</a>
-        </nav>
-    </footer>
-
-    <a href="#home-section" class="back-to-top" aria-label="Back to top">▲</a>
-
-    <div class="chatbot-icon" id="chatbot-icon" role="button" aria-label="Open chatbot">
-        🤖
-    </div>
-    <div class="chatbot-window" id="chatbot-window" role="dialog" aria-label="Chatbot window">
-        <div class="chatbot-header">
-            <h3>MyTrendingWeb AI Assistant</h3>
-            <span class="close-btn" id="close-btn" role="button" aria-label="Close chatbot">&times;</span>
-        </div>
-        <div class="chatbot-body" id="chatbot-body">
-            <div class="chat-message bot-message">Hello! I am your personal assistant. How can I help you today?</div>
-        </div>
-        <div class="chatbot-footer">
-            <input type="text" id="user-input" placeholder="Ask me anything..." aria-label="Chat input">
-            <button id="send-btn" aria-label="Send message">Send</button>
-        </div>
-    </div>
-
-    <script>
-        // Scroll-based active link and section display
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-links a');
-        const navLinksContainer = document.querySelector('.nav-links');
-        const menuToggle = document.getElementById('menu-toggle');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            const scrollPosition = window.scrollY + 150;
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.offsetHeight;
-                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                    current = section.getAttribute('id');
-                }
-            });
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Mobile menu toggle
-        menuToggle.addEventListener('click', () => {
-            navLinksContainer.classList.toggle('show');
-            const isExpanded = navLinksContainer.classList.contains('show');
-            menuToggle.setAttribute('aria-expanded', isExpanded);
-        });
-
-        // Hide mobile menu when a link is clicked
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth <= 768) {
-                    navLinksContainer.classList.remove('show');
-                    menuToggle.setAttribute('aria-expanded', 'false');
-                }
-            });
-        });
-
-        // Initial load: Set the home section as active
-        document.addEventListener('DOMContentLoaded', () => {
-            const homeSection = document.getElementById('home-section');
-            if (homeSection) {
-                homeSection.classList.add('active');
-            }
-            // Initialize AdSense
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        });
-
-        // Chatbot functionality
-        const chatbotIcon = document.getElementById('chatbot-icon');
-        const chatbotWindow = document.getElementById('chatbot-window');
-        const closeBtn = document.getElementById('close-btn');
-        const sendBtn = document.getElementById('send-btn');
-        const userInput = document.getElementById('user-input');
-        const chatbotBody = document.getElementById('chatbot-body');
-
-        chatbotIcon.addEventListener('click', () => {
-            chatbotWindow.classList.toggle('active');
-        });
-
-        closeBtn.addEventListener('click', () => {
-            chatbotWindow.classList.remove('active');
-        });
-
-        sendBtn.addEventListener('click', sendMessage);
-        userInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') sendMessage();
-        });
-
-        function sendMessage() {
-            const message = userInput.value.trim();
-            if (message) {
-                const userMessage = document.createElement('div');
-                userMessage.className = 'chat-message user-message';
-                userMessage.textContent = message;
-                chatbotBody.appendChild(userMessage);
-
-                // Simulate bot response (replace with actual API call if available)
-                const botMessage = document.createElement('div');
-                botMessage.className = 'chat-message bot-message';
-                botMessage.textContent = `Thanks for your message: "${message}". How else can I assist you?`;
-                chatbotBody.appendChild(botMessage);
-
-                userInput.value = '';
-                chatbotBody.scrollTop = chatbotBody.scrollHeight;
-            }
-        }
-    </script>
+  <footer>
+    <p>© 2025 Sumant’s Web | Built with ❤️ | Best on Chrome & Mobile</p>
+  </footer>
 </body>
 </html>
